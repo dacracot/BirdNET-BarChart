@@ -1,1 +1,1 @@
-scripts for sqlite
+scripts for sqlite <https://www.sqlite.org/>
