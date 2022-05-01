@@ -11,12 +11,10 @@ LON=-121.440
 # ---------------------------------------------------
 {
 python3 /home/tweet/BirdNET-Analyzer/species.py --o /home/tweet/samples/species_list.txt --lat ${LAT} --lon ${LON} --week ${WEEK}
-find /home/tweet/samples -mtime +14 -name "*.gz" -delete
+find /home/tweet/ -mtime +45 -name "*.gz" -delete
+find /home/tweet/samples -mtime +45 -name "*.gz" -delete
 find /home/tweet/samples -empty -type d -delete
-gzip /home/tweet/${YEAR}-${LASTMONTH}-*-afterDark.err
-gzip /home/tweet/${YEAR}-${LASTMONTH}-*-afterDark.out
-gzip /home/tweet/${YEAR}-${LASTMONTH}-*-beforeDawn.err
-gzip /home/tweet/${YEAR}-${LASTMONTH}-*-beforeDawn.out
+gzip -v /home/tweet/${YEAR}-${LASTMONTH}-*
 df -h
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
