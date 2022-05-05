@@ -4,9 +4,6 @@ SECONDS=0
 YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
-WEEK=`date '+%U'`
-LAT=37.713
-LON=-121.440
 CONF=0.6
 TYPE=csv
 # ---------------------------------------------------
@@ -14,7 +11,7 @@ TYPE=csv
 kill `cat /home/tweet/recording.pid`
 for f in `ls /home/tweet/samples/${YEAR}/${MONTH}/${DAY}/*.wav`
 do
-    python3 /home/tweet/BirdNET-Analyzer/analyze.py --i ${f} --o ${f%.wav}.${TYPE} --rtype ${TYPE} --min_conf ${CONF} --threads 3 --lat ${LAT} --lon ${LON} --week ${WEEK} --slist /home/tweet/samples/species_list.txt
+    python3 /home/tweet/BirdNET-Analyzer/analyze.py --i ${f} --o ${f%.wav}.${TYPE} --rtype ${TYPE} --min_conf ${CONF} --threads 3 --slist /home/tweet/samples/species_list.txt
     t=$(basename ${f})
     sed -i 's/$/,'"${t%.wav}"'/' ${f%.wav}.csv
 done

@@ -11,6 +11,7 @@ LON=-121.440
 # ---------------------------------------------------
 {
 python3 /home/tweet/BirdNET-Analyzer/species.py --o /home/tweet/samples/species_list.txt --lat ${LAT} --lon ${LON} --week ${WEEK}
+grep -v -f /home/tweet/samples/species_blacklist.txt /home/tweet/samples/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > /home/tweet/samples/species_list.txt
 find /home/tweet/ -mtime +45 -name "*.gz" -delete
 find /home/tweet/samples -mtime +45 -name "*.gz" -delete
 find /home/tweet/samples -empty -type d -delete
