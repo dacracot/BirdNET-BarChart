@@ -4,7 +4,7 @@ SECONDS=0
 YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
-CONF=0.6
+CONF=0.7
 TYPE=csv
 # ---------------------------------------------------
 {
