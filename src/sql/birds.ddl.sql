@@ -1,1 +1,1 @@
-create table found (name text, conf float, heard datetime); 
+CREATE TABLE found (name text, conf float, heard datetime); 
