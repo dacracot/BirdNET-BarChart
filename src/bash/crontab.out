@@ -1,0 +1,4 @@
+0 1 * * * /home/tweet/chart.sh
+0 4 * * * /home/tweet/beforeDawn.sh
+30 20 * * * /home/tweet/afterDark.sh
+0 2 * * 7 /home/tweet/weekly.sh
