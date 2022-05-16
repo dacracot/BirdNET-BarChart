@@ -1,0 +1,141 @@
+<!-- ======================================================================= -->
+<project name="bulb" default="main" basedir="./" xmlns:if="ant:if" xmlns:ivy="antlib:org.apache.ivy.ant">
+    <!-- =================================================================== -->
+	<!-- get enviroment from OS -->
+	<!-- =================================================================== -->
+	<property environment="env"/> 
+	<!-- =================================================================== -->
+	<!-- set misc properties -->
+	<!-- =================================================================== -->
+    <exec executable="git" outputproperty="git-tag">
+        <arg line="describe --tags --abbrev=0"/>
+    </exec>
+    <exec executable="git" outputproperty="git-branch">
+        <arg line="rev-parse --abbrev-ref HEAD"/>
+    </exec>
+    <exec executable="git" outputproperty="git-commit">
+        <arg line="rev-parse --short=11 HEAD"/>
+    </exec>
+	<property name="git.signature" value="${git-tag}:${git-branch}:${git-commit}"/>
+	<property name="name" value="bulb"/>
+	<property name="JDK" value="11"/>
+	<condition property="user" value="${env.USERNAME}" else="${env.USER}">
+		<os family="windows"/>
+	</condition>
+	<!-- =================================================================== -->
+	<!-- clean everything -->
+	<!-- =================================================================== -->
+	<target name="clean" description="remove clutter">
+		<echo message="clean --------------------------------------"/>
+		<delete dir="tmp"/>
+		<delete>
+			<fileset dir="./" includes="*.out"/>
+			<fileset dir="./" includes="*.err"/>
+		</delete>
+		<echo message="clean --------------------------------------"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- set web.xml parameters -->
+	<!-- =================================================================== -->
+	<target name="set.parameters"  description="set version">
+		<echo message="set.parameters ----------------------------"/>
+		<replace file="src/web/web.xml" token="@@SIGNATURE@@" value="${git.signature}"/>
+		<echo message="set.parameters ----------------------------"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- reset web.xml parameters -->
+	<!-- =================================================================== -->
+	<target name="reset.parameters"  description="set version">
+		<echo message="reset.parameters ----------------------------"/>
+		<replace file="src/web/web.xml" token="${git.signature}" value="@@SIGNATURE@@"/>
+		<echo message="reset.parameters ----------------------------"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- compile java -->
+	<!-- =================================================================== -->
+	<target name="compile.java" description="compile java">
+		<echo message="compile.java ---------------------------"/>
+		<path id="classpath">
+			<pathelement location="lib/java/json.jar"/>
+			<pathelement location="lib/java/sqlite-jdbc.jar"/>
+			<pathelement location="lib/java/javax.servlet-api.jar"/>
+		</path>
+		<mkdir dir="tmp/classes"/>
+		<javac source="${JDK}" target="${JDK}" srcdir="src/java" destdir="tmp/classes" debug="on" deprecation="on" optimize="on" includeAntRuntime="false">
+			<classpath refid="classpath"/>
+			<compilerarg value="-Xlint"/>
+		</javac>
+		<manifest file="tmp/MANIFEST.MF">
+			<attribute name="Built-By" value="${user}"/>
+			<attribute name="Implementation-Version" value="${git.signature}"/>
+		</manifest>
+		<jar jarfile="tmp/${name}.jar" basedir="tmp/classes" manifest="tmp/MANIFEST.MF"/>
+		<echo message="compile.java ---------------------------"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- load war -->
+	<!-- =================================================================== -->
+	<target name="load.war" depends="compile.java,set.parameters" description="move everything to the ${name} web archive">
+		<echo message="load.war -----------------------------------"/>
+		<echo message="${git.signature}"/>
+		<echo message="load.war -----------------------------------"/>
+		<mkdir dir="tmp/${name}"/>
+		<copy todir="tmp/${name}/WEB-INF/lib">
+			<fileset dir="tmp">
+				<include name="${name}.jar"/>
+			</fileset>
+			<fileset dir="lib/java">
+				<include name="sqlite-jdbc.jar"/>
+				<include name="json.jar"/>
+			</fileset>
+		</copy>
+		<copy todir="tmp/${name}/META-INF">
+			<fileset dir="src/web">
+				<include name="context.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="tmp/${name}/WEB-INF/classes">
+			<fileset dir="src/web">
+				<include name="logging.properties"/>
+			</fileset>
+			<fileset dir="./">
+				<include name="bulb.db"/>
+			</fileset>
+		</copy>
+		<war warfile="${name}.war" webxml="src/web/web.xml" manifest="tmp/MANIFEST.MF">
+			<fileset dir="tmp/${name}"/>
+		</war>
+		<echo message="load.war -----------------------------------"/>
+	</target>
+	<!-- =================================================================== -->
+	<!-- Ivy dependency tool -->
+	<!-- =================================================================== -->
+    <target name="ivy.resolve" description="retreive dependencies to ~/.ivy2">
+    	<ivy:settings file="ivysettings.xml"/>
+        <ivy:retrieve pattern="lib/java/[artifact].[ext]"/>
+    </target>    
+	<!-- =================================================================== -->
+    <target name="ivy.report" depends="ivy.resolve" description="generates a report of dependencies after resolving them">
+    	<ivy:settings file="ivysettings.xml"/>
+        <ivy:report todir="docs/ivy"/>
+		<echo message="ivy report ----------------------------------- open docs/ivy/org.dacracot.birdnet-${name}-default.html"/>
+    </target>
+	<!-- =================================================================== -->
+    <target name="ivy.updates" description="looks for updates available">
+    	<ivy:settings file="ivysettings.xml"/>
+        <ivy:checkdepsupdate/>
+		<echo message="ivy updates -----------------------------------"/>
+    </target>
+	<!-- =================================================================== -->
+	<target name="ivy.clean-cache" description="delete the ~/.ivy2/cache">
+		<ivy:cleancache />
+	</target>
+	<!-- =================================================================== -->
+	<!-- default -->
+	<!-- =================================================================== -->
+	<target name="main" depends="clean, load.war, reset.parameters" description="default">
+		<echo message="signature  --> ${git.signature}"/>
+	</target>
+	<!-- =================================================================== -->
+</project>
+<!-- ======================================================================= -->
