@@ -15,7 +15,7 @@ sed -i 's/"//g' ${YEAR}-${MONTH}-${DAY}-chart.csv
 sed -i 's/ /,/' ${YEAR}-${MONTH}-${DAY}-chart.csv
 # load the yesterday's chart data into the database
 sqlite3 birds.db << EOF
-.import --csv /home/tweet/${YEAR}-${MONTH}-${DAY}-chart.csv chart
+.import --csv /home/tweet/${YEAR}-${MONTH}-${DAY}-chart.csv heardSumByHour
 EOF
 # how long did it take
 DURATION=$SECONDS

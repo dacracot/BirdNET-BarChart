@@ -21,16 +21,14 @@ do
 done
 cat /home/tweet/header.csv > /home/tweet/${YEAR}-${MONTH}-${DAY}.csv
 # remove the BirdNET-Analyzer headers
-cat /home/tweet/samples/${YEAR}/${MONTH}/${DAY}/*.csv | grep -v Confidence >> /home/tweet/t1.csv
-sort -t "," -k3,3 -k5,5nr /home/tweet/t1.csv > /home/tweet/t2.csv
-# remove the unwanted columns
-cut -d ',' -f 4,5- t2.csv >> /home/tweet/${YEAR}-${MONTH}-${DAY}.csv
-# delete temporary files
-rm /home/tweet/t*.csv
+cat /home/tweet/samples/${YEAR}/${MONTH}/${DAY}/*.csv | grep -v Confidence >> /home/tweet/tmp.csv
+sort -t "," -k3,3 -k5,5nr /home/tweet/tmp.csv > /home/tweet/${YEAR}-${MONTH}-${DAY}.csv
+# delete temporary file
+rm /home/tweet/tmp*.csv
 gzip /home/tweet/samples/${YEAR}/${MONTH}/${DAY}/*
 # load the results into the database
 sqlite3 birds.db << EOF
-.import --csv --skip 1 /home/tweet/${YEAR}-${MONTH}-${DAY}.csv found
+.import --csv --skip 1 /home/tweet/${YEAR}-${MONTH}-${DAY}.csv heardRaw
 EOF
 # how long did it take
 DURATION=$SECONDS
