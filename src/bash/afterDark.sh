@@ -27,7 +27,7 @@ sort -t "," -k3,3 -k5,5nr /home/tweet/tmp.csv > /home/tweet/${YEAR}-${MONTH}-${D
 rm /home/tweet/tmp*.csv
 gzip /home/tweet/samples/${YEAR}/${MONTH}/${DAY}/*
 # load the results into the database
-sqlite3 birds.db << EOF
+sqlite3 /home/tweet/birds.db << EOF
 .import --csv --skip 1 /home/tweet/${YEAR}-${MONTH}-${DAY}.csv heardRaw
 EOF
 # how long did it take

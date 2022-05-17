@@ -9,8 +9,8 @@ CREATE TABLE heardRaw (
 );
 /*------------------------------------------------------------------------*/
 CREATE TABLE heardSumByHour (
-	commonName TEXT NOT NULL,
 	hourOfDay DATETIME NOT NULL,
+	commonName TEXT NOT NULL,
 	howMany INTEGER NOT NULL
 );
 /*------------------------------------------------------------------------*/
