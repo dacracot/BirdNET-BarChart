@@ -110,6 +110,7 @@ public class Database
 		catch(Exception e)
 			{
 			Debug.logger("org.dacracot.bulb.util.Database","error: doSqlWithResult:prepareCall>> " + call,e);
+			result = e.toString();
 			}
 		if (Debug.VERBOSE) Debug.logger("org.dacracot.bulb.util.Database","doSqlWithResult(output)>> "+result);
 		return(result);
