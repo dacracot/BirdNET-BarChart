@@ -15,8 +15,8 @@ python3 /home/tweet/BirdNET-Analyzer/species.py --o /home/tweet/samples/species_
 # remove the frequent false positives
 grep -v -f /home/tweet/samples/species_blacklist.txt /home/tweet/samples/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > /home/tweet/samples/species_list.txt
 # clean up and compress the week's data
-find /home/tweet/ -mtime +45 -name "*.gz" -delete
-find /home/tweet/samples -mtime +45 -name "*.gz" -delete
+find /home/tweet/ -mtime +7 -name "*.gz" -delete
+find /home/tweet/samples -mtime +7 -name "*.gz" -delete
 find /home/tweet/samples -empty -type d -delete
 gzip -v /home/tweet/${YEAR}-${LASTMONTH}-*
 # check how full the SD card is getting

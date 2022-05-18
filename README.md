@@ -22,3 +22,9 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
     * Confidence
     * Bird filter
 
+### Dependencies:
+
+* Java 11+
+* Ant with Ivy
+* Tomcat 9
+* SQLite
