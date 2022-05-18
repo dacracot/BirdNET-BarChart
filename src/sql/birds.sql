@@ -5,14 +5,14 @@
 -- datetime format must be YYYY-MM-DDTHH:MI:SS
 --
 SELECT
-	DATETIME((STRFTIME('%S', heard) / @@INTERVAL@@) * @@INTERVAL@@, 'UNIXEPOCH') interval,
-	name,
-	COUNT(name)
+	DATETIME((STRFTIME('%S', minuteOfDay) / @@INTERVAL@@) * @@INTERVAL@@, 'UNIXEPOCH') interval,
+	commonName,
+	COUNT(commonName)
 FROM
-	found
+	heardRaw
 WHERE
 	conf >= @@CONFIDENCE@@
 AND
-	heard BETWEEN @@STARTDATETIME@@ AND @@ENDDATETIME@@
+	minuteOfDay BETWEEN @@STARTDATETIME@@ AND @@ENDDATETIME@@
 GROUP BY
-	interval, name;
+	interval, commonName;
