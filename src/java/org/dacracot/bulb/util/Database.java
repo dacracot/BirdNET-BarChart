@@ -92,6 +92,7 @@ public class Database
 			catch(Exception e)
 				{
 				Debug.logger("org.dacracot.bulb.util.Database","error: doSqlWithResult:execute>> " + call,e);
+				result = e.toString();
 				}
 			finally
 				{
