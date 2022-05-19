@@ -91,7 +91,7 @@ public class Database
 				}
 			catch(Exception e)
 				{
-				Debug.logger("org.dacracot.bulb.util.Database","error: doSqlWithResult:execute>> " + call,e);
+				result = Debug.logger("org.dacracot.bulb.util.Database","error: doSqlWithResult:execute>> " + call,e);
 				}
 			finally
 				{
@@ -108,7 +108,7 @@ public class Database
 			}
 		catch(Exception e)
 			{
-			Debug.logger("org.dacracot.bulb.util.Database","error: doSqlWithResult:prepareCall>> " + call,e);
+			result = Debug.logger("org.dacracot.bulb.util.Database","error: doSqlWithResult:prepareCall>> " + call,e);
 			}
 		if (Debug.VERBOSE) Debug.logger("org.dacracot.bulb.util.Database","doSqlWithResult(output)>> "+result);
 		return(result);

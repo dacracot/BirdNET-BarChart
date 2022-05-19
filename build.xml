@@ -56,6 +56,7 @@
 	<target name="compile.java" description="compile java">
 		<echo message="compile.java ---------------------------"/>
 		<path id="classpath">
+			<pathelement location="lib/java/Saxon-HE.jar"/>
 			<pathelement location="lib/java/json.jar"/>
 			<pathelement location="lib/java/sqlite-jdbc.jar"/>
 			<pathelement location="lib/java/javax.servlet-api.jar"/>
@@ -85,6 +86,7 @@
 				<include name="${name}.jar"/>
 			</fileset>
 			<fileset dir="lib/java">
+				<include name="Saxon-HE.jar"/>
 				<include name="sqlite-jdbc.jar"/>
 				<include name="json.jar"/>
 			</fileset>
@@ -92,6 +94,11 @@
 		<copy todir="tmp/${name}/META-INF">
 			<fileset dir="src/web">
 				<include name="context.xml"/>
+			</fileset>
+		</copy>
+		<copy todir="tmp/${name}/unitTest">
+			<fileset dir="docs/testing">
+				<include name="test.xsl"/>
 			</fileset>
 		</copy>
 		<copy todir="tmp/${name}/WEB-INF/classes">
