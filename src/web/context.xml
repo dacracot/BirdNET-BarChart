@@ -6,7 +6,7 @@
 		auth="Container"
 		type="javax.sql.DataSource"
 		driverClassName="org.sqlite.JDBC"
-		url="jdbc:sqlite:${catalina.home}/webapps/bulb/WEB-INF/classes/bulb.db"
+		url="jdbc:sqlite:${catalina.home}/webapps/bulb/bulb.db"
 		factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory">
 	</Resource>
 <!-- ========================================================== -->
