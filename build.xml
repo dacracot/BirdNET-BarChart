@@ -96,19 +96,25 @@
 				<include name="context.xml"/>
 			</fileset>
 		</copy>
-		<copy todir="tmp/${name}/unitTest">
-			<fileset dir="docs/testing">
-				<include name="test.xsl"/>
-			</fileset>
-		</copy>
 		<copy todir="tmp/${name}/WEB-INF/classes">
 			<fileset dir="src/web">
 				<include name="logging.properties"/>
 			</fileset>
+		</copy>
+		<!-- =============================================================== -->
+		<!-- include only if testing -->
+		<!-- =============================================================== -->
+		<copy todir="tmp/${name}" if:true="${withTesting}">
 			<fileset dir="./">
 				<include name="bulb.db"/>
 			</fileset>
 		</copy>
+		<copy todir="tmp/${name}/unitTest" if:true="${withTesting}">
+			<fileset dir="docs/testing">
+				<include name="test.xsl"/>
+			</fileset>
+		</copy>
+		<!-- =============================================================== -->
 		<war warfile="${name}.war" webxml="src/web/web.xml" manifest="tmp/MANIFEST.MF">
 			<fileset dir="tmp/${name}"/>
 		</war>
@@ -138,9 +144,25 @@
 		<ivy:cleancache />
 	</target>
 	<!-- =================================================================== -->
+	<!-- distribution -->
+	<!-- =================================================================== -->
+	<target name="dist" description="default">
+		<antcall target="clean"/>
+		<antcall target="load.war">
+			<param name="withTesting" value="false"/>
+		</antcall>
+		<antcall target="reset.parameters"/>
+		<echo message="signature  --> ${git.signature}"/>
+	</target>
+	<!-- =================================================================== -->
 	<!-- default -->
 	<!-- =================================================================== -->
-	<target name="main" depends="clean, load.war, reset.parameters" description="default">
+	<target name="main" description="default">
+		<antcall target="clean"/>
+		<antcall target="load.war">
+			<param name="withTesting" value="true"/>
+		</antcall>
+		<antcall target="reset.parameters"/>
 		<echo message="signature  --> ${git.signature}"/>
 	</target>
 	<!-- =================================================================== -->
