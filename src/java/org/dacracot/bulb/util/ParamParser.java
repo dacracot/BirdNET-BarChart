@@ -21,7 +21,7 @@ public class ParamParser
 			else
 				return(URLDecoder.decode(pair.substring(marker.length()), "UTF-8"));
 			}
-		throw(new Exception(key+" not found in query"));
+		return("");
 		}
 	//-----------------------------------------------
 	public String getPayload(HttpServletRequest request, String name)
