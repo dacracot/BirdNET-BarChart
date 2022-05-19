@@ -42,8 +42,19 @@ public class SqlServlet extends HttpServlet
 			db.getConn();
 			PrintWriter out = response.getWriter();
 			//-------------------------------------------
-			response.setContentType("text/plain");
-			result = db.doSql(pp.getPayload(request,"sql"),pp.getPayload(request,"outputType"));
+			String mime = pp.getPayload(request,"outputMime");
+			if (!mime.isEmpty())
+				response.setContentType(mime);
+			else
+				response.setContentType("text/plain");
+			String fromDB = db.doSql(pp.getPayload(request,"sql"),pp.getPayload(request,"outputType"));
+			String xslUrl = pp.getPayload(request,"outputXslUrl");
+			if (!xslUrl.isEmpty()) {
+				Xslt xform = new Xslt();
+				result = xform.morph(fromDB,xslUrl);
+				}
+			else
+				result = fromDB;
 			out.println(result);
 			response.setStatus(HttpServletResponse.SC_OK);
 			out.close();
