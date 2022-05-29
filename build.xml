@@ -101,6 +101,11 @@
 				<include name="logging.properties"/>
 			</fileset>
 		</copy>
+		<copy todir="tmp/${name}/ui">
+			<fileset dir="src/xslt">
+				<include name="*.xsl"/>
+			</fileset>
+		</copy>
 		<!-- =============================================================== -->
 		<!-- include only if testing -->
 		<!-- =============================================================== -->
