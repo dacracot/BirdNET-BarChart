@@ -6,8 +6,8 @@ MONTH=`date '+%m'`
 LASTMONTH=`date -d $(date +%Y)-$(( $(date +%m) - 1 ))-15 +%m`
 DAY=`date '+%d'`
 WEEK=`date '+%U'`
-LAT=37.713
-LON=-121.440
+LAT=47.166
+LON=-122.874
 # ---------------------------------------------------
 {
 # update the species_list.txt for this location and week of the year
