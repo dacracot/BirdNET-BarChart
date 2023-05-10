@@ -31,4 +31,4 @@ This is what is actually implemented so far.
 * [SQLite](https://sqlite.org/)
 * [Plotly](https://plotly.com/javascript/)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
-  * Cloned on last May 2022
+  * Cloned approximately on May 2022
