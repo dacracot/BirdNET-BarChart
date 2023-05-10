@@ -27,5 +27,6 @@ This is what is actually implemented so far.
 
 ### Dependencies:
 
-* Bash
-* SQLite
+* [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
+* [SQLite](https://sqlite.org/)
+* [Plotly](https://plotly.com/javascript/)
