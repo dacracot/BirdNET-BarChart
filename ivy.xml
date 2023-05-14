@@ -2,9 +2,12 @@
 	<!-- https://mvnrepository.com -->
     <info organisation="org.dacracot.birdnet" module="bulb"/>
     <dependencies>
+<!-- 
         <dependency org="javax.servlet" name="javax.servlet-api" rev="4.0.1" conf="*->*,!test,!sources,!javadoc"/>
-        <dependency org="org.xerial" name="sqlite-jdbc" rev="3.36.0.3" conf="*->*,!test,!sources,!javadoc"/>
-        <dependency org="org.json" name="json" rev="20220320" conf="*->*,!test,!sources,!javadoc"/>
-		<dependency org="net.sf.saxon" name="Saxon-HE" rev="10.8" conf="*->*,!test,!sources,!javadoc"/>
+ -->
+        <dependency org="jakarta.servlet" name="jakarta.servlet-api" rev="6.0.0" conf="*->*,!test,!sources,!javadoc"/>
+        <dependency org="org.xerial" name="sqlite-jdbc" rev="3.41.2.1" conf="*->*,!test,!sources,!javadoc"/>
+        <dependency org="org.json" name="json" rev="20230227" conf="*->*,!test,!sources,!javadoc"/>
+		<dependency org="net.sf.saxon" name="Saxon-HE" rev="12.2" conf="*->*,!test,!sources,!javadoc"/>
     </dependencies>
 </ivy-module>

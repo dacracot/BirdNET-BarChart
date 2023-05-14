@@ -165,7 +165,8 @@ public class Database
 				}
 			catch (IllegalArgumentException e)
 				{
-				return("No such output type >> "+outputType);
+// 				return("No such output type >> "+outputType);
+				output = outputs.CSV;
 				}
 			result = doSqlWithResult(call,output);
 			}
