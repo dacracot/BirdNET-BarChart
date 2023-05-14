@@ -15,7 +15,12 @@ select
         strftime(' %Y', date('now','-1 day'))||
         '</h2>'
 from heardSumByHour;
--- 
+--
+select
+	CASE :prefix WHEN 'hi' then '<h6>Markers scaled down by a factor of 10.</h6>'
+	ELSE ''
+	END;
+--
 select '<hr/>';
 select '<script>';
 select '{';
@@ -41,7 +46,10 @@ from
 			commonName,
 			sum(howMany)||' during week '||strftime('%W',hourOfDay) as LABEL,
 			CAST(strftime('%W',hourOfDay) AS INTEGER) as WEEK,
- 			sum(howMany) as TOTAL_WEEK
+--  			sum(howMany) as TOTAL_WEEK
+			CASE :prefix WHEN 'hi' then (sum(howMany)/10)
+				ELSE sum(howMany)
+				END as TOTAL_WEEK
 		from
 			heardSumByHour
 		where
