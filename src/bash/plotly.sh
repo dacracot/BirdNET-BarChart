@@ -13,6 +13,7 @@ sqlite3 birds.db ".param set :prefix mid" ".param set :low 100" ".param set :hig
 sqlite3 birds.db ".param set :prefix hi" ".param set :low 1000" ".param set :high 100000" ".param set :year $1" ".read plotly-js.sql" >> plotly.html
 {
 echo "</body>"
+echo "<script type='text/javascript' src='./refresh.js'></script>"
 echo "</html>"
 } >> plotly.html
 cat plotly.html

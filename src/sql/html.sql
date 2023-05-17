@@ -61,4 +61,5 @@ order by
 -- 
 select '</table>';
 select '</body>';
+select '<script type="text/javascript" src="./refresh.js"></script>';
 select '</html>';
