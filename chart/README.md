@@ -1,17 +1,14 @@
-# place holder
+# chart Directory
 
-This is where to write some docs.
+This is where files for the web user interface are written and read.
 
 ---
 
-### something:
+### Files:
 
-* blah.sh
-  * blah
-  * blah
-
-### more:
-
-* [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
-* [SQLite](https://sqlite.org/)
-* [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* chart.js
+	* Javascript to control and manipulate the browser user interface.  Not to be confused with [Chart.js](https://www.chartjs.org) which is used by this project.
+* chart.xml
+	* XML data as extracted from the database.
+* chart.xsl
+	* XML stylesheet transform for browser side rendering of the initial user interface.

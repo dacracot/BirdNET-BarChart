@@ -1,17 +1,14 @@
-# place holder
+# work Directory
 
-This is where to write some docs.
+This is where files are written, read, deleted, and saved from the ongoing process of bird analysis.
 
 ---
 
-### something:
+### Files:
 
-* blah.sh
-  * blah
-  * blah
-
-### more:
-
-* [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
-* [SQLite](https://sqlite.org/)
-* [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* header.csv
+	* Column names in comma separated form for the analyzer results prior to being added to the database.
+* species_blacklist.txt
+	* List of unwanted bird species to be removed from species_list.txt.
+* species_list.txt
+	* List of bird species updated weekly for the latitude and longitude using the analyzer.
