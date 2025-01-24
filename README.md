@@ -12,19 +12,12 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
   * Run the sound recorder
   * Run the analysis
   * Load the database
-* Java servlet hosting a SQLite database
-  * URL to execute SQL
+  * Extract the web page
 * Web page
-  * Javascript to render a SVG barChart
-  * Parameters
-    * Timeframe
-    * Time interval
-    * Confidence
-    * Bird filter
+  * Chart.js
+  * Browser rendered XSLT
 
 ### Dependencies:
 
-* Java 11+
-* Ant with Ivy
-* Tomcat 9
-* SQLite
+* SQLite 3
+* BirdNet-Analyzer (tested with v1.5.1)

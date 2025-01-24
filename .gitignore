@@ -1,6 +1,2 @@
 .DS_Store
-go
 tmp
-*.war
-lib/java/*.jar
-docs/ivy/*
