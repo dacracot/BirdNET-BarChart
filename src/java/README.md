@@ -1,1 +1,0 @@
-java code for the sqlite servlet
