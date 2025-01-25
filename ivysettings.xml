@@ -1,7 +1,0 @@
-<ivysettings>
-	<settings defaultResolver="maven"/>
-	<property name="maven-public" value="https://repo1.maven.org/maven2/"/>
-	<resolvers>
-		<ibiblio name="maven" m2compatible="true" root="${maven-public}"/>
-	</resolvers>
-</ivysettings>
