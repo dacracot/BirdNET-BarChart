@@ -98,6 +98,13 @@ and now know what birds are sharing their voices with me.
 
 ### Useful commands:
 
-* Locating a USB microphone.
+* Locating a USB microphone:
 	* `lsusb -t`
 	* `arecord -l`
+* Setting permissions for an Apache installation:
+	* `groupadd webpub`
+	* `usermod -a -G webpub dacracot`
+	* `groups dacracot`
+	* `chown -R root:webpub /var/www`
+	* `find /var/www -type d -exec chmod 2775 {} +`
+	* `find /var/www -type f -exec chmod 0664 {} +`
