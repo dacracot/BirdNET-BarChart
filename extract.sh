@@ -21,6 +21,10 @@ fi
 {
 # extract the table to XML
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/extract.sql > ${BARCHART_HOME}/chart/chart.xml
+# copy it all to the web server
+cp -R ${BARCHART_HOME}/chart ${WEB_HOME}
+find ${WEB_HOME}/chart -type d -exec chmod 777 {} +
+find ${WEB_HOME}/chart -type f -exec chmod 666 {} +
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."

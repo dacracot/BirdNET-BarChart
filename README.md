@@ -24,3 +24,4 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
 * [Chart.js](https://www.chartjs.org)
 * [SQLite](https://sqlite.org/)
 * [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)
+* Any web server, I use... [Apache](https://projects.apache.org/project.html?httpd-http_server) 

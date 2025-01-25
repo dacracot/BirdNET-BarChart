@@ -17,8 +17,8 @@ and now know what birds are sharing their voices with me.
 * ___Software___:
 	1. [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/)
 		* A port of [Debian](https://www.debian.org) Bookworm with no desktop environment.
-	1. [Python 3](xxxx) to support the analyzer.
-	1. [SQLite 3](xxxx) to support the barcharter.
+	1. [Python 3](https://www.python.org) to support the analyzer.
+	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
 
 ---
 
@@ -55,13 +55,14 @@ and now know what birds are sharing their voices with me.
 		* `0 4 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/morning.sh`
 		* `0 22 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/evening.sh`
 	1. Access the browser user interface...
+		* `http://birding.local/chart/chart.xml`
 
 ---
 
 ### Files:
 
 * `CONFIGURATION`
-  * Example configuration file to set the longitude, latitude, home directory of the analyzer, and home directory of the barcharter.
+  * Example configuration file to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, and home directory of the web server.
   * This file must be copied the the user's home directory and renamed `.BirdNET-Barchart`.
 * `weekly.sh`
   * Updates the species list using the analyzer.
@@ -69,7 +70,8 @@ and now know what birds are sharing their voices with me.
   * Clean up via deletion and compression of old logs and work files.
 * `extract.sh`
 	* Query the database to create an XML file for the browser user interface.
-	* Uses `extract.sql` to compose the output.
+	* Uses `extract.sql` to compose the output to chart.xml.
+	* Copies the altered chart folder to the web server's published directory.
 * `morning.sh`
 	* Create today's directory structure for the storage of sound files.
 	* Begin recording one minute duration files.
@@ -84,6 +86,7 @@ and now know what birds are sharing their voices with me.
 
 ### Tool References:
 
+* [Apache](https://projects.apache.org/project.html?httpd-http_server)
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [Chart.js](https://www.chartjs.org)

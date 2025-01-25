@@ -9,3 +9,6 @@ BARCHART_HOME=/home/dacracot/v0.9/BirdNET-Barchart-0.9
 # home of the analyzer software
 ANALYZER_HOME=/home/dacracot/v1.5.1/BirdNET-Analyzer-1.5.1
 # ---------------------------------------------------
+# home of the web server public HTTP directory
+WEB_HOME=/var/www/html
+# ---------------------------------------------------
