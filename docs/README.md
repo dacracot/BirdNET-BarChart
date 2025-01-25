@@ -17,6 +17,7 @@ and now know what birds are sharing their voices with me.
 * ___Software___:
 	1. [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/)
 		* A port of [Debian](https://www.debian.org) Bookworm with no desktop environment.
+	1. [Apache](https://www.apache.org) to serve web content.
 	1. [Python 3](https://www.python.org) to support the analyzer.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
 
