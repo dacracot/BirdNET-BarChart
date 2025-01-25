@@ -1,6 +1,10 @@
 # Explanation of software flow, philosophy, technique, etc.
 
-This is a description of what and why components are how they are.
+This software was inspired by the analyzer referenced below so that I could visualize the birds visiting my backyard.
+I am a retired software engineer and I have had an interest in Raspberry Pi hardware.  So, I found the analyzer, got
+it working, and wrote a few bash scripts to make the recordings, analyze those recordings, insert the results into a
+relational database, and then display the results visually via a browser.  I placed it outside in a weather proof box
+and now know what birds are sharing their voices with me.
 
 ---
 
@@ -67,8 +71,8 @@ This is a description of what and why components are how they are.
 * [Chart.js](https://www.chartjs.org)
 * [SQLite](https://sqlite.org/)
 
-### Commands for the usage of the tool:
+### Useful commands:
 
-* Useful commands for locating the USB microphone.
+* Locating a USB microphone.
 	* `lsusb -t`
 	* `arecord -l`
