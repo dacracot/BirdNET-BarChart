@@ -8,9 +8,23 @@ and now know what birds are sharing their voices with me.
 
 ---
 
+### Development and Testing Platform:
+
+* ___Hardware___:
+	1. [Raspberry Pi 4B](https://www.raspberrypi.com/products/raspberry-pi-4-model-b/specifications/)
+	1. [Mini USB Microphone](https://www.amazon.com/gp/product/B08M37224H/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&psc=1)
+	1. [Micro SD Card 128GB](https://www.amazon.com/gp/product/B07FCMKK5X/ref=ppx_yo_dt_b_search_asin_title?ie=UTF8&th=1)
+* ___Software___:
+	1. [Raspberry Pi OS Lite (64-bit)](https://www.raspberrypi.com/software/)
+		* A port of [Debian](https://www.debian.org) Bookworm with no desktop environment.
+	1. [Python 3](xxxx) to support the analyzer.
+	1. [SQLite 3](xxxx) to support the barcharter.
+
+---
+
 ### Quick Start:
 
-* ___Install the analyzer___:
+* ___Install the analyzer___ or better yet, follow [their](https://github.com/kahst/BirdNET-Analyzer) documentation:
 	1. Expand the release file obtained from the BirdNET-Analyzer GitHub.
 		* `tar xzvf v1.5.1.tar.gz`
 	1. Enter the resultant directory.
@@ -42,6 +56,8 @@ and now know what birds are sharing their voices with me.
 		* `0 22 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/evening.sh`
 	1. Access the browser user interface...
 
+---
+
 ### Files:
 
 * `CONFIGURATION`
@@ -64,12 +80,17 @@ and now know what birds are sharing their voices with me.
 	* Load the database.
 	* Delete and compress the work files that day.
 
+---
+
 ### Tool References:
 
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [Chart.js](https://www.chartjs.org)
 * [SQLite](https://sqlite.org/)
+* [XSLT](https://https://en.wikipedia.org/wiki/XSLT)
+
+---
 
 ### Useful commands:
 
