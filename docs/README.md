@@ -98,9 +98,12 @@ and now know what birds are sharing their voices with me.
 
 ### Useful commands:
 
-* Locating a USB microphone:
+* Locating a USB soundcard/microphone:
 	* `lsusb -t`
 	* `arecord -l`
+* If only root can see the USB soundcard/microphone:
+	* `sudo arecord -l`
+	* `sudo usermod -a -G audio dacracot`
 * Setting permissions for an Apache installation:
 	* `groupadd webpub`
 	* `usermod -a -G webpub dacracot`
