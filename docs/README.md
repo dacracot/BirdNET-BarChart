@@ -20,6 +20,7 @@ and now know what birds are sharing their voices with me.
 	1. [Apache](https://www.apache.org) to serve web content.
 	1. [Python 3](https://www.python.org) to support the analyzer.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
+	1. [XSLTransform](https://en.wikipedia.org/wiki/XSLT) to support the barcharter.
 
 ---
 
@@ -92,7 +93,8 @@ and now know what birds are sharing their voices with me.
   * Clean up via deletion and compression of old logs and work files.
 * `extract.sh`
 	* Query the database to create an XML file for the browser user interface.
-	* Uses `extract.sql` to compose the output to chart.xml.
+	* Uses `extract.sql` to compose the output to `chart.xml`.
+	* Transform the `chart.xml` into `chart.html`.
 	* Copies the altered chart folder to the web server's published directory.
 * `morning.sh`
 	* Create today's directory structure for the storage of sound files.
