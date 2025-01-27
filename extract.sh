@@ -21,6 +21,8 @@ fi
 {
 # extract the table to XML
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/extract.sql > ${BARCHART_HOME}/chart/chart.xml
+# transform the xml into html
+XSLTransform -s:${BARCHART_HOME}/chart/chart.xml -xsl:${BARCHART_HOME}/chart/chart.xsl > ${BARCHART_HOME}/chart/chart.html
 # copy it all to the web server
 cp -v -R ${BARCHART_HOME}/chart ${WEB_HOME}
 # how long did it take

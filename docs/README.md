@@ -42,6 +42,27 @@ and now know what birds are sharing their voices with me.
 		* `pip3 install tensorflow==2.15.0`
 	1. Run the analyzer test.
 		* `python3 -m birdnet_analyzer.analyze`
+* ___Install the transformer___:
+	1. Expand the SaxonC-HE 12.5 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
+		* `unzip libsaxon-HEC-linux-aarch64-v12.5.0.zip `
+	1. Enter the result's command directory.
+		* `cd libsaxon-HEC-linux-aarch64-v12.5.0/command`
+	1. Run the script to build your libraries.
+		* `./build64-linux.sh`
+	1. Install the transformer for general usage.
+		* `cd /usr/lib`
+		* `sudo mkdir -p Saxonica/SaxonC-HE-12.5.0`
+		* `sudo cp ~/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/libs/nix/libsaxon-hec-12.5.0.so Saxonica/SaxonC-HE-12.5.0`
+		* `sudo ln -s Saxonica/SaxonC-HE-12.5.0/libsaxon-hec-12.5.0.so libsaxon-hec-12.5.0.so`
+		* `cd /usr/bin`
+		* `sudo mkdir -p Saxonica/SaxonC-HE-12.5.0`
+		* `sudo cp ~/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/command/transform Saxonica/SaxonC-HE-12.5.0`
+		* `sudo ln -s Saxonica/SaxonC-HE-12.5.0/transform XSLTransform`
+	1. _Alternatively, set the library path to include the newly built library with an environment variable_.
+		* `export LD_LIBRARY_PATH=/home/dacracot/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/libs/nix`
+		* `ln -s /home/dacracot/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/command/transform XSLTransform`
+	1. Run transformer test.
+		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
 	1. Expand the release file obtained from the BirdNET-Barchart GitHub.
 		* `tar xzvf v0.9.tar.gz`
