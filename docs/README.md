@@ -69,7 +69,7 @@ and now know what birds are sharing their voices with me.
 		* `tar xzvf v0.9.tar.gz`
 	1. Enter the resultant directory.
 		* `cd BirdNET-Barchart-0.9`
-	1. Edit the configuration file with your lat/lon, the analyzer's home directory, and this software's home directory.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
+	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, and the web servers HTML directory.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
 		* `vi CONFIGURATION`
 		* `cp CONFIGURATION ~/.BirdNET-Barchart`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, and extract actions.
@@ -115,7 +115,7 @@ and now know what birds are sharing their voices with me.
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [Chart.js](https://www.chartjs.org)
 * [SQLite](https://sqlite.org/)
-* [XSLT](https://https://en.wikipedia.org/wiki/XSLT)
+* [XSLT](https://www.saxonica.com/welcome/welcome.xml)
 
 ---
 
