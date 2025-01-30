@@ -7,7 +7,7 @@ select '<extract>';
 select xml from (
 with param as (select 0.75 as confidence, '-24 hour' as timeframe)
 select
-	'<set confidence="'||param.confidence||'" timeframe="last 24 hours">' as xml,
+	'<set confidence="'||param.confidence||'" timeframe="last day">' as xml,
 	1 as rowOrder
 from
 	param
@@ -35,7 +35,7 @@ order by rowOrder);
 select xml from (
 with param as (select 0.5 as confidence, '-24 hour' as timeframe)
 select
-	'<set confidence="'||param.confidence||'" timeframe="last 24 hours">' as xml,
+	'<set confidence="'||param.confidence||'" timeframe="last day">' as xml,
 	1 as rowOrder
 from
 	param
@@ -63,7 +63,7 @@ order by rowOrder);
 select xml from (
 with param as (select 0.1 as confidence, '-24 hour' as timeframe)
 select
-	'<set confidence="'||param.confidence||'" timeframe="last 24 hours">' as xml,
+	'<set confidence="'||param.confidence||'" timeframe="last day">' as xml,
 	1 as rowOrder
 from
 	param

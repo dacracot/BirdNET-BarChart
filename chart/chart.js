@@ -1,7 +1,13 @@
 $(function(){
 	$("#tabs").tabs();
-	$("#tabs-1").tabs();
-	$("#tabs-2").tabs();
-	$("#tabs-3").tabs();
-	$("#tabs-4").tabs();
+	$("#tabs-chart").tabs();
+	$("#tabs-chart-day").tabs();
+	$("#tabs-chart-week").tabs();
+	$("#tabs-chart-month").tabs();
+	$("#tabs-chart-year").tabs();
+	$("#tabs-table").tabs();
+	$("#tabs-table-day").tabs();
+	$("#tabs-table-week").tabs();
+	$("#tabs-table-month").tabs();
+	$("#tabs-table-year").tabs();
 	});
