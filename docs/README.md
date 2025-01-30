@@ -21,6 +21,7 @@ and now know what birds are sharing their voices with me.
 	1. [Python 3](https://www.python.org) to support the analyzer.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
 	1. [XSLTransform](https://en.wikipedia.org/wiki/XSLT) to support the barcharter.
+	1. [SVG](https://en.wikipedia.org/wiki/SVG) to render the charts in the browser.
 
 ---
 
@@ -113,9 +114,9 @@ and now know what birds are sharing their voices with me.
 * [Apache](https://projects.apache.org/project.html?httpd-http_server)
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
-* [Chart.js](https://www.chartjs.org)
 * [SQLite](https://sqlite.org/)
-* [XSLT](https://www.saxonica.com/welcome/welcome.xml)
+* [SVG](https://www.w3.org/Graphics/SVG/)
+* [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
 
 ---
 
