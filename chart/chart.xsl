@@ -1,10 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    exclude-result-prefixes="xs"
+    version="2.0">
+	<xsl:output method="html" indent="yes"/>
+<!-- =========================================================================================== -->
+	<xsl:template match="/extract">
+		<html lang="en">
+			<head>
+				<meta charset="utf-8"/>
+				<title>BirdNET-Barchart</title>
+				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
+			</head>
+			<body style="font-family: Verdana, sans-serif;" bgcolor="LightGray">
+				<div id="tabs">
+					<ul>
+						<li><a href="#tab-chart">barchart</a></li>
+						<li><a href="#tab-table">table</a></li>
+					</ul>
+					<div id="tab-chart">
+						<ul>
+							<li><a href="#tab-chart-day">last day</a></li>
+							<li><a href="#tab-chart-week">last week</a></li>
+							<li><a href="#tab-chart-month">last month</a></li>
+							<li><a href="#tab-chart-year">last year</a></li>
+						</ul>
+						<div id="tab-chart-day">
+							<ul>
+								<li><a href="#tab-chart-day-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-day-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-day-low">low confidence (0.1)</a></li>
+							</ul>
+							<div id="tab-chart-day-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last day']" mode="chart"/>
+							</div>
+							<div id="tab-chart-day-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last day']" mode="chart"/>
+							</div>
+							<div id="tab-chart-day-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last day']" mode="chart"/>
+							</div>
+						</div>
+						<div id="tab-chart-week">
+							<ul>
+								<li><a href="#tab-chart-week-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-week-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-week-low">low confidence (0.1)</a></li>
+							</ul>
+							<div id="tab-chart-week-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last week']" mode="chart"/>
+							</div>
+							<div id="tab-chart-week-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last week']" mode="chart"/>
+							</div>
+							<div id="tab-chart-week-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last week']" mode="chart"/>
+							</div>
+						</div>
+						<div id="tab-chart-month">
+							<ul>
+								<li><a href="#tab-chart-month-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-month-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-month-low">low confidence (0.1)</a></li>
+							</ul>
+							<div id="tab-chart-month-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last month']" mode="chart"/>
+							</div>
+							<div id="tab-chart-month-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last month']" mode="chart"/>
+							</div>
+							<div id="tab-chart-month-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last month']" mode="chart"/>
+							</div>
+						</div>
+						<div id="tab-chart-year">
+							<ul>
+								<li><a href="#tab-chart-year-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-year-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-year-low">low confidence (0.1)</a></li>
+							</ul>
+							<div id="tab-chart-year-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last year']" mode="chart"/>
+							</div>
+							<div id="tab-chart-year-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last year']" mode="chart"/>
+							</div>
+							<div id="tab-chart-year-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last year']" mode="chart"/>
+							</div>
+						</div>
+					</div>
+					<div id="tab-table">
 						<ul>
 							<li><a href="#tab-table-day">last day</a></li>
 							<li><a href="#tab-table-week">last week</a></li>
 							<li><a href="#tab-table-month">last month</a></li>
 							<li><a href="#tab-table-year">last year</a></li>
 						</ul>
-						<div id="tabs-table-day">
+						<div id="tab-table-day">
 							<ul>
 								<li><a href="#tab-table-day-hi">high confidence (0.75)</a></li>
 								<li><a href="#tab-table-day-mid">mid confidence (0.5)</a></li>
@@ -20,7 +113,7 @@
 								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last day']" mode="table"/>
 							</div>
 						</div>
-						<div id="tabs-table-week">
+						<div id="tab-table-week">
 							<ul>
 								<li><a href="#tab-table-week-hi">high confidence (0.75)</a></li>
 								<li><a href="#tab-table-week-mid">mid confidence (0.5)</a></li>
@@ -36,7 +129,7 @@
 								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last week']" mode="table"/>
 							</div>
 						</div>
-						<div id="tabs-table-month">
+						<div id="tab-table-month">
 							<ul>
 								<li><a href="#tab-table-month-hi">high confidence (0.75)</a></li>
 								<li><a href="#tab-table-month-mid">mid confidence (0.5)</a></li>
@@ -52,7 +145,7 @@
 								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last month']" mode="table"/>
 							</div>
 						</div>
-						<div id="tabs-table-year">
+						<div id="tab-table-year">
 							<ul>
 								<li><a href="#tab-table-year-hi">high confidence (0.75)</a></li>
 								<li><a href="#tab-table-year-mid">mid confidence (0.5)</a></li>
@@ -69,3 +162,67 @@
 							</div>
 						</div>
 					</div>
+				</div>
+			</body><xsl:text>
+</xsl:text>
+			<script src="https://code.jquery.com/jquery-3.7.1.js"></script><xsl:text>
+</xsl:text>
+			<script src="https://code.jquery.com/ui/1.14.1/jquery-ui.js"></script><xsl:text>
+</xsl:text>
+  			<script src="chart.js"></script><xsl:text>
+</xsl:text>
+		</html>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="set" mode="table">
+		<table border="1">
+			<xsl:apply-templates mode="table"/>
+		</table>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="row" mode="table">
+		<tr>
+			<td>
+				<xsl:element name="a">
+					<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
+					<xsl:attribute name="target">_blank</xsl:attribute>
+					<xsl:value-of select="@commonName"/>
+				</xsl:element>
+			</td>
+			<td><xsl:value-of select="@count"/></td>
+		</tr>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="set" mode="chart">
+		<svg width="2400" height="2400">
+			<xsl:apply-templates mode="chart"/>
+		</svg>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="row" mode="chart">
+		<xsl:element name="text">
+			<xsl:attribute name="x">216</xsl:attribute>
+			<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+			<xsl:attribute name="text-anchor">end</xsl:attribute>
+			<xsl:attribute name="font-size">12</xsl:attribute>
+			<xsl:value-of select="@commonName"/>
+		</xsl:element>
+		<xsl:element name="rect">
+			<xsl:attribute name="x">220</xsl:attribute>
+			<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
+			<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
+			<xsl:attribute name="height">18</xsl:attribute>
+<!-- 
+			<xsl:attribute name="style">fill:rgb(<xsl:value-of select="(floor(math:random()*255) mod 255) + 1" />,<xsl:value-of select="(floor(math:random()*255) mod 255) + 1" />,<xsl:value-of select="(floor(math:random()*255) mod 255) + 1" />)</xsl:attribute>
+ -->
+			<xsl:attribute name="style">fill:red</xsl:attribute>
+		</xsl:element>
+		<xsl:element name="text">
+			<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
+			<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+			<xsl:attribute name="font-size">12</xsl:attribute>
+			<xsl:value-of select="@count"/>
+		</xsl:element>
+	</xsl:template>
+<!-- =========================================================================================== -->
+</xsl:stylesheet>

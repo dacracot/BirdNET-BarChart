@@ -25,7 +25,7 @@ mkdir -p ${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/
 # record continuously into files of 1 minute each
 arecord -D sysdefault:CARD=${CARD} --quiet --max-file-time 60 -f S16_LE -r 48000 -t wav --use-strftime ${BARCHART_HOME}/work/%Y/%m/%d/%Y-%m-%dT%H:%M.wav &
 # save the process ID for afterDark.sh
-echo "$!" > recording.pid
+echo "$!" > ${BARCHART_HOME}/recording.pid
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
