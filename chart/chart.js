@@ -12,31 +12,14 @@ $(function(){
 	$("#tab-table-month").tabs();
 	$("#tab-table-year").tabs();
 // 	set colors for SVG barcharts
-// 	var myColors = [
-// 		"Aqua", "Aquamarine", "Beige", "Bisque", "Black", "BlanchedAlmond", "Blue",
-// 		"BlueViolet", "Brown", "BurlyWood", "CadetBlue", "Chartreuse", "Chocolate",
-// 		"Color Picker", "Coral", "CornflowerBlue", "Crimson", "Cyan", "DarkBlue",
-// 		"DarkCyan", "DarkGoldenRod", "DarkGreen", "DarkGrey", "DarkKhaki", "DarkMagenta",
-// 		"DarkOliveGreen", "DarkOrange", "DarkOrchid", "DarkRed", "DarkSalmon", "DarkSeaGreen",
-// 		"DarkSlateBlue", "DarkSlateGrey", "DarkTurquoise", "DarkViolet", "DeepPink",
-// 		"DeepSkyBlue", "DimGrey", "DodgerBlue", "FireBrick", "ForestGreen", "Fuchsia",
-// 		"Gainsboro", "Gold", "GoldenRod", "Green", "GreenYellow", "Grey", "HotPink",
-// 		"IndianRed", "Indigo", "Khaki", "Lavender", "LawnGreen", "LemonChiffon", "LightBlue",
-// 		"LightCoral", "LightCyan", "LightGreen", "LightPink", "LightSalmon", "LightSeaGreen",
-// 		"LightSkyBlue", "LightSlateGrey", "LightSteelBlue", "LightYellow", "Lime",
-// 		"LimeGreen", "Linen", "Magenta", "Maroon", "MediumAquaMarine", "MediumBlue",
-// 		"MediumOrchid", "MediumPurple", "MediumSeaGreen", "MediumSlateBlue",
-// 		"MediumSpringGreen", "MediumTurquoise", "MediumVioletRed", "MidnightBlue",
-// 		"MistyRose", "Moccasin", "NavajoWhite", "Navy", "Olive", "OliveDrab", "Orange",
-// 		"OrangeRed", "Orchid", "PaleGoldenRod", "PaleGreen", "PaleTurquoise", "PaleVioletRed",
-// 		"PapayaWhip", "PeachPuff", "Peru", "Pink", "Plum", "PowderBlue", "Purple",
-// 		"RebeccaPurple", "Red", "RosyBrown", "RoyalBlue", "SaddleBrown", "Salmon",
-// 		"SandyBrown", "SeaGreen", "Sienna", "Silver", "SkyBlue", "SlateBlue", "SlateGrey",
-// 		"SpringGreen", "SteelBlue", "Tan", "Teal", "Thistle", "Tomato", "Turquoise", "Violet",
-// 		"Wheat", "Yellow", "YellowGreen"
-// 		];
-// 	var randomColor = myColors[Math.floor(Math.random() * myColors.length)];
-// 
-// 	$("SVGTHING").style.fill=randomColor;
-
+	var myColors = [
+		"Aquamarine", "Blue", "Brown", "Chocolate", "Coral", "CornflowerBlue", "Crimson",
+		"DarkCyan", "DarkGoldenRod", "DeepPink", "DeepSkyBlue", "ForestGreen", "Fuchsia",
+		"Gold", "Green", "GreenYellow", "Maroon", "Orange", "Plum", "Purple", "Red",
+		"Tan", "Turquoise", "Violet", "Yellow"
+		];
+	var bars = document. getElementsByTagName("rect");
+	for (var i = bars.length - 1; i >= 0; i--) {
+		bars[i].style = "fill:"+myColors[Math.floor(Math.random() * myColors.length)];
+		}
 	});
