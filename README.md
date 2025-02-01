@@ -17,9 +17,10 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
 
 ### Dependencies:
 
+* [Apache](https://projects.apache.org/project.html?httpd-http_server)
 * [Bash](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)
-* [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)
 * [SVG](https://www.w3schools.com/graphics/svg_intro.asp)
-* [Apache](https://projects.apache.org/project.html?httpd-http_server)
+* [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)

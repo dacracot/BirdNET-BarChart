@@ -114,9 +114,17 @@ and now know what birds are sharing their voices with me.
 * [Apache](https://projects.apache.org/project.html?httpd-http_server)
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
 * [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
+
+---
+
+### Additional Learning References:
+
+* [SVG](https://www.w3schools.com/graphics/svg_intro.asp)
+* [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)
 
 ---
 
