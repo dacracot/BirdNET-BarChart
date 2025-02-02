@@ -8,6 +8,7 @@
 	<xsl:param name="lat"/>
 	<xsl:param name="lon"/>
 <!-- =========================================================================================== -->
+<!-- transform XML to HTML -->
 	<xsl:template match="/extract">
 		<html lang="en">
 			<head>
@@ -16,7 +17,9 @@
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
 			</head>
 			<body style="font-family: Verdana, sans-serif;" bgcolor="LightGray">
+				<!-- display timeframe and locale -->
 				<h4>Bird song observations as of <xsl:value-of select="$asOf"/> from location <xsl:value-of select="$lat"/>, <xsl:value-of select="$lon"/>.</h4>
+				<!-- structure lists for conversion to tabs by jQueryUI -->
 				<div id="tabs">
 					<ul>
 						<li><a href="#tab-chart">barchart</a></li>
@@ -178,12 +181,14 @@
 		</html>
 	</xsl:template>
 <!-- =========================================================================================== -->
+<!-- create table from a set -->
 	<xsl:template match="set" mode="table">
 		<table border="1">
 			<xsl:apply-templates mode="table"/>
 		</table>
 	</xsl:template>
 <!-- =========================================================================================== -->
+<!-- create each table row from a set -->
 	<xsl:template match="row" mode="table">
 		<tr>
 			<td>
@@ -197,28 +202,33 @@
 		</tr>
 	</xsl:template>
 <!-- =========================================================================================== -->
+<!-- create a bar chart from a set -->
 	<xsl:template match="set" mode="chart">
 		<svg width="2400" height="2400">
 			<xsl:apply-templates mode="chart"/>
 		</svg>
 	</xsl:template>
 <!-- =========================================================================================== -->
+<!-- create each bar with label and quantity -->
 	<xsl:template match="row" mode="chart">
-		<xsl:element name="text">
-			<xsl:attribute name="x">216</xsl:attribute>
-			<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
-			<xsl:attribute name="text-anchor">end</xsl:attribute>
-			<xsl:attribute name="font-size">12</xsl:attribute>
-			<xsl:value-of select="@commonName"/>
+
+		<xsl:element name="a">
+			<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
+			<xsl:attribute name="target">_blank</xsl:attribute>
+			<xsl:element name="text">
+				<xsl:attribute name="x">216</xsl:attribute>
+				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+				<xsl:attribute name="text-anchor">end</xsl:attribute>
+				<xsl:attribute name="font-size">12</xsl:attribute>
+				<xsl:value-of select="@commonName"/>
+			</xsl:element>
 		</xsl:element>
 		<xsl:element name="rect">
 			<xsl:attribute name="x">220</xsl:attribute>
 			<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
 			<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
 			<xsl:attribute name="height">18</xsl:attribute>
-<!-- 
-			<xsl:attribute name="style">fill:rgb(<xsl:value-of select="(floor(math:random()*255) mod 255) + 1" />,<xsl:value-of select="(floor(math:random()*255) mod 255) + 1" />,<xsl:value-of select="(floor(math:random()*255) mod 255) + 1" />)</xsl:attribute>
- -->
+			<!-- bars are all red until post processed with javascript -->
 			<xsl:attribute name="style">fill:red</xsl:attribute>
 		</xsl:element>
 		<xsl:element name="text">
