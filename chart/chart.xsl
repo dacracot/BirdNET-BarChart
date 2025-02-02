@@ -4,6 +4,9 @@
     exclude-result-prefixes="xs"
     version="2.0">
 	<xsl:output method="html" indent="yes"/>
+	<xsl:param name="asOf"/>
+	<xsl:param name="lat"/>
+	<xsl:param name="lon"/>
 <!-- =========================================================================================== -->
 	<xsl:template match="/extract">
 		<html lang="en">
@@ -13,6 +16,7 @@
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
 			</head>
 			<body style="font-family: Verdana, sans-serif;" bgcolor="LightGray">
+				<h4>Bird song observations as of <xsl:value-of select="$asOf"/> from location <xsl:value-of select="$lat"/>, <xsl:value-of select="$lon"/>.</h4>
 				<div id="tabs">
 					<ul>
 						<li><a href="#tab-chart">barchart</a></li>
