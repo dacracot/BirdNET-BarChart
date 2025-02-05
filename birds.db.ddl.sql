@@ -5,4 +5,4 @@ CREATE TABLE heard (
 	commonName TEXT NOT NULL,
 	confidence FLOAT NOT NULL,
 	minuteOfDay DATETIME NOT NULL
-)
+	);

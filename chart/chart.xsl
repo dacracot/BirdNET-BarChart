@@ -228,8 +228,8 @@
 			<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
 			<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
 			<xsl:attribute name="height">18</xsl:attribute>
-			<!-- bars are all red until post processed with javascript -->
-			<xsl:attribute name="style">fill:red</xsl:attribute>
+			<!-- bars are all fuchsia until post processed with javascript -->
+			<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
 		</xsl:element>
 		<xsl:element name="text">
 			<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
