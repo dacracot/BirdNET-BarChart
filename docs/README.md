@@ -79,7 +79,7 @@ and now know what birds are sharing their voices with me.
 		* `0 4 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/morning.sh`
 		* `0 22 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/evening.sh`
 	1. Access the browser user interface...
-		* `http://birding.local/chart/chart.xml`
+		* `http://birding.local/chart/chart.html`
 
 ---
 
