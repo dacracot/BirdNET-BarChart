@@ -4,7 +4,7 @@ SECONDS=0
 YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
-BIRDWEATHER_ID="blah"
+BIRDWEATHER_ID="secret"
 # ---------------------------------------------------
 # source the configuration file
 # it must be edited and copied as ".BirdNET-Barchart" to you home directory
@@ -28,22 +28,28 @@ EOF
 # read each line
 while read TS; do
 	# POST the file to BirdWeather
-	RESPONSE=$(curl -v -X POST -H "Content-Type: application/octet-stream" -H "Content-Encoding: application/gzip" --data @${BARCHART_HOME}/work/${TS:0:4}/${TS:5:2}/${TS:8:2}/${TS}.wav.gz -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/soundscapes?timestamp=${TS}")
+	RESPONSE=$(curl -X POST -H "Content-Type: application/octet-stream" -H "Content-Encoding: application/gzip" --data @${BARCHART_HOME}/work/${TS:0:4}/${TS:5:2}/${TS:8:2}/${TS}.wav.gz -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/soundscapes?timestamp=${TS}")
 	HTTP_CODE=`echo ${RESPONSE} | cut -d "|" -f 2`
-	if [[ $HTTP_CODE != 200 ]]
+	if (($HTTP_CODE < 200 || $HTTP_CODE >= 300)); then
 		# handle error
+		echo "RESPONSE = ${RESPONSE}"
+		echo "HTTP_CODE = ${HTTP_CODE}"
 		exit 0
 	else
-		# get the returned soundscapeId
-		SID=`echo ${RESPONSE} | cut -d "|" -f 1`
+		# get the returned soundscapeId from JSON response
+		SID=`echo ${RESPONSE} | cut -d "|" -f 1 | jq '.soundscape.id'`
+		# --
+		echo "SID = ${SID}"
+		echo "TS  = ${TS}"
+		# --
 	fi
 	# create file of analysis
-sqlite3 birds.db << EOF
+sqlite3 ${BARCHART_HOME}/birds.db << EOF
 .param set :lat ${LAT}
 .param set :lon ${LON}
 .param set :sid ${SID}
 .param set :ts ${TS}
-.output share/temp75.js
+.output ${BARCHART_HOME}/share/temp75.js
 select
 	json_object(
 		'timestamp', :ts,
@@ -59,20 +65,25 @@ select
 from
 	heard
 where
-	minuteOfDay = ':ts'
+	minuteOfDay = :ts
 		and
 	confidence >= 0.75;
 EOF
 	# read each line
 	while read JS; do
 		# POST the JSON of the analyzed file
-		HTTP_CODE=$(curl -v -X POST -H "Content-Type: application/json" --data ${JS} -w "%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/detections")
-		if [[ $HTTP_CODE != 200 ]]
+		# --
+		echo "JS = ${JS}"
+		# --
+		RESPONSE=$(curl -X POST -H "Content-Type: application/json" --data-raw "`echo ${JS}`" -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/detections")
+		HTTP_CODE=`echo ${RESPONSE} | cut -d "|" -f 2`
+		if (($HTTP_CODE < 200 || $HTTP_CODE >= 300)); then
 			# handle error
+			echo "RESPONSE = ${RESPONSE}"
+			echo "HTTP_CODE = ${HTTP_CODE}"
 			exit 0
 		fi
 	done < ${BARCHART_HOME}/share/temp75.js
-fi
 done < ${BARCHART_HOME}/share/temp75.lst
 # remove temp files
 rm ${BARCHART_HOME}/share/temp75.*
