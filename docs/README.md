@@ -73,10 +73,11 @@ and now know what birds are sharing their voices with me.
 	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, and the web servers HTML directory.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
 		* `vi CONFIGURATION`
 		* `cp CONFIGURATION ~/.BirdNET-Barchart`
-	1. Edit your crontab and insert the scripts for weekly, morning, evening, and extract actions.
+	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
 		* `30 2 * * 7 /home/dacracot/v0.9/BirdNET-Barchart-0.9/weekly.sh`
-		* `0 3 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/extract.sh`
-		* `0 4 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/morning.sh`
+		* `30 2 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/extract.sh`
+                * `0 2 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/share/BirdWeather.sh`
+		* `0 3 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/morning.sh`
 		* `0 22 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/evening.sh`
 	1. Access the browser user interface...
 		* `http://birding.local/chart/chart.html`
