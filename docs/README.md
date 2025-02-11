@@ -67,18 +67,25 @@ and now know what birds are sharing their voices with me.
 		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
 	1. Expand the release file obtained from the BirdNET-Barchart GitHub.
-		* `tar xzvf v0.9.tar.gz`
-	1. Enter the resultant directory.
-		* `cd BirdNET-Barchart-0.9`
+		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
+	1. Save your previously populated sqlite database if you have one.
+		* `mv /home/dacracot/BirdNET-Barchart/birds.db /tmp/birds.db`
+	1. Rename and enter the resultant directory.
+		* `mv /home/dacracot/BirdNET-Barchart-#.#.# /home/dacracot/BirdNET-Barchart`
+		* `cd /home/dacracot/BirdNET-Barchart`
+	1. Replace the empty sqlite database with your backup if you have one.
+		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
 	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, and the web servers HTML directory.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
-		* `vi CONFIGURATION`
-		* `cp CONFIGURATION ~/.BirdNET-Barchart`
+		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
+		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-Barchart`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
-		* `30 2 * * 7 /home/dacracot/v0.9/BirdNET-Barchart-0.9/weekly.sh`
-		* `30 2 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/extract.sh`
-                * `0 2 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/share/BirdWeather.sh`
-		* `0 3 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/morning.sh`
-		* `0 22 * * * /home/dacracot/v0.9/BirdNET-Barchart-0.9/evening.sh`
+		* `30 2 * * 7 /home/dacracot/BirdNET-Barchart/weekly.sh`
+		* `30 2 * * * /home/dacracot/BirdNET-Barchart/extract.sh`
+		* `0 2 * * * /home/dacracot/BirdNET-Barchart/share/BirdWeather.sh`
+		* `0 3 * * * /home/dacracot/BirdNET-Barchart/morning.sh`
+		* `0 22 * * * /home/dacracot/BirdNET-Barchart/evening.sh`
+	1. Run the weekly script to get the latest species.
+		* `/home/dacracot/BirdNET-Barchart/weekly.sh`
 	1. Access the browser user interface...
 		* `http://birding.local/chart/chart.html`
 
