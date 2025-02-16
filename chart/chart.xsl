@@ -15,6 +15,11 @@
 				<meta charset="utf-8"/>
 				<title>BirdNET-Barchart</title>
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
+				<style>
+					thead, tfoot {font-weight: bold;}
+					th {cursor: pointer;}
+					td.clickable {cursor: pointer;}
+				</style>
 			</head>
 			<body style="font-family: Verdana, sans-serif;" bgcolor="LightGray">
 				<!-- display timeframe and locale -->
@@ -184,14 +189,28 @@
 <!-- create table from a set -->
 	<xsl:template match="set" mode="table">
 		<table border="1">
-			<xsl:apply-templates mode="table"/>
+			<thead>
+				<tr>
+					<th>Common Name</th>
+					<th>Quantity of Songs</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:apply-templates mode="table"/>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Common Name</th>
+					<th>Quantity of Songs</th>
+				</tr>
+			</tfoot>
 		</table>
 	</xsl:template>
 <!-- =========================================================================================== -->
 <!-- create each table row from a set -->
 	<xsl:template match="row" mode="table">
 		<tr>
-			<td>
+			<td class="clickable">
 				<xsl:element name="a">
 					<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
 					<xsl:attribute name="target">_blank</xsl:attribute>
