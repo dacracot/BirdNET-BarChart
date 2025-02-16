@@ -123,7 +123,7 @@ and now know what birds are sharing their voices with me.
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [inotifywait](https://linux.die.net/man/1/inotifywait)
-* [jq - CLI JSON processor](https://jqlang.org/)
+* [jq](https://jqlang.org/)
 * [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)
 * [SVG](https://www.w3.org/Graphics/SVG/)

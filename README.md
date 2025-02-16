@@ -21,7 +21,7 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
 * [Bash](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [inotifywait](https://linux.die.net/man/1/inotifywait)
-* [jq - CLI JSON processor](https://jqlang.org/)
+* [jq](https://jqlang.org/)
 * [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)
 * [SVG](https://www.w3schools.com/graphics/svg_intro.asp)
