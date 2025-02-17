@@ -141,12 +141,20 @@ $(function(){
 			tr = Array.prototype.slice.call(tb.rows, 0), // put rows into array
 			i;
 		reverse = -((+reverse) || -1);
-		tr = tr.sort(function (a, b) { // sort rows
-			return reverse // `-1 *` if want opposite order
-				* (a.cells[col].textContent.trim() // using `.textContent.trim()` for test
-					.localeCompare(b.cells[col].textContent.trim())
-				   );
-			});
+		tr = tr.sort(function (a, b) {
+console.log("===============================");
+		testStringOrNumber = Number(a.cells[col].textContent.trim());
+console.log("testStringOrNumber = "+testStringOrNumber);
+		if (Number.isNaN(testStringOrNumber)) {
+console.log("string");
+			return reverse * (a.cells[col].textContent.trim().localeCompare(b.cells[col].textContent.trim()));
+			}
+		else {
+console.log("number");
+			return reverse * (Number(a.cells[col].textContent.trim()) - Number(b.cells[col].textContent.trim()));
+			}
+		});
+console.log("-------------------------------");
 		for(i = 0; i < tr.length; ++i) tb.appendChild(tr[i]); // append each row in order
 		}
 	function makeSortable(table) {
