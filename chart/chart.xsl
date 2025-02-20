@@ -223,38 +223,83 @@
 <!-- =========================================================================================== -->
 <!-- create a bar chart from a set -->
 	<xsl:template match="set" mode="chart">
-		<svg width="2400" height="2400">
-			<xsl:apply-templates mode="chart"/>
-		</svg>
+		<xsl:variable name="maxCount" select="max(row/@count)"/>
+		<xsl:variable name="rowCount" select="count(row)"/>
+		<table border="1">
+			<thead>
+				<tr>
+<!-- 
+					<th>Common Name</th>
+					<th>Quantity of Songs</th>
+ -->
+					<xsl:element name="th">
+						<xsl:attribute name="style">width:220px</xsl:attribute>
+						<xsl:text>Common Name</xsl:text>
+					</xsl:element>
+					<xsl:element name="th">
+						<xsl:attribute name="style">width:<xsl:value-of select="($maxCount*2)"/>px</xsl:attribute>
+						<xsl:text>Quantity of Songs</xsl:text>
+					</xsl:element>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td colspan="2">
+<!-- 
+						<svg width="2400" height="2400">
+ -->
+						<xsl:element name="svg">
+<!-- 
+							<xsl:attribute name="width"><xsl:value-of select="($maxCount*3)"/></xsl:attribute>
+							<xsl:attribute name="height"><xsl:value-of select="($rowCount*22)"/></xsl:attribute>
+ -->
+							<xsl:apply-templates mode="chart"/>
+						</xsl:element>
+<!-- 
+						</svg>
+ -->
+					</td>
+				</tr>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Common Name</th>
+					<th>Quantity of Songs</th>
+				</tr>
+			</tfoot>
+		</table>
 	</xsl:template>
 <!-- =========================================================================================== -->
 <!-- create each bar with label and quantity -->
 	<xsl:template match="row" mode="chart">
-
-		<xsl:element name="a">
-			<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
-			<xsl:attribute name="target">_blank</xsl:attribute>
-			<xsl:element name="text">
-				<xsl:attribute name="x">216</xsl:attribute>
-				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
-				<xsl:attribute name="text-anchor">end</xsl:attribute>
-				<xsl:attribute name="font-size">12</xsl:attribute>
-				<xsl:value-of select="@commonName"/>
+		<xsl:element name="g">
+			<xsl:attribute name="id"><xsl:value-of select="@commonName"/></xsl:attribute>
+			<xsl:attribute name="sortValue"><xsl:value-of select="@count"/></xsl:attribute>
+			<xsl:element name="a">
+				<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
+				<xsl:attribute name="target">_blank</xsl:attribute>
+				<xsl:element name="text">
+					<xsl:attribute name="x">216</xsl:attribute>
+					<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+					<xsl:attribute name="text-anchor">end</xsl:attribute>
+					<xsl:attribute name="font-size">12</xsl:attribute>
+					<xsl:value-of select="@commonName"/>
+				</xsl:element>
 			</xsl:element>
-		</xsl:element>
-		<xsl:element name="rect">
-			<xsl:attribute name="x">220</xsl:attribute>
-			<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
-			<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
-			<xsl:attribute name="height">18</xsl:attribute>
-			<!-- bars are all fuchsia until post processed with javascript -->
-			<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="text">
-			<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
-			<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
-			<xsl:attribute name="font-size">12</xsl:attribute>
-			<xsl:value-of select="@count"/>
+			<xsl:element name="rect">
+				<xsl:attribute name="x">220</xsl:attribute>
+				<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
+				<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
+				<xsl:attribute name="height">18</xsl:attribute>
+				<!-- bars are all fuchsia until post processed with javascript -->
+				<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="text">
+				<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
+				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+				<xsl:attribute name="font-size">12</xsl:attribute>
+				<xsl:value-of select="@count"/>
+			</xsl:element>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
