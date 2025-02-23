@@ -29,25 +29,30 @@ popd
 grep -v -f ${BARCHART_HOME}/work/species_blacklist.txt ${BARCHART_HOME}/work/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > ${BARCHART_HOME}/work/species_list.txt
 # check how full storage is getting at /
 PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+echo "${PERCENTSTORAGEUSED} percent used"
 if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 	# compress all logs older than today
-	find ${BARCHART_HOME}/logs -mtime +1 -exec gzip {} \;
+	find ${BARCHART_HOME}/logs -mtime +1 -exec gzip -v {} \;
 	# still too much?
 	PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+	echo "${PERCENTSTORAGEUSED} percent used"
 	if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 		# delete all logs older than a week
-		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -delete
+		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -delete -print
 		# still too much?
 		PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+		echo "${PERCENTSTORAGEUSED} percent used"
 		# start 90 days out
 		COUNTDOWN=90
 		while [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; do
 			# delete all sound samples older than COUNTDOWN days
-			find ${BARCHART_HOME}/work -mtime +${COUNTDOWN} -name ".wav.gz" -delete
+			find ${BARCHART_HOME}/work -mtime +${COUNTDOWN} -name "*.wav.gz" -delete -print
 			# one day closer
-			COUNTDOWN=(( --COUNTDOWN ));
+			((COUNTDOWN--))
+			echo "${COUNTDOWN} days out"
 			# still too much?
 			PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+			echo "${PERCENTSTORAGEUSED} percent used"
 		done
 	fi
 fi
