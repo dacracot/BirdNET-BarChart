@@ -1,2 +1,6 @@
 .DS_Store
 tmp
+*.gz
+*.out
+*.err
+*.pid
