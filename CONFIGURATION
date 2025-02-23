@@ -12,3 +12,8 @@ ANALYZER_HOME=/home/dacracot/BirdNET-Analyzer
 # home of the web server public HTTP directory
 WEB_HOME=/var/www/html
 # ---------------------------------------------------
+# what percentage of your storage will you allow to
+# used before the app starts permanently deleting
+# old .gz, .wav, .out, .err, etc. files
+PERCENTSTORAGEALLOWED=80
+# ---------------------------------------------------

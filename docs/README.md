@@ -75,7 +75,7 @@ and now know what birds are sharing their voices with me.
 		* `cd /home/dacracot/BirdNET-Barchart`
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
-	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, and the web servers HTML directory.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
+	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
 		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
 		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-Barchart`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
@@ -94,12 +94,17 @@ and now know what birds are sharing their voices with me.
 ### Files:
 
 * `CONFIGURATION`
-  * Example configuration file to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, and home directory of the web server.
+  * Example configuration file to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, and maximum percentage storage usage.
   * This file must be copied the the user's home directory and renamed `.BirdNET-Barchart`.
 * `weekly.sh`
   * Updates the species list using the analyzer.
   * Updates the species list removing black listed species.
   * Clean up via deletion and compression of old logs and work files.
+    * Clean up is done via a progression of:
+      1. Compressing all log files older than today.
+      1. Deleting all log files older than a week.
+      1. Deleting all sound sample (.wav) files older than first 90 days, then 89, then 88, and so on.
+    * Until the percent usage is below the maximum configured.
 * `extract.sh`
 	* Query the database to create an XML file for the browser user interface.
 	* Uses `extract.sql` to compose the output to `chart.xml`.

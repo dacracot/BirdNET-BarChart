@@ -3,7 +3,6 @@ SECONDS=0
 # ---------------------------------------------------
 YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
-LASTMONTH=`date -d $(date +%Y)-$(( $(date +%m) - 1 ))-15 +%m`
 DAY=`date '+%d'`
 WEEK=`date '+%U'`
 # ---------------------------------------------------
@@ -28,14 +27,37 @@ python3 -m birdnet_analyzer.species --o ${BARCHART_HOME}/work/species_list.txt -
 popd
 # remove the frequent false positives
 grep -v -f ${BARCHART_HOME}/work/species_blacklist.txt ${BARCHART_HOME}/work/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > ${BARCHART_HOME}/work/species_list.txt
-# clean up and compress the week's data
-find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -delete
-find ${BARCHART_HOME}/logs -mtime +21 -name "*.err" -delete
-find ${BARCHART_HOME}/logs -mtime +21 -name "*.out" -delete
+# check how full storage is getting at /
+PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+echo "${PERCENTSTORAGEUSED} percent used"
+if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
+	# compress all logs older than today
+	find ${BARCHART_HOME}/logs -mtime +1 -exec gzip -v {} \;
+	# still too much?
+	PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+	echo "${PERCENTSTORAGEUSED} percent used"
+	if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
+		# delete all logs older than a week
+		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -delete -print
+		# still too much?
+		PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+		echo "${PERCENTSTORAGEUSED} percent used"
+		# start 90 days out
+		COUNTDOWN=90
+		while [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; do
+			# delete all sound samples older than COUNTDOWN days
+			find ${BARCHART_HOME}/work -mtime +${COUNTDOWN} -name "*.wav.gz" -delete -print
+			# one day closer
+			((COUNTDOWN--))
+			echo "${COUNTDOWN} days out"
+			# still too much?
+			PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+			echo "${PERCENTSTORAGEUSED} percent used"
+		done
+	fi
+fi
+# delete any leftover empty directories
 find ${BARCHART_HOME}/work -empty -type d -delete
-gzip -v ${BARCHART_HOME}/logs/${YEAR}-${LASTMONTH}-*
-# check how full the SD card is getting
-df -h
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
