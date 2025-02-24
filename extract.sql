@@ -15,6 +15,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/1))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -43,6 +44,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/1))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -71,6 +73,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/1))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -99,6 +102,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/7))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -127,6 +131,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/7))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -155,6 +160,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/7))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -183,6 +189,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/30))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -211,6 +218,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/30))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -239,6 +247,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/30))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -267,6 +276,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/365))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -295,6 +305,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/365))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
@@ -323,6 +334,7 @@ union select
 	'<row '||
 	'commonName="'||commonname||'" '||
 	'count="'||count(*)||'" '||
+	'avgPerDay="'||printf("%.2f",(cast(count(*) as float)/365))||'" '||
 	'/>' as xml,
 	2 as rowOrder
 from
