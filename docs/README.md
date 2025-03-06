@@ -27,6 +27,10 @@ and now know what birds are sharing their voices with me.
 
 ### Quick Start:
 
+* ___Install the OS___:
+	1. Using the [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/) install the Lite (64-bit) version of the Raspberry Pi OS.
+	1. Enter your customizations for hostname, initial user, WiFi, locale, and ssh.
+	1. Boot your new system and run `sudo apt update`, then `sudo apt upgrade`, and `sudo apt autoremove` to get all the latest base software.
 * ___Install the analyzer___ or better yet, follow [their](https://github.com/kahst/BirdNET-Analyzer) documentation:
 	1. Expand the release file obtained from the BirdNET-Analyzer GitHub.
 		* `tar xzvf v1.5.1.tar.gz`
@@ -46,6 +50,8 @@ and now know what birds are sharing their voices with me.
 		* `python3 -m birdnet_analyzer.analyze`
 * ___Install the transformer___:
 	1. Expand the SaxonC-HE 12.5 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
+		* `mkdir SaxonC-HE`
+		* `cd SaxonC-HE`
 		* `unzip libsaxon-HEC-linux-aarch64-v12.5.0.zip `
 	1. Enter the result's command directory.
 		* `cd libsaxon-HEC-linux-aarch64-v12.5.0/command`

@@ -223,60 +223,9 @@
 <!-- =========================================================================================== -->
 <!-- create a bar chart from a set -->
 	<xsl:template match="set" mode="chart">
-<!-- 
-
-Remnant of issue-20 where I attempted to my the SVG chart sortable.
-
-		<xsl:variable name="maxCount" select="max(row/@count)"/>
-		<xsl:variable name="rowCount" select="count(row)"/>
-		<table border="1">
-			<thead>
-				<tr>
-					<th>Common Name</th>
-					<th>Quantity of Songs</th>
-					<xsl:element name="th">
-						<xsl:attribute name="style">width:220px</xsl:attribute>
-						<xsl:text>Common Name</xsl:text>
-					</xsl:element>
-					<xsl:element name="th">
-						<xsl:attribute name="style">width:<xsl:value-of select="($maxCount*2)"/>px</xsl:attribute>
-						<xsl:text>Quantity of Songs</xsl:text>
-					</xsl:element>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td colspan="2">
- -->
 						<svg width="2400" height="2400">
-<!-- 
-						<xsl:element name="svg">
-							<xsl:attribute name="width"><xsl:value-of select="($maxCount*3)"/></xsl:attribute>
-							<xsl:attribute name="height"><xsl:value-of select="($rowCount*22)"/></xsl:attribute>
- -->
 							<xsl:apply-templates mode="chart"/>
-<!-- 
-						</xsl:element>
- -->
 						</svg>
-<!-- 
-					</td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<xsl:element name="th">
-						<xsl:attribute name="style">width:220px</xsl:attribute>
-						<xsl:text>Common Name</xsl:text>
-					</xsl:element>
-					<xsl:element name="th">
-						<xsl:attribute name="style">width:<xsl:value-of select="($maxCount*2)"/>px</xsl:attribute>
-						<xsl:text>Quantity of Songs</xsl:text>
-					</xsl:element>
-				</tr>
-			</tfoot>
-		</table>
- -->
 	</xsl:template>
 <!-- =========================================================================================== -->
 <!-- create each bar with label and quantity -->

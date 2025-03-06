@@ -38,7 +38,7 @@ if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 	echo "${PERCENTSTORAGEUSED} percent used"
 	if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 		# delete all logs older than a week
-		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -delete -print
+		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -not -name "*.md" -delete -print
 		# still too much?
 		PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
 		echo "${PERCENTSTORAGEUSED} percent used"

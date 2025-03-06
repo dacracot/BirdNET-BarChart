@@ -4,6 +4,7 @@ tmp
 *.out
 *.err
 *.pid
+species*.txt
 chart.html
 chart.xml
 2024
