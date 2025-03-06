@@ -7,8 +7,8 @@ DAY=`date '+%d'`
 ASOF=`date -d 'yesterday' '+%A, %d %B %Y'`
 # ---------------------------------------------------
 # source the configuration file
-# it must be edited and copied as ".BirdNET-Barchart" to you home directory
-CONFIG_FILE=${HOME}/.BirdNET-Barchart
+# it must be edited and copied as ".BirdNET-BarChart" to you home directory
+CONFIG_FILE=${HOME}/.BirdNET-BarChart
 if [ -f "${CONFIG_FILE}" ]; then
     source ${CONFIG_FILE}
 else 

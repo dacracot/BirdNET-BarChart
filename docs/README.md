@@ -72,26 +72,26 @@ and now know what birds are sharing their voices with me.
 	1. Run transformer test.
 		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
-	1. Expand the release file obtained from the BirdNET-Barchart GitHub.
+	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
 		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
 	1. Save your previously populated sqlite database if you have one.
-		* `mv /home/dacracot/BirdNET-Barchart/birds.db /tmp/birds.db`
+		* `mv /home/dacracot/BirdNET-BarChart/birds.db /tmp/birds.db`
 	1. Rename and enter the resultant directory.
-		* `mv /home/dacracot/BirdNET-Barchart-#.#.# /home/dacracot/BirdNET-Barchart`
-		* `cd /home/dacracot/BirdNET-Barchart`
+		* `mv /home/dacracot/BirdNET-BarChart-#.#.# /home/dacracot/BirdNET-BarChart`
+		* `cd /home/dacracot/BirdNET-BarChart`
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
-	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
+	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.  Copy your saved file to your user's home directory as `.BirdNET-BarChart`.
 		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
-		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-Barchart`
+		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-BarChart`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
-		* `30 2 * * 7 /home/dacracot/BirdNET-Barchart/weekly.sh`
-		* `30 2 * * * /home/dacracot/BirdNET-Barchart/extract.sh`
-		* `0 2 * * * /home/dacracot/BirdNET-Barchart/share/BirdWeather.sh`
-		* `0 3 * * * /home/dacracot/BirdNET-Barchart/morning.sh`
-		* `0 22 * * * /home/dacracot/BirdNET-Barchart/evening.sh`
+		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
+		* `30 2 * * * /home/dacracot/BirdNET-BarChart/extract.sh`
+		* `0 2 * * * /home/dacracot/BirdNET-BarChart/share/BirdWeather.sh`
+		* `0 3 * * * /home/dacracot/BirdNET-BarChart/morning.sh`
+		* `0 22 * * * /home/dacracot/BirdNET-BarChart/evening.sh`
 	1. Run the weekly script to get the latest species.
-		* `/home/dacracot/BirdNET-Barchart/weekly.sh`
+		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
 	1. Access the browser user interface...
 		* `http://birding.local/chart/chart.html`
 
@@ -101,7 +101,7 @@ and now know what birds are sharing their voices with me.
 
 * `CONFIGURATION`
   * Example configuration file to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, and maximum percentage storage usage.
-  * This file must be copied the the user's home directory and renamed `.BirdNET-Barchart`.
+  * This file must be copied the the user's home directory and renamed `.BirdNET-BarChart`.
 * `weekly.sh`
   * Updates the species list using the analyzer.
   * Updates the species list removing black listed species.

@@ -13,7 +13,7 @@
 		<html lang="en">
 			<head>
 				<meta charset="utf-8"/>
-				<title>BirdNET-Barchart</title>
+				<title>BirdNET-BarChart</title>
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
 				<style>
 					thead, tfoot {font-weight: bold;}
