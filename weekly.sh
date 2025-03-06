@@ -28,19 +28,19 @@ popd
 # remove the frequent false positives
 grep -v -f ${BARCHART_HOME}/work/species_blacklist.txt ${BARCHART_HOME}/work/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > ${BARCHART_HOME}/work/species_list.txt
 # check how full storage is getting at /
-PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
 echo "${PERCENTSTORAGEUSED} percent used"
 if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 	# compress all logs older than today
 	find ${BARCHART_HOME}/logs -mtime +1 -exec gzip -v {} \;
 	# still too much?
-	PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+	PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
 	echo "${PERCENTSTORAGEUSED} percent used"
 	if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 		# delete all logs older than a week
 		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -not -name "*.md" -delete -print
 		# still too much?
-		PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+		PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
 		echo "${PERCENTSTORAGEUSED} percent used"
 		# start 90 days out
 		COUNTDOWN=90
@@ -51,7 +51,7 @@ if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
 			((COUNTDOWN--))
 			echo "${COUNTDOWN} days out"
 			# still too much?
-			PERCENTSTORAGEUSED=`df -h | grep -oP '\d\d% \/$' | grep -oP '\d\d'`
+			PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
 			echo "${PERCENTSTORAGEUSED} percent used"
 		done
 	fi
