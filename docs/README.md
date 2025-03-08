@@ -89,6 +89,7 @@ and now know what birds are sharing their voices with me.
 		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
 		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-BarChart`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
+		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
 		* `30 2 * * * /home/dacracot/BirdNET-BarChart/extract.sh`
 		* `0 2 * * * /home/dacracot/BirdNET-BarChart/share/BirdWeather.sh`
