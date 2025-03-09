@@ -25,7 +25,7 @@ sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/extract.sql > ${BARCHART_HO
 # transform the xml into html
 XSLTransform -s:${BARCHART_HOME}/chart/chart.xml -xsl:${BARCHART_HOME}/chart/chart.xsl > ${BARCHART_HOME}/chart/chart.html lat=${LAT} lon=${LON} asOf="${ASOF}"
 # copy it all to the web server
-cp -v -R ${BARCHART_HOME}/chart ${WEB_HOME}
+cp -v -R ${BARCHART_HOME}/chart/chart.* ${WEB_HOME}
 cp -v ${BARCHART_HOME}/favicon.ico ${WEB_HOME}
 # how long did it take
 DURATION=$SECONDS
