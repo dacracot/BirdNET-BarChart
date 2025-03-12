@@ -1,13 +1,13 @@
 # ---------------------------------------------------
 # latitude and longitude of where recordings are made
-LAT=38.103516
-LON=-121.288475
+LAT=47.165958
+LON=-122.873688
 # ---------------------------------------------------
 # home of the barchart software
-BARCHART_HOME=/home/dacracot/BirdNET-Barchart
+BARCHART_HOME=/home/dacracot/BirdNET-BarChart
 # ---------------------------------------------------
 # home of the analyzer software
-ANALYZER_HOME=/home/dacracot/BirdNET-Analyzer
+ANALYZER_HOME=/home/dacracot/BirdNET-Analyzer-1.5.1
 # ---------------------------------------------------
 # home of the web server public HTTP directory
 WEB_HOME=/var/www/html
@@ -15,5 +15,5 @@ WEB_HOME=/var/www/html
 # what percentage of your storage will you allow to
 # used before the app starts permanently deleting
 # old .gz, .wav, .out, .err, etc. files
-PERCENTSTORAGEALLOWED=80
+PERCENTSTORAGEALLOWED=60
 # ---------------------------------------------------
