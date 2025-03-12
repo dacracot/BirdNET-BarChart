@@ -72,9 +72,10 @@ and now know what birds are sharing their voices with me.
 	1. Run transformer test.
 		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
-	1. Install sqlite and Apache.
+	1. Install sqlite, Apache, and sshpass.
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
+		* `sudo apt install sshpass`
 	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
 		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
 	1. Save your previously populated sqlite database if you have one.
@@ -88,6 +89,7 @@ and now know what birds are sharing their voices with me.
 		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
 		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-BarChart`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
+		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
 		* `30 2 * * * /home/dacracot/BirdNET-BarChart/extract.sh`
 		* `0 2 * * * /home/dacracot/BirdNET-BarChart/share/BirdWeather.sh`
