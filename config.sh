@@ -53,7 +53,6 @@ echo "Backup server set to ${BACKUP_HOME}."
 echo " "
 read -e -p "Enter the password for the backup server: " -i ${BACKUP_PASSWORD} BACKUP_PASSWORD
 echo "Password set to ${BACKUP_PASSWORD}."
-# ---------------------------------------------------
 {
 echo "LAT=${LAT}"
 echo "LON=${LON}"
@@ -64,3 +63,19 @@ echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=${BACKUP_HOME}"
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
 }  > ${HOME}/.BirdNET-BarChart
+# ---------------------------------------------------
+echo " "
+if [ -f "${BARCHART_HOME}/birds.db" ]; then
+	echo "Do you wish to overwrite your birds database?"
+	echo "THIS CAN NOT BE UNDONE."
+	select YN in "Yes" "No"; do
+		case $YN in
+			Yes ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql;;
+			No ) exit;;
+		esac
+	done
+else
+	sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql
+fi
+echo "Database created"
+# ---------------------------------------------------
