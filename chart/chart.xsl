@@ -13,8 +13,13 @@
 		<html lang="en">
 			<head>
 				<meta charset="utf-8"/>
-				<title>BirdNET-Barchart</title>
+				<title>BirdNET-BarChart</title>
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
+				<style>
+					thead, tfoot {font-weight: bold;}
+					th {cursor: pointer;}
+					td.clickable {cursor: pointer;}
+				</style>
 			</head>
 			<body style="font-family: Verdana, sans-serif;" bgcolor="LightGray">
 				<!-- display timeframe and locale -->
@@ -184,14 +189,28 @@
 <!-- create table from a set -->
 	<xsl:template match="set" mode="table">
 		<table border="1">
-			<xsl:apply-templates mode="table"/>
+			<thead>
+				<tr>
+					<th>Common Name</th>
+					<th>Quantity of Songs</th>
+				</tr>
+			</thead>
+			<tbody>
+				<xsl:apply-templates mode="table"/>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th>Common Name</th>
+					<th>Quantity of Songs</th>
+				</tr>
+			</tfoot>
 		</table>
 	</xsl:template>
 <!-- =========================================================================================== -->
 <!-- create each table row from a set -->
 	<xsl:template match="row" mode="table">
 		<tr>
-			<td>
+			<td class="clickable">
 				<xsl:element name="a">
 					<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
 					<xsl:attribute name="target">_blank</xsl:attribute>
@@ -204,38 +223,41 @@
 <!-- =========================================================================================== -->
 <!-- create a bar chart from a set -->
 	<xsl:template match="set" mode="chart">
-		<svg width="2400" height="2400">
-			<xsl:apply-templates mode="chart"/>
-		</svg>
+						<svg width="2400" height="2400">
+							<xsl:apply-templates mode="chart"/>
+						</svg>
 	</xsl:template>
 <!-- =========================================================================================== -->
 <!-- create each bar with label and quantity -->
 	<xsl:template match="row" mode="chart">
-
-		<xsl:element name="a">
-			<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
-			<xsl:attribute name="target">_blank</xsl:attribute>
-			<xsl:element name="text">
-				<xsl:attribute name="x">216</xsl:attribute>
-				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
-				<xsl:attribute name="text-anchor">end</xsl:attribute>
-				<xsl:attribute name="font-size">12</xsl:attribute>
-				<xsl:value-of select="@commonName"/>
+		<xsl:element name="g">
+			<xsl:attribute name="id"><xsl:value-of select="@commonName"/></xsl:attribute>
+			<xsl:attribute name="sortValue"><xsl:value-of select="@count"/></xsl:attribute>
+			<xsl:element name="a">
+				<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
+				<xsl:attribute name="target">_blank</xsl:attribute>
+				<xsl:element name="text">
+					<xsl:attribute name="x">216</xsl:attribute>
+					<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+					<xsl:attribute name="text-anchor">end</xsl:attribute>
+					<xsl:attribute name="font-size">12</xsl:attribute>
+					<xsl:value-of select="@commonName"/>
+				</xsl:element>
 			</xsl:element>
-		</xsl:element>
-		<xsl:element name="rect">
-			<xsl:attribute name="x">220</xsl:attribute>
-			<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
-			<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
-			<xsl:attribute name="height">18</xsl:attribute>
-			<!-- bars are all fuchsia until post processed with javascript -->
-			<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
-		</xsl:element>
-		<xsl:element name="text">
-			<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
-			<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
-			<xsl:attribute name="font-size">12</xsl:attribute>
-			<xsl:value-of select="@count"/>
+			<xsl:element name="rect">
+				<xsl:attribute name="x">220</xsl:attribute>
+				<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
+				<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
+				<xsl:attribute name="height">18</xsl:attribute>
+				<!-- bars are all fuchsia until post processed with javascript -->
+				<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
+			</xsl:element>
+			<xsl:element name="text">
+				<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
+				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
+				<xsl:attribute name="font-size">12</xsl:attribute>
+				<xsl:value-of select="@count"/>
+			</xsl:element>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->

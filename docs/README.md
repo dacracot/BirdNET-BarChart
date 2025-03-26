@@ -27,6 +27,10 @@ and now know what birds are sharing their voices with me.
 
 ### Quick Start:
 
+* ___Install the OS___:
+	1. Using the [Raspberry Pi Imager](https://www.raspberrypi.com/news/raspberry-pi-imager-imaging-utility/) install the Lite (64-bit) version of the Raspberry Pi OS.
+	1. Enter your customizations for hostname, initial user, WiFi, locale, and ssh.
+	1. Boot your new system and run `sudo apt update`, then `sudo apt upgrade`, and `sudo apt autoremove` to get all the latest base software.
 * ___Install the analyzer___ or better yet, follow [their](https://github.com/kahst/BirdNET-Analyzer) documentation:
 	1. Expand the release file obtained from the BirdNET-Analyzer GitHub.
 		* `tar xzvf v1.5.1.tar.gz`
@@ -46,6 +50,8 @@ and now know what birds are sharing their voices with me.
 		* `python3 -m birdnet_analyzer.analyze`
 * ___Install the transformer___:
 	1. Expand the SaxonC-HE 12.5 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
+		* `mkdir SaxonC-HE`
+		* `cd SaxonC-HE`
 		* `unzip libsaxon-HEC-linux-aarch64-v12.5.0.zip `
 	1. Enter the result's command directory.
 		* `cd libsaxon-HEC-linux-aarch64-v12.5.0/command`
@@ -66,26 +72,30 @@ and now know what birds are sharing their voices with me.
 	1. Run transformer test.
 		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
-	1. Expand the release file obtained from the BirdNET-Barchart GitHub.
+	1. Install sqlite, Apache, and sshpass.
+		* `sudo apt install sqlite3`
+		* `sudo apt install apache2`
+		* `sudo apt install sshpass`
+	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
 		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
 	1. Save your previously populated sqlite database if you have one.
-		* `mv /home/dacracot/BirdNET-Barchart/birds.db /tmp/birds.db`
+		* `mv /home/dacracot/BirdNET-BarChart/birds.db /tmp/birds.db`
 	1. Rename and enter the resultant directory.
-		* `mv /home/dacracot/BirdNET-Barchart-#.#.# /home/dacracot/BirdNET-Barchart`
-		* `cd /home/dacracot/BirdNET-Barchart`
+		* `mv /home/dacracot/BirdNET-BarChart-#.#.# /home/dacracot/BirdNET-BarChart`
+		* `cd /home/dacracot/BirdNET-BarChart`
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
-	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.  Copy your saved file to your user's home directory as `.BirdNET-Barchart`.
-		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
-		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-Barchart`
+	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
+		* `config.sh`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
-		* `30 2 * * 7 /home/dacracot/BirdNET-Barchart/weekly.sh`
-		* `30 2 * * * /home/dacracot/BirdNET-Barchart/extract.sh`
-		* `0 2 * * * /home/dacracot/BirdNET-Barchart/share/BirdWeather.sh`
-		* `0 3 * * * /home/dacracot/BirdNET-Barchart/morning.sh`
-		* `0 22 * * * /home/dacracot/BirdNET-Barchart/evening.sh`
+		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
+		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
+		* `30 2 * * * /home/dacracot/BirdNET-BarChart/extract.sh`
+		* `0 2 * * * /home/dacracot/BirdNET-BarChart/share/BirdWeather.sh`
+		* `0 3 * * * /home/dacracot/BirdNET-BarChart/morning.sh`
+		* `0 22 * * * /home/dacracot/BirdNET-BarChart/evening.sh`
 	1. Run the weekly script to get the latest species.
-		* `/home/dacracot/BirdNET-Barchart/weekly.sh`
+		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
 	1. Access the browser user interface...
 		* `http://birding.local/chart/chart.html`
 
@@ -93,9 +103,9 @@ and now know what birds are sharing their voices with me.
 
 ### Files:
 
-* `CONFIGURATION`
-  * Example configuration file to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, and maximum percentage storage usage.
-  * This file must be copied the the user's home directory and renamed `.BirdNET-Barchart`.
+* `config.sh`
+  * Script to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, maximum percentage storage usage, backup URI, and its password.
+  * The results will be written to the user's home directory and named `.BirdNET-BarChart`.
 * `weekly.sh`
   * Updates the species list using the analyzer.
   * Updates the species list removing black listed species.

@@ -1,2 +1,13 @@
 .DS_Store
 tmp
+*.gz
+*.out
+*.err
+*.pid
+birds.db
+chart.html
+chart.xml
+2024
+2025
+2026
+species_list.txt

@@ -7,14 +7,14 @@ DAY=`date '+%d'`
 CARD=`arecord -l | grep -hom 1 [0-9] | head -1`
 # ---------------------------------------------------
 # source the configuration file
-# it must be edited and copied as ".BirdNET-Barchart" to you home directory
-CONFIG_FILE=${HOME}/.BirdNET-Barchart
+# it must be edited and copied as ".BirdNET-BarChart" to you home directory
+CONFIG_FILE=${HOME}/.BirdNET-BarChart
 if [ -f "${CONFIG_FILE}" ]; then
     source ${CONFIG_FILE}
 else 
 	echo " "
     echo "${CONFIG_FILE} does not exist."
-    echo "Copy your edited CONFIGURATION file to ${CONFIG_FILE}"
+    echo "Run the config.sh script to create."
 	echo " "
 	exit 1
 fi
