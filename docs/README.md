@@ -85,9 +85,8 @@ and now know what birds are sharing their voices with me.
 		* `cd /home/dacracot/BirdNET-BarChart`
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
-	1. Edit the configuration file with your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.  Copy your saved file to your user's home directory as `.BirdNET-BarChart`.
-		* `vi /home/dacracot/BirdNET-BarChart/CONFIGURATION`
-		* `cp /home/dacracot/BirdNET-BarChart/CONFIGURATION /home/dacracot/.BirdNET-BarChart`
+	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
+		* `config.sh`
 	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
 		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
@@ -104,9 +103,9 @@ and now know what birds are sharing their voices with me.
 
 ### Files:
 
-* `CONFIGURATION`
-  * Example configuration file to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, and maximum percentage storage usage.
-  * This file must be copied the the user's home directory and renamed `.BirdNET-BarChart`.
+* `config.sh`
+  * Script to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, maximum percentage storage usage, backup URI, and its password.
+  * The results will be written to the user's home directory and named `.BirdNET-BarChart`.
 * `weekly.sh`
   * Updates the species list using the analyzer.
   * Updates the species list removing black listed species.

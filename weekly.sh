@@ -14,7 +14,7 @@ if [ -f "${CONFIG_FILE}" ]; then
 else 
 	echo " "
     echo "${CONFIG_FILE} does not exist."
-    echo "Copy your edited CONFIGURATION file to ${CONFIG_FILE}"
+    echo "Run the config.sh script to create."
 	echo " "
 	exit 1
 fi
@@ -28,31 +28,31 @@ popd
 # remove the frequent false positives
 grep -v -f ${BARCHART_HOME}/work/species_blacklist.txt ${BARCHART_HOME}/work/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > ${BARCHART_HOME}/work/species_list.txt
 # check how full storage is getting at /
-PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
-echo "${PERCENTSTORAGEUSED} percent used"
-if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
+PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+echo "${PERCENT_STORAGE_USED} percent used"
+if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 	# compress all logs older than today
 	find ${BARCHART_HOME}/logs -mtime +1 -exec gzip -v {} \;
 	# still too much?
-	PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
-	echo "${PERCENTSTORAGEUSED} percent used"
-	if [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; then
+	PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+	echo "${PERCENT_STORAGE_USED} percent used"
+	if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 		# delete all logs older than a week
 		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -not -name "*.md" -delete -print
 		# still too much?
-		PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
-		echo "${PERCENTSTORAGEUSED} percent used"
+		PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+		echo "${PERCENT_STORAGE_USED} percent used"
 		# start 90 days out
 		COUNTDOWN=90
-		while [ ${PERCENTSTORAGEUSED} -ge ${PERCENTSTORAGEALLOWED} ]; do
+		while [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; do
 			# delete all sound samples older than COUNTDOWN days
 			find ${BARCHART_HOME}/work -mtime +${COUNTDOWN} -name "*.wav.gz" -delete -print
 			# one day closer
 			((COUNTDOWN--))
 			echo "${COUNTDOWN} days out"
 			# still too much?
-			PERCENTSTORAGEUSED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
-			echo "${PERCENTSTORAGEUSED} percent used"
+			PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+			echo "${PERCENT_STORAGE_USED} percent used"
 		done
 	fi
 fi

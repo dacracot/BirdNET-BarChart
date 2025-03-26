@@ -13,7 +13,7 @@ if [ -f "${CONFIG_FILE}" ]; then
 else 
 	echo " "
     echo "${CONFIG_FILE} does not exist."
-    echo "Copy your edited CONFIGURATION file to ${CONFIG_FILE}"
+    echo "Run the config.sh script to create."
 	echo " "
 	exit 1
 fi
