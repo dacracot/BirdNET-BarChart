@@ -87,13 +87,10 @@ and now know what birds are sharing their voices with me.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
 	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
 		* `config.sh`
-	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
+	1. Edit your crontab and insert the scripts for backup, weekly, and hourly actions.
 		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
-		* `30 2 * * * /home/dacracot/BirdNET-BarChart/extract.sh`
-		* `0 2 * * * /home/dacracot/BirdNET-BarChart/share/BirdWeather.sh`
-		* `0 3 * * * /home/dacracot/BirdNET-BarChart/morning.sh`
-		* `0 22 * * * /home/dacracot/BirdNET-BarChart/evening.sh`
+		* `0 * * * * /home/dacracot/BirdNET-BarChart/hourly.sh`
 	1. Run the weekly script to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
 	1. Access the browser user interface...
@@ -115,20 +112,18 @@ and now know what birds are sharing their voices with me.
       1. Deleting all log files older than a week.
       1. Deleting all sound sample (.wav) files older than first 90 days, then 89, then 88, and so on.
     * Until the percent usage is below the maximum configured.
-* `extract.sh`
-	* Query the database to create an XML file for the browser user interface.
-	* Uses `extract.sql` to compose the output to `chart.xml`.
-	* Transform the `chart.xml` into `chart.html`.
-	* Copies the altered chart folder to the web server's published directory.
-* `morning.sh`
+* `hourly.sh`
 	* Create today's directory structure for the storage of sound files.
 	* Begin recording one minute duration files.
-* `evening.sh`
 	* Stop the recordings.
 	* Run the analyzer against each sound file.
 	* Manipulate the analyzer's CSV results to be loaded into the database, primarily changing the filename into a timestamp.
 	* Load the database.
-	* Delete and compress the work files that day.
+	* Delete and compress the work files that hour.
+	* Query the database to create an XML file for the browser user interface.
+	* Uses `extract.sql` to compose the output to `chart.xml`.
+	* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
+	* Copies the altered chart folder to the web server's published directory.
 
 ---
 
