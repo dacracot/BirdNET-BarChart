@@ -20,6 +20,9 @@ else
 fi
 # ---------------------------------------------------
 {
+TYPE=csv
+WORKDAY=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
+ASOF=`date '+%A, %d %B %Y %H:00'`
 # ===================================================
 # find the audio card
 CARD=`arecord -l | grep -hom 1 [0-9] | head -1`
@@ -30,8 +33,6 @@ arecord -D sysdefault:CARD=${CARD} --quiet --max-file-time 60 -f S16_LE -r 48000
 # save the process ID for afterDark.sh
 echo "$!" > ${BARCHART_HOME}/recording.pid
 # ===================================================
-TYPE=csv
-WORKDAY=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 # kill the audio recording started above after an HOUR
 sleep 1h
 kill `cat ${BARCHART_HOME}/recording.pid`
