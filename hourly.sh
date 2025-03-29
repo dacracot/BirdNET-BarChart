@@ -37,6 +37,7 @@ echo "$!" > ${WORK_HOUR}/recording.pid
 # kill the audio recording started above after an HOUR
 sleep 1h
 kill `cat ${WORK_HOUR}/recording.pid`
+rm ${WORK_HOUR}/recording.pid
 # directory for audio files and analyze each
 # BirdNET-Analyzer using the species_list.txt created by weekly.sh, creates the CSV file
 pushd ${ANALYZER_HOME}
@@ -52,7 +53,7 @@ sed -i 's@'"${WORK_HOUR}/"'@@' ${WORK_HOUR}/dataset.csv
 sed -i 's@.wav@@' ${WORK_HOUR}/dataset.csv
 # load the results into the database
 sqlite3 ${BARCHART_HOME}/birds.db << EOF
-.import --csv --skip 1 ${WORK_HOUR}/dataset.csv heard
+.import -v --csv --skip 1 ${WORK_HOUR}/dataset.csv heard
 EOF
 # clean up
 find ${WORK_HOUR} -type f -name "*.csv" -not -name "dataset.csv" -delete
