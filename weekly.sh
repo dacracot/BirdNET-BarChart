@@ -49,7 +49,15 @@ if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 			find ${BARCHART_HOME}/work -mtime +${COUNTDOWN} -name "*.wav.gz" -delete -print
 			# one day closer
 			((COUNTDOWN--))
-			echo "${COUNTDOWN} days out"
+			if [ ${COUNTDOWN} -ge 0 ]; then
+				echo "${COUNTDOWN} days out"
+			else
+				echo "============================================"
+				echo " "
+				echo " CAN NOT MEET PERCENT STORAGE ALLOWED OF ${PERCENT_STORAGE_ALLOWED}  "
+				echo " "
+				echo "============================================"
+			fi
 			# still too much?
 			PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
 			echo "${PERCENT_STORAGE_USED} percent used"
