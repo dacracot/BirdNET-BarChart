@@ -57,6 +57,7 @@ if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 				echo " CAN NOT MEET PERCENT STORAGE ALLOWED OF ${PERCENT_STORAGE_ALLOWED}  "
 				echo " "
 				echo "============================================"
+				exit 1
 			fi
 			# still too much?
 			PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
