@@ -52,11 +52,7 @@ if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 			if [ ${COUNTDOWN} -ge 0 ]; then
 				echo "${COUNTDOWN} days out"
 			else
-				echo "============================================"
-				echo " "
-				echo " CAN NOT MEET PERCENT STORAGE ALLOWED OF ${PERCENT_STORAGE_ALLOWED}  "
-				echo " "
-				echo "============================================"
+				ssmtp -vvv dacracot@gmail.com < ${BARCHART_HOME}/docs/storageFailure.txt
 				exit 1
 			fi
 			# still too much?

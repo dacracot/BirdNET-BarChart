@@ -22,6 +22,7 @@ and now know what birds are sharing their voices with me.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
 	1. [XSLTransform](https://en.wikipedia.org/wiki/XSLT) to support the barcharter.
 	1. [SVG](https://en.wikipedia.org/wiki/SVG) to render the charts in the browser.
+	1. [sSMTP](https://packages.debian.org/source/unstable/ssmtp) to send alert emails when unrecoverable errors occur.
 
 ---
 
@@ -136,6 +137,7 @@ and now know what birds are sharing their voices with me.
 * [SQLite](https://sqlite.org/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
 * [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
+* [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 
 ---
 
