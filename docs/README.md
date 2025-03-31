@@ -73,10 +73,11 @@ and now know what birds are sharing their voices with me.
 	1. Run transformer test.
 		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
-	1. Install sqlite, Apache, and sshpass.
+	1. Install sqlite, Apache, sshpass, and sSMTP.
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
 		* `sudo apt install sshpass`
+		* `sudo apt install ssmtp`
 	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
 		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
 	1. Save your previously populated sqlite database if you have one.
@@ -135,9 +136,9 @@ and now know what birds are sharing their voices with me.
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)
+* [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
 * [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
-* [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 
 ---
 
