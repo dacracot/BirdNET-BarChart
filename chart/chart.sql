@@ -8,22 +8,21 @@ CREATE TABLE chart (
 delete from chart;
 select * from chart order by seq;
 
-with param as (select 0.75 as confidence, '-24 hour' as timeframe)
 
-insert into chart (name,xml,seq) values ('NIL','<hourly confidence="0.25">',0);
+insert into chart (name,xml,seq) values ('NIL','<hourly confidence="0.25">',0); -- :confidence
 insert into chart (name,xml,seq)
 select
 	commonname,
 	'<bird '||
 	'commonName="'||commonname||'" '||
 	'total="'||count(*)||'">',
-	((ROW_NUMBER() OVER()) * 1000)
+	((ROW_NUMBER() OVER()) * 1000) -- :index
 from
 	heard
 where
-	confidence > 0.25
+	confidence > 0.25 -- :confidence
 		and
-	minuteofday > datetime('now','localtime','-24 hour')
+	minuteofday > datetime('now','localtime','-24 hour') -- '-'||:timeRange||' '||:timeUnit
 group by
 	commonname
 ;
@@ -41,9 +40,9 @@ from
 where
 	commonname = parent.name
 		and
-	confidence > 0.25
+	confidence > 0.25 -- :confidence
 		and
-	minuteofday > datetime('now','localtime','-24 hour')
+	minuteofday > datetime('now','localtime','-24 hour') -- '-'||:timeRange||' '||:timeUnit
 group by
 	commonname,
 	hour
@@ -52,18 +51,26 @@ insert into chart (name,xml,seq)
 select
 	commonname,
 	'</bird>',
-	((ROW_NUMBER() OVER()) * 1000)+999
+	((ROW_NUMBER() OVER()) * 1000)+999 -- :index) + (:index - 1)
 from
 	heard
 where
-	confidence > 0.25
+	confidence > 0.25 -- :confidence
 		and
-	minuteofday > datetime('now','localtime','-24 hour')
+	minuteofday > datetime('now','localtime','-24 hour') -- '-'||:timeRange||' '||:timeUnit
 group by
 	commonname
 ;
-insert into chart (name,xml,seq) values ('NIL','</hourly>',999999);
+insert into chart (name,xml,seq) values ('NIL','</hourly>',999999); -- ((:index * 10) - 1)
 
 
 
-sqlite3 birds.db ".param set :confidence 0.75" ".param set :timeframe '-48 hours'" ".param set :index 1000" ".read chart.sql"
+-- sqlite3 birds.db ".param set :confidence 0.75" ".param set :timeframe '-48 hours'" ".param set :index 1000" ".read chart.sql"
+sqlite3 birds.db ".param set :confidence 0.75" ".param set :timeRange '48'" ".param set :timeUnit 'hour'" ".param set :index 1000" ".read chart.sql"
+
+.param clear
+select datetime('now','localtime','-16 hour');
+.param set :timeRange 16
+.param set :timeUnit 'hour'
+select datetime('now','localtime','-'||:timeRange||' '||:timeUnit);
+
