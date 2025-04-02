@@ -6,3 +6,9 @@ CREATE TABLE heard (
 	confidence FLOAT NOT NULL,
 	minuteOfDay DATETIME NOT NULL
 	);
+CREATE TABLE chart (
+	name TEXT NOT NULL,
+	xml TEXT NOT NULL,
+	grouper TEXT,
+	seq INTEGER PRIMARY KEY
+	);
