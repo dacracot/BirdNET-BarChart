@@ -4,6 +4,7 @@ select
 	commonname,
 	'<bird '||
 	'commonName="'||commonname||'" '||
+	'timeRange="'||:timeRange||'" '||
 	'timeUnit="'||:timeUnit||'" '||
 	'confidence="'||:confidence||'" '||
 	'total="'||count(*)||'">'
