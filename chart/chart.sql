@@ -1,4 +1,3 @@
-delete from chart;
 insert into chart (name,xml) values ('!!','<'||:timeUnit||' confidence="'||:confidence||'">');
 insert into chart (name,xml)
 select

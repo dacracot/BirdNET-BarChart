@@ -38,6 +38,10 @@ echo "$!" > ${WORK_HOUR}/recording.pid
 sleep 1h
 kill `cat ${WORK_HOUR}/recording.pid`
 rm ${WORK_HOUR}/recording.pid
+# record weather data
+curl "wttr.in/38.103516,-121.288475?format=insert+into+weather+values+('%C','%t','%h','%w','%p','%P',datetime('now'));" > ${BARCHART_HOME}/weather.sql
+sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/weather.sql
+rm ${BARCHART_HOME}/weather.sql
 # directory for audio files and analyze each
 # BirdNET-Analyzer using the species_list.txt created by weekly.sh, creates the CSV file
 pushd ${ANALYZER_HOME}

@@ -92,6 +92,7 @@ and now know what birds are sharing their voices with me.
 	1. Edit your crontab and insert the scripts for backup, weekly, and hourly actions.
 		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
+		* `0 2 * * * /home/dacracot/BirdNET-BarChart/daily.sh`
 		* `0 * * * * /home/dacracot/BirdNET-BarChart/hourly.sh`
 	1. Run the weekly script to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
