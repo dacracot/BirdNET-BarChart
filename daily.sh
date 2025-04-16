@@ -21,10 +21,25 @@ fi
 # ---------------------------------------------------
 {
 # ===================================================
-# record today's celestial data
-curl "wttr.in/38.103516,-121.288475?format=insert+into+celestial+values+('%m','%D','%S','%s','%d',datetime('now'));" > ${BARCHART_HOME}/celestial.sql
-sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/celestial.sql
-rm ${BARCHART_HOME}/celestial.sql
+# record celestial data
+MAXTRYS=5
+for i in $(seq 1 $MAXTRYS)
+do
+	curl -H "Cache-Control: no-cache, no-store" "wttr.in/38.103516,-121.288475?format=insert+into+celestial+values+('%m','%D','%S','%s','%d',datetime('now','localtime'));" > ${BARCHART_HOME}/celestial.sql
+	EXITCODE=$?
+	if [[ $EXITCODE -eq 0 ]]
+		then
+		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/celestial.sql
+		echo "celestial sucess on attempt ${i}"
+		rm ${BARCHART_HOME}/celestial.sql
+		break   
+	else
+		echo "curl: ${EXITCODE}"
+		cat ${BARCHART_HOME}/celestial.sql
+		echo "===== celestial FAILURE ====="
+		sleep 5
+	fi
+done
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
