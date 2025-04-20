@@ -42,7 +42,7 @@ rm ${WORK_HOUR}/recording.pid
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=38.103516&lon=-121.288475&mode=xml&units=imperial&appid=68e315640d40bc02c7219bd7545b2621" > ${BARCHART_HOME}/sky/weather.xml
+	curl -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=38.103516&lon=-121.288475&mode=xml&units=imperial&appid=${OWMtoken}" > ${BARCHART_HOME}/sky/weather.xml
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
