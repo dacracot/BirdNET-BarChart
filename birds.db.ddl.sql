@@ -29,12 +29,18 @@ INSERT INTO moon VALUES ('🌖︎', 127766, 'waning gibbous');
 INSERT INTO moon VALUES ('🌗︎', 127767, 'last-quarter');
 INSERT INTO moon VALUES ('🌘︎', 127768, 'waning crescent');
 -- --------------------------------------
-CREATE TABLE celestial (
-	moonPhase TEXT NOT NULL,
+CREATE TABLE sun (
 	dawn DATETIME NOT NULL,
-	sunrise DATETIME NOT NULL,
-	sunset DATETIME NOT NULL,
+	up DATETIME NOT NULL,
+	down DATETIME NOT NULL,
 	dusk DATETIME NOT NULL,
+	minuteOfDay DATETIME NOT NULL
+	);
+-- --------------------------------------
+CREATE TABLE moon (
+	phase TEXT NOT NULL,
+	up DATETIME,
+	down DATETIME,
 	minuteOfDay DATETIME NOT NULL
 	);
 -- --------------------------------------
@@ -46,5 +52,10 @@ CREATE TABLE weather (
 	precipitation TEXT NOT NULL,
 	pressure TEXT NOT NULL,
 	minuteOfDay DATETIME NOT NULL
+	);
+-- --------------------------------------
+CREATE TABLE season (
+	phase TEXT NOT NULL,
+	changeover DATETIME NOT NULL
 	);
 -- --------------------------------------

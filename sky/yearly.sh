@@ -25,20 +25,20 @@ fi
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/rstt/oneday?date=2025-04-17&coords=38.1035,-121.2884&tz=-8&dst=true" > ${BARCHART_HOME}/sky/day.js
+	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?year=2025&tz=-8&dst=true" > ${BARCHART_HOME}/sky/season.js
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		echo "<day>" > ${BARCHART_HOME}/sky/day.xml
-		jq -rf ${BARCHART_HOME}/sky/json2xml.jq ${BARCHART_HOME}/sky/day.js >> ${BARCHART_HOME}/sky/day.xml
-		echo "</day>" >> ${BARCHART_HOME}/sky/day.xml
-		XSLTransform -s:${BARCHART_HOME}/sky/day.xml -xsl:${BARCHART_HOME}/sky/day.xsl > ${BARCHART_HOME}/sky/day.sql
-		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/day.sql
+		echo "<season>" > ${BARCHART_HOME}/sky/season.xml
+		jq -rf ${BARCHART_HOME}/sky/json2xml.jq ${BARCHART_HOME}/sky/season.js >> ${BARCHART_HOME}/sky/season.xml
+		echo "</season>" >> ${BARCHART_HOME}/sky/season.xml
+		XSLTransform -s:${BARCHART_HOME}/sky/season.xml -xsl:${BARCHART_HOME}/sky/season.xsl > ${BARCHART_HOME}/sky/season.sql
+		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/season.sql
 		echo "celestial sucess on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
-		cat ${BARCHART_HOME}/sky/day.js
+		cat ${BARCHART_HOME}/sky/season.js
 		echo "===== celestial FAILURE ====="
 		sleep 5
 	fi
@@ -48,4 +48,4 @@ done
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 echo "---------------------------------------------------------------------------------"
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-daily.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-daily.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-yearly.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-yearly.err

@@ -1,0 +1,6 @@
+<day>
+<apiversion>4.0.1</apiversion>
+<geometry><coordinates>-121.2884</coordinates><coordinates>38.1035</coordinates><type>Point</type></geometry>
+<properties><data><closestphase><day>20</day><month>4</month><phase>Last Quarter</phase><time>18:35  DT</time><year>2025</year></closestphase><curphase>Waning Gibbous</curphase><day>17</day><day_of_week>Thursday</day_of_week><fracillum>80%</fracillum><isdst>true</isdst><label>null</label><month>4</month><moondata><phen>Upper Transit</phen><time>04:20  DT</time></moondata><moondata><phen>Set</phen><time>08:50  DT</time></moondata><sundata><phen>Begin Civil Twilight</phen><time>05:59  DT</time></sundata><sundata><phen>Rise</phen><time>06:26  DT</time></sundata><sundata><phen>Upper Transit</phen><time>13:05  DT</time></sundata><sundata><phen>Set</phen><time>19:44  DT</time></sundata><sundata><phen>End Civil Twilight</phen><time>20:11  DT</time></sundata><tz>-8</tz><year>2025</year></data></properties>
+<type>Feature</type>
+</day>

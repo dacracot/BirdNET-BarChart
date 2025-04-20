@@ -38,21 +38,21 @@ echo "$!" > ${WORK_HOUR}/recording.pid
 sleep 1h
 kill `cat ${WORK_HOUR}/recording.pid`
 rm ${WORK_HOUR}/recording.pid
-# record weather data
+# # record weather data
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl  -H "Cache-Control: no-cache, no-store" "wttr.in/38.103516,-121.288475?format=insert+into+weather+values+('%C','%t','%h','%w','%p','%P',datetime('now','localtime'));\n" > ${BARCHART_HOME}/weather.sql
+	curl -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=38.103516&lon=-121.288475&mode=xml&units=imperial&appid=68e315640d40bc02c7219bd7545b2621" > ${BARCHART_HOME}/sky/weather.xml
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/weather.sql
+		XSLTransform -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
+		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/weather.sql
 		echo "weather sucess on attempt ${i}"
-		rm ${BARCHART_HOME}/weather.sql
 		break   
 	else
 		echo "curl: ${EXITCODE}"
-		cat ${BARCHART_HOME}/weather.sql
+		cat ${BARCHART_HOME}/sky/weather.xml
 		echo "===== weather FAILURE ====="
 		sleep 5
 	fi
