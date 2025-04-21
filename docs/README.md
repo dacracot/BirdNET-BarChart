@@ -136,6 +136,7 @@ and now know what birds are sharing their voices with me.
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [jQueryUI](https://jqueryui.com)
+* [jq](https://jqlang.org)
 * [SQLite](https://sqlite.org/)
 * [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
