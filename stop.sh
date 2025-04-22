@@ -25,13 +25,14 @@ WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 # ===================================================
 # check if we are too close to analysis
 if [[ "$MINUTE" =~ ^("58"|"59"|"00"|"01"|"02"|"03"|"04"|"05"|"06"|"07"|"08"|"09"|"10")$ ]]; then
-    echo "Best not to stop on the hour."
+    echo "Best not to stop this close to the hour."
     exit 1
 else
 	# remove hourly script from cron
 	crontab -l 2>/dev/null | grep -v 'hourly' | crontab -
 	# stop the last hourly script from sleeping
-	kill `cat ${WORK_HOUR}/sleeping.pid`
+	kill `ps h -eo pid,command | grep "sleep 1h" | grep -v "grep" | awk '{print $1}'`
+	echo "Wait for the analysis to complete prior to restarting."
 fi
 # ===================================================
 # how long did it take

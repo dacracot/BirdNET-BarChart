@@ -24,15 +24,14 @@ fi
 # ===================================================
 # check if we are too close to analysis
 if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
-    echo "Best not to start on the hour."
+    echo "Best not to start this close to the hour."
     exit 1
 else
 	# remove hourly script from cron if it is there
 	crontab -l 2>/dev/null | grep -v 'hourly' | crontab -
 	# add the hourly script to cron
 	(crontab -l 2>/dev/null; echo "0 * * * * ${BARCHART_HOME}/hourly.sh") | crontab -
-	# run the hourly script
-	${BARCHART_HOME}/hourly.sh
+    nohup ${BARCHART_HOME}/hourly.sh &
 fi
 # ===================================================
 # how long did it take
