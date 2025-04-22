@@ -25,11 +25,7 @@ sshpass -p "${BACKUP_PASSWORD}" scp ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${D
 if [ $? -eq 0 ]; then
 	rm ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz
 else
-	echo "============================================"
-	echo " "
-	echo " BACKUP FAILED TO TRANSFER TO REMOTE SERVER"
-	echo " "
-	echo "============================================"
+	ssmtp -vvv dacracot@gmail.com < ${BARCHART_HOME}/docs/backupFailure.txt
 fi
 # how long did it take
 DURATION=$SECONDS

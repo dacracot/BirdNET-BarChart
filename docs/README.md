@@ -22,6 +22,7 @@ and now know what birds are sharing their voices with me.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
 	1. [XSLTransform](https://en.wikipedia.org/wiki/XSLT) to support the barcharter.
 	1. [SVG](https://en.wikipedia.org/wiki/SVG) to render the charts in the browser.
+	1. [sSMTP](https://packages.debian.org/source/unstable/ssmtp) to send alert emails when unrecoverable errors occur.
 
 ---
 
@@ -72,10 +73,11 @@ and now know what birds are sharing their voices with me.
 	1. Run transformer test.
 		* `XSLTransform -s:some.xml -xsl:some.xsl`
 * ___Install this software___:
-	1. Install sqlite, Apache, and sshpass.
+	1. Install sqlite, Apache, sshpass, and sSMTP.
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
 		* `sudo apt install sshpass`
+		* `sudo apt install ssmtp`
 	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
 		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
 	1. Save your previously populated sqlite database if you have one.
@@ -87,13 +89,11 @@ and now know what birds are sharing their voices with me.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
 	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
 		* `config.sh`
-	1. Edit your crontab and insert the scripts for weekly, morning, evening, extract, and share actions.
+	1. Edit your crontab and insert the scripts for backup, weekly, and hourly actions.
 		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
-		* `30 2 * * * /home/dacracot/BirdNET-BarChart/extract.sh`
-		* `0 2 * * * /home/dacracot/BirdNET-BarChart/share/BirdWeather.sh`
-		* `0 3 * * * /home/dacracot/BirdNET-BarChart/morning.sh`
-		* `0 22 * * * /home/dacracot/BirdNET-BarChart/evening.sh`
+		* `0 2 * * * /home/dacracot/BirdNET-BarChart/daily.sh`
+		* `0 * * * * /home/dacracot/BirdNET-BarChart/hourly.sh`
 	1. Run the weekly script to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
 	1. Access the browser user interface...
@@ -115,20 +115,18 @@ and now know what birds are sharing their voices with me.
       1. Deleting all log files older than a week.
       1. Deleting all sound sample (.wav) files older than first 90 days, then 89, then 88, and so on.
     * Until the percent usage is below the maximum configured.
-* `extract.sh`
-	* Query the database to create an XML file for the browser user interface.
-	* Uses `extract.sql` to compose the output to `chart.xml`.
-	* Transform the `chart.xml` into `chart.html`.
-	* Copies the altered chart folder to the web server's published directory.
-* `morning.sh`
+* `hourly.sh`
 	* Create today's directory structure for the storage of sound files.
 	* Begin recording one minute duration files.
-* `evening.sh`
 	* Stop the recordings.
 	* Run the analyzer against each sound file.
 	* Manipulate the analyzer's CSV results to be loaded into the database, primarily changing the filename into a timestamp.
 	* Load the database.
-	* Delete and compress the work files that day.
+	* Delete and compress the work files that hour.
+	* Query the database to create an XML file for the browser user interface.
+	* Uses `extract.sql` to compose the output to `chart.xml`.
+	* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
+	* Copies the altered chart folder to the web server's published directory.
 
 ---
 
@@ -138,7 +136,9 @@ and now know what birds are sharing their voices with me.
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [jQueryUI](https://jqueryui.com)
+* [jq](https://jqlang.org)
 * [SQLite](https://sqlite.org/)
+* [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
 * [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
 

@@ -1,0 +1,8 @@
+To: dacracot@gmail.com
+From: dacracot@gmail.com
+Subject: birding backup failure
+
+================== 
+ BACKUP FAILED TO TRANSFER TO REMOTE SERVER
+================== 
+

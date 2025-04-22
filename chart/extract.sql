@@ -22,7 +22,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -50,7 +50,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -78,7 +78,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -106,7 +106,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -134,7 +134,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -162,7 +162,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -190,7 +190,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -218,7 +218,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -246,7 +246,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -274,7 +274,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -302,7 +302,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select
@@ -330,7 +330,7 @@ from
 where
 	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now',param.timeframe)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
 union select

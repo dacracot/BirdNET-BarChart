@@ -20,6 +20,7 @@ else
 	PERCENT_STORAGE_ALLOWED=60
 	BACKUP_HOME=username@192.168.0.123:${HOME}/backups
 	BACKUP_PASSWORD=secret
+	FAILURE_EMAIL=username@somemail.com
 fi
 # ---------------------------------------------------
 # set LAT LON
@@ -45,6 +46,10 @@ echo "Web server set to ${WEB_HOME}."
 echo " "
 read -e -p "Enter the percentage of disk usage allowed: " -i ${PERCENT_STORAGE_ALLOWED} PERCENT_STORAGE_ALLOWED
 echo "Percentage set to ${PERCENT_STORAGE_ALLOWED}."
+# set Open Weather Map Token... no initial default
+echo " "
+read -e -p "Enter your Open Weather Map access token: " -i ${OWM_TOKEN} OWM_TOKEN
+echo "Token set to ${OWM_TOKEN}."
 # set BACKUP_HOME... default to read values
 echo " "
 read -e -p "Enter the URI for the backup server: " -i ${BACKUP_HOME} BACKUP_HOME
@@ -53,6 +58,10 @@ echo "Backup server set to ${BACKUP_HOME}."
 echo " "
 read -e -p "Enter the password for the backup server: " -i ${BACKUP_PASSWORD} BACKUP_PASSWORD
 echo "Password set to ${BACKUP_PASSWORD}."
+# set FAILURE_EMAIL... no initial default
+echo " "
+read -e -p "Enter the email for failure notifications: " -i ${FAILURE_EMAIL} NEW_FAILURE_EMAIL
+echo "Email set to ${NEW_FAILURE_EMAIL}."
 {
 echo "LAT=${LAT}"
 echo "LON=${LON}"
@@ -62,6 +71,8 @@ echo "WEB_HOME=${WEB_HOME}"
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=${BACKUP_HOME}"
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
+echo "OWM_TOKEN=${OWM_TOKEN}"
+echo "FAILURE_EMAIL=${FAILURE_EMAIL}"
 }  > ${HOME}/.BirdNET-BarChart
 # ---------------------------------------------------
 echo " "
@@ -78,4 +89,9 @@ else
 	sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql
 fi
 echo "Database created"
+# ---------------------------------------------------
+echo " "
+sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/docs/backupFailure.txt
+sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/docs/storageFailure.txt
+echo "Email text updated"
 # ---------------------------------------------------
