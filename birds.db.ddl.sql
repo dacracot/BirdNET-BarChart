@@ -15,19 +15,19 @@ CREATE TABLE chart (
 	seq INTEGER PRIMARY KEY
 	);
 -- --------------------------------------
-CREATE TABLE moon (
+CREATE TABLE phase (
 	unicode TEXT NOT NULL,
 	unicodeDecimal INTEGER NOT NULL,
 	description TEXT NOT NULL
 	);
-INSERT INTO moon VALUES ('🌑︎', 127761, 'New');
-INSERT INTO moon VALUES ('🌒︎', 127762, 'Waxing Crescent');
-INSERT INTO moon VALUES ('🌓︎', 127763, 'First Quarter');
-INSERT INTO moon VALUES ('🌔︎', 127764, 'Waxing Gibbous');
-INSERT INTO moon VALUES ('🌕︎', 127765, 'full');
-INSERT INTO moon VALUES ('🌖︎', 127766, 'Waning Gibbous');
-INSERT INTO moon VALUES ('🌗︎', 127767, 'Last Quarter');
-INSERT INTO moon VALUES ('🌘︎', 127768, 'Waning Crescent');
+INSERT INTO phase VALUES ('🌑︎', 127761, 'New');
+INSERT INTO phase VALUES ('🌒︎', 127762, 'Waxing Crescent');
+INSERT INTO phase VALUES ('🌓︎', 127763, 'First Quarter');
+INSERT INTO phase VALUES ('🌔︎', 127764, 'Waxing Gibbous');
+INSERT INTO phase VALUES ('🌕︎', 127765, 'full');
+INSERT INTO phase VALUES ('🌖︎', 127766, 'Waning Gibbous');
+INSERT INTO phase VALUES ('🌗︎', 127767, 'Last Quarter');
+INSERT INTO phase VALUES ('🌘︎', 127768, 'Waning Crescent');
 -- --------------------------------------
 CREATE TABLE sun (
 	dawn DATETIME NOT NULL,
