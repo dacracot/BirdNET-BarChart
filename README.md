@@ -11,7 +11,8 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
 * Using bash scripts to drive the daily processing.
 	* Run the sound recorder to capture bird song.
 	* Run the analysis to identify the bird song.
-	* Load the database with the observed species.
+	* Run queries to get celestial data.
+	* Load the database with the observed species and celestial data.
 	* Extract the database data to XML.
 	* Transform XML using XSLT to produce a bar charts and tables.
 

@@ -76,6 +76,7 @@ and now know what birds are sharing their voices with me.
 	1. Install sqlite, Apache, sshpass, and sSMTP.
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
+		* `sudo apt install jq`
 		* `sudo apt install sshpass`
 		* `sudo apt install ssmtp`
 	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
@@ -127,6 +128,13 @@ and now know what birds are sharing their voices with me.
 	* Uses `extract.sql` to compose the output to `chart.xml`.
 	* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
 	* Copies the altered chart folder to the web server's published directory.
+* `daily.sh`
+	* Query celestial data from the US Navy.
+	* Morph the data into SQL and load the database.
+* `start.sh`
+	* Start the process of recording data.
+* `stop.sh`
+	* Stop the process of recording data.
 
 ---
 
