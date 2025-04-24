@@ -88,13 +88,14 @@ and now know what birds are sharing their voices with me.
 		* `cd /home/dacracot/BirdNET-BarChart`
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
-	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
-		* `config.sh`
-	1. Edit your crontab and insert the scripts for backup, weekly, and hourly actions.
+	1. Edit the crontab.txt to adjust times for scripts prior to running the config script.
 		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
+		* `45 2 1 1 * /home/dacracot/BirdNET-BarChart/yearly.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
 		* `0 2 * * * /home/dacracot/BirdNET-BarChart/daily.sh`
 		* `0 * * * * /home/dacracot/BirdNET-BarChart/hourly.sh`
+	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
+		* `config.sh`
 	1. Run the weekly script to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
 	1. Access the browser user interface...

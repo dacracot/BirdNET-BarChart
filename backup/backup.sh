@@ -25,7 +25,7 @@ sshpass -p "${BACKUP_PASSWORD}" scp ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${D
 if [ $? -eq 0 ]; then
 	rm ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz
 else
-	ssmtp -vvv dacracot@gmail.com < ${BARCHART_HOME}/docs/backupFailure.txt
+	ssmtp -vvv dacracot@gmail.com < ${BARCHART_HOME}/util/backupFailure.txt
 fi
 # how long did it take
 DURATION=$SECONDS

@@ -1,0 +1,6 @@
+15 2 * * 7 @@HOMEDIR@@/backup/backup.sh
+45 2 1 1 * @@HOMEDIR@@/yearly.sh
+30 2 * * 7 @@HOMEDIR@@/weekly.sh
+0 2 * * * @@HOMEDIR@@/daily.sh
+0 * * * * @@HOMEDIR@@/hourly.sh
+

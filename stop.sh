@@ -28,8 +28,8 @@ if [[ "$MINUTE" =~ ^("58"|"59"|"00"|"01"|"02"|"03"|"04"|"05"|"06"|"07"|"08"|"09"
     echo "Best not to stop this close to the hour."
     exit 1
 else
-	# remove hourly script from cron
-	crontab -l 2>/dev/null | grep -v 'hourly' | crontab -
+	# remove the crontab
+	export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
 	# stop the last hourly script from sleeping
 	kill `ps h -eo pid,command | grep "sleep 1h" | grep -v "grep" | awk '{print $1}'`
 	echo "Wait for the analysis to complete prior to restarting."

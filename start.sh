@@ -27,10 +27,8 @@ if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
     echo "Best not to start this close to the hour."
     exit 1
 else
-	# remove hourly script from cron if it is there
-	crontab -l 2>/dev/null | grep -v 'hourly' | crontab -
-	# add the hourly script to cron
-	(crontab -l 2>/dev/null; echo "0 * * * * ${BARCHART_HOME}/hourly.sh") | crontab -
+	# reset the crontab
+	export BARCHART_HOME && ${BARCHART_HOME}/util/crontabAdd.sh
     nohup ${BARCHART_HOME}/hourly.sh &
 fi
 # ===================================================
