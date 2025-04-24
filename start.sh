@@ -24,13 +24,14 @@ fi
 # ===================================================
 # check if we are too close to analysis
 if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
-    echo "Best not to start this close to the hour."
+    echo "Best not to start this close to the hour." > /dev/tty
     exit 1
 else
 	# reset the crontab
 	export BARCHART_HOME && ${BARCHART_HOME}/util/crontabAdd.sh
     nohup ${BARCHART_HOME}/hourly.sh &
 fi
+echo "Started" > /dev/tty
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
