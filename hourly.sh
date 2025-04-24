@@ -5,6 +5,7 @@ YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
 HOUR=`date '+%H'`
+MINUTE=`date '+%M'`
 # ---------------------------------------------------
 # source the configuration file
 # it must be edited and copied as ".BirdNET-BarChart" to you home directory
@@ -31,11 +32,13 @@ CARD=`arecord -l | grep -hom 1 [0-9] | head -1`
 mkdir -p ${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}/
 # record continuously into files of 1 minute each
 arecord -D sysdefault:CARD=${CARD} --quiet --max-file-time 60 -f S16_LE -r 48000 -t wav --use-strftime ${BARCHART_HOME}/work/%Y/%m/%d/%H/%Y-%m-%dT%H:%M.wav &
-# save the process ID for afterDark.sh
+# save the process ID for recordings
 echo "$!" > ${WORK_HOUR}/recording.pid
 # ===================================================
-# kill the audio recording started above after an HOUR
-sleep 1h
+# kill the audio recording started above on the hour
+HOWLONG=$((60-`date '+%M'`))
+sleep ${HOWLONG}m
+# stop recording
 kill `cat ${WORK_HOUR}/recording.pid`
 rm ${WORK_HOUR}/recording.pid
 # # record weather data

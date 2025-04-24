@@ -74,6 +74,7 @@ echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
 echo "OWM_TOKEN=${OWM_TOKEN}"
 echo "FAILURE_EMAIL=${FAILURE_EMAIL}"
 }  > ${HOME}/.BirdNET-BarChart
+echo "Source set"
 # ---------------------------------------------------
 echo " "
 if [ -f "${BARCHART_HOME}/birds.db" ]; then
@@ -91,7 +92,10 @@ fi
 echo "Database created"
 # ---------------------------------------------------
 echo " "
-sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/docs/backupFailure.txt
-sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/docs/storageFailure.txt
+sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/backupFailure.txt
+sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/storageFailure.txt
 echo "Email text updated"
+# ---------------------------------------------------
+# call crontab util
+export BARCHART_HOME && ${BARCHART_HOME}/util/crontabAdd.sh
 # ---------------------------------------------------

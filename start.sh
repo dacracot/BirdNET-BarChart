@@ -4,6 +4,8 @@ SECONDS=0
 YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
+HOUR=`date '+%H'`
+MINUTE=`date '+%M'`
 # ---------------------------------------------------
 # source the configuration file
 # it must be edited and copied as ".BirdNET-BarChart" to you home directory
@@ -19,15 +21,20 @@ else
 fi
 # ---------------------------------------------------
 {
-sqlite3 ${BARCHART_HOME}/birds.db ".backup '${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db'"
-gzip -v ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db
-sshpass -p "${BACKUP_PASSWORD}" scp ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz ${BACKUP_HOME}
-if [ $? -eq 0 ]; then
-	rm ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz
+# ===================================================
+# check if we are too close to analysis
+if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
+    echo "Best not to start this close to the hour." > /dev/tty
+    exit 1
 else
-	ssmtp -vvv dacracot@gmail.com < ${BARCHART_HOME}/util/backupFailure.txt
+	# reset the crontab
+	export BARCHART_HOME && ${BARCHART_HOME}/util/crontabAdd.sh
+    nohup ${BARCHART_HOME}/hourly.sh &
 fi
+echo "Started" > /dev/tty
+# ===================================================
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-backup.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-backup.err
+echo "---------------------------------------------------------------------------------"
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-start.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-start.err
