@@ -19,8 +19,8 @@
 		<xsl:text>','</xsl:text>
 		<xsl:value-of select="wind/speed/@name"/><xsl:text> from the </xsl:text><xsl:value-of select="wind/direction/@name"/>
 		<xsl:text>','</xsl:text>
-		<xsl:if test="precipitation[@mode = 'no']">0.0</xsl:if>
-		<xsl:if test="precipitation[@mode != 'no']">x.x</xsl:if>
+		<xsl:if test="precipitation[@mode = 'no']">0 mm/hr</xsl:if>
+		<xsl:if test="precipitation[@mode != 'no']"><xsl:value-of select="precipitation/@mode"/>ing at <xsl:value-of select="precipitation/@value"/> mm/hr</xsl:if>
 		<xsl:text>','</xsl:text>
 		<xsl:value-of select="pressure/@value"/><xsl:value-of select="pressure/@unit"/>
 		<xsl:text>',datetime('now','localtime'));
