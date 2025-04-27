@@ -20,11 +20,11 @@ CREATE TABLE phase (
 	unicodeDecimal INTEGER NOT NULL,
 	description TEXT NOT NULL
 	);
-INSERT INTO phase VALUES ('🌑︎', 127761, 'New');
+INSERT INTO phase VALUES ('🌑︎', 127761, 'New Moon');
 INSERT INTO phase VALUES ('🌒︎', 127762, 'Waxing Crescent');
 INSERT INTO phase VALUES ('🌓︎', 127763, 'First Quarter');
 INSERT INTO phase VALUES ('🌔︎', 127764, 'Waxing Gibbous');
-INSERT INTO phase VALUES ('🌕︎', 127765, 'full');
+INSERT INTO phase VALUES ('🌕︎', 127765, 'Full Moon');
 INSERT INTO phase VALUES ('🌖︎', 127766, 'Waning Gibbous');
 INSERT INTO phase VALUES ('🌗︎', 127767, 'Last Quarter');
 INSERT INTO phase VALUES ('🌘︎', 127768, 'Waning Crescent');
@@ -32,6 +32,7 @@ INSERT INTO phase VALUES ('🌘︎', 127768, 'Waning Crescent');
 CREATE TABLE sun (
 	dawn DATETIME NOT NULL,
 	up DATETIME NOT NULL,
+	peak DATETIME NOT NULL,
 	down DATETIME NOT NULL,
 	dusk DATETIME NOT NULL,
 	minuteOfDay DATETIME NOT NULL
@@ -40,6 +41,7 @@ CREATE TABLE sun (
 CREATE TABLE moon (
 	phase TEXT NOT NULL,
 	up DATETIME,
+	peak DATETIME NOT NULL,
 	down DATETIME,
 	minuteOfDay DATETIME NOT NULL
 	);
