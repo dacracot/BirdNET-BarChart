@@ -1,26 +1,42 @@
 select
-	((24-(substr(dawn,1,2)+(substr(dawn,4,2)/60.0)))*-15) as dawnAngle,
-	((24-(substr(up,1,2)+(substr(up,4,2)/60.0)))*-15) as upAngle,
-	((24-(substr(peak,1,2)+(substr(peak,4,2)/60.0)))*-15) as peakAngle,
-	((24-(substr(down,1,2)+(substr(down,4,2)/60.0)))*-15) as downAngle,
-	((24-(substr(dusk,1,2)+(substr(dusk,4,2)/60.0)))*-15) as duskAngle
+	'<sun symbol="'||
+	unicode||
+	'" dawn="'||
+	((24-(substr(dawn,1,2)+(substr(dawn,4,2)/60.0)))*-15)||
+	'" up="'||
+	((24-(substr(up,1,2)+(substr(up,4,2)/60.0)))*-15)||
+	'" peak="'||
+	((24-(substr(peak,1,2)+(substr(peak,4,2)/60.0)))*-15)||
+	'" down="'||
+	((24-(substr(down,1,2)+(substr(down,4,2)/60.0)))*-15)||
+	'" dusk="'||
+	((24-(substr(dusk,1,2)+(substr(dusk,4,2)/60.0)))*-15)||
+	'" />' as sunXML
 from
-	sun
+	sun,
+	symbol
+where
+	symbol.description = 'Sunny'
 order by
 	minuteOfDay desc
 limit
 	1;
 
 select
-	unicode,
-	((24-(substr(up,1,2)+(substr(up,4,2)/60.0)))*-15) as upAngle,
-	((24-(substr(peak,1,2)+(substr(peak,4,2)/60.0)))*-15) as peakAngle,
-	((24-(substr(down,1,2)+(substr(down,4,2)/60.0)))*-15) as downAngle
+	'<moon symbol="'||
+	unicode||
+	'" up="'||
+	((24-(substr(up,1,2)+(substr(up,4,2)/60.0)))*-15)||
+	'" peak="'||
+	((24-(substr(peak,1,2)+(substr(peak,4,2)/60.0)))*-15)||
+	'" down="'||
+	((24-(substr(down,1,2)+(substr(down,4,2)/60.0)))*-15)||
+	'" />' as moonXML
 from
 	moon,
-	phase
+	symbol
 where
-	moon.phase = phase.description
+	moon.phase = symbol.description
 order by
 	minuteOfDay desc
 limit
