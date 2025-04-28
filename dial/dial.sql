@@ -1,3 +1,4 @@
+select '<dial>';
 select
 	'<sun symbol="'||
 	unicode||
@@ -21,7 +22,6 @@ order by
 	minuteOfDay desc
 limit
 	1;
-
 select
 	'<moon symbol="'||
 	unicode||
@@ -41,3 +41,4 @@ order by
 	minuteOfDay desc
 limit
 	1;
+select '</dial>';
