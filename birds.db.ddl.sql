@@ -15,27 +15,6 @@ CREATE TABLE chart (
 	seq INTEGER PRIMARY KEY
 	);
 -- --------------------------------------
-CREATE TABLE symbol (
-	unicode TEXT NOT NULL,
-	unicodeDecimal INTEGER NOT NULL,
-	description TEXT NOT NULL
-	);
-INSERT INTO symbol VALUES('🌑︎',127761,'New Moon');
-INSERT INTO symbol VALUES('🌒︎',127762,'Waxing Crescent');
-INSERT INTO symbol VALUES('🌓︎',127763,'First Quarter');
-INSERT INTO symbol VALUES('🌔︎',127764,'Waxing Gibbous');
-INSERT INTO symbol VALUES('🌕︎',127765,'Full Moon');
-INSERT INTO symbol VALUES('🌖︎',127766,'Waning Gibbous');
-INSERT INTO symbol VALUES('🌗︎',127767,'Last Quarter');
-INSERT INTO symbol VALUES('🌘︎',127768,'Waning Crescent');
-INSERT INTO symbol VALUES('🌞',127774,'Sunny');
-INSERT INTO symbol VALUES('🌤',127780,'Mostly Sunny');
-INSERT INTO symbol VALUES('🌥',127781,'Mostly Cloudy');
-INSERT INTO symbol VALUES('🌦',127782,'Showers');
-INSERT INTO symbol VALUES('🌧',127783,'Showers');
-INSERT INTO symbol VALUES('🌨',127784,'Snow');
-INSERT INTO symbol VALUES('🌩',127785,'Thunderstorm');
--- --------------------------------------
 CREATE TABLE sun (
 	dawn DATETIME NOT NULL,
 	up DATETIME NOT NULL,
