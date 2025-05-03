@@ -13,7 +13,7 @@
 					<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
 						<xsl:apply-templates select="moon"/>
 						<xsl:apply-templates select="sun"/>
-						<xsl:copy-of select="document('base.svg')/base/*"/>
+						<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
 					</g>
 				</svg>
 			</xsl:element>
@@ -42,29 +42,15 @@
 			<xsl:with-param name="color">blue</xsl:with-param>
 		</xsl:call-template>
 		<xsl:call-template name="pie">
-			<xsl:with-param name="beginLoop" select="xs:integer(round(@dusk + 1))" />
+			<xsl:with-param name="beginLoop" select="xs:integer(round(@dusk))" />
 			<xsl:with-param name="endLoop">0</xsl:with-param>
 			<xsl:with-param name="color">black</xsl:with-param>
 		</xsl:call-template>
 		<xsl:call-template name="pie">
 			<xsl:with-param name="beginLoop">-359</xsl:with-param>
-			<xsl:with-param name="endLoop" select="xs:integer(round(@dawn - 1))" />
+			<xsl:with-param name="endLoop" select="xs:integer(round(@dawn))" />
 			<xsl:with-param name="color">black</xsl:with-param>
 		</xsl:call-template>
-<!-- 
-		<xsl:element name="g">
-			<xsl:attribute name="transform">rotate(<xsl:value-of select="@up"/>)</xsl:attribute>
-			<xsl:copy-of select="document('../grfx/sunrise.svg')/sunrise/*"/>
-		</xsl:element>
-		<xsl:element name="g">
-			<xsl:attribute name="transform">rotate(<xsl:value-of select="@peak"/>)</xsl:attribute>
-			<text x="0" y="125"><xsl:value-of select="@symbol"/></text>
-		</xsl:element>
-		<xsl:element name="g">
-			<xsl:attribute name="transform">rotate(<xsl:value-of select="@down"/>)</xsl:attribute>
-			<text x="0" y="125"><xsl:value-of select="@symbol"/></text>
-		</xsl:element>
- -->
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template name="pie">

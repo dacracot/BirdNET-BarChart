@@ -1,4 +1,5 @@
 select '<dial>';
+-- sun
 select
 	'<sun dawn="'||
 	((24-(substr(dawn,1,2)+(substr(dawn,4,2)/60.0)))*-15)||
@@ -17,6 +18,7 @@ order by
 	minuteOfDay desc
 limit
 	1;
+-- moon
 select
 	'<moon phase="'||
 	phase||
@@ -33,4 +35,29 @@ order by
 	minuteOfDay desc
 limit
 	1;
+-- weather
+select
+	'<weather condition="'||
+	condition||
+	'" temperature="'||
+	temperature||
+	'" humidity="'||
+	humidity||
+	'" wind="'||
+	wind||
+	'" precipitation="'||
+	precipitation||
+	'" pressure="'||
+	pressure||
+	'" dial="'||
+	strftime('%H',minuteOfDay)||
+	'" />' as weatherXML
+from
+	weather
+where
+	strftime('%H',minuteOfDay) in ('00','03','06','09','12','15','18','21')
+order by
+	minuteOfDay desc
+limit
+	8;
 select '</dial>';
