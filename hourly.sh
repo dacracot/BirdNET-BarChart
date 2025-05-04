@@ -45,7 +45,7 @@ rm ${WORK_HOUR}/recording.pid
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=38.103516&lon=-121.288475&mode=xml&units=imperial&appid=${OWM_TOKEN}" > ${BARCHART_HOME}/sky/weather.xml
+	curl -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&mode=xml&units=imperial&appid=${OWM_TOKEN}" > ${BARCHART_HOME}/sky/weather.xml
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
@@ -85,9 +85,12 @@ gzip ${WORK_HOUR}/*
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/chart/extract.sql > ${BARCHART_HOME}/web/chart/chart.xml
 # transform the xml into html
 XSLTransform -s:${BARCHART_HOME}/web/chart/chart.xml -xsl:${BARCHART_HOME}/web/chart/chart.xsl > ${BARCHART_HOME}/web/chart/chart.html lat=${LAT} lon=${LON} asOf="${AS_OF}"
+# extract the sun,moon, & weather to XML
+sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/dial/dial.sql > ${BARCHART_HOME}/web/dial/dial.xml
+# transform the xml into svg
+XSLTransform -s:${BARCHART_HOME}/web/dial/dial.xml -xsl:${BARCHART_HOME}/web/dial/dial.xsl > ${BARCHART_HOME}/web/dial/dial.html lat=${LAT} lon=${LON} asOf="${AS_OF}"
 # copy it all to the web server
-cp -v -R ${BARCHART_HOME}/web/chart/ ${WEB_HOME}
-cp -v ${BARCHART_HOME}/web/chart/favicon.ico ${WEB_HOME}
+cp -v -R ${BARCHART_HOME}/web/ ${WEB_HOME}
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
