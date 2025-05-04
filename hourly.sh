@@ -82,12 +82,12 @@ find ${WORK_HOUR} -type f -name "*.csv" -not -name "dataset.csv" -delete
 gzip ${WORK_HOUR}/*
 # ===================================================
 # extract the table to XML
-sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/chart/extract.sql > ${BARCHART_HOME}/chart/chart.xml
+sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/chart/extract.sql > ${BARCHART_HOME}/web/chart/chart.xml
 # transform the xml into html
-XSLTransform -s:${BARCHART_HOME}/chart/chart.xml -xsl:${BARCHART_HOME}/chart/chart.xsl > ${BARCHART_HOME}/chart/chart.html lat=${LAT} lon=${LON} asOf="${AS_OF}"
+XSLTransform -s:${BARCHART_HOME}/web/chart/chart.xml -xsl:${BARCHART_HOME}/web/chart/chart.xsl > ${BARCHART_HOME}/web/chart/chart.html lat=${LAT} lon=${LON} asOf="${AS_OF}"
 # copy it all to the web server
-cp -v -R ${BARCHART_HOME}/chart/ ${WEB_HOME}
-cp -v ${BARCHART_HOME}/chart/favicon.ico ${WEB_HOME}
+cp -v -R ${BARCHART_HOME}/web/chart/ ${WEB_HOME}
+cp -v ${BARCHART_HOME}/web/chart/favicon.ico ${WEB_HOME}
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
