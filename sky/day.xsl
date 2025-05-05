@@ -25,7 +25,7 @@
 		<xsl:text>','</xsl:text>
 		<xsl:apply-templates select="sundata/phen[.='Rise']/../time"/> 
 		<xsl:text>','</xsl:text>
-		<xsl:apply-templates select="moondata/phen[.='Upper Transit']/../time"/> 
+		<xsl:apply-templates select="sundata/phen[.='Upper Transit']/../time"/> 
 		<xsl:text>','</xsl:text>
 		<xsl:apply-templates select="sundata/phen[.='Set']/../time"/> 
 		<xsl:text>','</xsl:text>

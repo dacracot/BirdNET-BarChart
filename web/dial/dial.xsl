@@ -79,14 +79,14 @@
 			<line x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
 <!-- 
-		00		<g transform="translate(-19, 104)">
-		03		<g transform="translate(-105, 67)">
-		06		<g transform="translate(-142, -19)">
-		09		<g transform="translate(-104, -104)">
-		12		<g transform="translate(-19, -142)">
-		15		<g transform="translate(67, -104)">
-		18		<g transform="translate(104, -19)">
-		21		<g transform="translate(67, 67)">
+		00		<g transform="translate(-19, 104)">			   0,123
+		03		<g transform="translate(-104, 67)">			 -85,86
+		06		<g transform="translate(-142, -19)">		-121,0
+		09		<g transform="translate(-104, -104)">		 -85,-85
+		12		<g transform="translate(-19, -142)">		   0,-121
+		15		<g transform="translate(67, -104)">			  86,-85
+		18		<g transform="translate(104, -19)">			 123,0
+		21		<g transform="translate(67, 67)">			  86,86		offset= -19,-19
  -->
 		<xsl:element name="g">
 			<xsl:choose>
@@ -111,7 +111,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Full Moon'">
-					<g transform="translate(-105, 67)">
+					<g transform="translate(-104, 67)">
 						<xsl:copy-of select="document('../grfx/svg/moon/full.svg')/full/*"/>
 					</g>
 				</xsl:when>
