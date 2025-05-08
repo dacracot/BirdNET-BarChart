@@ -39,6 +39,8 @@ limit
 select
 	'<weather condition="'||
 	condition||
+	'" iconNumber="'||
+	iconNumber||
 	'" temperature="'||
 	temperature||
 	'" humidity="'||

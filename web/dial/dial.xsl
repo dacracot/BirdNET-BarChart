@@ -35,9 +35,58 @@
 		<xsl:element name="g">
 			<xsl:choose>
 				<xsl:when test="@dial ='00'">
-					<g transform="translate(31, 91)">
+					<g transform="translate(-19, 104)">
 						<xsl:call-template name="icon">
-							<xsl:with-param name="iconNumber"><xsl:value-of select="@iconNumber"/></xsl:with-param>
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='03'">
+					<g transform="translate(-104, 67)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='06'">
+					<g transform="translate(-142, -19)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='09'">
+					<g transform="translate(-104, -104)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='12'">
+					<g transform="translate(-19, -142)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='15'">
+					<g transform="translate(67, -104)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='18'">
+					<g transform="translate(104, -19)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:when test="@dial ='21'">
+					<g transform="translate(67, 67)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -60,7 +109,7 @@
 			<xsl:when test="$iconNumber = (300 to 321, 500 to 504, 520 to 531)">
 				<xsl:copy-of select="document('../grfx/svg/weather/rain.svg')/rain/*"/>
 			</xsl:when>
-			<xsl:when test="$iconNumber = (511, 611 to 613, )">
+			<xsl:when test="$iconNumber = (511, 611 to 613)">
 				<xsl:copy-of select="document('../grfx/svg/weather/sleet.svg')/sleet/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (600 to 602, 615 to 622)">
@@ -82,7 +131,10 @@
 				<xsl:copy-of select="document('../grfx/svg/weather/cloudy.svg')/cloudy/*"/>
 			</xsl:when>
 			<xsl:otherwise>
-				<xsl:text>miss-matched weather.condition in dial.xsl</xsl:text>
+<!-- 
+				<xsl:text>miss-matched weather.condition in dial.xsl, found <xsl:value-of select="$iconNumber"/></xsl:text>
+ -->
+				<xsl:text>miss-matched weather.condition in dial.xsl, found </xsl:text><xsl:value-of select="$iconNumber"/>
 			</xsl:otherwise>
 		</xsl:choose>
 	</xsl:template>
@@ -155,6 +207,10 @@
 		19:30		<g transform="translate(91, 31)">			 110,50
 		22:30		<g transform="translate(31, 91)">			  50,110		offset= -19,-19	
  -->
+ 
+<!--  THE MOON SHOULD BE PLACED(translate(#,#)) BASED UPON THE @PEAK ATTRIBUTE VALUE -->
+ 
+ 
 		<xsl:element name="g">
 			<xsl:choose>
 				<xsl:when test="@phase ='New Moon'">
