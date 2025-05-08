@@ -13,6 +13,7 @@
 					<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
 						<xsl:apply-templates select="moon"/>
 						<xsl:apply-templates select="sun"/>
+						<xsl:apply-templates select="weather"/>
 						<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
 					</g>
 				</svg>
@@ -20,8 +21,74 @@
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
+	<xsl:template match="weather">
+<!-- 
+		00:00		<g transform="translate(-19, 104)">			   0,123
+		03:00		<g transform="translate(-104, 67)">			 -85,86
+		06:00		<g transform="translate(-142, -19)">		-121,0
+		09:00		<g transform="translate(-104, -104)">		 -85,-85
+		12:00		<g transform="translate(-19, -142)">		   0,-121
+		15:00		<g transform="translate(67, -104)">			  86,-85
+		18:00		<g transform="translate(104, -19)">			 123,0
+		21:00		<g transform="translate(67, 67)">			  86,86		offset= -19,-19
+ -->
+		<xsl:element name="g">
+			<xsl:choose>
+				<xsl:when test="@dial ='00'">
+					<g transform="translate(31, 91)">
+						<xsl:call-template name="icon">
+							<xsl:with-param name="iconNumber"><xsl:value-of select="@iconNumber"/></xsl:with-param>
+						</xsl:call-template>
+					</g>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:text>miss-matched weather.dial in dial.xsl</xsl:text>
+				</xsl:otherwise>
+			</xsl:choose>
+		</xsl:element>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template name="icon">
+		<xsl:param name="iconNumber"/>
+		<xsl:choose>
+			<xsl:when test="$iconNumber = 800">
+				<xsl:copy-of select="document('../grfx/svg/weather/clear.svg')/clear/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (200 to 232)">
+				<xsl:copy-of select="document('../grfx/svg/weather/thunderstorm.svg')/thunderstorm/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (300 to 321, 500 to 504, 520 to 531)">
+				<xsl:copy-of select="document('../grfx/svg/weather/rain.svg')/rain/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (511, 611 to 613, )">
+				<xsl:copy-of select="document('../grfx/svg/weather/sleet.svg')/sleet/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (600 to 602, 615 to 622)">
+				<xsl:copy-of select="document('../grfx/svg/weather/snow.svg')/snow/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = 701">
+				<xsl:copy-of select="document('../grfx/svg/weather/mist.svg')/mist/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (711 to 762)">
+				<xsl:copy-of select="document('../grfx/svg/weather/foggy.svg')/foggy/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = 771">
+				<xsl:copy-of select="document('../grfx/svg/weather/wind.svg')/wind/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = 781">
+				<xsl:copy-of select="document('../grfx/svg/weather/tornado.svg')/tornado/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (801 to 804)">
+				<xsl:copy-of select="document('../grfx/svg/weather/cloudy.svg')/cloudy/*"/>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:text>miss-matched weather.condition in dial.xsl</xsl:text>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+<!-- =========================================================================================== -->
 	<xsl:template match="sun">
-		<xsl:call-template name="pie">
+ 		<xsl:call-template name="pie">
 			<xsl:with-param name="beginLoop" select="xs:integer(round(@dawn + 1))" />
 			<xsl:with-param name="endLoop" select="xs:integer(round(@up - 1))" />
 			<xsl:with-param name="color">blue</xsl:with-param>
@@ -79,54 +146,54 @@
 			<line x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
 <!-- 
-		00		<g transform="translate(-19, 104)">			   0,123
-		03		<g transform="translate(-104, 67)">			 -85,86
-		06		<g transform="translate(-142, -19)">		-121,0
-		09		<g transform="translate(-104, -104)">		 -85,-85
-		12		<g transform="translate(-19, -142)">		   0,-121
-		15		<g transform="translate(67, -104)">			  86,-85
-		18		<g transform="translate(104, -19)">			 123,0
-		21		<g transform="translate(67, 67)">			  86,86		offset= -19,-19
+		01:30		<g transform="translate(-69, 91)">			 -50,110
+		04:30		<g transform="translate(-129, 31)">			-110,50
+		07:30		<g transform="translate(-129, -69)">		-110,-50
+		10:30		<g transform="translate(-69, -129)">		 -50,-110
+		11:30		<g transform="translate(31, -129)">			  50,-110
+		16:30		<g transform="translate(91, -69)">			 110,-50
+		19:30		<g transform="translate(91, 31)">			 110,50
+		22:30		<g transform="translate(31, 91)">			  50,110		offset= -19,-19	
  -->
 		<xsl:element name="g">
 			<xsl:choose>
 				<xsl:when test="@phase ='New Moon'">
-					<g transform="translate(67, -104)">
+					<g transform="translate(31, 91)">
 						<xsl:copy-of select="document('../grfx/svg/moon/new.svg')/new/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Waxing Crescent'">
-					<g transform="translate(104, -19)">
+					<g transform="translate(-69, 91)">
 						<xsl:copy-of select="document('../grfx/svg/moon/waxingCrescent.svg')/waxingCrescent/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='First Quarter'">
-					<g transform="translate(67, 67)">
+					<g transform="translate(-129, 31)">
 						<xsl:copy-of select="document('../grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Waxing Gibbous'">
-					<g transform="translate(-19, 104)">
+					<g transform="translate(-129, -69)">
 						<xsl:copy-of select="document('../grfx/svg/moon/waxingGibbous.svg')/waxingGibbous/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Full Moon'">
-					<g transform="translate(-104, 67)">
+					<g transform="translate(-69, -129)">
 						<xsl:copy-of select="document('../grfx/svg/moon/full.svg')/full/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Waning Gibbous'">
-					<g transform="translate(-142, -19)">
+					<g transform="translate(31, -129)">
 						<xsl:copy-of select="document('../grfx/svg/moon/waningGibbous.svg')/waningGibbous/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Last Quarter'">
-					<g transform="translate(-104, -104)">
+					<g transform="translate(91, -69)">
 						<xsl:copy-of select="document('../grfx/svg/moon/lastQuarter.svg')/lastQuarter/*"/>
 					</g>
 				</xsl:when>
 				<xsl:when test="@phase ='Waning Crescent'">
-					<g transform="translate(-19, -142)">
+					<g transform="translate(91, 31)">
 						<xsl:copy-of select="document('../grfx/svg/moon/waningCrescent.svg')/waningCrescent/*"/>
 					</g>
 				</xsl:when>

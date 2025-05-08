@@ -10,8 +10,10 @@
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="current">
-		<xsl:text>insert into weather (condition,temperature,humidity,wind,precipitation,pressure,minuteOfDay) values ('</xsl:text>
+		<xsl:text>insert into weather (condition,iconNumber,temperature,humidity,wind,precipitation,pressure,minuteOfDay) values ('</xsl:text>
 		<xsl:value-of select="weather/@value"/>
+		<xsl:text>','</xsl:text>
+		<xsl:value-of select="weather/@number"/>
 		<xsl:text>','</xsl:text>
 		<xsl:value-of select="temperature/@value"/><xsl:text>°</xsl:text>
 		<xsl:text>','</xsl:text>

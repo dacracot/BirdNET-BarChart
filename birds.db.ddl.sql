@@ -34,6 +34,7 @@ CREATE TABLE moon (
 -- --------------------------------------
 CREATE TABLE weather (
 	condition TEXT NOT NULL,
+	iconNumber INTEGER NOT NULL,
 	temperature TEXT NOT NULL,
 	humidity TEXT NOT NULL,
 	wind TEXT NOT NULL,
@@ -46,16 +47,4 @@ CREATE TABLE season (
 	phase TEXT NOT NULL,
 	changeover DATETIME NOT NULL
 	);
--- -- --------------------------------------
--- CREATE TABLE grfx (
--- 	svg TEXT NOT NULL,
--- 	phrase TEXT NOT NULL
--- 	);
--- INSERT INTO grfx (svg,phrase) VALUES ('clear.svg','clear sky');
--- INSERT INTO grfx (svg,phrase) VALUES ('cloudy.svg','broken clouds');
--- INSERT INTO grfx (svg,phrase) VALUES ('cloudy.svg','few clouds');
--- INSERT INTO grfx (svg,phrase) VALUES ('cloudy.svg','overcast clouds');
--- INSERT INTO grfx (svg,phrase) VALUES ('cloudy.svg','scattered clouds');
--- INSERT INTO grfx (svg,phrase) VALUES ('rainLight.svg','light rain');
--- INSERT INTO grfx (svg,phrase) VALUES ('rainModerate.svg','moderate rain');
 -- -- --------------------------------------
