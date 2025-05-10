@@ -9,6 +9,9 @@
 		<xsl:element name="html">
 			<head>
 				<title>BirdNET-BarChart</title>
+<script>
+function show(text) {document.getElementById("data").innerHTML=text}
+</script>
 			</head>
 			<xsl:element name="body">
 				<svg width="300" height="300" viewBox="-150 -150 300 300">
@@ -20,6 +23,8 @@
 						<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
 					</g>
 				</svg>
+				<hr/>
+				<div id="data">this</div>
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
@@ -38,7 +43,7 @@
 		<xsl:element name="g">
 			<xsl:choose>
 				<xsl:when test="@dial ='00'">
-					<g transform="translate(-19, 104)">
+					<g transform="translate(-19, 104)" onmouseover="show('001')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -49,7 +54,7 @@
 					</script>
 				</xsl:when>
 				<xsl:when test="@dial ='03'">
-					<g transform="translate(-104, 67)">
+					<g transform="translate(-104, 67)" onmouseover="show('002')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -57,7 +62,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@dial ='06'">
-					<g transform="translate(-142, -19)">
+					<g transform="translate(-142, -19)" onmouseover="show('003')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -65,7 +70,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@dial ='09'">
-					<g transform="translate(-104, -104)">
+					<g transform="translate(-104, -104)" onmouseover="show('004')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -73,7 +78,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@dial ='12'">
-					<g transform="translate(-19, -142)">
+					<g transform="translate(-19, -142)" onmouseover="show('005')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -81,7 +86,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@dial ='15'">
-					<g transform="translate(67, -104)">
+					<g transform="translate(67, -104)" onmouseover="show('006')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -89,7 +94,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@dial ='18'">
-					<g transform="translate(104, -19)">
+					<g transform="translate(104, -19)" onmouseover="show('007')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -97,7 +102,7 @@
 					</g>
 				</xsl:when>
 				<xsl:when test="@dial ='21'">
-					<g transform="translate(67, 67)">
+					<g transform="translate(67, 67)" onmouseover="show('008')" onmouseout="show('000')">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
@@ -120,7 +125,39 @@
 					<xsl:copy-of select="document('../grfx/svg/weather/clearSun.svg')/clearSun/*"/>
 				</xsl:if>
 				<xsl:if test="($dayNight = '21') or ($dayNight = '00') or ($dayNight = '03')">
+<!-- 
 					<xsl:copy-of select="document('../grfx/svg/weather/clearMoon.svg')/clearMoon/*"/>
+ -->
+					<xsl:choose>
+						<xsl:when test="/dial/moon/@phase ='New Moon'">
+								<xsl:copy-of select="document('../grfx/svg/moon/new.svg')/new/*"/>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='Waxing Crescent'">
+								<xsl:copy-of select="document('../grfx/svg/moon/waxingCrescent.svg')/waxingCrescent/*"/>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='First Quarter'">
+								<xsl:copy-of select="document('../grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='Waxing Gibbous'">
+								<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='Full Moon'">
+								<xsl:copy-of select="document('../grfx/svg/moon/full.svg')/full/*"/>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='Waning Gibbous'">
+								<xsl:copy-of select="document('../grfx/svg/moon/waningGibbous.svg')/waningGibbous/*"/>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='Last Quarter'">
+								<xsl:copy-of select="document('../grfx/svg/moon/lastQuarter.svg')/lastQuarter/*"/>
+						</xsl:when>
+						<xsl:when test="/dial/moon/@phase ='Waning Crescent'">
+								<xsl:copy-of select="document('../grfx/svg/moon/waningCrescent.svg')/waningCrescent/*"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:text>miss-matched moon.phase in dial.xsl</xsl:text>
+						</xsl:otherwise>
+					</xsl:choose>
+
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (200 to 232)">
@@ -214,6 +251,7 @@
 			<xsl:attribute name="transform">rotate(<xsl:value-of select="@peak"/>)</xsl:attribute>
 			<line x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
+<!-- 
 		<xsl:element name="g">
 			<xsl:choose>
 				<xsl:when test="@phase ='New Moon'">
@@ -269,6 +307,7 @@
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:element>
+ -->
 		<xsl:element name="g">
 			<xsl:attribute name="transform">rotate(<xsl:value-of select="@down"/>)</xsl:attribute>
 			<line x1="0" y1="90" x2="0" y2="0"/>
