@@ -12,6 +12,14 @@
 <script>
 function show(text) {document.getElementById("data").innerHTML=text}
 </script>
+<style>
+th {
+  text-align: right;
+}
+td {
+  text-align: left;
+}
+</style>
 			</head>
 			<xsl:element name="body">
 				<svg width="300" height="300" viewBox="-150 -150 300 300">
@@ -143,27 +151,27 @@ function show(text) {document.getElementById("data").innerHTML=text}
 			<xsl:when test="string-length($dial) != 0">
 				<xsl:element name="table">
 					<xsl:element name="tr">
-						<xsl:element name="th">condition</xsl:element>
+						<xsl:element name="th">condition:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@condition"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">temperature</xsl:element>
+						<xsl:element name="th">temperature:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@temperature"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">humidity</xsl:element>
+						<xsl:element name="th">humidity:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@humidity"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">wind</xsl:element>
+						<xsl:element name="th">wind:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@wind"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">precipitation</xsl:element>
+						<xsl:element name="th">precipitation:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@precipitation"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">pressure</xsl:element>
+						<xsl:element name="th">pressure:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@pressure"/></xsl:element>
 						</xsl:element>
 				</xsl:element>
@@ -171,31 +179,31 @@ function show(text) {document.getElementById("data").innerHTML=text}
 			<xsl:otherwise>
 				<xsl:element name="table">
 					<xsl:element name="tr">
-						<xsl:element name="th">dawn</xsl:element>
+						<xsl:element name="th">dawn:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/sun/@dawn"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">sunrise</xsl:element>
+						<xsl:element name="th">sunrise:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/sun/@up"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">sunset</xsl:element>
+						<xsl:element name="th">sunset:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/sun/@down"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">dusk</xsl:element>
+						<xsl:element name="th">dusk:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/sun/@dusk"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">phase</xsl:element>
+						<xsl:element name="th">phase:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/moon/@phase"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">moonrise</xsl:element>
+						<xsl:element name="th">moonrise:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/moon/@up"/></xsl:element>
 					</xsl:element>
 					<xsl:element name="tr">
-						<xsl:element name="th">moonset</xsl:element>
+						<xsl:element name="th">moonset:</xsl:element>
 						<xsl:element name="td"><xsl:value-of select="/dial/moon/@down"/></xsl:element>
 						</xsl:element>
 				</xsl:element>
