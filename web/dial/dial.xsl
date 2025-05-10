@@ -24,7 +24,7 @@ function show(text) {document.getElementById("data").innerHTML=text}
 					</g>
 				</svg>
 				<hr/>
-				<div id="data">this</div>
+				<div id="data"><xsl:call-template name="show"/></div>
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
@@ -43,77 +43,164 @@ function show(text) {document.getElementById("data").innerHTML=text}
 		<xsl:element name="g">
 			<xsl:choose>
 				<xsl:when test="@dial ='00'">
-					<g transform="translate(-19, 104)" onmouseover="show('001')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(-19, 104)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
-					<script>
-					
-					</script>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='03'">
-					<g transform="translate(-104, 67)" onmouseover="show('002')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(-104, 67)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='06'">
-					<g transform="translate(-142, -19)" onmouseover="show('003')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(-142, -19)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='09'">
-					<g transform="translate(-104, -104)" onmouseover="show('004')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(-104, -104)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='12'">
-					<g transform="translate(-19, -142)" onmouseover="show('005')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(-19, -142)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='15'">
-					<g transform="translate(67, -104)" onmouseover="show('006')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(67, -104)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='18'">
-					<g transform="translate(104, -19)" onmouseover="show('007')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(104, -19)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@dial ='21'">
-					<g transform="translate(67, 67)" onmouseover="show('008')" onmouseout="show('000')">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">translate(67, 67)</xsl:attribute>
+						<xsl:attribute name="onmouseover">show('<xsl:call-template name="show"><xsl:with-param name="dial"><xsl:value-of select="@dial"/></xsl:with-param></xsl:call-template>')</xsl:attribute>
+						<xsl:attribute name="onmouseout">show('<xsl:call-template name="show"/>')</xsl:attribute>
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
-					</g>
+					</xsl:element>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:text>miss-matched weather.dial in dial.xsl</xsl:text>
 				</xsl:otherwise>
 			</xsl:choose>
 		</xsl:element>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template name="show">
+		<xsl:param name="dial"/>
+		<xsl:choose>
+			<xsl:when test="string-length($dial) != 0">
+				<xsl:element name="table">
+					<xsl:element name="tr">
+						<xsl:element name="th">condition</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@condition"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">temperature</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@temperature"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">humidity</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@humidity"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">wind</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@wind"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">precipitation</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@precipitation"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">pressure</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/weather[@dial = $dial]/@pressure"/></xsl:element>
+						</xsl:element>
+				</xsl:element>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:element name="table">
+					<xsl:element name="tr">
+						<xsl:element name="th">dawn</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/sun/@dawn"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">sunrise</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/sun/@up"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">sunset</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/sun/@down"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">dusk</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/sun/@dusk"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">phase</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/moon/@phase"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">moonrise</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/moon/@up"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">moonset</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="/dial/moon/@down"/></xsl:element>
+						</xsl:element>
+				</xsl:element>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template name="icon">
@@ -157,7 +244,6 @@ function show(text) {document.getElementById("data").innerHTML=text}
 							<xsl:text>miss-matched moon.phase in dial.xsl</xsl:text>
 						</xsl:otherwise>
 					</xsl:choose>
-
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (200 to 232)">
