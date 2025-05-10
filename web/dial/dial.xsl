@@ -7,6 +7,9 @@
 <!-- =========================================================================================== -->
 	<xsl:template match="/dial">
 		<xsl:element name="html">
+			<head>
+				<title>BirdNET-BarChart</title>
+			</head>
 			<xsl:element name="body">
 				<svg width="300" height="300" viewBox="-150 -150 300 300">
 					<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2"/>
@@ -38,13 +41,18 @@
 					<g transform="translate(-19, 104)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
+					<script>
+					
+					</script>
 				</xsl:when>
 				<xsl:when test="@dial ='03'">
 					<g transform="translate(-104, 67)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -52,6 +60,7 @@
 					<g transform="translate(-142, -19)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -59,6 +68,7 @@
 					<g transform="translate(-104, -104)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -66,6 +76,7 @@
 					<g transform="translate(-19, -142)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -73,6 +84,7 @@
 					<g transform="translate(67, -104)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -80,6 +92,7 @@
 					<g transform="translate(104, -19)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -87,6 +100,7 @@
 					<g transform="translate(67, 67)">
 						<xsl:call-template name="icon">
 							<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
+							<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
 						</xsl:call-template>
 					</g>
 				</xsl:when>
@@ -99,9 +113,15 @@
 <!-- =========================================================================================== -->
 	<xsl:template name="icon">
 		<xsl:param name="iconNumber"/>
+		<xsl:param name="dayNight"/>
 		<xsl:choose>
 			<xsl:when test="$iconNumber = 800">
-				<xsl:copy-of select="document('../grfx/svg/weather/clear.svg')/clear/*"/>
+				<xsl:if test="($dayNight = '06') or ($dayNight = '09') or ($dayNight = '12') or ($dayNight = '15') or ($dayNight = '18')">
+					<xsl:copy-of select="document('../grfx/svg/weather/clearSun.svg')/clearSun/*"/>
+				</xsl:if>
+				<xsl:if test="($dayNight = '21') or ($dayNight = '00') or ($dayNight = '03')">
+					<xsl:copy-of select="document('../grfx/svg/weather/clearMoon.svg')/clearMoon/*"/>
+				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (200 to 232)">
 				<xsl:copy-of select="document('../grfx/svg/weather/thunderstorm.svg')/thunderstorm/*"/>
@@ -198,49 +218,49 @@
 			<xsl:choose>
 				<xsl:when test="@phase ='New Moon'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/new.svg')/new/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='Waxing Crescent'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/waxingCrescent.svg')/waxingCrescent/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='First Quarter'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='Waxing Gibbous'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/waxingGibbous.svg')/waxingGibbous/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='Full Moon'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/full.svg')/full/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='Waning Gibbous'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/waningGibbous.svg')/waningGibbous/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='Last Quarter'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/lastQuarter.svg')/lastQuarter/*"/>
 					</xsl:element>
 				</xsl:when>
 				<xsl:when test="@phase ='Waning Crescent'">
 					<xsl:element name="g">
-						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+						<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						<xsl:copy-of select="document('../grfx/svg/moon/waningCrescent.svg')/waningCrescent/*"/>
 					</xsl:element>
 				</xsl:when>
