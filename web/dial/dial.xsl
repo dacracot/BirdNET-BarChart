@@ -21,21 +21,41 @@ td {
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script><xsl:text>
 </xsl:text>
 <script>
-function rowShow(dial) {
-	console.log(dial);
-	console.log($('[id^=row_]'));
-	console.log($('row_'+dial));
-	console.log('-----------');
-	$('[id^=row_]').style='display:none;';
-	$('row_'+dial).style='display:table-row;';
-	console.log('===========');
+// ------------------------------------------------------------------------------------------------
+function rowHide() {
+	document.getElementById("row_sun_moon").style.display = "none";
+	document.getElementById("row_00").style.display = "none";
+	document.getElementById("row_03").style.display = "none";
+	document.getElementById("row_06").style.display = "none";
+	document.getElementById("row_09").style.display = "none";
+	document.getElementById("row_12").style.display = "none";
+	document.getElementById("row_15").style.display = "none";
+	document.getElementById("row_18").style.display = "none";
+	document.getElementById("row_21").style.display = "none";
 	}
+// ------------------------------------------------------------------------------------------------
+function rowShow(dial) {
+	rowHide();
+	if (dial >= 10) {
+		visibleId = "row_"+dial;
+		}
+	else {
+		visibleId = "row_0"+dial;
+		}
+	document.getElementById(visibleId).style.display = "block";
+	}
+// ------------------------------------------------------------------------------------------------
+function rowInit() {
+	rowHide();
+	document.getElementById("row_sun_moon").style.display = "block";
+	}
+// ------------------------------------------------------------------------------------------------
 </script><xsl:text>
 </xsl:text>
 			</head>
 			<xsl:element name="body">
 				<svg width="300" height="300" viewBox="-150 -150 300 300">
-					<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2"/>
+					<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
 					<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
 						<xsl:apply-templates select="moon"/>
 						<xsl:apply-templates select="sun"/>
@@ -118,7 +138,7 @@ function rowShow(dial) {
 		<xsl:element name="table">
 			<xsl:element name="tr">
 				<xsl:attribute name="id">row_sun_moon</xsl:attribute>
-				<xsl:attribute name="style">display:table-row;</xsl:attribute>
+				<xsl:attribute name="style">display:block;</xsl:attribute>
 				<xsl:element name="td">
 					<xsl:element name="table">
 						<xsl:element name="tr">
