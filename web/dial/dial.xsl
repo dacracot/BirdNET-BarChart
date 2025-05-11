@@ -145,19 +145,19 @@ function rowInit() {
 					<xsl:element name="table">
 						<xsl:element name="tr">
 							<xsl:element name="th">dawn:</xsl:element>
-							<xsl:element name="td"><xsl:value-of select="sun/@dawn"/></xsl:element>
+							<xsl:element name="td"><xsl:value-of select="sun/@dawnTime"/></xsl:element>
 						</xsl:element>
 						<xsl:element name="tr">
 							<xsl:element name="th">sunrise:</xsl:element>
-							<xsl:element name="td"><xsl:value-of select="sun/@up"/></xsl:element>
+							<xsl:element name="td"><xsl:value-of select="sun/@upTime"/></xsl:element>
 						</xsl:element>
 						<xsl:element name="tr">
 							<xsl:element name="th">sunset:</xsl:element>
-							<xsl:element name="td"><xsl:value-of select="sun/@down"/></xsl:element>
+							<xsl:element name="td"><xsl:value-of select="sun/@downTime"/></xsl:element>
 						</xsl:element>
 						<xsl:element name="tr">
 							<xsl:element name="th">dusk:</xsl:element>
-							<xsl:element name="td"><xsl:value-of select="sun/@dusk"/></xsl:element>
+							<xsl:element name="td"><xsl:value-of select="sun/@duskTime"/></xsl:element>
 						</xsl:element>
 						<xsl:element name="tr">
 							<xsl:element name="th">phase:</xsl:element>
@@ -165,11 +165,11 @@ function rowInit() {
 						</xsl:element>
 						<xsl:element name="tr">
 							<xsl:element name="th">moonrise:</xsl:element>
-							<xsl:element name="td"><xsl:value-of select="moon/@up"/></xsl:element>
+							<xsl:element name="td"><xsl:value-of select="moon/@upTime"/></xsl:element>
 						</xsl:element>
 						<xsl:element name="tr">
 							<xsl:element name="th">moonset:</xsl:element>
-							<xsl:element name="td"><xsl:value-of select="moon/@down"/></xsl:element>
+							<xsl:element name="td"><xsl:value-of select="moon/@downTime"/></xsl:element>
 						</xsl:element>
 					</xsl:element>
 				</xsl:element>

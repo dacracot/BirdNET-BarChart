@@ -3,14 +3,19 @@ select '<dial>';
 select
 	'<sun dawn="'||
 	((24-(substr(dawn,1,2)+(substr(dawn,4,2)/60.0)))*-15)||
+	'" dawnTime="'||dawn||
 	'" up="'||
 	((24-(substr(up,1,2)+(substr(up,4,2)/60.0)))*-15)||
+	'" upTime="'||up||
 	'" peak="'||
 	((24-(substr(peak,1,2)+(substr(peak,4,2)/60.0)))*-15)||
+	'" peakTime="'||peak||
 	'" down="'||
 	((24-(substr(down,1,2)+(substr(down,4,2)/60.0)))*-15)||
+	'" downTime="'||down||
 	'" dusk="'||
 	((24-(substr(dusk,1,2)+(substr(dusk,4,2)/60.0)))*-15)||
+	'" duskTime="'||dusk||
 	'" />' as sunXML
 from
 	sun
@@ -24,10 +29,13 @@ select
 	phase||
 	'" up="'||
 	((24-(substr(up,1,2)+(substr(up,4,2)/60.0)))*-15)||
+	'" upTime="'||up||
 	'" peak="'||
 	((24-(substr(peak,1,2)+(substr(peak,4,2)/60.0)))*-15)||
+	'" peakTime="'||peak||
 	'" down="'||
 	((24-(substr(down,1,2)+(substr(down,4,2)/60.0)))*-15)||
+	'" downTime="'||down||
 	'" />' as moonXML
 from
 	moon
