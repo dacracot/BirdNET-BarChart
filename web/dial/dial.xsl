@@ -10,15 +10,17 @@
 			<head>
 				<title>BirdNET-BarChart</title>
 <style>
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	}
 th {
-  text-align: right;
-}
+	text-align: right;
+	}
 td {
-  text-align: left;
-}
+	text-align: left;
+	}
 </style><xsl:text>
-</xsl:text>
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script><xsl:text>
 </xsl:text>
 <script>
 // ------------------------------------------------------------------------------------------------
