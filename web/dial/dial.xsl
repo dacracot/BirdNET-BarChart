@@ -4,6 +4,9 @@
     exclude-result-prefixes="xs"
     version="2.0">
 	<xsl:output method="html" indent="yes"/>
+	<xsl:param name="asOf"/>
+	<xsl:param name="lat"/>
+	<xsl:param name="lon"/>
 <!-- =========================================================================================== -->
 	<xsl:template match="/dial">
 		<xsl:element name="html">
@@ -16,6 +19,7 @@ body {
 	}
 th {
 	text-align: right;
+	width: 150px;
 	}
 td {
 	text-align: left;
@@ -56,6 +60,34 @@ function rowInit() {
 </xsl:text>
 			</head>
 			<xsl:element name="body">
+				<hr/>
+				<xsl:element name="table">
+					<xsl:element name="tr">
+						<xsl:element name="th">as of:</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="$asOf"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">latitude:</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="$lat"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">longitude:</xsl:element>
+						<xsl:element name="td"><xsl:value-of select="$lon"/></xsl:element>
+					</xsl:element>
+					<xsl:element name="tr">
+						<xsl:element name="th">bird songs:</xsl:element>
+						<xsl:element name="td">
+
+<select size="2" multiple="multiple">
+  <option value="1" selected="selected">Morning Dove</option>
+  <option value="2" selected="selected">Bushtit</option>
+  <option value="3" selected="selected">Robin</option>
+</select>
+						</xsl:element>
+					</xsl:element>
+				</xsl:element>
+
+				<hr/>
 				<svg width="300" height="300" viewBox="-150 -150 300 300">
 					<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
 					<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
@@ -67,6 +99,7 @@ function rowInit() {
 				</svg>
 				<hr/>
 				<xsl:call-template name="show"/>
+				<hr/>
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
@@ -261,8 +294,17 @@ function rowInit() {
 			<xsl:when test="$iconNumber = (200 to 232)">
 				<xsl:copy-of select="document('../grfx/svg/weather/thunderstorm.svg')/thunderstorm/*"/>
 			</xsl:when>
-			<xsl:when test="$iconNumber = (300 to 321, 500 to 504, 520 to 531)">
-				<xsl:copy-of select="document('../grfx/svg/weather/rain.svg')/rain/*"/>
+			<xsl:when test="$iconNumber = (300, 310, 500, 520)">
+				<xsl:copy-of select="document('../grfx/svg/weather/rainLight.svg')/rainLight/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (301, 311, 313, 321, 501, 521, 531)">
+				<xsl:copy-of select="document('../grfx/svg/weather/rainModerate.svg')/rainModerate/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (302, 312, 314, 502, 522)">
+				<xsl:copy-of select="document('../grfx/svg/weather/rainHeavy.svg')/rainHeavy/*"/>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (503, 504)">
+				<xsl:copy-of select="document('../grfx/svg/weather/rainPouring.svg')/rainPouring/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (511, 611 to 613)">
 				<xsl:copy-of select="document('../grfx/svg/weather/sleet.svg')/sleet/*"/>
