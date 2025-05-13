@@ -8,3 +8,5 @@ This is where files for the xxxxxxxxxxxxx are written and read.
 
 * base.svg
 	* Scalable vector graphic of the base 24 hour clock for showing celestial data.
+
+Nice multi-select from https://codepen.io/sitelint/pen/poGeJpv

@@ -1,0 +1,97 @@
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	}
+th {
+	text-align: right;
+	width: 150px;
+	}
+td {
+	text-align: left;
+	}
+
+details {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 9px;
+  border: 1px solid #767676;
+  border-radius: 3px;
+  display: inline-flex;
+  flex-direction: column;
+  padding: 3px 6px;
+}
+
+details summary::marker {
+  display: none;
+  font-size: 0;
+}
+
+details summary::-webkit-details-marker {
+  display: none;
+  font-size: 0;
+}
+
+details summary::after {
+  content: "\25BC" / "";
+  display: inline-block;
+  font-size: 0.6rem;
+  height: 1rem;
+  line-height: 1rem;
+  margin-left: 0.5rem;
+  position: relative;
+  transition: transform 0.25s;
+}
+
+details[open] summary {
+  margin-bottom: 1rem;
+}
+
+details[open] summary::after {
+  top: -0.15rem;
+  transform: rotate(180deg);
+}
+
+form {
+  display: flex;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+  width: 100%;
+  height: 86px;
+  overflow-y: scroll;
+}
+
+fieldset legend {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+ul li {
+  border-radius: 3px;
+  margin: 0;
+  padding: 4px 2px;
+}
+
+ul li:hover {
+  background: #eee;
+}
+
+ul li label {
+  display: flex;
+  flex-grow: 1;
+  justify-content: space-between;
+}

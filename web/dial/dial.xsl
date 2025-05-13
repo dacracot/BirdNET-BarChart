@@ -12,52 +12,7 @@
 		<xsl:element name="html">
 			<head>
 				<title>BirdNET-BarChart</title>
-<style>
-body {
-	font-family: Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	}
-th {
-	text-align: right;
-	width: 150px;
-	}
-td {
-	text-align: left;
-	}
-</style><xsl:text>
-</xsl:text>
-<script>
-// ------------------------------------------------------------------------------------------------
-function rowHide() {
-	document.getElementById("row_sun_moon").style.display = "none";
-	document.getElementById("row_00").style.display = "none";
-	document.getElementById("row_03").style.display = "none";
-	document.getElementById("row_06").style.display = "none";
-	document.getElementById("row_09").style.display = "none";
-	document.getElementById("row_12").style.display = "none";
-	document.getElementById("row_15").style.display = "none";
-	document.getElementById("row_18").style.display = "none";
-	document.getElementById("row_21").style.display = "none";
-	}
-// ------------------------------------------------------------------------------------------------
-function rowShow(dial) {
-	rowHide();
-	if (dial >= 10) {
-		visibleId = "row_"+dial;
-		}
-	else {
-		visibleId = "row_0"+dial;
-		}
-	document.getElementById(visibleId).style.display = "block";
-	}
-// ------------------------------------------------------------------------------------------------
-function rowInit() {
-	rowHide();
-	document.getElementById("row_sun_moon").style.display = "block";
-	}
-// ------------------------------------------------------------------------------------------------
-</script><xsl:text>
-</xsl:text>
+				<link rel="stylesheet" href="dial.css"/>
 			</head>
 			<xsl:element name="body">
 				<hr/>
@@ -77,12 +32,90 @@ function rowInit() {
 					<xsl:element name="tr">
 						<xsl:element name="th">bird songs:</xsl:element>
 						<xsl:element name="td">
+<details>
+  <summary>Heard last 24 hours:</summary>
+  <form>
+    <fieldset>
+      <legend>Birds</legend>
+      <ul>
+        <li>
+          <label for="xxx">Mourning Dove(164)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+        
+        <li>
+          <label for="xxx">Bushtit(112)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
 
-<select size="2" multiple="multiple">
-  <option value="1" selected="selected">Morning Dove</option>
-  <option value="2" selected="selected">Bushtit</option>
-  <option value="3" selected="selected">Robin</option>
-</select>
+        <li>
+          <label for="xxx">California Scrub-Jay(36)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">American Robin(23)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Green-winged Teal(6)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Black Phoebe(5)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Say's Phoebe(5)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Whimbrel(4)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Cedar Waxwing(3)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Mallard(3)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Hutton's Vireo(2)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Western Tanager(2)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Barn Swallow(1)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">Black-crowned Night-Heron(1)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+
+        <li>
+          <label for="xxx">House Finch(1)
+          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
+        </li>
+      </ul>
+    </fieldset>
+  </form>
+</details>
 						</xsl:element>
 					</xsl:element>
 				</xsl:element>
@@ -101,6 +134,8 @@ function rowInit() {
 				<xsl:call-template name="show"/>
 				<hr/>
 			</xsl:element>
+		<script src="dial.js"></script><xsl:text>
+</xsl:text>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
