@@ -11,6 +11,14 @@
 	<xsl:template match="/dial">
 		<xsl:element name="html">
 			<head>
+				<meta http-equiv="refresh" content="3600" />
+				<meta name="viewport" content="width=device-width, initial-scale=1.333" />
+				
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="mobile-web-app-capable" content="yes" />
+<meta name="application-name" content="BirdNET-BarChart" />
+<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
+				
 				<title>BirdNET-BarChart</title>
 				<link rel="stylesheet" href="dial.css"/>
 			</head>
