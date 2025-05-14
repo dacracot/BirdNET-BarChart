@@ -79,7 +79,7 @@ document.getElementById("dialRect_21").setAttribute("class","rectNormal");
 document.getElementById("dialRect_22").setAttribute("class","rectNormal");
 document.getElementById("dialRect_23").setAttribute("class","rectNormal");
 // --------
-document.getElementById("dialText_"+hour).setAttribute("class","textHighlight");
-document.getElementById("dialRect_"+hour).setAttribute("class","rectHighlight");
+document.getElementById("dialText_"+String(hour).padStart(2, '0')).setAttribute("class","textHighlight");
+document.getElementById("dialRect_"+String(hour).padStart(2, '0')).setAttribute("class","rectHighlight");
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
