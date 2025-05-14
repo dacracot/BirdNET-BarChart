@@ -126,9 +126,13 @@ and now know what birds are sharing their voices with me.
 	* Load the database.
 	* Delete and compress the work files that hour.
 	* Query the database to create an XML file for the browser user interface.
-	* Uses `extract.sql` to compose the output to `chart.xml`.
-	* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
-	* Copies the altered chart folder to the web server's published directory.
+	* chart
+		* Uses `chart.sql` to compose the output to `chart.xml`.
+		* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
+	* dial
+		* Uses `dial.sql` to compose the output to `dial.xml`.
+		* Transform the `dial.xml` into `dial.html` using `dial.xsl`.
+	* Copies the altered web folder to the web server's published directory.
 * `daily.sh`
 	* Query celestial data from the US Navy.
 	* Morph the data into SQL and load the database.

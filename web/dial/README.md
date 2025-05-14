@@ -1,12 +1,17 @@
 # dial Directory
 
-This is where files for the xxxxxxxxxxxxx are written and read.
+This is where files for the dial graph are written and read.
 
 ---
 
 ### Files:
 
-* base.svg
-	* Scalable vector graphic of the base 24 hour clock for showing celestial data.
-
-Nice multi-select from https://codepen.io/sitelint/pen/poGeJpv
+* dial.css
+	* Cascading style sheet global formatting.
+	* Cascading style sheet for the [multi-select](https://codepen.io/sitelint/pen/poGeJpv).
+* dial.js
+	* Javascript for UI temporal changes and mouseover.
+* dial.sql
+	* Structured query language for pulling celestial and weather data into XML.
+* dial.xsl
+	* XML stylesheet language for construction of the dial.
