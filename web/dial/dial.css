@@ -95,3 +95,21 @@ ul li label {
   flex-grow: 1;
   justify-content: space-between;
 }
+
+.textNormal {
+	stroke: black !important;
+	}
+
+.textHighlight {
+	stroke: white !important;
+	}
+
+.rectNormal {
+	fill: transparent !important;
+	stroke: transparent !important;
+	}
+
+.rectHighlight {
+	fill: blue !important;
+	stroke: blue !important;
+	}

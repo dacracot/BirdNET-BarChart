@@ -12,13 +12,11 @@
 		<xsl:element name="html">
 			<head>
 				<meta http-equiv="refresh" content="3600" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.333" />
-				
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="mobile-web-app-capable" content="yes" />
-<meta name="application-name" content="BirdNET-BarChart" />
-<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
-				
+				<meta name="viewport" content="width=device-width, initial-scale=1.3" />
+				<meta name="apple-mobile-web-app-capable" content="yes" />
+				<meta name="mobile-web-app-capable" content="yes" />
+				<meta name="application-name" content="BirdNET-BarChart" />
+				<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
 				<title>BirdNET-BarChart</title>
 				<link rel="stylesheet" href="dial.css"/>
 			</head>
@@ -190,7 +188,6 @@
 					</xsl:otherwise>
 				</xsl:choose>
 				<xsl:attribute name="onmouseover">rowShow(<xsl:value-of select="@dial"/>);</xsl:attribute>
-				<!-- <xsl:attribute name="onmouseout">$('[id^=row_]').style.display='none'; $('row_sun_moon').style.display='';</xsl:attribute> -->
 				<xsl:call-template name="icon">
 					<xsl:with-param name="iconNumber"><xsl:value-of select="number(@iconNumber)"/></xsl:with-param>
 					<xsl:with-param name="dayNight"><xsl:value-of select="@dial"/></xsl:with-param>
