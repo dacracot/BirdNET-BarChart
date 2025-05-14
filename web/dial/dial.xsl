@@ -364,7 +364,16 @@
 			<xsl:when test="$iconNumber = 781">
 				<xsl:copy-of select="document('../grfx/svg/weather/tornado.svg')/tornado/*"/>
 			</xsl:when>
-			<xsl:when test="$iconNumber = (801 to 804)">
+			<xsl:when test="$iconNumber = (801 to 802)">
+
+				<xsl:if test="($dayNight = '06') or ($dayNight = '09') or ($dayNight = '12') or ($dayNight = '15') or ($dayNight = '18')">
+					<xsl:copy-of select="document('../grfx/svg/weather/cloudyPartialSun.svg')/cloudyPartialSun/*"/>
+				</xsl:if>
+				<xsl:if test="($dayNight = '21') or ($dayNight = '00') or ($dayNight = '03')">
+					<xsl:copy-of select="document('../grfx/svg/weather/cloudyPartialMoon.svg')/cloudyPartialMoon/*"/>
+				</xsl:if>
+			</xsl:when>
+			<xsl:when test="$iconNumber = (803 to 804)">
 				<xsl:copy-of select="document('../grfx/svg/weather/cloudy.svg')/cloudy/*"/>
 			</xsl:when>
 			<xsl:otherwise>
