@@ -72,4 +72,240 @@ order by
 	weather.minuteOfDay desc
 limit
 	8;
+-- menu by confidence
+select '<menu>';
+select '<confidence above="0.9">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.9 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.8">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.8 and 0.9
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.9 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.7">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.7 and 0.8
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.8 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.6">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.6 and 0.7
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.7 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.5">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.5 and 0.6
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.6 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.4">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.4 and 0.5
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.5 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.3">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.3 and 0.4
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.4 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.2">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.2 and 0.3
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.3 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.1">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.1 and 0.2
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.2 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '<confidence above="0.0">';
+select
+	'<bird commonName="'||bird||'"/>'
+from
+	(
+	select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.0 and 0.1
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	except select
+		distinct commonName as bird
+	from
+		heard
+	where
+		confidence between 0.1 and 1.0
+			and
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+	)
+order by 1;
+select '</confidence>';
+select '</menu>';
+-- ------------------
 select '</dial>';

@@ -38,90 +38,7 @@
 					<xsl:element name="tr">
 						<xsl:element name="th">bird songs:</xsl:element>
 						<xsl:element name="td">
-<details>
-  <summary>Heard last 24 hours:</summary>
-  <form>
-    <fieldset>
-      <legend>Birds</legend>
-      <ul>
-        <li>
-          <label for="xxx">Mourning Dove(164)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-        
-        <li>
-          <label for="xxx">Bushtit(112)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">California Scrub-Jay(36)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">American Robin(23)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Green-winged Teal(6)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Black Phoebe(5)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Say's Phoebe(5)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Whimbrel(4)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Cedar Waxwing(3)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Mallard(3)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Hutton's Vireo(2)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Western Tanager(2)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Barn Swallow(1)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">Black-crowned Night-Heron(1)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-
-        <li>
-          <label for="xxx">House Finch(1)
-          <input type="checkbox" id="xxx" name="xxx" value="xxx"/></label>
-        </li>
-      </ul>
-    </fieldset>
-  </form>
-</details>
+							<xsl:apply-templates select="menu"/>
 						</xsl:element>
 					</xsl:element>
 				</xsl:element>
@@ -142,6 +59,42 @@
 			</xsl:element>
 		<script src="dial.js"></script><xsl:text>
 </xsl:text>
+		</xsl:element>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="menu">
+		<details>
+			<summary>Heard last 24 hours:</summary>
+			<form>
+				<fieldset>
+					<legend>Birds</legend>
+					<ul>
+						<xsl:apply-templates select="confidence"/>
+					</ul>
+				</fieldset>
+			</form>
+		</details>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="confidence">
+		<xsl:element name="li">
+          <strong>Confidence of at least <xsl:value-of select="@above"/>:</strong>
+		</xsl:element>
+		<xsl:apply-templates select="bird"/>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="bird">
+		<xsl:element name="li">
+			<xsl:element name="label">
+				<xsl:attribute name="for"><xsl:value-of select="@commonName"/></xsl:attribute>
+				<xsl:value-of select="@commonName"/>
+				<xsl:element name="input">
+					<xsl:attribute name="type">checkbox</xsl:attribute>
+					<xsl:attribute name="id"><xsl:value-of select="@commonName"/></xsl:attribute>
+					<xsl:attribute name="value"><xsl:value-of select="@commonName"/></xsl:attribute>
+					<xsl:attribute name="style">height: 7px; width: 7px;</xsl:attribute>
+				</xsl:element>
+			</xsl:element>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
