@@ -82,4 +82,8 @@ document.getElementById("dialRect_23").setAttribute("class","rectNormal");
 document.getElementById("dialText_"+String(hour).padStart(2, '0')).setAttribute("class","textHighlight");
 document.getElementById("dialRect_"+String(hour).padStart(2, '0')).setAttribute("class","rectHighlight");
 // ------------------------------------------------------------------------------------------------
+function checkAll(onOff) {
+document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = onOff);
+}
+// ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
