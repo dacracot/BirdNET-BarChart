@@ -73,10 +73,10 @@
 							<table>
 								<tr>
 									<td style="vertical-align: text-top;">All:</td>
-									<td style="vertical-align:bottom"><img src="../grfx/svg/selectAll.svg" title="Select all birds." width="12" height="12" onclick="checkAll(true);"/></td>
+									<td style="vertical-align:bottom"><img src="../grfx/svg/selectAll.svg" title="Select all birds." width="12" height="12" class="checker" onclick="checkAll(true);"/></td>
 									<td><xsl:text>&#160;&#160;&#160;&#160;</xsl:text></td>
 									<td style="vertical-align: text-top;">Clear:</td>
-									<td style="vertical-align:bottom"><img src="../grfx/svg/clearAll.svg" title="Clear all birds." width="12" height="12" onclick="checkAll(false);"/></td>
+									<td style="vertical-align:bottom"><img src="../grfx/svg/clearAll.svg" title="Clear all birds." width="12" height="12" class="checker" onclick="checkAll(false);"/></td>
 								</tr>
 							</table>
 						</xsl:element>

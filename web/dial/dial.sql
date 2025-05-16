@@ -308,4 +308,28 @@ order by 1;
 select '</confidence>';
 select '</menu>';
 -- ------------------
+select '<data>';
+select
+	'<heard commonName="'||
+	commonName||'" confidence="'||
+	confidence||'" minuteOfDay="'||
+	minuteOfDay||'" />"'
+from
+	heard
+where
+	unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		and
+	commonName in (
+		select
+			distinct commonName as bird
+		from
+			heard
+		where
+			unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		)
+order by
+	commonName,
+	minuteOfDay;
+select '</data>';
+-- ------------------
 select '</dial>';
