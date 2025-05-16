@@ -309,27 +309,40 @@ select '</confidence>';
 select '</menu>';
 -- ------------------
 select '<data>';
-select
-	'<heard commonName="'||
-	commonName||'" confidence="'||
-	confidence||'" minuteOfDay="'||
-	minuteOfDay||'" />"'
-from
-	heard
-where
-	unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-		and
-	commonName in (
-		select
-			distinct commonName as bird
-		from
-			heard
-		where
-			unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-		)
-order by
-	commonName,
-	minuteOfDay;
+with dialData as (
+	select
+		cast(round(((24-(substr(minuteOfDay,12,2)+(substr(minuteOfDay,15,2)/60.0)))*-15),0) as integer) as dial,
+		commonName,
+		round(confidence,1) as confidenceRounded
+	from
+		heard
+	where
+		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+			and
+		commonName in (
+			select
+				distinct commonName as bird
+			from
+				heard
+			where
+				unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+			)
+	)
+	select
+		'<heard quantity="'||
+		count(dial)||'" dial="'||
+		dial||'" commonName="'||
+		commonName||'" confidenceRounded="'||
+		confidenceRounded||'" />"'
+	from
+		dialData
+	group by
+		dial,
+		commonName,
+		confidenceRounded
+	order by
+		dial
+;
 select '</data>';
 -- ------------------
 select '</dial>';
