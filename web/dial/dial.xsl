@@ -42,7 +42,6 @@
 						</xsl:element>
 					</xsl:element>
 				</xsl:element>
-
 				<hr/>
 				<svg width="300" height="300" viewBox="-150 -150 300 300">
 					<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
@@ -52,9 +51,10 @@
 						<xsl:apply-templates select="weather"/>
 						<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
 					</g>
+					<xsl:apply-templates select="data"/>
 				</svg>
 				<hr/>
-				<xsl:call-template name="show"/>
+				<xsl:call-template name="showDial"/>
 				<hr/>
 			</xsl:element>
 		<script src="dial.js"></script><xsl:text>
@@ -160,7 +160,75 @@
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
-	<xsl:template name="show">
+	<xsl:template match="data">
+		<xsl:variable name="color" as="element()*">
+			<item>#556b2f</item>
+			<item>#8b0000</item>
+			<item>#483d8b</item>
+			<item>#008000</item>
+			<item>#b8860b</item>
+			<item>#008b8b</item>
+			<item>#000080</item>
+			<item>#9acd32</item>
+			<item>#8fbc8f</item>
+			<item>#8b008b</item>
+			<item>#ff0000</item>
+			<item>#ff8c00</item>
+			<item>#ffff00</item>
+			<item>#7cfc00</item>
+			<item>#8a2be2</item>
+			<item>#00ff7f</item>
+			<item>#00ffff</item>
+			<item>#00bfff</item>
+			<item>#0000ff</item>
+			<item>#ff6347</item>
+			<item>#ff00ff</item>
+			<item>#1e90ff</item>
+			<item>#db7093</item>
+			<item>#b0e0e6</item>
+			<item>#90ee90</item>
+			<item>#ff1493</item>
+			<item>#7b68ee</item>
+			<item>#ffa07a</item>
+			<item>#ee82ee</item>
+			<item>#ffe4b5</item>
+			<item>#ffc0cb</item>
+		</xsl:variable>
+		<xsl:for-each-group select="heard" group-by="@commonName">
+			<xsl:element name="g">
+				<xsl:comment><xsl:value-of select="current-grouping-key()"/></xsl:comment>
+				<xsl:variable name="whichBird" select="current-grouping-key()"/>
+				<xsl:variable name="whichColor" select="position() mod 31"/>
+				<xsl:for-each-group select="../heard[@commonName = $whichBird]" group-by="@dial">
+					<xsl:element name="g">
+						<xsl:attribute name="transform">rotate(<xsl:value-of select="@dial"/>)</xsl:attribute>
+						<xsl:attribute name="stroke"><xsl:value-of select="$color[$whichColor]"/></xsl:attribute>
+						<xsl:attribute name="stroke-opacity"><xsl:value-of select="@confidenceRounded"/></xsl:attribute>
+						<xsl:attribute name="stroke-width">2</xsl:attribute>
+						<line x1="0" y1="90" x2="0" y2="0"></line>
+					</xsl:element>
+				</xsl:for-each-group>
+			</xsl:element>
+		</xsl:for-each-group>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="heard">
+		<xsl:param name="color"/>
+<!-- 
+	<heard quantity="1" dial="-356" commonName="Western Tanager" confidenceRounded="0.1" />"
+
+	<xsl:attribute name="style">colorPalet<xsl:value-of select="(position() mod 31)"/><xsl:attribute>
+ -->
+			<xsl:element name="g">
+				<xsl:attribute name="transform">rotate(<xsl:value-of select="@dial"/>)</xsl:attribute>
+				<xsl:attribute name="stroke"><xsl:value-of select="$color"/></xsl:attribute>
+				<xsl:attribute name="stroke-opacity"><xsl:value-of select="@confidenceRounded"/></xsl:attribute>
+				<xsl:attribute name="stroke-width">2</xsl:attribute>
+				<line x1="0" y1="90" x2="0" y2="0"></line>
+			</xsl:element>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template name="showDial">
 		<!-- 
 		<table>
 		<tr id='row_sun_moon'style='display:table-row;'><td></td></tr>
@@ -211,11 +279,11 @@
 					</xsl:element>
 				</xsl:element>
 			</xsl:element>
-			<xsl:call-template name="showMore"/>
+			<xsl:call-template name="showDialMore"/>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
-	<xsl:template name="showMore">
+	<xsl:template name="showDialMore">
 		<xsl:for-each select="weather">
 			<xsl:element name="tr">
 				<xsl:attribute name="id">row_<xsl:value-of select="@dial"/></xsl:attribute>
@@ -329,7 +397,6 @@
 				<xsl:copy-of select="document('../grfx/svg/weather/tornado.svg')/tornado/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (801 to 802)">
-
 				<xsl:if test="($dayNight = '06') or ($dayNight = '09') or ($dayNight = '12') or ($dayNight = '15') or ($dayNight = '18')">
 					<xsl:copy-of select="document('../grfx/svg/weather/cloudyPartialSun.svg')/cloudyPartialSun/*"/>
 				</xsl:if>

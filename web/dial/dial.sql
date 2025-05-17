@@ -288,7 +288,7 @@ select
 from
 	(
 	select
-		distinct commonName as bird
+		distinct commonName as bird -- can not concat to a distinct value
 	from
 		heard
 	where

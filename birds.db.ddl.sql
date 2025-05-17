@@ -47,4 +47,4 @@ CREATE TABLE season (
 	phase TEXT NOT NULL,
 	changeover DATETIME NOT NULL
 	);
--- -- --------------------------------------
+-- -----------------------------------------
