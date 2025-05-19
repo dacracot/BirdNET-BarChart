@@ -207,43 +207,524 @@
 					<xsl:element name="g">
 						<xsl:attribute name="transform">rotate(<xsl:value-of select="$whichDial"/>)</xsl:attribute>
 						<xsl:for-each select="../heard[@commonName = $whichBird and @dial = $whichDial]">
-							<xsl:sort select="@confidenceRounded" order="descending"/>
+							<xsl:sort select="@confidenceRounded"/>
 							<xsl:choose>
 								<xsl:when test="position() = last()"> 
 									<!-- draw line -->
 									<xsl:choose>
 										<xsl:when test="last() = 10">
-										</xsl:when>
-										<xsl:when test="last() = 9">
-										</xsl:when>
-										<xsl:when test="last() = 8">
-										</xsl:when>
-										<xsl:when test="last() = 7">
-										</xsl:when>
-										<xsl:when test="last() = 6">
-										</xsl:when>
-										<xsl:when test="last() = 5">
-										</xsl:when>
-										<xsl:when test="last() = 4">
-										</xsl:when>
-										<xsl:when test="last() = 3">
-										</xsl:when>
-										<xsl:when test="last() = 2">
-										</xsl:when>
-										<xsl:when test="last() = 1">
-<xsl:comment><xsl:text>
-</xsl:text>
-stroke: <xsl:value-of select="$color[$whichColor]"/>
-stroke-opacity: <xsl:value-of select="@confidenceRounded"/>
-Y: <xsl:value-of select="@quantity"/><xsl:text>
-</xsl:text>
-</xsl:comment>
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
+											<xsl:variable name="five"><xsl:value-of select="(preceding-sibling::*[5]/@quantity+$four)"/></xsl:variable>
+											<xsl:variable name="six"><xsl:value-of select="(preceding-sibling::*[6]/@quantity+$five)"/></xsl:variable>
+											<xsl:variable name="seven"><xsl:value-of select="(preceding-sibling::*[7]/@quantity+$six)"/></xsl:variable>
+											<xsl:variable name="eight"><xsl:value-of select="(preceding-sibling::*[8]/@quantity+$seven)"/></xsl:variable>
+											<xsl:variable name="nine"><xsl:value-of select="(preceding-sibling::*[9]/@quantity+$eight)"/></xsl:variable>
 											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
 												<xsl:attribute name="x1">0</xsl:attribute>
 												<xsl:attribute name="x2">0</xsl:attribute>
 												<xsl:attribute name="y1">0</xsl:attribute>
-												<xsl:attribute name="y2"><xsl:value-of select="(@quantity*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[7]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($seven*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[8]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($seven*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($eight*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[9]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($eight*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($nine*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 9">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
+											<xsl:variable name="five"><xsl:value-of select="(preceding-sibling::*[5]/@quantity+$four)"/></xsl:variable>
+											<xsl:variable name="six"><xsl:value-of select="(preceding-sibling::*[6]/@quantity+$five)"/></xsl:variable>
+											<xsl:variable name="seven"><xsl:value-of select="(preceding-sibling::*[7]/@quantity+$six)"/></xsl:variable>
+											<xsl:variable name="eight"><xsl:value-of select="(preceding-sibling::*[8]/@quantity+$seven)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[7]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($seven*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[8]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($seven*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($eight*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 8">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
+											<xsl:variable name="five"><xsl:value-of select="(preceding-sibling::*[5]/@quantity+$four)"/></xsl:variable>
+											<xsl:variable name="six"><xsl:value-of select="(preceding-sibling::*[6]/@quantity+$five)"/></xsl:variable>
+											<xsl:variable name="seven"><xsl:value-of select="(preceding-sibling::*[7]/@quantity+$six)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[7]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($seven*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 7">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
+											<xsl:variable name="five"><xsl:value-of select="(preceding-sibling::*[5]/@quantity+$four)"/></xsl:variable>
+											<xsl:variable name="six"><xsl:value-of select="(preceding-sibling::*[6]/@quantity+$five)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($six*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 6">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
+											<xsl:variable name="five"><xsl:value-of select="(preceding-sibling::*[5]/@quantity+$four)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($five*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 5">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($four*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 4">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($three*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 3">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($two*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 2">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+											</xsl:element>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($one*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+										<xsl:when test="last() = 1">
+											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
+											<xsl:element name="line">
+												<xsl:attribute name="commonName"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="($zero*$scalar)"/></xsl:attribute>
 											</xsl:element>
 										</xsl:when>
 									</xsl:choose>
