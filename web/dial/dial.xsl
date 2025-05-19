@@ -161,6 +161,7 @@
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="data">
+		<xsl:variable name="scalar">3</xsl:variable>
 		<xsl:variable name="color" as="element()*">
 			<item>#556b2f</item>
 			<item>#8b0000</item>
@@ -195,17 +196,63 @@
 			<item>#ffc0cb</item>
 		</xsl:variable>
 		<xsl:for-each-group select="heard" group-by="@commonName">
+			<xsl:sort select="@commonName"/>
 			<xsl:element name="g">
 				<xsl:comment><xsl:value-of select="current-grouping-key()"/></xsl:comment>
 				<xsl:variable name="whichBird" select="current-grouping-key()"/>
 				<xsl:variable name="whichColor" select="position() mod 31"/>
 				<xsl:for-each-group select="../heard[@commonName = $whichBird]" group-by="@dial">
+					<xsl:sort select="@dial"/>
+					<xsl:variable name="whichDial" select="current-grouping-key()"/>
 					<xsl:element name="g">
-						<xsl:attribute name="transform">rotate(<xsl:value-of select="@dial"/>)</xsl:attribute>
-						<xsl:attribute name="stroke"><xsl:value-of select="$color[$whichColor]"/></xsl:attribute>
-						<xsl:attribute name="stroke-opacity"><xsl:value-of select="@confidenceRounded"/></xsl:attribute>
-						<xsl:attribute name="stroke-width">2</xsl:attribute>
-						<line x1="0" y1="90" x2="0" y2="0"></line>
+						<xsl:attribute name="transform">rotate(<xsl:value-of select="$whichDial"/>)</xsl:attribute>
+						<xsl:for-each select="../heard[@commonName = $whichBird and @dial = $whichDial]">
+							<xsl:sort select="@confidenceRounded" order="descending"/>
+							<xsl:choose>
+								<xsl:when test="position() = last()"> 
+									<!-- draw line -->
+									<xsl:choose>
+										<xsl:when test="last() = 10">
+										</xsl:when>
+										<xsl:when test="last() = 9">
+										</xsl:when>
+										<xsl:when test="last() = 8">
+										</xsl:when>
+										<xsl:when test="last() = 7">
+										</xsl:when>
+										<xsl:when test="last() = 6">
+										</xsl:when>
+										<xsl:when test="last() = 5">
+										</xsl:when>
+										<xsl:when test="last() = 4">
+										</xsl:when>
+										<xsl:when test="last() = 3">
+										</xsl:when>
+										<xsl:when test="last() = 2">
+										</xsl:when>
+										<xsl:when test="last() = 1">
+<xsl:comment><xsl:text>
+</xsl:text>
+stroke: <xsl:value-of select="$color[$whichColor]"/>
+stroke-opacity: <xsl:value-of select="@confidenceRounded"/>
+Y: <xsl:value-of select="@quantity"/><xsl:text>
+</xsl:text>
+</xsl:comment>
+											<xsl:element name="line">
+												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2</xsl:attribute>
+												<xsl:attribute name="x1">0</xsl:attribute>
+												<xsl:attribute name="x2">0</xsl:attribute>
+												<xsl:attribute name="y1">0</xsl:attribute>
+												<xsl:attribute name="y2"><xsl:value-of select="(@quantity*$scalar)"/></xsl:attribute>
+											</xsl:element>
+										</xsl:when>
+									</xsl:choose>
+								</xsl:when>
+								<xsl:otherwise>
+									<!-- do nothing -->
+								</xsl:otherwise>
+							</xsl:choose>
+						</xsl:for-each>
 					</xsl:element>
 				</xsl:for-each-group>
 			</xsl:element>
