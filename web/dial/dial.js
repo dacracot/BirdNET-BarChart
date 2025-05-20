@@ -83,7 +83,18 @@ document.getElementById("dialText_"+String(hour).padStart(2, '0')).setAttribute(
 document.getElementById("dialRect_"+String(hour).padStart(2, '0')).setAttribute("class","rectHighlight");
 // ------------------------------------------------------------------------------------------------
 function checkAll(onOff) {
-document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = onOff);
-}
+	document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = onOff);
+	}
+checkAll(true);
+// ------------------------------------------------------------------------------------------------
+function toggleBird(bird) {
+	var b = document.getElementById(bird);
+	if (b.style.display === "none") {
+		b.style.display = "block";
+		}
+	else {
+		b.style.display = "none";
+		}
+	}
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
