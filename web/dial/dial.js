@@ -97,4 +97,8 @@ function toggleBird(bird) {
 		}
 	}
 // ------------------------------------------------------------------------------------------------
+function showData(text) {
+	document.getElementById("showData").innerHTML = text;
+	}
+// ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);

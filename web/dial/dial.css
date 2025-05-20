@@ -118,3 +118,6 @@ ul li label {
 	opacity: 0.5;
 	}
 /* --------------  */
+.dataLine:hover {
+	filter: invert(100%);
+	}
