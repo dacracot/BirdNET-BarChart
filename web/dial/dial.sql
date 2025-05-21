@@ -313,7 +313,8 @@ with dialData as (
 	select
 		cast(round(((24-(substr(minuteOfDay,12,2)+(substr(minuteOfDay,15,2)/60.0)))*-15),0) as integer) as dial,
 		commonName,
-		round(confidence,1) as confidenceRounded
+		round(confidence,1) as confidenceRounded,
+		strftime('%H:%M',minuteOfDay) as dialTime
 	from
 		heard
 	where
@@ -332,7 +333,8 @@ with dialData as (
 		'<heard quantity="'||
 		count(dial)||'" dial="'||
 		dial||'" commonName="'||
-		commonName||'" confidenceRounded="'||
+		commonName||'" dialTime="'||
+		dialTime||'" confidenceRounded="'||
 		confidenceRounded||'" />"'
 	from
 		dialData
