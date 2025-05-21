@@ -76,7 +76,7 @@ limit
 select '<menu>';
 select '<confidence above="0.9">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -92,7 +92,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.8">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -116,7 +116,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.7">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -140,7 +140,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.6">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -164,7 +164,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.5">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -188,7 +188,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.4">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -212,7 +212,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.3">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -236,7 +236,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.2">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -260,7 +260,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.1">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -284,7 +284,7 @@ order by 1;
 select '</confidence>';
 select '<confidence above="0.0">';
 select
-	'<bird commonName="'||bird||'"/>'
+	'<bird commonName="'||replace(bird,'''','`')||'"/>'
 from
 	(
 	select
@@ -333,7 +333,7 @@ with dialData as (
 		'<heard quantity="'||
 		count(dial)||'" dial="'||
 		dial||'" commonName="'||
-		replace(commonName,'''','&apos;')||'" dialTime="'||
+		replace(commonName,'''','`')||'" dialTime="'||
 		dialTime||'" confidenceRounded="'||
 		confidenceRounded||'" />"'
 	from
