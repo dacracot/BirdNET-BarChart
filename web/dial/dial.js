@@ -106,7 +106,7 @@ function toggleBird(bird) {
 	}
 // ------------------------------------------------------------------------------------------------
 function showData(name,time) {
-	document.getElementById("showData").innerHTML = name+" heard around "+time+".";
+	document.getElementById("showData").innerHTML = "<a target='_blank' href='https://www.allaboutbirds.org/guide/"+name.replace(" ","_")+"'>"+name+"</a> heard around "+time+".";
 	}
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
