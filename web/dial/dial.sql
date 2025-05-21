@@ -333,7 +333,7 @@ with dialData as (
 		'<heard quantity="'||
 		count(dial)||'" dial="'||
 		dial||'" commonName="'||
-		commonName||'" dialTime="'||
+		replace(commonName,'''','&apos;')||'" dialTime="'||
 		dialTime||'" confidenceRounded="'||
 		confidenceRounded||'" />"'
 	from
