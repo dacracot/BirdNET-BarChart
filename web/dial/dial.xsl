@@ -46,7 +46,7 @@
 				<table>
 					<tr>
 						<td>
-							<svg width="300" height="300" viewBox="-150 -150 300 300">
+							<svg width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
 								<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
 									<xsl:apply-templates select="moon"/>
@@ -58,9 +58,7 @@
 							</svg>
 						</td>
 						<td>
-
 							<div id="showData"></div>
-
 						</td>
 					</tr>
 				</table>
@@ -1098,7 +1096,7 @@
 				<xsl:attribute name="stroke"><xsl:value-of select="$color"/></xsl:attribute>
 				<xsl:attribute name="stroke-opacity">0.3</xsl:attribute>
 				<xsl:attribute name="stroke-width">2</xsl:attribute>
-				<line x1="0" y1="90" x2="0" y2="0"></line>
+				<line id="pie" x1="0" y1="90" x2="0" y2="0"></line>
 			</xsl:element>
 		</xsl:for-each>
 	</xsl:template>
@@ -1106,15 +1104,15 @@
 	<xsl:template match="moon">
 		<xsl:element name="g">
 			<xsl:attribute name="transform">rotate(<xsl:value-of select="@up"/>)</xsl:attribute>
-			<line x1="0" y1="90" x2="0" y2="0"/>
+			<line id="pie" x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
 		<xsl:element name="g">
 			<xsl:attribute name="transform">rotate(<xsl:value-of select="@peak"/>)</xsl:attribute>
-			<line x1="0" y1="90" x2="0" y2="0"/>
+			<line id="pie" x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
 		<xsl:element name="g">
 			<xsl:attribute name="transform">rotate(<xsl:value-of select="@down"/>)</xsl:attribute>
-			<line x1="0" y1="90" x2="0" y2="0"/>
+			<line id="pie" x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->

@@ -25,5 +25,6 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
 * [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)
 * [sSMTP](https://packages.debian.org/source/unstable/ssmtp)
+* [Saxon](https://www.saxonica.com/welcome/welcome.xml)
 * [SVG](https://www.w3schools.com/graphics/svg_intro.asp)
 * [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)

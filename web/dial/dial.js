@@ -85,28 +85,24 @@ document.getElementById("dialRect_"+String(hour).padStart(2, '0')).setAttribute(
 function checkAll(onOff) {
 	document.querySelectorAll('input[type=checkbox]').forEach(c => c.checked = onOff);
 	if (onOff) {
-		document.querySelectorAll('line').forEach(b => b.visibility = "visible");
+		document.querySelectorAll('line[id]:not([id="pie"])').forEach(b => b.setAttribute("visibility", "visible"));
 		}
 	else {
-		document.querySelectorAll('line').forEach(b => b.visibility = "hidden");
+		document.querySelectorAll('line[id]:not([id="pie"])').forEach(b => b.setAttribute("visibility", "hidden"));
 		}
 	}
 checkAll(true);
 // ------------------------------------------------------------------------------------------------
 function toggleBird(bird) {
-console.log("toggleBird - 1");
 	document.querySelectorAll('line[id="'+bird+'"]').forEach(b => {
-console.log("toggleBird - 2");
-		if (b.visibility === "hidden") {
-console.log("toggleBird - 3");
-			b.visibility = "visible";
+		let x = b.getAttribute("visibility");
+		if (x === "hidden") {
+			b.setAttribute("visibility", "visible"); 
 			}
 		else {
-console.log("toggleBird - 4");
-			b.visibility = "hidden";
+			b.setAttribute("visibility", "hidden"); 
 			}
 		});
-console.log("toggleBird - 5");
 	}
 // ------------------------------------------------------------------------------------------------
 function showData(name,time) {
