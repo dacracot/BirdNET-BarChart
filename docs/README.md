@@ -89,7 +89,7 @@ and now know what birds are sharing their voices with me.
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
 	1. Edit the crontab.txt to adjust times for scripts prior to running the config script.
-		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
+		* `15 0 * * * /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `45 2 1 1 * /home/dacracot/BirdNET-BarChart/yearly.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
 		* `0 2 * * * /home/dacracot/BirdNET-BarChart/daily.sh`
