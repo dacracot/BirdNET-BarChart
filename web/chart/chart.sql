@@ -1,55 +1,341 @@
-insert into chart (name,xml) values ('!!','<'||:timeUnit||' confidence="'||:confidence||'">');
-insert into chart (name,xml)
+select '<?xml version="1.0" encoding="UTF-8"?>';
+-- select '<?xml-stylesheet type="text/xsl" href="chart.xsl"?>';
+select '<extract>';
+-- --------------------------------------------------------------------------------------
+-- hourly high
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.75 as confidence, '-24 hour' as timeframe)
 select
-	commonname,
-	'<bird '||
+	'<set confidence="'||param.confidence||'" timeframe="last day">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
 	'commonName="'||commonname||'" '||
-	'timeRange="'||:timeRange||'" '||
-	'timeUnit="'||:timeUnit||'" '||
-	'confidence="'||:confidence||'" '||
-	'total="'||count(*)||'">'
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
 from
-	heard
+	heard, param
 where
-	confidence > :confidence
+	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now','localtime','-'||:timeRange||' '||:timeUnit)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
-;
-insert into chart (name,xml,grouper)
-with parent as (select name from chart)
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- hourly mid
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.5 as confidence, '-24 hour' as timeframe)
 select
-	commonname,
-	'<when '||
-	:timeUnit||'="'||strftime('%H',minuteofday)||'" '||
-	'total="'||count(*)||'"/>' as xml,
-	strftime('%H',minuteofday) as grouper
+	'<set confidence="'||param.confidence||'" timeframe="last day">' as xml,
+	1 as rowOrder
 from
-	heard,
-	parent
-where
-	commonname = parent.name
-		and
-	confidence > :confidence
-		and
-	minuteofday > datetime('now','localtime','-'||:timeRange||' '||:timeUnit)
-group by
-	commonname,
-	grouper
-;
-insert into chart (name,xml)
-select
-	commonname,
-	'</bird>'
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
 from
-	heard
+	heard, param
 where
-	confidence > :confidence
+	heard.confidence > param.confidence
 		and
-	minuteofday > datetime('now','localtime','-'||:timeRange||' '||:timeUnit)
+	minuteofday > datetime('now','localtime',param.timeframe)
 group by
 	commonname
-;
-insert into chart (name,xml) values ('|','</'||:timeUnit||'>');
-select xml from chart order by name,seq;
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- hourly low
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.1 as confidence, '-24 hour' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last day">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- day high
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.75 as confidence, '-7 day' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last week">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- day mid
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.5 as confidence, '-7 day' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last week">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- day low
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.1 as confidence, '-7 day' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last week">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- week high
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.75 as confidence, '-30 day' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last month">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- week mid
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.5 as confidence, '-30 day' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last month">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- week low
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.1 as confidence, '-30 day' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last month">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- month high
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.75 as confidence, '-12 month' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last year">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- month mid
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.5 as confidence, '-12 month' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last year">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+-- month low
+-- --------------------------------------------------------------------------------------
+select xml from (
+with param as (select 0.1 as confidence, '-12 month' as timeframe)
+select
+	'<set confidence="'||param.confidence||'" timeframe="last year">' as xml,
+	1 as rowOrder
+from
+	param
+union select
+	'<row '||
+	'commonName="'||commonname||'" '||
+	'count="'||count(*)||'" '||
+	'/>' as xml,
+	2 as rowOrder
+from
+	heard, param
+where
+	heard.confidence > param.confidence
+		and
+	minuteofday > datetime('now','localtime',param.timeframe)
+group by
+	commonname
+union select
+	'</set>' as xml,
+	3 as rowOrder
+order by rowOrder);
+-- --------------------------------------------------------------------------------------
+select '</extract>';

@@ -82,7 +82,7 @@ find ${WORK_HOUR} -type f -name "*.csv" -not -name "dataset.csv" -delete
 gzip ${WORK_HOUR}/*
 # ===================================================
 # extract the table to XML
-sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/chart/extract.sql > ${BARCHART_HOME}/web/chart/chart.xml
+sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/chart/chart.sql > ${BARCHART_HOME}/web/chart/chart.xml
 # transform the xml into html
 XSLTransform -s:${BARCHART_HOME}/web/chart/chart.xml -xsl:${BARCHART_HOME}/web/chart/chart.xsl > ${BARCHART_HOME}/web/chart/chart.html lat=${LAT} lon=${LON} asOf="${AS_OF}"
 # extract the sun,moon, & weather to XML
