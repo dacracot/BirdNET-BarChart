@@ -15,23 +15,10 @@ CREATE TABLE chart (
 	seq INTEGER PRIMARY KEY
 	);
 -- --------------------------------------
-CREATE TABLE phase (
-	unicode TEXT NOT NULL,
-	unicodeDecimal INTEGER NOT NULL,
-	description TEXT NOT NULL
-	);
-INSERT INTO phase VALUES ('🌑︎', 127761, 'New');
-INSERT INTO phase VALUES ('🌒︎', 127762, 'Waxing Crescent');
-INSERT INTO phase VALUES ('🌓︎', 127763, 'First Quarter');
-INSERT INTO phase VALUES ('🌔︎', 127764, 'Waxing Gibbous');
-INSERT INTO phase VALUES ('🌕︎', 127765, 'full');
-INSERT INTO phase VALUES ('🌖︎', 127766, 'Waning Gibbous');
-INSERT INTO phase VALUES ('🌗︎', 127767, 'Last Quarter');
-INSERT INTO phase VALUES ('🌘︎', 127768, 'Waning Crescent');
--- --------------------------------------
 CREATE TABLE sun (
 	dawn DATETIME NOT NULL,
 	up DATETIME NOT NULL,
+	peak DATETIME NOT NULL,
 	down DATETIME NOT NULL,
 	dusk DATETIME NOT NULL,
 	minuteOfDay DATETIME NOT NULL
@@ -40,12 +27,14 @@ CREATE TABLE sun (
 CREATE TABLE moon (
 	phase TEXT NOT NULL,
 	up DATETIME,
+	peak DATETIME NOT NULL,
 	down DATETIME,
 	minuteOfDay DATETIME NOT NULL
 	);
 -- --------------------------------------
 CREATE TABLE weather (
 	condition TEXT NOT NULL,
+	iconNumber INTEGER NOT NULL,
 	temperature TEXT NOT NULL,
 	humidity TEXT NOT NULL,
 	wind TEXT NOT NULL,
@@ -58,4 +47,4 @@ CREATE TABLE season (
 	phase TEXT NOT NULL,
 	changeover DATETIME NOT NULL
 	);
--- --------------------------------------
+-- -----------------------------------------

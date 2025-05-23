@@ -89,7 +89,7 @@ and now know what birds are sharing their voices with me.
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
 	1. Edit the crontab.txt to adjust times for scripts prior to running the config script.
-		* `15 2 * * 7 /home/dacracot/BirdNET-BarChart/backup/backup.sh`
+		* `15 0 * * * /home/dacracot/BirdNET-BarChart/backup/backup.sh`
 		* `45 2 1 1 * /home/dacracot/BirdNET-BarChart/yearly.sh`
 		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
 		* `0 2 * * * /home/dacracot/BirdNET-BarChart/daily.sh`
@@ -126,9 +126,13 @@ and now know what birds are sharing their voices with me.
 	* Load the database.
 	* Delete and compress the work files that hour.
 	* Query the database to create an XML file for the browser user interface.
-	* Uses `extract.sql` to compose the output to `chart.xml`.
-	* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
-	* Copies the altered chart folder to the web server's published directory.
+	* chart
+		* Uses `chart.sql` to compose the output to `chart.xml`.
+		* Transform the `chart.xml` into `chart.html` using `chart.xsl`.
+	* dial
+		* Uses `dial.sql` to compose the output to `dial.xml`.
+		* Transform the `dial.xml` into `dial.html` using `dial.xsl`.
+	* Copies the altered web folder to the web server's published directory.
 * `daily.sh`
 	* Query celestial data from the US Navy.
 	* Morph the data into SQL and load the database.
