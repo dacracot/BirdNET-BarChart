@@ -46,7 +46,7 @@
 				<table>
 					<tr>
 						<td>
-							<svg width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
+							<svg id="dial" width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
 								<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
 								<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
 									<xsl:apply-templates select="moon"/>
@@ -66,8 +66,9 @@
 				<xsl:call-template name="showDial"/>
 				<hr/>
 			</xsl:element>
-		<script src="dial.js"></script><xsl:text>
+			<script src="dial.js"></script><xsl:text>
 </xsl:text>
+    		<div id="popup" style="left: 0; top: 0"></div>
 		</xsl:element>
 	</xsl:template>
 <!-- =========================================================================================== -->
@@ -234,6 +235,8 @@
 											<xsl:variable name="nine"><xsl:value-of select="(preceding-sibling::*[9]/@quantity+$eight)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -244,6 +247,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -254,6 +259,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -264,6 +271,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -274,6 +283,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -284,6 +295,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -294,6 +307,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -304,6 +319,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[7]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -314,6 +331,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[8]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -324,6 +343,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[9]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -345,6 +366,8 @@
 											<xsl:variable name="eight"><xsl:value-of select="(preceding-sibling::*[8]/@quantity+$seven)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -355,6 +378,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -365,6 +390,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -375,6 +402,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -385,6 +414,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -395,6 +426,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -405,6 +438,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -415,6 +450,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[7]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -425,6 +462,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[8]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -445,6 +484,8 @@
 											<xsl:variable name="seven"><xsl:value-of select="(preceding-sibling::*[7]/@quantity+$six)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -455,6 +496,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -465,6 +508,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -475,6 +520,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -485,6 +532,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -495,6 +544,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -505,6 +556,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -515,6 +568,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[7]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -534,6 +589,8 @@
 											<xsl:variable name="six"><xsl:value-of select="(preceding-sibling::*[6]/@quantity+$five)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -544,6 +601,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -554,6 +613,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -564,6 +625,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -574,6 +637,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -584,6 +649,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -594,6 +661,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[6]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -612,6 +681,8 @@
 											<xsl:variable name="five"><xsl:value-of select="(preceding-sibling::*[5]/@quantity+$four)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -622,6 +693,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -632,6 +705,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -642,6 +717,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -652,6 +729,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -662,6 +741,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[5]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -679,6 +760,8 @@
 											<xsl:variable name="four"><xsl:value-of select="(preceding-sibling::*[4]/@quantity+$three)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -689,6 +772,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -699,6 +784,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -709,6 +796,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -719,6 +808,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[4]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -735,6 +826,8 @@
 											<xsl:variable name="three"><xsl:value-of select="(preceding-sibling::*[3]/@quantity+$two)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -745,6 +838,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -755,6 +850,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -765,6 +862,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[3]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -780,6 +879,8 @@
 											<xsl:variable name="two"><xsl:value-of select="(preceding-sibling::*[2]/@quantity+$one)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -790,6 +891,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -800,6 +903,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[2]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -814,6 +919,8 @@
 											<xsl:variable name="one"><xsl:value-of select="(preceding-sibling::*[1]/@quantity+$zero)"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -824,6 +931,8 @@
 											</xsl:element>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="preceding-sibling::*[1]/@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>
@@ -837,6 +946,8 @@
 											<xsl:variable name="zero"><xsl:value-of select="@quantity"/></xsl:variable>
 											<xsl:element name="line">
 												<xsl:attribute name="id"><xsl:value-of select="$whichBird"/></xsl:attribute>
+												<xsl:attribute name="onmouseenter">doEnter(this)</xsl:attribute>
+												<xsl:attribute name="onmouseleave">doLeave(this)</xsl:attribute>
 												<xsl:attribute name="visibility">visible</xsl:attribute>
 												<xsl:attribute name="class">dataLine</xsl:attribute>
 												<xsl:attribute name="style">stroke:<xsl:value-of select="$color[$whichColor]"/>; stroke-opacity:<xsl:value-of select="@confidenceRounded"/>; stroke-width:2; display: block;</xsl:attribute>

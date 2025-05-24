@@ -109,4 +109,28 @@ function showData(name,time) {
 	document.getElementById("showData").innerHTML = "<a target='_blank' href='https://www.allaboutbirds.org/guide/"+name.replace(" ","_")+"'>"+name+"</a> heard around "+time+".";
 	}
 // ------------------------------------------------------------------------------------------------
+var popup = null;
+// var popup = document.getElementById("popup");
+// popup.style.visibility = "hidden";
+// -------------
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("dial").addEventListener("mousemove", function(event) {
+        doMove(event);
+        });
+    popup = document.getElementById("popup");
+    popup.style.visibility = "hidden";
+    });
+// -------------
+function doEnter(which){
+    popup.innerHTML = which.id;
+    popup.style.visibility = "visible";
+    };
+function doLeave(which){
+    popup.style.visibility = "hidden";
+    };
+function doMove(what){
+    popup.style.left = (what.pageX + 5) + "px";
+    popup.style.top = (what.pageY + 5) + "px";
+    };
+// ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
