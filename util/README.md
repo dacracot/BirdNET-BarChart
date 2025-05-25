@@ -8,6 +8,8 @@ This is where utility scripts and text files reside.
 
 * backupFailure.txt
 	* Email contents for a backup failure message.
+* color.html
+	* Shows the colors used and in what order.  Repeated in dail.xsl.
 * crontabAdd.sh
 	* Add yearly, weekly, daily, hourly, and backup scripts to the crontab.
 * crontabRemove.sh
