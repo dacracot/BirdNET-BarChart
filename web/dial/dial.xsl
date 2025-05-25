@@ -172,52 +172,35 @@
 	<xsl:template match="data">
 		<xsl:variable name="scalar">5</xsl:variable>
 		<xsl:variable name="color" as="element()*">
-			<item>#556b2f</item>
-			<item>#8b0000</item>
-			<item>#483d8b</item>
-			<item>#008000</item>
-			<item>#b8860b</item>
-			<item>#008b8b</item>
-			<item>#000080</item>
-			<item>#9acd32</item>
-			<item>#8fbc8f</item>
-			<item>#8b008b</item>
-			<item>#ff0000</item>
-			<item>#ff8c00</item>
-			<item>#ffff00</item>
-			<item>#7cfc00</item>
-			<item>#8a2be2</item>
-			<item>#00ff7f</item>
-			<item>#00ffff</item>
-			<item>#00bfff</item>
-			<item>#0000ff</item>
-			<item>#ff6347</item>
-			<item>#ff00ff</item>
-			<item>#1e90ff</item>
-			<item>#db7093</item>
-			<item>#b0e0e6</item>
-			<item>#90ee90</item>
-			<item>#ff1493</item>
-			<item>#7b68ee</item>
-			<item>#ffa07a</item>
-			<item>#ee82ee</item>
-			<item>#ffe4b5</item>
-			<item>#ffc0cb</item>
+			<item>#7cfc00</item>		<!-- lawngreen -->
+			<item>#8b008b</item>		<!-- darkmagenta -->
+			<item>#9acd32</item>		<!-- yellowgreen -->
+			<item>#db7093</item>		<!-- palevioletred -->
+			<item>#ff0000</item>		<!-- red -->
+			<item>#008b8b</item>		<!-- darkcyan -->
+			<item>#ff00ff</item>		<!-- fuchsia -->
+			<item>#ffe4b5</item>		<!-- moccasin -->
+			<item>#ff1493</item>		<!-- deeppink -->
+			<item>#ffff00</item>		<!-- yellow -->
+			<item>#ff6347</item>		<!-- tomato -->
+			<item>#ee82ee</item>		<!-- violet -->
+			<item>#ff8c00</item>		<!-- darkorange -->
+			<item>#b8860b</item>		<!-- darkgoldenrod -->
+			<item>#ffc0cb</item>		<!-- pink -->
+			<item>#8a2be2</item>		<!-- blueviolet -->
+			<item>#556b2f</item>		<!-- darkolivegreen -->
 		</xsl:variable>
 		<xsl:for-each-group select="heard" group-by="@commonName">
 			<xsl:sort select="@commonName"/>
 			<xsl:element name="g">
 				<xsl:comment><xsl:value-of select="current-grouping-key()"/></xsl:comment>
 				<xsl:variable name="whichBird" select="current-grouping-key()"/>
-				<xsl:variable name="whichColor" select="position() mod 31"/>
+				<xsl:variable name="whichColor" select="position() mod 17"/>
 				<xsl:for-each-group select="../heard[@commonName = $whichBird]" group-by="@dial">
 					<xsl:sort select="@dial"/>
 					<xsl:variable name="whichDial" select="current-grouping-key()"/>
 					<xsl:element name="g">
 						<xsl:attribute name="transform">rotate(<xsl:value-of select="$whichDial"/>)</xsl:attribute>
-<!-- 
-<xsl:attribute name="onmouseover">showData("<xsl:value-of select="$whichBird"/>","<xsl:value-of select="@dialTime"/>");</xsl:attribute>
- -->
 						<xsl:for-each select="../heard[@commonName = $whichBird and @dial = $whichDial]">
 							<xsl:sort select="@confidenceRounded"/>
 							<xsl:choose>
