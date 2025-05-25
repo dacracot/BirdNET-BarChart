@@ -110,8 +110,6 @@ function showData(name,time) {
 	}
 // ------------------------------------------------------------------------------------------------
 var popup = null;
-// var popup = document.getElementById("popup");
-// popup.style.visibility = "hidden";
 // -------------
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("dial").addEventListener("mousemove", function(event) {
@@ -121,16 +119,28 @@ document.addEventListener("DOMContentLoaded", function () {
     popup.style.visibility = "hidden";
     });
 // -------------
-function doEnter(which){
-    popup.innerHTML = which.id;
+function doEnter(bird,when,confidence,quantity) {
+    popup.innerHTML = '<span style="font-family: Arial, Helvetica, sans-serif; font-size: 10px;">'+
+						'<table style="border: 1px solid black; border-collapse: collapse; padding: 5px;"><thead><tr><th colspan="2" style="text-align: center; border: 1px solid black; border-collapse: collapse;">'+
+						bird+
+						'</th></tr></thead><tbody><tr><th>quantity:</th><td>'+
+						quantity+
+						'</td></tr><tr><th>confidence:</th><td>'+
+						confidence+
+						'</td></tr><tr><th>when:</th><td>'+
+						when+
+						'</td></tr></tbody></table></span>';
     popup.style.visibility = "visible";
     };
-function doLeave(which){
+function doLeave(){
     popup.style.visibility = "hidden";
     };
 function doMove(what){
     popup.style.left = (what.pageX + 5) + "px";
     popup.style.top = (what.pageY + 5) + "px";
+    };
+function lookUp(bird){
+	window.open('https://www.allaboutbirds.org/guide/'+bird, '_blank');
     };
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
