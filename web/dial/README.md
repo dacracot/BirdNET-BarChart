@@ -19,3 +19,11 @@ This is where files for the dial graph are written and read.
 	* XML data as extracted from the database.
 * dial.xsl
 	* XML stylesheet language for construction of the dial.
+
+---
+
+### Compromise:
+
+* Handling touch screens:
+	* Mouse events are handled differently on mobile, aka touch screen, devices.
+	* The clickability of dial's bird data works differently when not using a mouse.
