@@ -68,3 +68,12 @@ could be the cause and what brought me to the current theory.
 	* `systemctl restart systemd-journald`
 1. Delete the journald log files:
 	* `rm -rf /var/log/journal`
+
+---
+
+### After three weeks of normal usage:
+
+1. This seems to be fixed:
+	* Load is running at 0.0 to 0.2 normally.
+	* I doubt it was from the audio recording, since it has not returned.
+	* Could it be from the failed Docker experiment?  Perhaps.

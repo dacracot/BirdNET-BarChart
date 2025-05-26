@@ -4,12 +4,12 @@ body {
 	}
 th {
 	text-align: right;
-	width: 150px;
 	}
 td {
 	text-align: left;
 	}
-
+/* --------------  */
+/* -- menu --  */
 details {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 9px;
@@ -19,17 +19,14 @@ details {
 	flex-direction: column;
 	padding: 3px 6px;
 	}
-
 details summary::marker {
 	display: none;
 	font-size: 0;
 	}
-
 details summary::-webkit-details-marker {
 	display: none;
 	font-size: 0;
 	}
-
 details summary::after {
 	content: "\25BC" / "";
 	display: inline-block;
@@ -40,20 +37,16 @@ details summary::after {
 	position: relative;
 	transition: transform 0.25s;
 	}
-
 details[open] summary {
 	margin-bottom: 1rem;
 	}
-
 details[open] summary::after {
 	top: -0.15rem;
 	transform: rotate(180deg);
 	}
-
 form {
 	display: flex;
 	}
-
 fieldset {
 	border: 0;
 	padding: 0;
@@ -61,7 +54,6 @@ fieldset {
 	height: 86px;
 	overflow-y: scroll;
 	}
-
 fieldset legend {
 	position: absolute !important;
 	width: 1px !important;
@@ -73,29 +65,26 @@ fieldset legend {
 	white-space: nowrap !important;
 	border: 0 !important;
 	}
-
 ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 	}
-
 ul li {
 	border-radius: 3px;
 	margin: 0;
 	padding: 4px 2px;
 	}
-
 ul li:hover {
 	background: #eee;
 	}
-
 ul li label {
 	display: flex;
 	flex-grow: 1;
 	justify-content: space-between;
 	}
-
+/* --------------  */
+/* -- on hour blue box --  */
 .textNormal {
 	stroke: black !important;
 	}
@@ -113,11 +102,22 @@ ul li label {
 	fill: blue !important;
 	stroke: blue !important;
 	}
-
+/* --------------  */
+/* -- all/clear checkbox --  */
 .checker:active {
 	opacity: 0.5;
 	}
 /* --------------  */
+/* -- bird line highlight --  */
 .dataLine:hover {
 	filter: invert(100%);
 	}
+/* -- heard data --  */
+#popup {
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    font-size: 14px;
+    }
+/* --------------  */
