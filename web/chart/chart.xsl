@@ -27,32 +27,52 @@
 				<!-- structure lists for conversion to tabs by jQueryUI -->
 				<div id="tabs">
 					<ul>
+						<li><a href="#tab-dial">dial</a></li>
 						<li><a href="#tab-chart">barchart</a></li>
 						<li><a href="#tab-table">table</a></li>
 					</ul>
+					<div id="tab-dial">
+						<ul>
+							<li><a href="#tab-dial-solar">solar cycle</a></li>
+							<li><a href="#tab-dial-lunar">lunar cycle</a></li>
+							<li><a href="#tab-dial-seasonal">seasonal cycle</a></li>
+						</ul>
+						<div id="tab-dial-solar">
+							<h4>solar dial coming soon</h4>
+						</div>
+						<div id="tab-dial-lunar">
+							<h4>lunar dial coming soon</h4>
+						</div>
+						<div id="tab-dial-seasonal">
+							<h4>seasonal dial coming soon</h4>
+						</div>
+					</div>
 					<div id="tab-chart">
 						<ul>
-							<li><a href="#tab-chart-day">last day</a></li>
+							<li><a href="#tab-chart-solar">solar cycle</a></li>
+<!-- 
 							<li><a href="#tab-chart-week">last week</a></li>
-							<li><a href="#tab-chart-month">last month</a></li>
-							<li><a href="#tab-chart-year">last year</a></li>
+ -->
+							<li><a href="#tab-chart-lunar">lunar cycle</a></li>
+							<li><a href="#tab-chart-seasonal">seasonal cycle</a></li>
 						</ul>
-						<div id="tab-chart-day">
+						<div id="tab-chart-solar">
 							<ul>
-								<li><a href="#tab-chart-day-hi">high confidence (0.75)</a></li>
-								<li><a href="#tab-chart-day-mid">mid confidence (0.5)</a></li>
-								<li><a href="#tab-chart-day-low">low confidence (0.1)</a></li>
+								<li><a href="#tab-chart-solar-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-solar-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-solar-low">low confidence (0.1)</a></li>
 							</ul>
-							<div id="tab-chart-day-hi">
-								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last day']" mode="chart"/>
+							<div id="tab-chart-solar-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='solar cycle']" mode="chart"/>
 							</div>
-							<div id="tab-chart-day-mid">
-								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last day']" mode="chart"/>
+							<div id="tab-chart-solar-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='solar cycle']" mode="chart"/>
 							</div>
-							<div id="tab-chart-day-low">
-								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last day']" mode="chart"/>
+							<div id="tab-chart-solar-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='solar cycle']" mode="chart"/>
 							</div>
 						</div>
+<!-- 
 						<div id="tab-chart-week">
 							<ul>
 								<li><a href="#tab-chart-week-hi">high confidence (0.75)</a></li>
@@ -69,62 +89,66 @@
 								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last week']" mode="chart"/>
 							</div>
 						</div>
-						<div id="tab-chart-month">
+ -->
+						<div id="tab-chart-lunar">
 							<ul>
-								<li><a href="#tab-chart-month-hi">high confidence (0.75)</a></li>
-								<li><a href="#tab-chart-month-mid">mid confidence (0.5)</a></li>
-								<li><a href="#tab-chart-month-low">low confidence (0.1)</a></li>
+								<li><a href="#tab-chart-lunar-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-lunar-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-lunar-low">low confidence (0.1)</a></li>
 							</ul>
-							<div id="tab-chart-month-hi">
-								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last month']" mode="chart"/>
+							<div id="tab-chart-lunar-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='lunar cycle']" mode="chart"/>
 							</div>
-							<div id="tab-chart-month-mid">
-								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last month']" mode="chart"/>
+							<div id="tab-chart-lunar-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='lunar cycle']" mode="chart"/>
 							</div>
-							<div id="tab-chart-month-low">
-								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last month']" mode="chart"/>
+							<div id="tab-chart-lunar-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='lunar cycle']" mode="chart"/>
 							</div>
 						</div>
-						<div id="tab-chart-year">
+						<div id="tab-chart-seasonal">
 							<ul>
-								<li><a href="#tab-chart-year-hi">high confidence (0.75)</a></li>
-								<li><a href="#tab-chart-year-mid">mid confidence (0.5)</a></li>
-								<li><a href="#tab-chart-year-low">low confidence (0.1)</a></li>
+								<li><a href="#tab-chart-seasonal-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-chart-seasonal-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-chart-seasonal-low">low confidence (0.1)</a></li>
 							</ul>
-							<div id="tab-chart-year-hi">
-								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last year']" mode="chart"/>
+							<div id="tab-chart-seasonal-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='seasonal cycle']" mode="chart"/>
 							</div>
-							<div id="tab-chart-year-mid">
-								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last year']" mode="chart"/>
+							<div id="tab-chart-seasonal-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='seasonal cycle']" mode="chart"/>
 							</div>
-							<div id="tab-chart-year-low">
-								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last year']" mode="chart"/>
+							<div id="tab-chart-seasonal-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='seasonal cycle']" mode="chart"/>
 							</div>
 						</div>
 					</div>
 					<div id="tab-table">
 						<ul>
-							<li><a href="#tab-table-day">last day</a></li>
+							<li><a href="#tab-table-solar">solar cycle</a></li>
+<!-- 
 							<li><a href="#tab-table-week">last week</a></li>
-							<li><a href="#tab-table-month">last month</a></li>
-							<li><a href="#tab-table-year">last year</a></li>
+ -->
+							<li><a href="#tab-table-lunar">lunar cycle</a></li>
+							<li><a href="#tab-table-seasonal">seasonal cycle</a></li>
 						</ul>
-						<div id="tab-table-day">
+						<div id="tab-table-solar">
 							<ul>
-								<li><a href="#tab-table-day-hi">high confidence (0.75)</a></li>
-								<li><a href="#tab-table-day-mid">mid confidence (0.5)</a></li>
-								<li><a href="#tab-table-day-low">low confidence (0.1)</a></li>
+								<li><a href="#tab-table-solar-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-table-solar-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-table-solar-low">low confidence (0.1)</a></li>
 							</ul>
-							<div id="tab-table-day-hi">
-								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last day']" mode="table"/>
+							<div id="tab-table-solar-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='solar cycle']" mode="table"/>
 							</div>
-							<div id="tab-table-day-mid">
-								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last day']" mode="table"/>
+							<div id="tab-table-solar-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='solar cycle']" mode="table"/>
 							</div>
-							<div id="tab-table-day-low">
-								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last day']" mode="table"/>
+							<div id="tab-table-solar-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='solar cycle']" mode="table"/>
 							</div>
 						</div>
+<!-- 
 						<div id="tab-table-week">
 							<ul>
 								<li><a href="#tab-table-week-hi">high confidence (0.75)</a></li>
@@ -141,36 +165,37 @@
 								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last week']" mode="table"/>
 							</div>
 						</div>
-						<div id="tab-table-month">
+ -->
+						<div id="tab-table-lunar">
 							<ul>
-								<li><a href="#tab-table-month-hi">high confidence (0.75)</a></li>
-								<li><a href="#tab-table-month-mid">mid confidence (0.5)</a></li>
-								<li><a href="#tab-table-month-low">low confidence (0.1)</a></li>
+								<li><a href="#tab-table-lunar-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-table-lunar-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-table-lunar-low">low confidence (0.1)</a></li>
 							</ul>
-							<div id="tab-table-month-hi">
-								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last month']" mode="table"/>
+							<div id="tab-table-lunar-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='lunar cycle']" mode="table"/>
 							</div>
-							<div id="tab-table-month-mid">
-								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last month']" mode="table"/>
+							<div id="tab-table-lunar-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='lunar cycle']" mode="table"/>
 							</div>
-							<div id="tab-table-month-low">
-								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last month']" mode="table"/>
+							<div id="tab-table-lunar-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='lunar cycle']" mode="table"/>
 							</div>
 						</div>
-						<div id="tab-table-year">
+						<div id="tab-table-seasonal">
 							<ul>
-								<li><a href="#tab-table-year-hi">high confidence (0.75)</a></li>
-								<li><a href="#tab-table-year-mid">mid confidence (0.5)</a></li>
-								<li><a href="#tab-table-year-low">low confidence (0.1)</a></li>
+								<li><a href="#tab-table-seasonal-hi">high confidence (0.75)</a></li>
+								<li><a href="#tab-table-seasonal-mid">mid confidence (0.5)</a></li>
+								<li><a href="#tab-table-seasonal-low">low confidence (0.1)</a></li>
 							</ul>
-							<div id="tab-table-year-hi">
-								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='last year']" mode="table"/>
+							<div id="tab-table-seasonal-hi">
+								<xsl:apply-templates select="set[@confidence='0.75' and @timeframe='seasonal cycle']" mode="table"/>
 							</div>
-							<div id="tab-table-year-mid">
-								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='last year']" mode="table"/>
+							<div id="tab-table-seasonal-mid">
+								<xsl:apply-templates select="set[@confidence='0.5' and @timeframe='seasonal cycle']" mode="table"/>
 							</div>
-							<div id="tab-table-year-low">
-								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='last year']" mode="table"/>
+							<div id="tab-table-seasonal-low">
+								<xsl:apply-templates select="set[@confidence='0.1' and @timeframe='seasonal cycle']" mode="table"/>
 							</div>
 						</div>
 					</div>
@@ -223,9 +248,9 @@
 <!-- =========================================================================================== -->
 <!-- create a bar chart from a set -->
 	<xsl:template match="set" mode="chart">
-						<svg width="2400" height="2400">
-							<xsl:apply-templates mode="chart"/>
-						</svg>
+		<svg width="2400" height="2400">
+			<xsl:apply-templates mode="chart"/>
+		</svg>
 	</xsl:template>
 <!-- =========================================================================================== -->
 <!-- create each bar with label and quantity -->

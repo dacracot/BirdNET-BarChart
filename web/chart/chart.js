@@ -4,15 +4,17 @@ $(function(){
 	// 	------------------------------
 	$("#tabs").tabs();
 	$("#tab-chart").tabs();
-	$("#tab-chart-day").tabs();
-	$("#tab-chart-week").tabs();
-	$("#tab-chart-month").tabs();
-	$("#tab-chart-year").tabs();
+	$("#tab-chart-solar").tabs();
+	$("#tab-chart-lunar").tabs();
+	$("#tab-chart-seasonal").tabs();
 	$("#tab-table").tabs();
-	$("#tab-table-day").tabs();
-	$("#tab-table-week").tabs();
-	$("#tab-table-month").tabs();
-	$("#tab-table-year").tabs();
+	$("#tab-table-solar").tabs();
+	$("#tab-table-lunar").tabs();
+	$("#tab-table-seasonal").tabs();
+	$("#tab-dial").tabs();
+	$("#tab-dial-solar").tabs();
+	$("#tab-dial-lunar").tabs();
+	$("#tab-dial-seasonal").tabs();
 	// 	------------------------------
 	// 	set colors for SVG barcharts
 	// 	------------------------------
@@ -40,7 +42,7 @@ $(function(){
 	// start sequence with hiSeed
 	random.reset(hiSeed,maxRGBvalue,0);
 	// select the tab by id
-	let tab = document.querySelector("#tab-chart-day-hi");
+	let tab = document.querySelector("#tab-chart-solar-hi");
 	// select all rectangles that are children of the tab
 	let bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
@@ -48,23 +50,23 @@ $(function(){
 	// start sequence with hiSeed
 	random.reset(hiSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-week-hi");
+	tab = document.querySelector("#tab-chart-lunar-hi");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
 	// 	------------------------------
-	// start sequence with hiSeed
-	random.reset(hiSeed,maxRGBvalue,0);
-	// select the tab by id
-	tab = document.querySelector("#tab-chart-month-hi");
-	// select all rectangles that are children of the tab
-	bars = tab.querySelectorAll("rect");
-	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
+// 	// start sequence with hiSeed
+// 	random.reset(hiSeed,maxRGBvalue,0);
+// 	// select the tab by id
+// 	tab = document.querySelector("#tab-chart-month-hi");
+// 	// select all rectangles that are children of the tab
+// 	bars = tab.querySelectorAll("rect");
+// 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
 	// 	------------------------------
 	// start sequence with hiSeed
 	random.reset(hiSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-year-hi");
+	tab = document.querySelector("#tab-chart-seasonal-hi");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
@@ -73,7 +75,7 @@ $(function(){
 	// start sequence with midSeed
 	random.reset(midSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-day-mid");
+	tab = document.querySelector("#tab-chart-solar-mid");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
@@ -81,23 +83,23 @@ $(function(){
 	// start sequence with hiSeed
 	random.reset(midSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-week-mid");
+	tab = document.querySelector("#tab-chart-lunar-mid");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
 	// 	------------------------------
-	// start sequence with hiSeed
-	random.reset(midSeed,maxRGBvalue,0);
-	// select the tab by id
-	tab = document.querySelector("#tab-chart-month-mid");
-	// select all rectangles that are children of the tab
-	bars = tab.querySelectorAll("rect");
-	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
+// 	// start sequence with hiSeed
+// 	random.reset(midSeed,maxRGBvalue,0);
+// 	// select the tab by id
+// 	tab = document.querySelector("#tab-chart-month-mid");
+// 	// select all rectangles that are children of the tab
+// 	bars = tab.querySelectorAll("rect");
+// 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
 	// 	------------------------------
 	// start sequence with hiSeed
 	random.reset(midSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-year-mid");
+	tab = document.querySelector("#tab-chart-seasonal-mid");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
@@ -106,7 +108,7 @@ $(function(){
 	// start sequence with lowSeed
 	random.reset(lowSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-day-low");
+	tab = document.querySelector("#tab-chart-solar-low");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
@@ -114,23 +116,23 @@ $(function(){
 	// start sequence with hiSeed
 	random.reset(lowSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-week-low");
+	tab = document.querySelector("#tab-chart-lunar-low");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
 	// 	------------------------------
-	// start sequence with hiSeed
-	random.reset(lowSeed,maxRGBvalue,0);
-	// select the tab by id
-	tab = document.querySelector("#tab-chart-month-low");
-	// select all rectangles that are children of the tab
-	bars = tab.querySelectorAll("rect");
-	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
+// 	// start sequence with hiSeed
+// 	random.reset(lowSeed,maxRGBvalue,0);
+// 	// select the tab by id
+// 	tab = document.querySelector("#tab-chart-month-low");
+// 	// select all rectangles that are children of the tab
+// 	bars = tab.querySelectorAll("rect");
+// 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
 	// 	------------------------------
 	// start sequence with hiSeed
 	random.reset(lowSeed,maxRGBvalue,0);
 	// select the tab by id
-	tab = document.querySelector("#tab-chart-year-low");
+	tab = document.querySelector("#tab-chart-seasonal-low");
 	// select all rectangles that are children of the tab
 	bars = tab.querySelectorAll("rect");
 	bars.forEach(b => {b.style = "fill:rgb("+random.nextRandom()+","+random.nextRandom()+","+random.nextRandom()+")";});
