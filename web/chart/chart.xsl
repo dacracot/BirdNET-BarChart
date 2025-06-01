@@ -242,7 +242,7 @@
 					<xsl:value-of select="@commonName"/>
 				</xsl:element>
 			</td>
-			<td><xsl:value-of select="@count"/></td>
+			<td><xsl:value-of select="@averagePerDay"/></td>
 		</tr>
 	</xsl:template>
 <!-- =========================================================================================== -->
@@ -257,7 +257,7 @@
 	<xsl:template match="row" mode="chart">
 		<xsl:element name="g">
 			<xsl:attribute name="id"><xsl:value-of select="@commonName"/></xsl:attribute>
-			<xsl:attribute name="sortValue"><xsl:value-of select="@count"/></xsl:attribute>
+			<xsl:attribute name="sortValue"><xsl:value-of select="@averagePerDay"/></xsl:attribute>
 			<xsl:element name="a">
 				<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
 				<xsl:attribute name="target">_blank</xsl:attribute>
@@ -272,16 +272,16 @@
 			<xsl:element name="rect">
 				<xsl:attribute name="x">220</xsl:attribute>
 				<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
-				<xsl:attribute name="width"><xsl:value-of select="(@count*2)" /></xsl:attribute>
+				<xsl:attribute name="width"><xsl:value-of select="(@averagePerDay*2)" /></xsl:attribute>
 				<xsl:attribute name="height">18</xsl:attribute>
 				<!-- bars are all fuchsia until post processed with javascript -->
 				<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
 			</xsl:element>
 			<xsl:element name="text">
-				<xsl:attribute name="x"><xsl:value-of select="((@count*2)+224)" /></xsl:attribute>
+				<xsl:attribute name="x"><xsl:value-of select="((@averagePerDay*2)+224)" /></xsl:attribute>
 				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
 				<xsl:attribute name="font-size">12</xsl:attribute>
-				<xsl:value-of select="@count"/>
+				<xsl:value-of select="@averagePerDay"/>
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>
