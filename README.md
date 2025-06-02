@@ -14,7 +14,7 @@ Display BirdNET-Analyzer data as a bar chart in a browser.
 	* Run queries to get celestial data.
 	* Load the database with the observed species and celestial data.
 	* Extract the database data to XML.
-	* Transform XML using XSLT to produce a charts and tables.
+	* Transform XML using XSLT to produce charts and tables.
 
 ### Dependencies:
 
