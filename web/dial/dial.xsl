@@ -4,72 +4,38 @@
     exclude-result-prefixes="xs"
     version="2.0">
 	<xsl:output method="html" indent="yes"/>
-	<xsl:param name="asOf"/>
-	<xsl:param name="lat"/>
-	<xsl:param name="lon"/>
 <!-- =========================================================================================== -->
-	<xsl:template match="/dial">
-		<xsl:element name="html">
-			<head>
-				<meta http-equiv="refresh" content="3600" />
-				<meta name="viewport" content="width=device-width, initial-scale=1.3" />
-				<meta name="apple-mobile-web-app-capable" content="yes" />
-				<meta name="mobile-web-app-capable" content="yes" />
-				<meta name="application-name" content="BirdNET-BarChart" />
-				<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
-				<title>BirdNET-BarChart</title>
-				<link rel="stylesheet" href="dial.css"/>
-			</head>
-			<xsl:element name="body">
-				<hr/>
-				<xsl:element name="table">
-					<xsl:element name="tr">
-						<xsl:element name="th">as of:</xsl:element>
-						<xsl:element name="td"><xsl:value-of select="$asOf"/></xsl:element>
-					</xsl:element>
-					<xsl:element name="tr">
-						<xsl:element name="th">latitude:</xsl:element>
-						<xsl:element name="td"><xsl:value-of select="$lat"/></xsl:element>
-					</xsl:element>
-					<xsl:element name="tr">
-						<xsl:element name="th">longitude:</xsl:element>
-						<xsl:element name="td"><xsl:value-of select="$lon"/></xsl:element>
-					</xsl:element>
-					<xsl:element name="tr">
-						<xsl:element name="th">bird songs:</xsl:element>
-						<xsl:element name="td">
-							<xsl:apply-templates select="menu"/>
-						</xsl:element>
-					</xsl:element>
+	<xsl:template match="dial">
+		<xsl:element name="table">
+			<xsl:element name="tr">
+				<xsl:element name="th">bird songs:</xsl:element>
+				<xsl:element name="td">
+					<xsl:apply-templates select="menu"/>
 				</xsl:element>
-				<hr/>
-				<table>
-					<tr>
-						<td>
-							<svg id="dial" width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
-								<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
-								<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
-									<xsl:apply-templates select="moon"/>
-									<xsl:apply-templates select="sun"/>
-									<xsl:apply-templates select="weather"/>
-									<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
-								</g>
-								<xsl:apply-templates select="data"/>
-							</svg>
-						</td>
-						<td>
-							<div id="showData"></div>
-						</td>
-					</tr>
-				</table>
-				<hr/>
-				<xsl:call-template name="showDial"/>
-				<hr/>
 			</xsl:element>
-			<script src="dial.js"></script><xsl:text>
-</xsl:text>
-    		<div id="popup" style="left: 0; top: 0"></div>
 		</xsl:element>
+		<hr/>
+		<table>
+			<tr>
+				<td>
+					<svg id="dial" width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
+						<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
+						<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
+							<xsl:apply-templates select="moon"/>
+							<xsl:apply-templates select="sun"/>
+							<xsl:apply-templates select="weather"/>
+							<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
+						</g>
+						<xsl:apply-templates select="data"/>
+					</svg>
+				</td>
+				<td>
+					<div id="showData"></div>
+				</td>
+			</tr>
+		</table>
+		<hr/>
+		<xsl:call-template name="showDial"/>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="menu">
