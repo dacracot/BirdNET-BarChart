@@ -335,7 +335,7 @@ with dialData as (
 		dial||'" commonName="'||
 		replace(commonName,'''','`')||'" dialTime="'||
 		dialTime||'" confidenceRounded="'||
-		confidenceRounded||'" />"'
+		confidenceRounded||'" />'
 	from
 		dialData
 	group by
