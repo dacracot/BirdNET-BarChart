@@ -8,7 +8,7 @@
 	<xsl:template match="dial">
 		<xsl:element name="table">
 			<xsl:element name="tr">
-				<xsl:element name="th">bird songs:</xsl:element>
+				<xsl:element name="th">bird song:</xsl:element>
 				<xsl:element name="td">
 					<xsl:apply-templates select="menu"/>
 				</xsl:element>
@@ -40,38 +40,29 @@
 <!-- =========================================================================================== -->
 	<xsl:template match="menu">
 		<details>
-			<summary>Heard last 24 hours:</summary>
-			<form>
-				<fieldset>
-					<legend>Birds</legend>
-					<ul>
-						<xsl:element name="li">
-							<table>
-								<tr>
-									<td style="vertical-align: text-top;">All:</td>
-									<td style="vertical-align:bottom"><img src="../grfx/svg/selectAll.svg" title="Select all birds." width="12" height="12" class="checker" onclick="checkAll(true);"/></td>
-									<td><xsl:text>&#160;&#160;&#160;&#160;</xsl:text></td>
-									<td style="vertical-align: text-top;">Clear:</td>
-									<td style="vertical-align:bottom"><img src="../grfx/svg/clearAll.svg" title="Clear all birds." width="12" height="12" class="checker" onclick="checkAll(false);"/></td>
-								</tr>
-							</table>
-						</xsl:element>
-						<xsl:apply-templates select="confidence"/>
-					</ul>
-				</fieldset>
-			</form>
+			<summary>heard last 24 hours:</summary>
+			<menu>
+				<table style="font-size: 10px;">
+					<tr>
+						<td style="vertical-align: text-top;">All:</td>
+						<td style="vertical-align:bottom"><img src="grfx/svg/selectAll.svg" title="Select all birds." width="12" height="12" class="checker" onclick="checkAll(true);"/></td>
+						<td><xsl:text>&#160;&#160;&#160;&#160;</xsl:text></td>
+						<td style="vertical-align: text-top;">Clear:</td>
+						<td style="vertical-align:bottom"><img src="grfx/svg/clearAll.svg" title="Clear all birds." width="12" height="12" class="checker" onclick="checkAll(false);"/></td>
+					</tr>
+					<xsl:apply-templates select="confidence"/>
+				</table>
+			</menu>
 		</details>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="confidence">
-		<xsl:element name="li">
-          <strong>Confidence of at least <xsl:value-of select="@above"/>:</strong>
-		</xsl:element>
+		<tr><td colspan="5"><strong>Confidence of at least <xsl:value-of select="@above"/>:</strong></td></tr>
 		<xsl:apply-templates select="bird"/>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="bird">
-		<xsl:element name="li">
+		<tr><td colspan="5">
 			<xsl:element name="label">
 				<xsl:attribute name="for"><xsl:value-of select="@commonName"/></xsl:attribute>
 				<xsl:value-of select="@commonName"/>
@@ -81,7 +72,7 @@
 					<xsl:attribute name="onclick">toggleBird('<xsl:value-of select="@commonName"/>');</xsl:attribute>
 				</xsl:element>
 			</xsl:element>
-		</xsl:element>
+ 		</td></tr>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="weather">
@@ -1089,28 +1080,28 @@
 				</xsl:if>
 				<xsl:if test="($dayNight = '21') or ($dayNight = '00') or ($dayNight = '03')">
 					<xsl:choose>
-						<xsl:when test="/dial/moon/@phase ='New Moon'">
+						<xsl:when test="/extract/dial/moon/@phase ='New Moon'">
 								<xsl:copy-of select="document('../grfx/svg/moon/new.svg')/new/*"/>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='Waxing Crescent'">
+						<xsl:when test="/extract/dial/moon/@phase ='Waxing Crescent'">
 								<xsl:copy-of select="document('../grfx/svg/moon/waxingCrescent.svg')/waxingCrescent/*"/>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='First Quarter'">
+						<xsl:when test="/extract/dial/moon/@phase ='First Quarter'">
 								<xsl:copy-of select="document('../grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='Waxing Gibbous'">
+						<xsl:when test="/extract/dial/moon/@phase ='Waxing Gibbous'">
 								<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='Full Moon'">
+						<xsl:when test="/extract/dial/moon/@phase ='Full Moon'">
 								<xsl:copy-of select="document('../grfx/svg/moon/full.svg')/full/*"/>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='Waning Gibbous'">
+						<xsl:when test="/extract/dial/moon/@phase ='Waning Gibbous'">
 								<xsl:copy-of select="document('../grfx/svg/moon/waningGibbous.svg')/waningGibbous/*"/>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='Last Quarter'">
+						<xsl:when test="/extract/dial/moon/@phase ='Last Quarter'">
 								<xsl:copy-of select="document('../grfx/svg/moon/lastQuarter.svg')/lastQuarter/*"/>
 						</xsl:when>
-						<xsl:when test="/dial/moon/@phase ='Waning Crescent'">
+						<xsl:when test="/extract/dial/moon/@phase ='Waning Crescent'">
 								<xsl:copy-of select="document('../grfx/svg/moon/waningCrescent.svg')/waningCrescent/*"/>
 						</xsl:when>
 						<xsl:otherwise>
