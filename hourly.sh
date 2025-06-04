@@ -23,7 +23,7 @@ fi
 {
 TYPE=csv
 WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
-AS_OF=`date '+%A, %d %B %Y %H:00'`
+AS_OF=`date '+%A, %d %B %Y at %H:00'`
 echo "${AS_OF}"
 # ===================================================
 # find the audio card
@@ -84,7 +84,7 @@ gzip ${WORK_HOUR}/*
 # extract the table to XML
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHART_HOME}/web/birding.xml
 # transform the xml into html
-XSLTransform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html lat=${LAT} lon=${LON} asOf="${AS_OF}"
+XSLTransform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale=${LOCALE} asOf="${AS_OF}"
 # copy it all to the web server
 cp -v ${BARCHART_HOME}/web/favicon.ico ${WEB_HOME}/BirdNET-BarChart
 cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart

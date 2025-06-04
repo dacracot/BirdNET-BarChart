@@ -5,8 +5,7 @@
     version="2.0">
 	<xsl:output method="html" indent="yes"/>
 	<xsl:param name="asOf"/>
-	<xsl:param name="lat"/>
-	<xsl:param name="lon"/>
+	<xsl:param name="locale"/>
 	<xsl:include href="tabs.xsl"/>
 <!-- =========================================================================================== -->
 <!-- transform XML to HTML -->
@@ -26,7 +25,7 @@
 			</head>
 			<body>
 				<!-- display timeframe and locale -->
-				<h4>Bird song observations as of <xsl:value-of select="$asOf"/><br/>from location <xsl:value-of select="$lat"/>, <xsl:value-of select="$lon"/>.</h4>
+				<h4>Bird song observations as of <xsl:value-of select="$asOf"/><br/>from <xsl:value-of select="$locale"/>.</h4>
 				<!-- structure lists for conversion to tabs by jQueryUI -->
 				<xsl:apply-templates select="extract"/>
     			<div id="popup" style="left: 0; top: 0"></div>
