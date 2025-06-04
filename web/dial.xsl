@@ -24,7 +24,7 @@
 							<xsl:apply-templates select="moon"/>
 							<xsl:apply-templates select="sun"/>
 							<xsl:apply-templates select="weather"/>
-							<xsl:copy-of select="document('../grfx/svg/base.svg')/base/*"/>
+							<xsl:copy-of select="document('grfx/svg/base.svg')/base/*"/>
 						</g>
 						<xsl:apply-templates select="data"/>
 					</svg>
@@ -1076,33 +1076,33 @@
 		<xsl:choose>
 			<xsl:when test="$iconNumber = 800">
 				<xsl:if test="($dayNight = '06') or ($dayNight = '09') or ($dayNight = '12') or ($dayNight = '15') or ($dayNight = '18')">
-					<xsl:copy-of select="document('../grfx/svg/weather/clearSun.svg')/clearSun/*"/>
+					<xsl:copy-of select="document('grfx/svg/weather/clearSun.svg')/clearSun/*"/>
 				</xsl:if>
 				<xsl:if test="($dayNight = '21') or ($dayNight = '00') or ($dayNight = '03')">
 					<xsl:choose>
 						<xsl:when test="/extract/dial/moon/@phase ='New Moon'">
-								<xsl:copy-of select="document('../grfx/svg/moon/new.svg')/new/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/new.svg')/new/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Waxing Crescent'">
-								<xsl:copy-of select="document('../grfx/svg/moon/waxingCrescent.svg')/waxingCrescent/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/waxingCrescent.svg')/waxingCrescent/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='First Quarter'">
-								<xsl:copy-of select="document('../grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Waxing Gibbous'">
 								<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Full Moon'">
-								<xsl:copy-of select="document('../grfx/svg/moon/full.svg')/full/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/full.svg')/full/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Waning Gibbous'">
-								<xsl:copy-of select="document('../grfx/svg/moon/waningGibbous.svg')/waningGibbous/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/waningGibbous.svg')/waningGibbous/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Last Quarter'">
-								<xsl:copy-of select="document('../grfx/svg/moon/lastQuarter.svg')/lastQuarter/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/lastQuarter.svg')/lastQuarter/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Waning Crescent'">
-								<xsl:copy-of select="document('../grfx/svg/moon/waningCrescent.svg')/waningCrescent/*"/>
+								<xsl:copy-of select="document('grfx/svg/moon/waningCrescent.svg')/waningCrescent/*"/>
 						</xsl:when>
 						<xsl:otherwise>
 							<xsl:text>miss-matched moon.phase in dial.xsl</xsl:text>
@@ -1111,48 +1111,48 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (200 to 232)">
-				<xsl:copy-of select="document('../grfx/svg/weather/thunderstorm.svg')/thunderstorm/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/thunderstorm.svg')/thunderstorm/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (300, 310, 500, 520)">
-				<xsl:copy-of select="document('../grfx/svg/weather/rainLight.svg')/rainLight/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/rainLight.svg')/rainLight/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (301, 311, 313, 321, 501, 521, 531)">
-				<xsl:copy-of select="document('../grfx/svg/weather/rainModerate.svg')/rainModerate/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/rainModerate.svg')/rainModerate/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (302, 312, 314, 502, 522)">
-				<xsl:copy-of select="document('../grfx/svg/weather/rainHeavy.svg')/rainHeavy/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/rainHeavy.svg')/rainHeavy/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (503, 504)">
-				<xsl:copy-of select="document('../grfx/svg/weather/rainPouring.svg')/rainPouring/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/rainPouring.svg')/rainPouring/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (511, 611 to 613)">
-				<xsl:copy-of select="document('../grfx/svg/weather/sleet.svg')/sleet/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/sleet.svg')/sleet/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (600 to 602, 615 to 622)">
-				<xsl:copy-of select="document('../grfx/svg/weather/snow.svg')/snow/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/snow.svg')/snow/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = 701">
-				<xsl:copy-of select="document('../grfx/svg/weather/mist.svg')/mist/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/mist.svg')/mist/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (711 to 762)">
-				<xsl:copy-of select="document('../grfx/svg/weather/foggy.svg')/foggy/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/foggy.svg')/foggy/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = 771">
-				<xsl:copy-of select="document('../grfx/svg/weather/wind.svg')/wind/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/wind.svg')/wind/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = 781">
-				<xsl:copy-of select="document('../grfx/svg/weather/tornado.svg')/tornado/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/tornado.svg')/tornado/*"/>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (801 to 802)">
 				<xsl:if test="($dayNight = '06') or ($dayNight = '09') or ($dayNight = '12') or ($dayNight = '15') or ($dayNight = '18')">
-					<xsl:copy-of select="document('../grfx/svg/weather/cloudyPartialSun.svg')/cloudyPartialSun/*"/>
+					<xsl:copy-of select="document('grfx/svg/weather/cloudyPartialSun.svg')/cloudyPartialSun/*"/>
 				</xsl:if>
 				<xsl:if test="($dayNight = '21') or ($dayNight = '00') or ($dayNight = '03')">
-					<xsl:copy-of select="document('../grfx/svg/weather/cloudyPartialMoon.svg')/cloudyPartialMoon/*"/>
+					<xsl:copy-of select="document('grfx/svg/weather/cloudyPartialMoon.svg')/cloudyPartialMoon/*"/>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$iconNumber = (803 to 804)">
-				<xsl:copy-of select="document('../grfx/svg/weather/cloudy.svg')/cloudy/*"/>
+				<xsl:copy-of select="document('grfx/svg/weather/cloudy.svg')/cloudy/*"/>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:text>miss-matched weather.condition in dial.xsl, found </xsl:text><xsl:value-of select="$iconNumber"/>
