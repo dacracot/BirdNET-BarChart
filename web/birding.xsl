@@ -25,7 +25,7 @@
 			</head>
 			<body>
 				<!-- display timeframe and locale -->
-				<h4>Bird song observations as of <xsl:value-of select="$asOf"/><br/>from <xsl:value-of select="$locale"/>.</h4>
+				<h4>Bird song observations<br/>as of <xsl:value-of select="$asOf"/><br/>from <xsl:value-of select="$locale"/>.</h4>
 				<!-- structure lists for conversion to tabs by jQueryUI -->
 				<xsl:apply-templates select="extract"/>
     			<div id="popup" style="left: 0; top: 0"></div>
