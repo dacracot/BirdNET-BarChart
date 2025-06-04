@@ -4,8 +4,8 @@
     exclude-result-prefixes="xs"
     version="2.0">
 	<xsl:output method="html" indent="yes"/>
-	<xsl:include href="dial/dial.xsl"/>
-	<xsl:include href="chart/chart.xsl"/>
+	<xsl:include href="dial.xsl"/>
+	<xsl:include href="chart.xsl"/>
 <!-- =========================================================================================== -->
 <!-- transform XML to HTML -->
 	<xsl:template match="extract">

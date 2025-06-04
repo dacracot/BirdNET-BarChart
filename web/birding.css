@@ -58,26 +58,6 @@ menu {
 	height: 86px;
 	overflow-y: scroll;
 	}
-/* 
-ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-	}
-ul li {
-	border-radius: 3px;
-	margin: 0;
-	padding: 4px 2px;
-	}
-ul li:hover {
-	background: #eee;
-	}
-ul li label {
-	display: flex;
-	flex-grow: 1;
-	justify-content: space-between;
-	}
- */
 /* --------------  */
 /* -- on hour blue box --  */
 .textNormal {
