@@ -10,8 +10,8 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<th>Common Name</th>
-					<th>Quantity of Songs</th>
+					<th style="cursor: pointer; text-align: center;">Common Name<xsl:text>&#160;&#160;</xsl:text><img src="grfx/svg/sort.svg" alt="Sort By" width="12" height="12"/></th>
+					<th style="cursor: pointer; text-align: center;">Quantity of Songs<xsl:text>&#160;&#160;</xsl:text><img src="grfx/svg/sort.svg" alt="Sort By" width="12" height="12"/></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -19,8 +19,8 @@
 			</tbody>
 			<tfoot>
 				<tr>
-					<th>Common Name</th>
-					<th>Quantity of Songs</th>
+					<th style="text-align: center;">Common Name</th>
+					<th style="text-align: center;">Quantity of Songs</th>
 				</tr>
 			</tfoot>
 		</table>
@@ -56,7 +56,11 @@
 				<xsl:attribute name="href">https://www.allaboutbirds.org/guide/<xsl:value-of select="translate(@commonName,' ','_')"/></xsl:attribute>
 				<xsl:attribute name="target">_blank</xsl:attribute>
 				<xsl:element name="text">
+<!-- 
+This constant seems too far to the right, but I must have chosen it for a reason.
 					<xsl:attribute name="x">216</xsl:attribute>
+ -->
+					<xsl:attribute name="x">160</xsl:attribute>
 					<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
 					<xsl:attribute name="text-anchor">end</xsl:attribute>
 					<xsl:attribute name="font-size">12</xsl:attribute>
@@ -64,7 +68,11 @@
 				</xsl:element>
 			</xsl:element>
 			<xsl:element name="rect">
+<!-- 
+This constant seems too far to the right, but I must have chosen it for a reason.
 				<xsl:attribute name="x">220</xsl:attribute>
+ -->
+				<xsl:attribute name="x">164</xsl:attribute>
 				<xsl:attribute name="y"><xsl:value-of select="(7+(10*position()))" /></xsl:attribute>
 				<xsl:attribute name="width"><xsl:value-of select="(@averagePerDay*2)" /></xsl:attribute>
 				<xsl:attribute name="height">18</xsl:attribute>
@@ -72,7 +80,11 @@
 				<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
 			</xsl:element>
 			<xsl:element name="text">
+<!-- 
+This constant seems too far to the right, but I must have chosen it for a reason.
 				<xsl:attribute name="x"><xsl:value-of select="((@averagePerDay*2)+224)" /></xsl:attribute>
+ -->
+				<xsl:attribute name="x"><xsl:value-of select="((@averagePerDay*2)+168)" /></xsl:attribute>
 				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
 				<xsl:attribute name="font-size">12</xsl:attribute>
 				<xsl:value-of select="@averagePerDay"/>
