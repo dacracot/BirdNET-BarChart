@@ -36,7 +36,16 @@
 					<xsl:value-of select="@commonName"/>
 				</xsl:element>
 			</td>
-			<td><xsl:value-of select="@averagePerDay"/></td>
+			<td>
+				<xsl:choose>
+					<xsl:when test="@averagePerDay = 0">
+						<xsl:text>less than one</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="@averagePerDay"/>
+					</xsl:otherwise>
+				</xsl:choose>
+			</td>
 		</tr>
 	</xsl:template>
 <!-- =========================================================================================== -->
@@ -87,7 +96,15 @@ This constant seems too far to the right, but I must have chosen it for a reason
 				<xsl:attribute name="x"><xsl:value-of select="((@averagePerDay*2)+168)" /></xsl:attribute>
 				<xsl:attribute name="y"><xsl:value-of select="(20+(10*position()))" /></xsl:attribute>
 				<xsl:attribute name="font-size">12</xsl:attribute>
-				<xsl:value-of select="@averagePerDay"/>
+				<xsl:choose>
+					<xsl:when test="@averagePerDay = 0">
+						<xsl:text>less than one</xsl:text>
+					</xsl:when>
+					<xsl:otherwise>
+						<xsl:value-of select="@averagePerDay"/>
+					</xsl:otherwise>
+				</xsl:choose>
+<!-- 				<xsl:value-of select="@averagePerDay"/> -->
 			</xsl:element>
 		</xsl:element>
 	</xsl:template>

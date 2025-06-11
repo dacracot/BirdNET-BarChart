@@ -47,4 +47,9 @@ CREATE TABLE season (
 	phase TEXT NOT NULL,
 	changeover DATETIME NOT NULL
 	);
--- -----------------------------------------
+-- --------------------------------------
+CREATE TABLE color (
+	hex TEXT NOT NULL,
+	commonName TEXT
+	);
+-- --------------------------------------
