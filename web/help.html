@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="application-name" content="BirdNET-BarChart" />
+	<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
+	<title>BirdNET-BarChart Help</title>
 <style>
 * {box-sizing: border-box}
 body {font-family: Verdana, sans-serif; margin:0}
@@ -21,7 +26,7 @@ img {vertical-align: middle;}
   position: absolute;
   top: 50%;
   width: auto;
-  padding: 16px;
+  padding: 12px;
   margin-top: -22px;
   color: grey;
   font-weight: bold;
@@ -42,32 +47,12 @@ img {vertical-align: middle;}
   background-color: rgba(0,0,0,0.8);
 }
 
-/* Caption text */
-.text {
-  color: #f2f2f2;
-  font-size: 15px;
-  padding: 8px 12px;
-  position: absolute;
-  bottom: 8px;
-  width: 100%;
-  text-align: center;
-}
-
-/* Number text (1/3 etc) */
-.numbertext {
-  color: red;
-  font-size: 12px;
-  padding: 8px 12px;
-  position: absolute;
-  top: 0;
-}
-
 /* The dots/bullets/indicators */
 .dot {
   cursor: pointer;
-  height: 15px;
-  width: 15px;
-  margin: 0 2px;
+  height: 9px;
+  width: 9px;
+  margin: 2px 2px;
   background-color: #bbb;
   border-radius: 50%;
   display: inline-block;
@@ -89,45 +74,35 @@ img {vertical-align: middle;}
   to {opacity: 1}
 }
 
-/* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
-  .prev, .next,.text {font-size: 11px}
-}
 </style>
 </head>
 <body>
-
-<div class="slideshow-container">
-
-	<div class="mySlides fade">
-		<div class="numbertext">1 / 3</div>
-		<img src="grfx/png/help-001.png" style="width:100%">
-		<div class="text">One</div>
-	</div>
-
-	<div class="mySlides fade">
-		<div class="numbertext">2 / 3</div>
-		<img src="grfx/png/help-002.png" style="width:100%">
-		<div class="text">Two</div>
-	</div>
-
-	<div class="mySlides fade">
-		<div class="numbertext">3 / 3</div>
-		<img src="grfx/png/help-003.png" style="width:100%">
-		<div class="text">Three</div>
-	</div>
-
-	<a class="prev" onclick="plusSlides(-1)">❮</a>
-	<a class="next" onclick="plusSlides(1)">❯</a>
-
-</div>
-
-<br>
 
 <div style="text-align:center">
   <span class="dot" onclick="currentSlide(1)"></span> 
   <span class="dot" onclick="currentSlide(2)"></span> 
   <span class="dot" onclick="currentSlide(3)"></span> 
+</div>
+
+<br>
+
+<div class="slideshow-container">
+
+	<div class="mySlides fade">
+		<img src="grfx/png/help-001.png" style="width:100%">
+	</div>
+
+	<div class="mySlides fade">
+		<img src="grfx/png/help-002.png" style="width:100%">
+	</div>
+
+	<div class="mySlides fade">
+		<img src="grfx/png/help-003.png" style="width:100%">
+	</div>
+
+	<a class="prev" onclick="plusSlides(-1)"><</a>
+	<a class="next" onclick="plusSlides(1)">></a>
+
 </div>
 
 <script>
