@@ -90,6 +90,7 @@ mkdir -p ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/favicon.ico ${WEB_HOME}/BirdNET-BarChart
 cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
+cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
