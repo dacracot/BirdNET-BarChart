@@ -1,6 +1,7 @@
 .DS_Store
 tmp
 *.gz
+*.tgz
 *.out
 *.err
 *.pid
@@ -16,5 +17,6 @@ day.sql
 day.xml
 season.js
 season.sql
+season.xml
 weather.sql
 weather.xml
