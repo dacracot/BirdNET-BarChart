@@ -49,7 +49,7 @@ CREATE TABLE season (
 	);
 -- --------------------------------------
 CREATE TABLE color (
-	hexOrName TEXT NOT NULL,
-	commonName TEXT
+	name TEXT NOT NULL,
+	commonName TEXT NOT NULL
 	);
 -- --------------------------------------
