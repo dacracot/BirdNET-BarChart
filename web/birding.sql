@@ -1,22 +1,6 @@
 select '<?xml version="1.0" encoding="UTF-8"?>';
 -- select '<?xml-stylesheet type="text/xsl" href="chart.xsl"?>';
--- --------------------------------------------------------------------------------------
--- housekeeping for never before heard birds
--- --------------------------------------------------------------------------------------
-insert into color (commonName, hexOrName)
-	select
-		distinct commonName,
-		'Maroon' as hexOrName -- default color is Maroon (no idea why)
-	from
-		heard
-	where
-		commonName not in (
-			select
-				commonName
-			from
-				color
-			);
--- --------------------------------------------------------------------------------------
+-- -- --------------------------------------------------------------------------------------
 -- start XML output
 -- --------------------------------------------------------------------------------------
 select '<extract>';
