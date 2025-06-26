@@ -104,7 +104,7 @@ This constant seems too far to the right, but I must have chosen it for a reason
 				<xsl:attribute name="width"><xsl:value-of select="(@averagePerDay*2)" /></xsl:attribute>
 				<xsl:attribute name="height">5</xsl:attribute>
 				<!-- bars are all fuchsia until post processed with javascript -->
-				<xsl:attribute name="style">fill:fuchsia</xsl:attribute>
+				<xsl:attribute name="style">fill:<xsl:value-of select="@assignedColor"/></xsl:attribute>
 			</xsl:element>
 			<xsl:element name="text">
 <!-- 

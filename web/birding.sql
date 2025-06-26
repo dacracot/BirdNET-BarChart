@@ -8,26 +8,38 @@ select '<extract>';
 -- solar high
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.75 as confidence, '-24 hour' as timeframe, 1 as divisor)
+with
+	param as (select 0.75 as confidence, '-24 hour' as timeframe, 1 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="solar cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -36,26 +48,38 @@ order by rowOrder);
 -- solar mid
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.5 as confidence, '-24 hour' as timeframe, 1 as divisor)
+with
+	param as (select 0.5 as confidence, '-24 hour' as timeframe, 1 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="solar cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -64,26 +88,38 @@ order by rowOrder);
 -- solar low
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.1 as confidence, '-24 hour' as timeframe, 1 as divisor)
+with
+	param as (select 0.1 as confidence, '-24 hour' as timeframe, 1 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="solar cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -92,26 +128,38 @@ order by rowOrder);
 -- lunar high
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.75 as confidence, '-30 day' as timeframe, 30 as divisor)
+with
+	param as (select 0.75 as confidence, '-30 day' as timeframe, 30 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="lunar cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -120,26 +168,38 @@ order by rowOrder);
 -- lunar mid
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.5 as confidence, '-30 day' as timeframe, 30 as divisor)
+with
+	param as (select 0.5 as confidence, '-30 day' as timeframe, 30 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="lunar cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -148,26 +208,38 @@ order by rowOrder);
 -- lunar low
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.1 as confidence, '-30 day' as timeframe, 30 as divisor)
+with
+	param as (select 0.1 as confidence, '-30 day' as timeframe, 30 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="lunar cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -176,26 +248,38 @@ order by rowOrder);
 -- seasonal high
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.75 as confidence, '-12 month' as timeframe, 30 as divisor)
+with
+	param as (select 0.75 as confidence, '-12 month' as timeframe, 30 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="seasonal cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -204,26 +288,38 @@ order by rowOrder);
 -- seasonal mid
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.5 as confidence, '-12 month' as timeframe, 30 as divisor)
+with
+	param as (select 0.5 as confidence, '-12 month' as timeframe, 30 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="seasonal cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -232,26 +328,38 @@ order by rowOrder);
 -- seasonal low
 -- --------------------------------------------------------------------------------------
 select xml from (
-with param as (select 0.1 as confidence, '-12 month' as timeframe, 365 as divisor)
+with
+	param as (select 0.1 as confidence, '-12 month' as timeframe, 365 as divisor)
 select
 	'<set confidence="'||param.confidence||'" timeframe="seasonal cycle">' as xml,
 	1 as rowOrder
 from
 	param
 union select
-	'<row '||
-	'commonName="'||commonname||'" '||
-	'averagePerDay="'||(count(*)/param.divisor)||'" '||
-	'/>' as xml,
+	ifnull(
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="'||color.name||'" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+		,
+		'<row '||
+		'commonName="'||heard.commonName||'" '||
+		'assignedColor="black" '||
+		'averagePerDay="'||(count(*)/param.divisor)||'" '||
+		'/>'
+	) as xml,
 	2 as rowOrder
 from
 	heard, param
+full outer join
+	color on heard.commonName = color.commonName
 where
 	heard.confidence > param.confidence
 		and
 	minuteofday > datetime('now','localtime',param.timeframe)
 group by
-	commonname
+	heard.commonName
 union select
 	'</set>' as xml,
 	3 as rowOrder
@@ -589,17 +697,29 @@ with dialData as (
 			)
 	)
 	select
-		'<heard quantity="'||
-		count(dial)||'" dial="'||
-		dial||'" commonName="'||
-		replace(commonName,'''','`')||'" dialTime="'||
-		dialTime||'" confidenceRounded="'||
-		confidenceRounded||'" />'
+		ifnull(
+			'<heard quantity="'||
+			count(dial)||'" dial="'||
+			dial||'" commonName="'||
+			replace(dialData.commonName,'''','`')||'" dialTime="'||
+			dialTime||'" assignedColor="'||
+			color.name||'" confidenceRounded="'||
+			confidenceRounded||'" />'
+			,
+			'<heard quantity="'||
+			count(dial)||'" dial="'||
+			dial||'" commonName="'||
+			replace(dialData.commonName,'''','`')||'" dialTime="'||
+			dialTime||'" assignedColor="black" confidenceRounded="'||
+			confidenceRounded||'" />'
+			)
 	from
 		dialData
+	full outer join
+		color on dialData.commonName = color.commonName
 	group by
 		dial,
-		commonName,
+		dialData.commonName,
 		confidenceRounded
 	order by
 		dial
