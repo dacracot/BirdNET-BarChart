@@ -26,6 +26,8 @@ This is where all the web based report generation components are kept.
 	* XML stylesheet transform for bar charts and tables.
 * dial.xsl
 	* XML stylesheet transform for solr/lunar/seasonal dial displays.
+* help.html
+	* Show a video (help.mp4) of the user interface.
 * tabs.xsl
 	* XML stylesheet transform for tab navigation.
 

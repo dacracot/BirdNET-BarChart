@@ -1,17 +1,19 @@
-.DS_Store
 tmp
 *.gz
 *.tgz
 *.out
 *.err
 *.pid
+# sqlite database
 birds.db
-chart.html
-chart.xml
+# directories for recordings and generated files
 2024
 2025
 2026
+# temporal files
 species_list.txt
+birding.html
+birding.xml
 day.js
 day.sql
 day.xml
@@ -20,3 +22,7 @@ season.sql
 season.xml
 weather.sql
 weather.xml
+where.js
+where.xml
+# MacOS stuff
+.DS_Store
