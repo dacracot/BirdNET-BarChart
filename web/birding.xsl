@@ -19,13 +19,19 @@
 				<meta name="mobile-web-app-capable" content="yes" />
 				<meta name="application-name" content="BirdNET-BarChart" />
 				<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
-				<title>BirdNET-BarChart</title>
+				<title><xsl:value-of select="$locale"/></title>
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
 				<link rel="stylesheet" href="birding.css"/>
 			</head>
 			<body>
 				<!-- display timeframe and locale -->
-				<h4>Bird song observations<br/>as of <xsl:value-of select="$asOf"/><br/>from <xsl:value-of select="$locale"/>.</h4>
+				<table style="width:100%">
+					<tr>
+						<td style="text-align: left; vertical-align: text-top;"><a href="birding.html"><img src="grfx/svg/bird.svg" alt="Sort By" width="36" height="36"/></a></td>
+						<td style="text-align: left;"><h4>Bird song observations<br/>as of <xsl:value-of select="$asOf"/><br/>from <xsl:value-of select="$locale"/>.</h4></td>
+						<td style="text-align: right; vertical-align: text-top;"><a href="help.html"><img src="grfx/svg/help.svg" alt="Sort By" width="24" height="24"/></a></td>
+					</tr>
+				</table>
 				<!-- structure lists for conversion to tabs by jQueryUI -->
 				<xsl:apply-templates select="extract"/>
     			<div id="popup" style="left: 0; top: 0"></div>

@@ -9,7 +9,10 @@ This is where utility scripts and text files reside.
 * backupFailure.txt
 	* Email contents for a backup failure message.
 * color.html
-	* Shows the colors used and in what order.  Repeated in dail.xsl.
+	* Shows the colors used and in what order.
+* correct.sh
+	* Run the analyzer against a directory of WAV files and load results into the database, but nothing more.
+	* First parameter to the script is the directory to be analyzed.
 * crontabAdd.sh
 	* Add yearly, weekly, daily, hourly, and backup scripts to the crontab.
 * crontabRemove.sh

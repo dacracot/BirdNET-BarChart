@@ -28,7 +28,7 @@ echo "${AS_OF}"
 # ===================================================
 # find the audio card
 CARD=`arecord -l | grep -hom 1 [0-9] | head -1`
-# create today's destination directory
+# create todays destination directory
 mkdir -p ${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}/
 # record continuously into files of 1 minute each
 arecord -D sysdefault:CARD=${CARD} --quiet --max-file-time 60 -f S16_LE -r 48000 -t wav --use-strftime ${BARCHART_HOME}/work/%Y/%m/%d/%H/%Y-%m-%dT%H:%M.wav &
@@ -86,9 +86,11 @@ sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHAR
 # transform the xml into html
 XSLTransform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}"
 # copy it all to the web server
+mkdir -p ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/favicon.ico ${WEB_HOME}/BirdNET-BarChart
 cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
+cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
