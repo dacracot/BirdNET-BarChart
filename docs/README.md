@@ -43,12 +43,9 @@ and now know what birds are sharing their voices with me.
 		* `source venv-birdnet/bin/activate`
 	1. Add the analyzer dependencies.
 		* `python -m pip install -U pip`
-		* `pip3 install tflite-runtime`
-		* `pip3 install librosa resampy`
-		* `pip3 install keras_tuner`
-		* `pip3 install tensorflow==2.15.0`
+		* `pip3 install .`
 	1. Run the analyzer test.
-		* `python3 -m birdnet_analyzer.analyze`
+		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
 	1. Expand the SaxonC-HE 12.5 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
 		* `mkdir SaxonC-HE`
