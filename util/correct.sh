@@ -34,7 +34,7 @@ echo "${AS_OF}"
 # BirdNET-Analyzer using the species_list.txt created by weekly.sh, creates the CSV file
 pushd ${ANALYZER_HOME}
 source ${ANALYZER_HOME}/venv-birdnet/bin/activate
-python3 -m birdnet_analyzer.analyze --i ${WORK_HOUR}/ --o ${WORK_HOUR}/ --rtype ${TYPE} --threads 3 --slist ${BARCHART_HOME}/work/species_list.txt --combine_results
+python3 -m birdnet_analyzer.analyze -o ${WORK_HOUR}/ --rtype ${TYPE} -t 3 --slist ${BARCHART_HOME}/work/species_list.txt --combine_results ${WORK_HOUR}/
 popd
 # change file for DB loading
 # # change header
