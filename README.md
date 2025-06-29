@@ -4,7 +4,7 @@ Display BirdNET-Analyzer data a dial, bar chart, and table in a browser updating
 
 ---
 
-![dacracot/BirdNET-BarChart](grfx/svg/bird.svg)
+![dacracot/BirdNET-BarChart](web/grfx/svg/bird.svg)
 
 ---
 
@@ -21,11 +21,11 @@ Display BirdNET-Analyzer data a dial, bar chart, and table in a browser updating
 ### User Interface:
 
 * dial
-	* ![dial](grfx/svg/dialShot.svg)
+	* ![dial](web/grfx/png/dialShot.png)
 * bar chart
-	* ![bar chart](grfx/svg/barChartShot.svg)
+	* ![bar chart](web/grfx/png/barChartShot.png)
 * table
-	* ![table](grfx/svg/tableShot.svg)
+	* ![table](web/grfx/png/tableShot.png)
 
 ### Dependencies:
 
