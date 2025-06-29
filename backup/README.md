@@ -8,6 +8,12 @@ This is where backups are written.
 
 * YEAR-MON-DAY
 	* Timestamp of when the backup was produced.
+* source name
+	* Name of the source data that necessitated the backup.
+* .db.gz
+	* Database backup.
+* .tgz
+	* Directory backup.
 
 ### Dependencies:
 
