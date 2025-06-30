@@ -453,7 +453,7 @@ from
 	where
 		confidence between 0.9 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	)
 order by 1;
 select '</confidence>';
@@ -469,7 +469,7 @@ from
 	where
 		confidence between 0.8 and 0.9
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -477,7 +477,7 @@ from
 	where
 		confidence between 0.9 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	)
 order by 1;
 select '</confidence>';
@@ -493,7 +493,7 @@ from
 	where
 		confidence between 0.7 and 0.8
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -501,7 +501,7 @@ from
 	where
 		confidence between 0.8 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	)
 order by 1;
 select '</confidence>';
@@ -517,7 +517,7 @@ from
 	where
 		confidence between 0.6 and 0.7
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -525,8 +525,7 @@ from
 	where
 		confidence between 0.7 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.5">';
@@ -541,7 +540,7 @@ from
 	where
 		confidence between 0.5 and 0.6
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -549,8 +548,7 @@ from
 	where
 		confidence between 0.6 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.4">';
@@ -565,7 +563,7 @@ from
 	where
 		confidence between 0.4 and 0.5
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -573,8 +571,7 @@ from
 	where
 		confidence between 0.5 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.3">';
@@ -589,7 +586,7 @@ from
 	where
 		confidence between 0.3 and 0.4
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -597,8 +594,7 @@ from
 	where
 		confidence between 0.4 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.2">';
@@ -613,7 +609,7 @@ from
 	where
 		confidence between 0.2 and 0.3
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -621,8 +617,7 @@ from
 	where
 		confidence between 0.3 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.1">';
@@ -637,7 +632,7 @@ from
 	where
 		confidence between 0.1 and 0.2
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -645,8 +640,7 @@ from
 	where
 		confidence between 0.2 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.0">';
@@ -661,7 +655,7 @@ from
 	where
 		confidence between 0.0 and 0.1
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 	except select
 		distinct commonName as bird
 	from
@@ -669,8 +663,7 @@ from
 	where
 		confidence between 0.1 and 1.0
 			and
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
-	)
+		minuteofday > datetime('now','localtime','-24 hour')	)
 order by 1;
 select '</confidence>';
 select '</menu>';
@@ -685,7 +678,7 @@ with dialData as (
 	from
 		heard
 	where
-		unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 			and
 		commonName in (
 			select
@@ -693,7 +686,7 @@ with dialData as (
 			from
 				heard
 			where
-				unixepoch(minuteOfDay) > (unixepoch('now','localtime')-(24*60*60))
+		minuteofday > datetime('now','localtime','-24 hour')
 			)
 	)
 	select
