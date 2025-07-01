@@ -127,7 +127,7 @@
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="data">
-		<xsl:variable name="scalar">3</xsl:variable>
+		<xsl:variable name="scalar">5</xsl:variable>
 		<xsl:for-each-group select="heard" group-by="@commonName">
 			<xsl:sort select="@commonName"/>
 			<xsl:element name="g">
