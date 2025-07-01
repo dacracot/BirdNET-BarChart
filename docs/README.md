@@ -34,21 +34,18 @@ and now know what birds are sharing their voices with me.
 	1. Boot your new system and run `sudo apt update`, then `sudo apt upgrade`, and `sudo apt autoremove` to get all the latest base software.
 * ___Install the analyzer___ or better yet, follow [their](https://github.com/kahst/BirdNET-Analyzer) documentation:
 	1. Expand the release file obtained from the BirdNET-Analyzer GitHub.
-		* `tar xzvf v1.5.1.tar.gz`
+		* `tar xzvf v2.1.1.tar.gz`
 	1. Enter the resultant directory.
-		* `cd BirdNET-Analyzer-1.5.1`
+		* `cd BirdNET-Analyzer-2.1.1`
 	1. Create the Python virtual environment.
 		* `python3 -m venv venv-birdnet`
 	1. Activate the Python virtual environment.
 		* `source venv-birdnet/bin/activate`
 	1. Add the analyzer dependencies.
 		* `python -m pip install -U pip`
-		* `pip3 install tflite-runtime`
-		* `pip3 install librosa resampy`
-		* `pip3 install keras_tuner`
-		* `pip3 install tensorflow==2.15.0`
+		* `pip3 install .`
 	1. Run the analyzer test.
-		* `python3 -m birdnet_analyzer.analyze`
+		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
 	1. Expand the SaxonC-HE 12.5 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
 		* `mkdir SaxonC-HE`

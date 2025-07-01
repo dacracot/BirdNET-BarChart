@@ -1,4 +1,5 @@
 -- --------------------------------------
+-- bird observations
 CREATE TABLE heard (
 	startSecond FLOAT NOT NULL,
 	endSecond FLOAT NOT NULL,
@@ -8,13 +9,7 @@ CREATE TABLE heard (
 	minuteOfDay DATETIME NOT NULL
 	);
 -- --------------------------------------
-CREATE TABLE chart (
-	name TEXT NOT NULL,
-	xml TEXT NOT NULL,
-	grouper TEXT,
-	seq INTEGER PRIMARY KEY
-	);
--- --------------------------------------
+-- solar snapshots
 CREATE TABLE sun (
 	dawn DATETIME NOT NULL,
 	up DATETIME NOT NULL,
@@ -24,6 +19,7 @@ CREATE TABLE sun (
 	minuteOfDay DATETIME NOT NULL
 	);
 -- --------------------------------------
+-- lunar snapshots
 CREATE TABLE moon (
 	phase TEXT NOT NULL,
 	up DATETIME,
@@ -32,6 +28,7 @@ CREATE TABLE moon (
 	minuteOfDay DATETIME NOT NULL
 	);
 -- --------------------------------------
+-- weather snapshots
 CREATE TABLE weather (
 	condition TEXT NOT NULL,
 	iconNumber INTEGER NOT NULL,
@@ -43,50 +40,55 @@ CREATE TABLE weather (
 	minuteOfDay DATETIME NOT NULL
 	);
 -- --------------------------------------
+-- seasonal timeframes
 CREATE TABLE season (
 	phase TEXT NOT NULL,
 	changeover DATETIME NOT NULL
 	);
 -- --------------------------------------
+-- Color Assignments
 CREATE TABLE color (
 	name TEXT NOT NULL,
 	commonName TEXT NOT NULL
 	);
 -- --------------------------------------
 -- Color Candidates
+CREATE TABLE candidate (
+	name TEXT NOT NULL
+	);
 -- --------------------------------------
--- insert into color values ('Salmon',NULL);
--- insert into color values ('Red',NULL);
--- insert into color values ('FireBrick',NULL);
--- insert into color values ('Pink',NULL);
--- insert into color values ('DeepPink',NULL);
--- insert into color values ('Tomato',NULL);
--- insert into color values ('DarkOrange',NULL);
--- insert into color values ('Orange',NULL);
--- insert into color values ('Gold',NULL);
--- insert into color values ('PeachPuff',NULL);
--- insert into color values ('DarkKhaki',NULL);
--- insert into color values ('Violet',NULL);
--- insert into color values ('MediumPurple',NULL);
--- insert into color values ('DarkViolet',NULL);
--- insert into color values ('Lime',NULL);
--- insert into color values ('SeaGreen',NULL);
--- insert into color values ('Olive',NULL);
--- insert into color values ('MediumAquamarine',NULL);
--- insert into color values ('Teal',NULL);
--- insert into color values ('Cyan',NULL);
--- insert into color values ('Tan',NULL);
--- insert into color values ('Sienna',NULL);
--- insert into color values ('Maroon',NULL);
--- insert into color values ('LawnGreen',NULL);
--- insert into color values ('DarkMagenta',NULL);
--- insert into color values ('YellowGreen',NULL);
--- insert into color values ('PaleVioletRed',NULL);
--- insert into color values ('DarkCyan',NULL);
--- insert into color values ('Fuchsia',NULL);
--- insert into color values ('Moccasin',NULL);
--- insert into color values ('Yellow',NULL);
--- insert into color values ('DarkGoldenrod',NULL);
--- insert into color values ('BlueViolet',NULL);
--- insert into color values ('DarkOliveGreen',NULL);
+insert into candidate values ('Salmon');
+insert into candidate values ('Red');
+insert into candidate values ('FireBrick');
+insert into candidate values ('Pink');
+insert into candidate values ('DeepPink');
+insert into candidate values ('Tomato');
+insert into candidate values ('DarkOrange');
+insert into candidate values ('Orange');
+insert into candidate values ('Gold');
+insert into candidate values ('PeachPuff');
+insert into candidate values ('DarkKhaki');
+insert into candidate values ('Violet');
+insert into candidate values ('MediumPurple');
+insert into candidate values ('DarkViolet');
+insert into candidate values ('Lime');
+insert into candidate values ('SeaGreen');
+insert into candidate values ('Olive');
+insert into candidate values ('MediumAquamarine');
+insert into candidate values ('Teal');
+insert into candidate values ('Cyan');
+insert into candidate values ('Tan');
+insert into candidate values ('Sienna');
+insert into candidate values ('Maroon');
+insert into candidate values ('LawnGreen');
+insert into candidate values ('DarkMagenta');
+insert into candidate values ('YellowGreen');
+insert into candidate values ('PaleVioletRed');
+insert into candidate values ('DarkCyan');
+insert into candidate values ('Fuchsia');
+insert into candidate values ('Moccasin');
+insert into candidate values ('Yellow');
+insert into candidate values ('DarkGoldenrod');
+insert into candidate values ('BlueViolet');
+insert into candidate values ('DarkOliveGreen');
 -- --------------------------------------

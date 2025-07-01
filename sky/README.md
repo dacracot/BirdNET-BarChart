@@ -20,6 +20,8 @@ This is where scripts and support files for celestial data reside.
 	* Temporal file holding server response in JSON.
 * season.sql
 	* Temporal file holding SQL for insertion to database.
+* season.xml
+	* Temporal file holding XML from jq translation from JSON.
 * season.xsl
 	* Transform code to convert XML to SQL.
 * weather.sql
@@ -33,3 +35,5 @@ This is where scripts and support files for celestial data reside.
 ### Dependencies:
 
 * [jq](https://jqlang.org)
+* [Astronomical Applications Department of the U.S. Naval Observatory](https://aa.usno.navy.mil/)
+* [Open Weather Map](https://openweathermap.org/api)
