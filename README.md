@@ -1,6 +1,6 @@
 # BirdNET-BarChart
 
-Display BirdNET-Analyzer data a dial, bar chart, and table in a browser updating hourly with up to date data.
+Display BirdNET-Analyzer data as a dial, bar chart, and table in a browser updating hourly with up to date data.
 
 ---
 
