@@ -38,7 +38,7 @@ TMP=`sqlite3 ${BARCHART_HOME}/birds.db << EOF
 .mode csv
 select
 	commonName,
-	(count(commonName)*(sum(confidence)/count(commonName)))
+	(count(commonName)*sum(confidence))
 from
 	heard
 where
@@ -61,5 +61,4 @@ select YN in "Yes" "No"; do
 		No ) exit;;
 	esac
 done
-echo "Done"
 # ---------------------------------------------------
