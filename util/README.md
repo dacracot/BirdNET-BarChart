@@ -21,5 +21,3 @@ This is where utility scripts and text files reside.
 	* Default crontab times and scripts.
 * storageFailure.txt
 	* Email contents for a storage trimming failure message.
-* upgrade.sh
-	* Perform any tasks, such as database restructuring, when a new version is pulled from the repo.
