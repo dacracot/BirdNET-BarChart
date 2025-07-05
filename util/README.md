@@ -6,6 +6,8 @@ This is where utility scripts and text files reside.
 
 ### Files:
 
+* color.sh
+	* Set a consistent color for the most popular bird not yet assigned a color.
 * backupFailure.txt
 	* Email contents for a backup failure message.
 * correct.sh

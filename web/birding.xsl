@@ -6,6 +6,7 @@
 	<xsl:output method="html" indent="yes"/>
 	<xsl:param name="asOf"/>
 	<xsl:param name="locale"/>
+	<xsl:param name="commit"/>
 	<xsl:include href="tabs.xsl"/>
 <!-- =========================================================================================== -->
 <!-- transform XML to HTML -->
@@ -35,6 +36,7 @@
 				<!-- structure lists for conversion to tabs by jQueryUI -->
 				<xsl:apply-templates select="extract"/>
     			<div id="popup" style="left: 0; top: 0"></div>
+    			<div style="font-size: 5px;"><xsl:value-of select="$commit"/></div>
 			</body><xsl:text>
 </xsl:text>
 			<script src="https://code.jquery.com/jquery-3.7.1.js"></script><xsl:text>
