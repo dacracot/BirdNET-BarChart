@@ -5,6 +5,7 @@ YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
 HOUR=`date '+%H'`
+CONFIDENCE=0.0
 # ---------------------------------------------------
 # source the configuration file
 # it must be edited and copied as ".BirdNET-BarChart" to you home directory
@@ -24,7 +25,7 @@ mkdir ${BARCHART_HOME}/share/tmp-BirdWeather
 # create file of last hours significant files
 sqlite3 ${BARCHART_HOME}/birds.db << EOF
 .output ${BARCHART_HOME}/share/tmp-BirdWeather/c75.lst
-select distinct minuteOfDay from heard where datetime(minuteOfDay) > datetime('now','localtime','-1 hour') and confidence >= 0.75;
+select distinct minuteOfDay from heard where datetime(minuteOfDay) > datetime('now','localtime','-1 hour') and confidence >= ${CONFIDENCE};
 EOF
 # read each line
 while read TS; do
@@ -78,7 +79,7 @@ from
 where
 	minuteOfDay = :ts
 		and
-	confidence >= 0.75;
+	confidence >= ${CONFIDENCE};
 EOF
 	# read each line
 	while read JS; do
