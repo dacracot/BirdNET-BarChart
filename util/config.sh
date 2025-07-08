@@ -22,6 +22,7 @@ else
 	BACKUP_HOME=username@192.168.0.123:${HOME}/backups
 	BACKUP_PASSWORD=secret
 	OWM_TOKEN=secret
+	BIRDWEATHER_ID=secret
 	FAILURE_EMAIL=username@somemail.com
 fi
 # ---------------------------------------------------
@@ -52,6 +53,10 @@ echo "Percentage set to ${PERCENT_STORAGE_ALLOWED}."
 echo " "
 read -e -p "Enter your Open Weather Map access token: " -i ${OWM_TOKEN} OWM_TOKEN
 echo "Token set to ${OWM_TOKEN}."
+# set BirdWeather Share Token... no initial default
+echo " "
+read -e -p "Enter your BirdWeather access token: " -i ${BIRDWEATHER_ID} BIRDWEATHER_ID
+echo "Token set to ${BIRDWEATHER_ID}."
 # set BACKUP_HOME... default to read values
 echo " "
 read -e -p "Enter the URI for the backup server: " -i ${BACKUP_HOME} BACKUP_HOME
@@ -82,6 +87,7 @@ echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=${BACKUP_HOME}"
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
 echo "OWM_TOKEN=${OWM_TOKEN}"
+echo "BIRDWEATHER_ID=${BIRDWEATHER_ID}"
 }  > ${HOME}/.BirdNET-BarChart
 echo "Source set"
 # ---------------------------------------------------
