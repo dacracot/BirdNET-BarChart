@@ -20,7 +20,7 @@ and now know what birds are sharing their voices with me.
 	1. [Apache](https://www.apache.org) to serve web content.
 	1. [Python 3](https://www.python.org) to support the analyzer.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
-	1. [XSLTransform](https://en.wikipedia.org/wiki/XSLT) to support the barcharter.
+	1. [SaxonC-HE](https://www.saxonica.com/) to support the barcharter.
 	1. [SVG](https://en.wikipedia.org/wiki/SVG) to render the charts in the browser.
 	1. [sSMTP](https://packages.debian.org/source/unstable/ssmtp) to send alert emails when unrecoverable errors occur.
 
@@ -33,6 +33,7 @@ and now know what birds are sharing their voices with me.
 	1. Enter your customizations for hostname, initial user, WiFi, locale, and ssh.
 	1. Boot your new system and run `sudo apt update`, then `sudo apt upgrade`, and `sudo apt autoremove` to get all the latest base software.
 * ___Install the analyzer___ or better yet, follow [their](https://github.com/kahst/BirdNET-Analyzer) documentation:
+	1. Change the directory to your preferred installation location.
 	1. Expand the release file obtained from the BirdNET-Analyzer GitHub.
 		* `tar xzvf v2.1.1.tar.gz`
 	1. Enter the resultant directory.
@@ -47,21 +48,11 @@ and now know what birds are sharing their voices with me.
 	1. Run the analyzer test.
 		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
+	1. Change the directory back to your preferred installation location.
 	1. Expand the SaxonC-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
 		* `mkdir SaxonC-HE-12.8`
 		* `cd SaxonC-HE-12.8`
 		* `unzip SaxonCHE-linux-aarch64-12-8-0.zip`
-	1. Install the transformer for general usage.
-		* `cd /usr/lib`
-		* `sudo mkdir -p Saxonica/SaxonC-HE-12.8.0`
-		* `sudo cp -v ~/SaxonC-HE-12.8/SaxonCHE-linux-aarch64-12-8-0/SaxonCHE/lib/*so* Saxonica/SaxonC-HE-12.8.0`
-		* `cd /usr/bin`
-		* `sudo mkdir -p Saxonica/SaxonC-HE-12.8.0`
-		* `sudo cp -v ~/SaxonC-HE-12.8/SaxonCHE-linux-aarch64-12-8-0/SaxonCHE/bin/Transform Saxonica/SaxonC-HE-12.8.0`
-		* `sudo ln -s Saxonica/SaxonC-HE-12.8.0/Transform XSLTransform`
-	1. Run transformer test.
-		* `cd ~/SaxonC-HE-12.8/SaxonCHE-linux-aarch64-12-8-0/samples/data`
-		* `XSLTransform -s:books.xml -xsl:books.xsl`
 * ___Install this software___:
 	1. Install sqlite, Apache, sshpass, and sSMTP.
 		* `sudo apt install sqlite3`
@@ -78,25 +69,33 @@ and now know what birds are sharing their voices with me.
 		* `cd /home/dacracot/BirdNET-BarChart`
 	1. Replace the empty sqlite database with your backup if you have one.
 		* `mv /tmp/birds.db /home/dacracot/BirdNET-BarChart`
-	1. Edit the crontab.txt to adjust times for scripts prior to running the config script.
-		* `15 0 * * * /home/dacracot/BirdNET-BarChart/backup/backup.sh`
-		* `45 2 1 1 * /home/dacracot/BirdNET-BarChart/yearly.sh`
-		* `30 2 * * 7 /home/dacracot/BirdNET-BarChart/weekly.sh`
-		* `0 2 * * * /home/dacracot/BirdNET-BarChart/daily.sh`
-		* `0 * * * * /home/dacracot/BirdNET-BarChart/hourly.sh`
-	1. Run the configuration script and enter your lat/lon, the analyzer's home directory, this software's home directory, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
-		* `config.sh`
-	1. Run the weekly script to get the latest species.
+* ___Configure this software___:
+	1. Edit the `util/crontab.txt` to adjust times for scripts prior to running the config script.
+		* `15 0 * * * @@HOMEDIR@@/backup/backup.sh`
+		* `45 2 1 1 * @@HOMEDIR@@/yearly.sh`
+		* `30 2 * * 7 @@HOMEDIR@@/weekly.sh`
+		* `0 2 * * * @@HOMEDIR@@/daily.sh`
+		* `0 * * * * @@HOMEDIR@@/hourly.sh`
+		* `20 * * * * @@HOMEDIR@@/share/BirdWeather.sh`
+	1. Run the configuration script and enter your lat/lon, various home directories, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
+		* `util/config.sh`
+* ___Test the transformer used by this software___:
+	1. Run transformer test.
+		* `cd ${XSLT_HOME}/../samples/data`
+		* `XSLTransform -s:books.xml -xsl:books.xsl`
+* ___Start/Stop this software___:
+	1. Run the weekly script once manually to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
-	1. Access the browser user interface...
-		* `http://birding.local/chart/chart.html`
+	1. Start or stop this software gracefully.
+		* `start.sh` starts the process which analyzes, updates, and renders the user interface according to your cron config.
+		* `stp.sh` stops the process and allows a final analysis, update, and rendering the user interface.
 
 ---
 
 ### Files:
 
 * `config.sh`
-  * Script to set the longitude, latitude, home directory of the analyzer, home directory of the barcharter, home directory of the web server, maximum percentage storage usage, backup URI, and its password.
+  * Script to set the longitude, latitude, home directory of the analyzer, home directory of the transformer, an alias to the transformer executable, home directory of the barcharter, home directory of the web server, maximum percentage storage usage, backup URI, and its password.
   * The results will be written to the user's home directory and named `.BirdNET-BarChart`.
 * `weekly.sh`
   * Updates the species list using the analyzer.
