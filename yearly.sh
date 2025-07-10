@@ -25,7 +25,7 @@ fi
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?year=2025&tz=-8&dst=true" > ${BARCHART_HOME}/sky/season.js
+	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?${YEAR}=2025&tz=-8&dst=true" > ${BARCHART_HOME}/sky/season.js
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
