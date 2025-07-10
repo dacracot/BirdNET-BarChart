@@ -82,7 +82,7 @@ and now know what birds are sharing their voices with me.
 * ___Test the transformer used by this software___:
 	1. Run transformer test.
 		* `cd ${XSLT_HOME}/../samples/data`
-		* `XSLTransform -s:books.xml -xsl:books.xsl`
+		* `${XSLTransform} -s:books.xml -xsl:books.xsl`
 * ___Start/Stop this software___:
 	1. Run the weekly script once manually to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
