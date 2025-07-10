@@ -47,28 +47,21 @@ and now know what birds are sharing their voices with me.
 	1. Run the analyzer test.
 		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
-	1. Expand the SaxonC-HE 12.5 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
-		* `mkdir SaxonC-HE`
-		* `cd SaxonC-HE`
-		* `unzip libsaxon-HEC-linux-aarch64-v12.5.0.zip `
-	1. Enter the result's command directory.
-		* `cd libsaxon-HEC-linux-aarch64-v12.5.0/command`
-	1. Run the script to build your libraries.
-		* `./build64-linux.sh`
+	1. Expand the SaxonC-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
+		* `mkdir SaxonC-HE-12.8`
+		* `cd SaxonC-HE-12.8`
+		* `unzip SaxonCHE-linux-aarch64-12-8-0.zip`
 	1. Install the transformer for general usage.
 		* `cd /usr/lib`
-		* `sudo mkdir -p Saxonica/SaxonC-HE-12.5.0`
-		* `sudo cp ~/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/libs/nix/libsaxon-hec-12.5.0.so Saxonica/SaxonC-HE-12.5.0`
-		* `sudo ln -s Saxonica/SaxonC-HE-12.5.0/libsaxon-hec-12.5.0.so libsaxon-hec-12.5.0.so`
+		* `sudo mkdir -p Saxonica/SaxonC-HE-12.8.0`
+		* `sudo cp -v ~/SaxonC-HE-12.8/SaxonCHE-linux-aarch64-12-8-0/SaxonCHE/lib/*so* Saxonica/SaxonC-HE-12.8.0`
 		* `cd /usr/bin`
-		* `sudo mkdir -p Saxonica/SaxonC-HE-12.5.0`
-		* `sudo cp ~/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/command/transform Saxonica/SaxonC-HE-12.5.0`
-		* `sudo ln -s Saxonica/SaxonC-HE-12.5.0/transform XSLTransform`
-	1. _Alternatively, set the library path to include the newly built library with an environment variable_.
-		* `export LD_LIBRARY_PATH=/home/dacracot/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/libs/nix`
-		* `ln -s /home/dacracot/SaxonC-HE/libsaxon-HEC-linux-aarch64-v12.5.0/command/transform XSLTransform`
+		* `sudo mkdir -p Saxonica/SaxonC-HE-12.8.0`
+		* `sudo cp -v ~/SaxonC-HE-12.8/SaxonCHE-linux-aarch64-12-8-0/SaxonCHE/bin/Transform Saxonica/SaxonC-HE-12.8.0`
+		* `sudo ln -s Saxonica/SaxonC-HE-12.8.0/Transform XSLTransform`
 	1. Run transformer test.
-		* `XSLTransform -s:some.xml -xsl:some.xsl`
+		* `cd ~/SaxonC-HE-12.8/SaxonCHE-linux-aarch64-12-8-0/samples/data`
+		* `XSLTransform -s:books.xml -xsl:books.xsl`
 * ___Install this software___:
 	1. Install sqlite, Apache, sshpass, and sSMTP.
 		* `sudo apt install sqlite3`
