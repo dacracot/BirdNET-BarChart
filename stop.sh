@@ -33,7 +33,7 @@ else
 	# stop the last hourly script from sleeping
 	kill `ps h -eo pid,command | grep "sleep [0-9]*m" | grep -v "grep" | awk '{print $1}'`
 	echo " " > /dev/tty
-	echo "Wait for the analysis to complete prior to restarting.  Usually less than 10 minutes." > /dev/tty
+	echo "Wait for the analysis to complete prior to completing.  Usually less than 10 minutes." > /dev/tty
 	sleep 5s
 	echo " " > /dev/tty
 	while [[ `ps h -eo pid,command | grep -v "grep" | grep "birdnet_analyzer" | awk '{print $1}' | wc -l` != "0" ]];
