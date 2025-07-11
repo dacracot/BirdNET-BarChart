@@ -25,6 +25,13 @@ TYPE=csv
 WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 AS_OF=`date '+%A, %d %B %Y at %H:00'`
 echo "${AS_OF}"
+pushd ${BARCHART_HOME}
+TAG=`git tag | tail -n 1`
+WHEN=`git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '3p' | cut -d' ' -f4,5,6,7,8,9`
+VERSION=`git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '5,7p' | awk 'NF'`
+popd
+COMMIT="${VERSION} ${WHEN}"
+echo "${COMMIT}"
 # ===================================================
 # find the audio card
 CARD=`arecord -l | grep -hom 1 [0-9] | head -1`
@@ -49,7 +56,7 @@ do
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		XSLTransform -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
+		${XSLTransform} -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/weather.sql
 		echo "weather sucess on attempt ${i}"
 		break   
@@ -84,7 +91,7 @@ gzip ${WORK_HOUR}/*
 # extract the table to XML
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHART_HOME}/web/birding.xml
 # transform the xml into html
-XSLTransform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}"
+${XSLTransform} -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}"  commit="${COMMIT}"
 # copy it all to the web server
 mkdir -p ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/favicon.ico ${WEB_HOME}/BirdNET-BarChart

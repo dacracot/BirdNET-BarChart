@@ -22,5 +22,5 @@ This is where files are written, read, deleted, and saved from the ongoing proce
 		* DAY
 			* HOUR
 				* Sound recordings in WAV format.
-					* These may be removed by the weekly process that check whether the disk capacity has exceeded the "percentage of disk usage allowed" set during initial configuration.
+					* These may be removed by the weekly process that checks whether the disk capacity has exceeded the "percentage of disk usage allowed" set during initial configuration.
 				* Analysis results in CSV format.

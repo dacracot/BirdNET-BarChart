@@ -5,6 +5,16 @@ MONTH=`date '+%m'`
 DAY=`date '+%d'`
 # ---------------------------------------------------
 # ---------------------------------------------------
+echo "You will be prompted for your Open Weather Map access token and BirdWeather access token."
+echo "The Open Weather Map token is for recording and display current climate conditions.  You may obtain it from https://openweathermap.org. Without it your display will lack climate data."
+echo "The BirdWeather token is for sharing data with the Birdweather maps.  You may obtain it from https://www.birdweather.com. This only necessary if you choose to share with Birdweather."
+read -p "Do you wish to continue (y/n)?" YORN
+case "$YORN" in 
+  y|Y ) echo "yes";;
+  n|N ) echo "no"; exit;;
+  * ) echo "Please answer Y or N"; exit;;
+esac
+# ---------------------------------------------------
 # does the CONFIG_FILE already exist?
 CONFIG_FILE=${HOME}/.BirdNET-BarChart
 if [ -f "${CONFIG_FILE}" ]; then
@@ -17,11 +27,13 @@ else
 	LOCALE="Potter County, South Dakota"
 	BARCHART_HOME=${HOME}/BirdNET-BarChart
 	ANALYZER_HOME=${HOME}/BirdNET-Analyzer
+	XSLT_HOME=${HOME}/SaxonC-HE
 	WEB_HOME=/var/www/html
 	PERCENT_STORAGE_ALLOWED=60
 	BACKUP_HOME=username@192.168.0.123:${HOME}/backups
 	BACKUP_PASSWORD=secret
 	OWM_TOKEN=secret
+	BIRDWEATHER_ID=secret
 	FAILURE_EMAIL=username@somemail.com
 fi
 # ---------------------------------------------------
@@ -40,6 +52,10 @@ echo "Barchart home set to ${BARCHART_HOME}."
 echo " "
 read -e -p "Enter the home of the analyzer software: " -i ${ANALYZER_HOME} ANALYZER_HOME
 echo "Analyzer home set to ${ANALYZER_HOME}."
+# set XSLT_HOME... no initial default
+echo " "
+read -e -p "Enter the home of the transformer software, specifically the directory containing the lib and bin subdirectories: " -i ${XSLT_HOME} XSLT_HOME
+echo "Transformer home set to ${XSLT_HOME}."
 # set WEB_HOME... /var/www/html/
 echo " "
 read -e -p "Enter the home of the web server: " -i ${WEB_HOME} WEB_HOME
@@ -52,6 +68,10 @@ echo "Percentage set to ${PERCENT_STORAGE_ALLOWED}."
 echo " "
 read -e -p "Enter your Open Weather Map access token: " -i ${OWM_TOKEN} OWM_TOKEN
 echo "Token set to ${OWM_TOKEN}."
+# set BirdWeather Share Token... no initial default
+echo " "
+read -e -p "Enter your BirdWeather access token: " -i ${BIRDWEATHER_ID} BIRDWEATHER_ID
+echo "Token set to ${BIRDWEATHER_ID}."
 # set BACKUP_HOME... default to read values
 echo " "
 read -e -p "Enter the URI for the backup server: " -i ${BACKUP_HOME} BACKUP_HOME
@@ -69,7 +89,7 @@ curl -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1
 echo "<where>" > where.xml
 jq -rf sky/json2xml.jq where.js >> where.xml
 echo "</where>" >> where.xml
-LOCALE=`XSLTransform -s:where.xml -xsl:where.xsl`
+LOCALE=`/usr/lib/ld-linux-aarch64.so.1 --library-path ${XSLT_HOME}/lib ${XSLT_HOME}/bin/Transform -s:where.xml -xsl:where.xsl`
 echo "----------"
 {
 echo "LAT=${LAT}"
@@ -77,11 +97,14 @@ echo "LON=${LON}"
 echo "LOCALE='${LOCALE}'"
 echo "BARCHART_HOME=${BARCHART_HOME}"
 echo "ANALYZER_HOME=${ANALYZER_HOME}"
+echo "XSLT_HOME=${XSLT_HOME}"
+echo "XSLTransform='/usr/lib/ld-linux-aarch64.so.1 --library-path ${XSLT_HOME}/lib ${XSLT_HOME}/bin/Transform'"
 echo "WEB_HOME=${WEB_HOME}"
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=${BACKUP_HOME}"
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
 echo "OWM_TOKEN=${OWM_TOKEN}"
+echo "BIRDWEATHER_ID=${BIRDWEATHER_ID}"
 }  > ${HOME}/.BirdNET-BarChart
 echo "Source set"
 # ---------------------------------------------------

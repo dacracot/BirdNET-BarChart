@@ -3,4 +3,5 @@
 30 2 * * 7 @@HOMEDIR@@/weekly.sh
 0 2 * * * @@HOMEDIR@@/daily.sh
 0 * * * * @@HOMEDIR@@/hourly.sh
+20 * * * * @@HOMEDIR@@/share/BirdWeather.sh
 

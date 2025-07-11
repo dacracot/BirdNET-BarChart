@@ -4,11 +4,11 @@
 # it must be edited and copied as ".BirdNET-BarChart" to you home directory
 CONFIG_FILE=${HOME}/.BirdNET-BarChart
 if [ -f "${CONFIG_FILE}" ]; then
-    source ${CONFIG_FILE}
+	source ${CONFIG_FILE}
 else 
 	echo " "
-    echo "${CONFIG_FILE} does not exist."
-    echo "Run the config.sh script to create."
+	echo "${CONFIG_FILE} does not exist."
+	echo "Run the config.sh script to create."
 	echo " "
 	exit 1
 fi
@@ -38,7 +38,7 @@ TMP=`sqlite3 ${BARCHART_HOME}/birds.db << EOF
 .mode csv
 select
 	commonName,
-	(count(commonName)*(sum(confidence)/count(commonName)))
+	(count(commonName)*sum(confidence))
 from
 	heard
 where
@@ -61,5 +61,4 @@ select YN in "Yes" "No"; do
 		No ) exit;;
 	esac
 done
-echo "Done"
 # ---------------------------------------------------

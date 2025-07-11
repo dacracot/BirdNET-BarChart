@@ -525,7 +525,8 @@ from
 	where
 		confidence between 0.7 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.5">';
@@ -548,7 +549,8 @@ from
 	where
 		confidence between 0.6 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.4">';
@@ -571,7 +573,8 @@ from
 	where
 		confidence between 0.5 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.3">';
@@ -594,7 +597,8 @@ from
 	where
 		confidence between 0.4 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.2">';
@@ -617,7 +621,8 @@ from
 	where
 		confidence between 0.3 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.1">';
@@ -640,7 +645,8 @@ from
 	where
 		confidence between 0.2 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '<confidence above="0.0">';
@@ -663,7 +669,8 @@ from
 	where
 		confidence between 0.1 and 1.0
 			and
-		minuteofday > datetime('now','localtime','-24 hour')	)
+		minuteofday > datetime('now','localtime','-24 hour')
+	)
 order by 1;
 select '</confidence>';
 select '</menu>';
