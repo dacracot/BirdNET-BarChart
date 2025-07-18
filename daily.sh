@@ -30,7 +30,7 @@ do
 	if [[ $EXITCODE -eq 0 ]]
 		then
 		echo "<day>" > ${BARCHART_HOME}/sky/day.xml
-		jq -rf ${BARCHART_HOME}/sky/json2xml.jq ${BARCHART_HOME}/sky/day.js >> ${BARCHART_HOME}/sky/day.xml
+		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/sky/day.js >> ${BARCHART_HOME}/sky/day.xml
 		echo "</day>" >> ${BARCHART_HOME}/sky/day.xml
 		${XSLTransform} -s:${BARCHART_HOME}/sky/day.xml -xsl:${BARCHART_HOME}/sky/day.xsl > ${BARCHART_HOME}/sky/day.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/day.sql

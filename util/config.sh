@@ -87,7 +87,7 @@ echo "Email set to ${NEW_FAILURE_EMAIL}."
 echo " "
 curl -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1.0/reverse?lat=${LAT}&lon=${LON}&limit=1&appid=${OWM_TOKEN}" > where.js
 echo "<where>" > where.xml
-jq -rf sky/json2xml.jq where.js >> where.xml
+jq -rf json2xml.jq where.js >> where.xml
 echo "</where>" >> where.xml
 LOCALE=`/usr/lib/ld-linux-aarch64.so.1 --library-path ${XSLT_HOME}/lib ${XSLT_HOME}/bin/Transform -s:where.xml -xsl:where.xsl`
 echo "----------"
