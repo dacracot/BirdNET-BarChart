@@ -102,6 +102,7 @@ and now know what birds are sharing their voices with me.
   * Updates the species list using the analyzer.
   * Updates the species list removing black listed species.
   * Clean up via deletion and compression of old logs and work files.
+    * The mount point on which the BirdNET-BarChart software is installed will be the target of clean up.
     * Clean up is done via a progression of:
       1. Compressing all log files older than today.
       1. Deleting all log files older than a week.
