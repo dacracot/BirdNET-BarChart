@@ -20,8 +20,12 @@ else
 fi
 # ---------------------------------------------------
 function calculatePercentageUsed {
-	PERCENT=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
-	echo ${PERCENT}
+	ROOTDIR=`echo ${BARCHART_HOME} | cut -d '/' -f 2`
+	if mountpoint -q /${ROOTDIR}; then
+		echo `df -h | grep -oP "\d{1,2}% \/${ROOTDIR}$" | grep -oP "\d{1,2}"`
+	else
+		echo "$(df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}')"
+	fi
 	}
 # ---------------------------------------------------
 {
