@@ -19,5 +19,14 @@ This is where utility scripts and text files reside.
 	* Remove yearly, weekly, daily, hourly, and backup scripts to the crontab.
 * crontab.txt
 	* Default crontab times and scripts.
+* json2xml.jq
+	* Script for jq to convert from JSON to XML.
 * storageFailure.txt
 	* Email contents for a storage trimming failure message.
+
+
+### Dependencies:
+
+* [jq](https://jqlang.org)
+* [Java](https://www.java.com/)
+* [SaxonJ](https://www.saxonica.com/download/java.xml)

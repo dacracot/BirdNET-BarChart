@@ -1,5 +1,5 @@
-To: dacracot@gmail.com
-From: dacracot@gmail.com
+To: username@somemail.com
+From: username@somemail.com
 Subject: birding storage failure
 
 ================== 

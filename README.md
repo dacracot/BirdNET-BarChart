@@ -1,6 +1,6 @@
 # BirdNET-BarChart
 
-Display BirdNET-Analyzer data as a dial, bar chart, and table in a browser updating hourly with up to date data.
+Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser updating hourly with up to date data.
 
 ---
 
@@ -31,7 +31,8 @@ Display BirdNET-Analyzer data as a dial, bar chart, and table in a browser updat
 
 * [Apache](https://projects.apache.org/project.html?httpd-http_server)[optional]
 * [Bash](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
-* [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer) [^1]
+* [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)[^1]
+* [Java](https://www.java.com/)
 * [jq](https://jqlang.org)
 * [jQueryUI](https://jqueryui.com)
 * [SQLite](https://sqlite.org/)

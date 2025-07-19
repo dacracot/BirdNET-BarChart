@@ -49,12 +49,13 @@ and now know what birds are sharing their voices with me.
 		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
 	1. Change the directory back to your preferred installation location.
-	1. Expand the SaxonC-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/c.xml).
-		* `mkdir SaxonC-HE-12.8`
-		* `cd SaxonC-HE-12.8`
-		* `unzip SaxonCHE-linux-aarch64-12-8-0.zip`
+	1. Expand the SaxonJ-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/java.xml).
+		* `mkdir SaxonJ-HE-12.8`
+		* `cd SaxonJ-HE-12.8`
+		* `unzip SaxonHE12-8J.zip`
 * ___Install this software___:
-	1. Install sqlite, Apache, sshpass, and sSMTP.
+	1. Install Java, sqlite, Apache, sshpass, and sSMTP.
+		* `sudo apt install default-jre-headless`
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
 		* `sudo apt install jq`
@@ -137,6 +138,7 @@ and now know what birds are sharing their voices with me.
 * [Apache](https://projects.apache.org/project.html?httpd-http_server)
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* [Java](https://www.java.com/)
 * [jQueryUI](https://jqueryui.com)
 * [jq](https://jqlang.org)
 * [SQLite](https://sqlite.org/)
