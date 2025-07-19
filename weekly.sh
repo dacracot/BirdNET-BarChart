@@ -19,6 +19,15 @@ else
 	exit 1
 fi
 # ---------------------------------------------------
+function calculatePercentageUsed {
+	ROOTDIR=`echo ${BARCHART_HOME} | cut -d '/' -f 2`
+	if mountpoint -q /${ROOTDIR}; then
+		echo `df -h | grep -oP "\d{1,2}% \/${ROOTDIR}$" | grep -oP "\d{1,2}"`
+	else
+		echo "$(df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}')"
+	fi
+	}
+# ---------------------------------------------------
 {
 # update the species_list.txt for this location and week of the year
 pushd ${ANALYZER_HOME}
@@ -28,19 +37,19 @@ popd
 # remove the frequent false positives
 grep -v -f ${BARCHART_HOME}/work/species_blacklist.txt ${BARCHART_HOME}/work/species_list.txt > /tmp/t.txt && cat /tmp/t.txt > ${BARCHART_HOME}/work/species_list.txt
 # check how full storage is getting at /
-PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+PERCENT_STORAGE_USED=$(calculatePercentageUsed)
 echo "${PERCENT_STORAGE_USED} percent used"
 if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 	# compress all logs older than today
 	find ${BARCHART_HOME}/logs -not -name "*.md" -mtime +1 -exec gzip -v {} \;
 	# still too much?
-	PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+	PERCENT_STORAGE_USED=$(calculatePercentageUsed)
 	echo "${PERCENT_STORAGE_USED} percent used"
 	if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 		# delete all logs older than a week
 		find ${BARCHART_HOME}/logs -mtime +7 -name "*.gz" -not -name "*.md" -delete -print
 		# still too much?
-		PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+		PERCENT_STORAGE_USED=$(calculatePercentageUsed)
 		echo "${PERCENT_STORAGE_USED} percent used"
 		# start 90 days out
 		COUNTDOWN=90
@@ -56,7 +65,7 @@ if [ ${PERCENT_STORAGE_USED} -ge ${PERCENT_STORAGE_ALLOWED} ]; then
 				exit 1
 			fi
 			# still too much?
-			PERCENT_STORAGE_USED=`df -h | grep -oP '\d{1,2}% \/$' | grep -oP '\d{1,2}'`
+			PERCENT_STORAGE_USED=$(calculatePercentageUsed)
 			echo "${PERCENT_STORAGE_USED} percent used"
 		done
 	fi
