@@ -28,4 +28,5 @@ This is where utility scripts and text files reside.
 ### Dependencies:
 
 * [jq](https://jqlang.org)
+* [Java](https://www.java.com/)
 * [SaxonJ](https://www.saxonica.com/download/java.xml)
