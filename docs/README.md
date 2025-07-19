@@ -49,7 +49,7 @@ and now know what birds are sharing their voices with me.
 		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
 	1. Change the directory back to your preferred installation location.
-	1. Expand the SaxonC-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/java.xml).
+	1. Expand the SaxonJ-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/java.xml).
 		* `mkdir SaxonJ-HE-12.8`
 		* `cd SaxonJ-HE-12.8`
 		* `unzip SaxonHE12-8J.zip`
