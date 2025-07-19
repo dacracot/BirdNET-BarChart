@@ -32,7 +32,7 @@ do
 		echo "<season>" > ${BARCHART_HOME}/sky/season.xml
 		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/sky/season.js >> ${BARCHART_HOME}/sky/season.xml
 		echo "</season>" >> ${BARCHART_HOME}/sky/season.xml
-		${XSLTransform} -s:${BARCHART_HOME}/sky/season.xml -xsl:${BARCHART_HOME}/sky/season.xsl > ${BARCHART_HOME}/sky/season.sql
+		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/season.xml -xsl:${BARCHART_HOME}/sky/season.xsl > ${BARCHART_HOME}/sky/season.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/season.sql
 		echo "celestial sucess on attempt ${i}"
 		break   

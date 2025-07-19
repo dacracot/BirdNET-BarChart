@@ -89,7 +89,7 @@ curl -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1
 echo "<where>" > where.xml
 jq -rf json2xml.jq where.js >> where.xml
 echo "</where>" >> where.xml
-LOCALE=`/usr/lib/ld-linux-aarch64.so.1 --library-path ${XSLT_HOME}/lib ${XSLT_HOME}/bin/Transform -s:where.xml -xsl:where.xsl`
+LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
 echo "----------"
 {
 echo "LAT=${LAT}"
@@ -98,13 +98,13 @@ echo "LOCALE='${LOCALE}'"
 echo "BARCHART_HOME=${BARCHART_HOME}"
 echo "ANALYZER_HOME=${ANALYZER_HOME}"
 echo "XSLT_HOME=${XSLT_HOME}"
-echo "XSLTransform='/usr/lib/ld-linux-aarch64.so.1 --library-path ${XSLT_HOME}/lib ${XSLT_HOME}/bin/Transform'"
 echo "WEB_HOME=${WEB_HOME}"
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=${BACKUP_HOME}"
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
 echo "OWM_TOKEN=${OWM_TOKEN}"
 echo "BIRDWEATHER_ID=${BIRDWEATHER_ID}"
+echo "FAILURE_EMAIL=${NEW_FAILURE_EMAIL}"
 }  > ${HOME}/.BirdNET-BarChart
 echo "Source set"
 # ---------------------------------------------------
