@@ -25,7 +25,7 @@ WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 # ===================================================
 # check if we are too close to analysis
 if [[ "$MINUTE" =~ ^("58"|"59"|"00"|"01"|"02"|"03"|"04"|"05"|"06"|"07"|"08"|"09"|"10")$ ]]; then
-    echo "Best not to stop this close to the hour."
+    echo "Best not to stop this close to the hour." > /dev/tty
     exit 1
 else
 	# remove the crontab
