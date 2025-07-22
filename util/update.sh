@@ -22,7 +22,8 @@ fi
 # go to installed root
 cd ${BARCHART_HOME}
 # checkout main
-git checkout main
+git checkout issue-63A
+# ## # git checkout main
 # pull latest
 git pull
 # scripting to adjust volatile components
@@ -30,5 +31,5 @@ echo "no scripting necessary"
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-weekly.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-weekly.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err
 # ---------------------------------------------------
