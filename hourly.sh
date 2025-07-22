@@ -56,7 +56,7 @@ do
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		${XSLTransform} -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
+		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/weather.sql
 		echo "weather sucess on attempt ${i}"
 		break   
@@ -91,10 +91,9 @@ gzip ${WORK_HOUR}/*
 # extract the table to XML
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHART_HOME}/web/birding.xml
 # transform the xml into html
-${XSLTransform} -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}"  commit="${COMMIT}"
+java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}" commit="${COMMIT}"
 # copy it all to the web server
 mkdir -p ${WEB_HOME}/BirdNET-BarChart
-cp -v ${BARCHART_HOME}/web/favicon.ico ${WEB_HOME}/BirdNET-BarChart
 cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart

@@ -21,6 +21,7 @@
 				<meta name="application-name" content="BirdNET-BarChart" />
 				<meta name="apple-mobile-web-app-title" content="BirdNET-BarChart" />
 				<title><xsl:value-of select="$locale"/></title>
+				<link rel="icon" type="image/x-icon" href="grfx/favicon.ico"/>
 				<link rel="stylesheet" href="https://code.jquery.com/ui/1.14.1/themes/base/jquery-ui.css"/>
 				<link rel="stylesheet" href="birding.css"/>
 			</head>
