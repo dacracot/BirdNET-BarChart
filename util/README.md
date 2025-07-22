@@ -24,7 +24,7 @@ This is where utility scripts and text files reside.
 * storageFailure.txt
 	* Email contents for a storage trimming failure message.
 * update.sh
-	* Pull the latest main from the git repo.
+	* Pull the latest from the git repo, if then current branch is "main" and there is no semaphore.
 
 
 ### Dependencies:
