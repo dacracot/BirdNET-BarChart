@@ -54,7 +54,8 @@ and now know what birds are sharing their voices with me.
 		* `cd SaxonJ-HE-12.8`
 		* `unzip SaxonHE12-8J.zip`
 * ___Install this software___:
-	1. Install Java, sqlite, Apache, sshpass, and sSMTP.
+	1. Install git, Java, sqlite, Apache, sshpass, and sSMTP.
+		* `sudo apt install git`
 		* `sudo apt install default-jre-headless`
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
@@ -78,6 +79,7 @@ and now know what birds are sharing their voices with me.
 		* `0 2 * * * @@HOMEDIR@@/daily.sh`
 		* `0 * * * * @@HOMEDIR@@/hourly.sh`
 		* `20 * * * * @@HOMEDIR@@/share/BirdWeather.sh`
+		* `30 3 * * * @@HOMEDIR@@/util/update.sh`
 	1. Run the configuration script and enter your lat/lon, various home directories, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
 		* `util/config.sh`
 * ___Test the transformer used by this software___:

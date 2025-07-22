@@ -23,10 +23,13 @@ This is where utility scripts and text files reside.
 	* Script for jq to convert from JSON to XML.
 * storageFailure.txt
 	* Email contents for a storage trimming failure message.
+* update.sh
+	* Pull the latest main from the git repo.
 
 
 ### Dependencies:
 
+* [git](https://git-scm.com)
 * [jq](https://jqlang.org)
 * [Java](https://www.java.com/)
 * [SaxonJ](https://www.saxonica.com/download/java.xml)
