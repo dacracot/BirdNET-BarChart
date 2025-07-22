@@ -22,8 +22,7 @@ fi
 # go to installed root
 cd ${BARCHART_HOME}
 # checkout main
-git checkout issue-63A
-# ## # git checkout main
+git checkout main
 # pull latest
 git pull
 # scripting to adjust volatile components
@@ -33,3 +32,8 @@ DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 }  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err
 # ---------------------------------------------------
+#
+#
+# needs a symaphore to stop if already completed
+#
+#
