@@ -23,10 +23,10 @@ fi
 cd ${BARCHART_HOME}
 # check for semaphore
 if [ -f "${BARCHART_HOME}/util/update-2.2-tasks.lock" ]; then
+	echo "previously run"
+else
 	touch "${BARCHART_HOME}/util/update-2.2-tasks.lock"
 	echo "no action taken"
-else
-	echo "previously run"
 fi
 # how long did it take
 DURATION=$SECONDS
