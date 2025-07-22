@@ -21,19 +21,15 @@ fi
 {
 # go to installed root
 cd ${BARCHART_HOME}
-# check if current branch is main
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ "$BRANCH" = "main" ]; then
-	# pull latest
-	git pull
-	# scripting to adjust volatile components
-	${BARCHART_HOME}/util/update-2.2-tasks.sh
-else
-	echo "branch is not main"
+# check for semaphore
+if [ -f "${BARCHART_HOME}/util/update-2.2-tasks.lock" ]; then
+	touch "${BARCHART_HOME}/util/update-2.2-tasks.lock"
 	echo "no action taken"
+else
+	echo "previously run"
 fi
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.2-tasks.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.2-tasks.err
 # ---------------------------------------------------
