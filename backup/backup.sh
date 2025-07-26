@@ -22,7 +22,7 @@ fi
 # ----------
 sqlite3 ${BARCHART_HOME}/birds.db ".backup '${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db'"
 gzip -v ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db
-sshpass -p "${BACKUP_PASSWORD}" scp ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz ${BACKUP_HOME}
+sshpass -v -p "${BACKUP_PASSWORD}" scp -v ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz ${BACKUP_HOME}
 if [ $? -eq 0 ]; then
 	rm ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-birds.db.gz
 else
@@ -30,7 +30,7 @@ else
 fi
 # ----------
 tar czvf ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-web.tgz ${BARCHART_HOME}/web
-sshpass -p "${BACKUP_PASSWORD}" scp ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-web.tgz ${BACKUP_HOME}
+sshpass -v -p "${BACKUP_PASSWORD}" scp -v ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-web.tgz ${BACKUP_HOME}
 if [ $? -eq 0 ]; then
 	rm ${BARCHART_HOME}/backup/${YEAR}-${MONTH}-${DAY}-web.tgz
 else
