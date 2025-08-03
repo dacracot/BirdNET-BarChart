@@ -28,7 +28,7 @@ if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
     exit 1
 else
 	# reset the crontab
-	export BARCHART_HOME && ${BARCHART_HOME}/util/crontabAdd.sh
+	export BARCHART_HOME && export BIRDWEATHER_ID && ${BARCHART_HOME}/util/crontabAdd.sh
     nohup ${BARCHART_HOME}/hourly.sh &
 fi
 echo "Started" > /dev/tty
