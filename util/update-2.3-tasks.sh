@@ -21,19 +21,28 @@ fi
 {
 # go to installed root
 cd ${BARCHART_HOME}
-# check if current branch is main
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ "$BRANCH" = "main" ]; then
-	# pull latest
-	git pull
-	# scripting to adjust volatile components
-	${BARCHART_HOME}/util/update-2.3-tasks.sh
+# check for semaphore
+if [ -f "${BARCHART_HOME}/util/update-2.3-tasks.lock" ]; then
+	echo "previously run"
 else
-	echo "branch is not main"
-	echo "no action taken"
+	touch "${BARCHART_HOME}/util/update-2.3-tasks.lock"
+	echo "add database indexes"
+# -----
+sqlite3 ${BARCHART_HOME}/birds.db << EOF
+-- -----
+CREATE INDEX heardCommonName ON heard (
+	commonName
+	);
+-- -----
+CREATE INDEX heardMinuteOfDay ON heard (
+	minuteOfDay
+	);
+-- -----
+EOF	
+# -----
 fi
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.3-tasks.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.3-tasks.err
 # ---------------------------------------------------
