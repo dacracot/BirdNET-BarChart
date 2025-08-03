@@ -8,6 +8,14 @@ CREATE TABLE heard (
 	confidence FLOAT NOT NULL,
 	minuteOfDay DATETIME NOT NULL
 	);
+-- -----
+CREATE INDEX heardCommonName ON heard (
+	commonName
+	);
+-- -----
+CREATE INDEX heardMinuteOfDay ON heard (
+	minuteOfDay
+	);
 -- --------------------------------------
 -- solar snapshots
 CREATE TABLE sun (

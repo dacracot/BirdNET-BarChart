@@ -693,7 +693,7 @@ with dialData as (
 			from
 				heard
 			where
-		minuteofday > datetime('now','localtime','-24 hour')
+				minuteofday > datetime('now','localtime','-24 hour')
 			)
 	)
 	select
