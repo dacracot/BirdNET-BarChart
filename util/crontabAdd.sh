@@ -13,10 +13,3 @@ fi
 rm ${BARCHART_HOME}/TEMPcrontab.txt
 echo "crontab set"
 # ---------------------------------------------------
-
-
-
-
-
-
-
