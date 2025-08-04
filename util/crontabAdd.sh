@@ -5,7 +5,7 @@ export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
 # use , as sed delimiter
 sed "s,@@HOMEDIR@@,${BARCHART_HOME}," "${BARCHART_HOME}/util/crontab.txt" > "${BARCHART_HOME}/TEMPcrontab.txt"
 # remove BirdWeather if there is no token
-if [ ! -n "$BIRDWEATHER_ID" ]; then
+if [ -z "$BIRDWEATHER_ID" ]; then
     sed -i '/BirdWeather/d' "${BARCHART_HOME}/TEMPcrontab.txt"
 fi
 # set the crontab using TEMPcrontab.txt
