@@ -4,6 +4,7 @@ tmp
 *.out
 *.err
 *.pid
+*.lock
 # sqlite database
 birds.db
 # directories for recordings and generated files
