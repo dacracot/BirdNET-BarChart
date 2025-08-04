@@ -129,5 +129,5 @@ sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/storageF
 echo "Email text updated"
 # ---------------------------------------------------
 # call crontab util
-export BARCHART_HOME && ${BARCHART_HOME}/util/crontabAdd.sh
+export BARCHART_HOME && export BIRDWEATHER_ID && ${BARCHART_HOME}/util/crontabAdd.sh
 # ---------------------------------------------------
