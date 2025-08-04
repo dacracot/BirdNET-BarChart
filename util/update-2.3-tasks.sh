@@ -29,16 +29,13 @@ else
 	echo "add database indexes"
 # -----
 sqlite3 ${BARCHART_HOME}/birds.db << EOF
--- -----
 CREATE INDEX heardCommonName ON heard (
 	commonName
 	);
--- -----
 CREATE INDEX heardMinuteOfDay ON heard (
 	minuteOfDay
 	);
--- -----
-EOF	
+EOF
 # -----
 fi
 # how long did it take
