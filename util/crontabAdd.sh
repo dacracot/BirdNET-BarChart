@@ -8,6 +8,10 @@ sed "s,@@HOMEDIR@@,${BARCHART_HOME}," "${BARCHART_HOME}/util/crontab.txt" > "${B
 if [ -z "$BIRDWEATHER_ID" ]; then
     sed -i '/BirdWeather/d' "${BARCHART_HOME}/TEMPcrontab.txt"
 fi
+# remove backup if there is no URI or password
+if [ -z "${BACKUP_HOME}" ]; then
+    sed -i '/backup/d' "${BARCHART_HOME}/TEMPcrontab.txt"
+fi
 # set the crontab using TEMPcrontab.txt
 (crontab -l 2>/dev/null; cat "${BARCHART_HOME}/TEMPcrontab.txt") | crontab -
 rm ${BARCHART_HOME}/TEMPcrontab.txt
