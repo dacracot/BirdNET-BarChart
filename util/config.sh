@@ -115,7 +115,13 @@ echo "Source set"
 echo " "
 if [ -f "${BARCHART_HOME}/birds.db" ]; then
 	echo "Do you wish to overwrite your birds database?"
-	echo "THIS CAN NOT BE UNDONE."
+	WARNON='\033[31;5m'
+	WARNOFF='\033[0m'
+	echo -e "${WARNON}"
+	echo -e "--------------------------------------------------------"
+	echo -e "YOU WILL LOSE ALL PREVIOUS DATA! THIS CAN NOT BE UNDONE!"
+	echo -e "--------------------------------------------------------"
+	echo -e "${WARNOFF}"
 	select YN in "Yes" "No"; do
 		case $YN in
 			Yes ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql;;
