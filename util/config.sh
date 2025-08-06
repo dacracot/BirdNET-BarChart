@@ -70,16 +70,20 @@ read -e -p "Enter your Open Weather Map access token: " -i ${OWM_TOKEN} OWM_TOKE
 echo "Token set to ${OWM_TOKEN}."
 # set BirdWeather Share Token... no initial default
 echo " "
-read -e -p "Enter your BirdWeather access token: " -i ${BIRDWEATHER_ID} BIRDWEATHER_ID
+read -e -p "Enter your BirdWeather access token [set to blank to disable]: " -i ${BIRDWEATHER_ID} BIRDWEATHER_ID
 echo "Token set to ${BIRDWEATHER_ID}."
 # set BACKUP_HOME... default to read values
 echo " "
-read -e -p "Enter the URI for the backup server: " -i ${BACKUP_HOME} BACKUP_HOME
+read -e -p "Enter the URI for the backup server [set to blank to disable]: " -i ${BACKUP_HOME} BACKUP_HOME
 echo "Backup server set to ${BACKUP_HOME}."
 # set BACKUP_PASSWORD... no initial default
-echo " "
-read -e -p "Enter the password for the backup server: " -i ${BACKUP_PASSWORD} BACKUP_PASSWORD
-echo "Password set to ${BACKUP_PASSWORD}."
+if [ -z "$BACKUP_HOME" ]; then
+    BACKUP_PASSWORD=""
+else
+	echo " "
+	read -e -p "Enter the password for the backup server [set to blank to disable]: " -i ${BACKUP_PASSWORD} BACKUP_PASSWORD
+	echo "Password set to ${BACKUP_PASSWORD}."
+fi
 # set FAILURE_EMAIL... username@somemail.com
 echo " "
 read -e -p "Enter the email for failure notifications: " -i ${FAILURE_EMAIL} NEW_FAILURE_EMAIL
