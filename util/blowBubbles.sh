@@ -1,6 +1,6 @@
 #!/bin/bash
 echo " " > /dev/tty
-echo ${MESSAGE} > /dev/tty
+echo "${MESSAGE}" > /dev/tty
 sleep ${WAITINTERVAL}s
 echo " " > /dev/tty
 # ---------------------------------------------------
