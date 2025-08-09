@@ -25,7 +25,7 @@ fi
 # check if we are too close to analysis
 if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
     echo "Starting this close to the hour can" > /dev/tty
-    echo "interfer with semaphore protection." > /dev/tty
+    echo "interfere with semaphore protection." > /dev/tty
     echo "Wait a few minutes and try again." > /dev/tty
     exit 1
 else

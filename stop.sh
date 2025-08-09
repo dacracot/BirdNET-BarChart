@@ -28,7 +28,7 @@ export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
 SEMAPHORE="${BARCHART_HOME}/hourly.lock"
 MESSAGE="Waiting for hourly completion."
 WAITINTERVAL=5
-export MESSAGE && export SEMAPHORE && export WAITINTERVAL && ${BARCHART_HOME}/util/blowBubbles.sh;;
+export MESSAGE && export SEMAPHORE && export WAITINTERVAL && ${BARCHART_HOME}/util/blowBubbles.sh
 # stop the last hourly script from sleeping
 kill `ps h -eo pid,command | grep "sleep [0-9]*m" | grep -v "grep" | awk '{print $1}'`
 echo " " > /dev/tty
