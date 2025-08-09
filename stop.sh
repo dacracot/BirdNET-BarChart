@@ -5,7 +5,6 @@ YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
 HOUR=`date '+%H'`
-MINUTE=`date '+%M'`
 # ---------------------------------------------------
 # source the configuration file
 # it must be edited and copied as ".BirdNET-BarChart" to you home directory
@@ -23,27 +22,21 @@ fi
 {
 WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 # ===================================================
-# check if we are too close to analysis
-if [[ "$MINUTE" =~ ^("58"|"59"|"00"|"01"|"02"|"03"|"04"|"05"|"06"|"07"|"08"|"09"|"10")$ ]]; then
-    echo "Best not to stop this close to the hour." > /dev/tty
-    exit 1
-else
-	# remove the crontab
-	export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
-	# stop the last hourly script from sleeping
-	kill `ps h -eo pid,command | grep "sleep [0-9]*m" | grep -v "grep" | awk '{print $1}'`
-	echo " " > /dev/tty
-	echo "Wait for the analysis to complete prior to completing.  Usually less than 10 minutes." > /dev/tty
-	sleep 5s
-	echo " " > /dev/tty
-	while [[ `ps h -eo pid,command | grep -v "grep" | grep "birdnet_analyzer" | awk '{print $1}' | wc -l` != "0" ]];
-	do
-		echo -n "." > /dev/tty
-		sleep 5s
-	done
-	echo " " > /dev/tty
-	echo "Stopped" > /dev/tty
-fi
+# remove the crontab
+export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
+# check if hourly has locked the process
+SEMAPHORE="${BARCHART_HOME}/hourly.lock"
+MESSAGE="Waiting for hourly completion."
+WAITINTERVAL=5
+export MESSAGE && export SEMAPHORE && export WAITINTERVAL && ${BARCHART_HOME}/util/blowBubbles.sh
+# stop the last hourly script from sleeping
+kill `ps h -eo pid,command | grep "sleep [0-9]*m" | grep -v "grep" | awk '{print $1}'`
+echo " " > /dev/tty
+# wait for the hourly script to finish
+MESSAGE="Wait for the analysis to complete prior to completing.  Usually less than 10 minutes."
+export MESSAGE && export SEMAPHORE && export WAITINTERVAL && ${BARCHART_HOME}/util/blowBubbles.sh
+echo " " > /dev/tty
+echo "Stopped" > /dev/tty
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
