@@ -5,7 +5,6 @@ YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
 HOUR=`date '+%H'`
-MINUTE=`date '+%M'`
 # ---------------------------------------------------
 # source the configuration file
 # it must be edited and copied as ".BirdNET-BarChart" to you home directory
@@ -23,21 +22,13 @@ fi
 {
 WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 # ===================================================
+# remove the crontab
+export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
 # check if hourly has locked the process
 SEMAPHORE="${BARCHART_HOME}/hourly.lock"
 MESSAGE="Waiting for hourly completion."
 WAITINTERVAL=5
-if [ -f "${SEMAPHORE}" ]; then
-	echo "Do you wish to wait for analysis and processing to complete?"
-	select YN in "Yes" "No"; do
-		case $YN in
-			Yes ) export MESSAGE && export SEMAPHORE && export WAITINTERVAL && ${BARCHART_HOME}/util/blowBubbles.sh;;
-			No ) exit;;
-		esac
-	done
-fi
-# remove the crontab
-export BARCHART_HOME && ${BARCHART_HOME}/util/crontabRemove.sh
+export MESSAGE && export SEMAPHORE && export WAITINTERVAL && ${BARCHART_HOME}/util/blowBubbles.sh;;
 # stop the last hourly script from sleeping
 kill `ps h -eo pid,command | grep "sleep [0-9]*m" | grep -v "grep" | awk '{print $1}'`
 echo " " > /dev/tty
