@@ -19,23 +19,16 @@ else
 fi
 # ---------------------------------------------------
 {
-# go to installed root
-cd ${BARCHART_HOME}
-# check if current branch is main
-BRANCH=$(git rev-parse --abbrev-ref HEAD)
-if [ "$BRANCH" = "main" ]; then
-	# pull latest
-	git pull
-	# what is the new version
-	VERSION=$(git describe --tags --abbrev=0)
-	# scripting to adjust volatile components
-	${BARCHART_HOME}/util/updates/update-${VERSION}-tasks.sh
+# check for semaphore
+if [ -f "${BARCHART_HOME}/util/updates/update-2.6-tasks.lock" ]; then
+	echo "previously run"
 else
-	echo "branch is not main"
-	echo "no action taken"
+	touch "${BARCHART_HOME}/util/updates/update-2.6-tasks.lock"
+	echo "move semaphores to util/updates"
+	mv -v "${BARCHART_HOME}/util/update-*-tasks.lock" "${BARCHART_HOME}/util/updates/"
 fi
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.6-tasks.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.6-tasks.err
 # ---------------------------------------------------
