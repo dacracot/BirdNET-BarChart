@@ -31,7 +31,8 @@ if [ "$BRANCH" = "main" ]; then
 		git pull
 		EXITCODE=$?
 		if [[ $EXITCODE -eq 0 ]]
-			echo "Success on attempt: ${seq}"
+			then
+			echo "Success on attempt: ${i}"
 			# what is the new version
 			VERSION=$(git describe --tags --abbrev=0)
 			# scripting to adjust volatile components
@@ -39,7 +40,7 @@ if [ "$BRANCH" = "main" ]; then
 			break   
 		else
 			echo "git: ${EXITCODE}"
-			echo "attempt: ${seq}"
+			echo "attempt: ${i}"
 			echo "===== GitHub FAILURE ====="
 			sleep 5
 		fi
