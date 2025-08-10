@@ -25,6 +25,10 @@ This is where utility scripts and text files reside.
 	* Email contents for a storage trimming failure message.
 * update.sh
 	* Pull the latest from the git repo, if the current branch is "main" and there is no semaphore.
+* updates
+	* Directory of version specific updates and semaphores of completion.
+	* update-#-tasks.sh
+		* Template for the update tasks script.
 
 
 ### Dependencies:
