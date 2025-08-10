@@ -25,11 +25,25 @@ cd ${BARCHART_HOME}
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$BRANCH" = "main" ]; then
 	# pull latest
-	git pull
-	# what is the new version
-	VERSION=$(git describe --tags --abbrev=0)
-	# scripting to adjust volatile components
-	${BARCHART_HOME}/util/updates/update-${VERSION}-tasks.sh
+	MAXTRYS=5
+	for i in $(seq 1 $MAXTRYS)
+	do
+		git pull
+		EXITCODE=$?
+		if [[ $EXITCODE -eq 0 ]]
+			echo "Success on attempt: ${seq}"
+			# what is the new version
+			VERSION=$(git describe --tags --abbrev=0)
+			# scripting to adjust volatile components
+			${BARCHART_HOME}/util/updates/update-${VERSION}-tasks.sh
+			break   
+		else
+			echo "git: ${EXITCODE}"
+			echo "attempt: ${seq}"
+			echo "===== GitHub FAILURE ====="
+			sleep 5
+		fi
+	done
 else
 	echo "branch is not main"
 	echo "no action taken"
