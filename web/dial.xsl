@@ -1124,6 +1124,9 @@
 			<xsl:when test="$iconNumber = (803 to 804)">
 				<xsl:copy-of select="document('grfx/svg/weather/cloudy.svg')/cloudy/*"/>
 			</xsl:when>
+			<xsl:when test="$iconNumber = 0">
+				<xsl:copy-of select="document('grfx/svg/unknown.svg')/unknown/*"/>
+			</xsl:when>
 			<xsl:otherwise>
 				<xsl:text>miss-matched weather.condition in dial.xsl, found </xsl:text><xsl:value-of select="$iconNumber"/>
 			</xsl:otherwise>
