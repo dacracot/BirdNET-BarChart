@@ -25,7 +25,7 @@ fi
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/rstt/oneday?date=${YEAR}-${MONTH}-${DAY}&coords=38.1035,-121.2884&tz=-8&dst=true" > ${BARCHART_HOME}/sky/day.js
+	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/rstt/oneday?date=${YEAR}-${MONTH}-${DAY}&coords=${LAT},${LON}&tz=-8&dst=true" > ${BARCHART_HOME}/sky/day.js
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
@@ -38,8 +38,13 @@ do
 		break   
 	else
 		echo "curl: ${EXITCODE}"
+		echo "celestial fail on attempt ${i}"
 		cat ${BARCHART_HOME}/sky/day.js
 		echo "===== celestial FAILURE ====="
+		# --------------------------
+		# complete failure is ignored
+		# subsequent query gets last sucess
+		# --------------------------
 		sleep 5
 	fi
 done

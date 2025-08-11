@@ -20,15 +20,16 @@ fi
 # ---------------------------------------------------
 {
 # check for semaphore
-if [ -f "${BARCHART_HOME}/util/updates/update-2.6-tasks.lock" ]; then
+if [ -f "${BARCHART_HOME}/util/updates/update-2.7-tasks.lock" ]; then
 	echo "previously run"
 else
-	touch "${BARCHART_HOME}/util/updates/update-2.6-tasks.lock"
-	echo "move semaphores to util/updates"
-	mv -v "${BARCHART_HOME}/util/update-*-tasks.lock" "${BARCHART_HOME}/util/updates/"
+	touch "${BARCHART_HOME}/util/updates/update-2.7-tasks.lock"
+	echo "no action for 2.7 necessary"
 fi
+# cascade the update to previous tasks
+${BARCHART_HOME}/util/updates/update-2.6-tasks.sh
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.6-tasks.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.6-tasks.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.7-tasks.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-2.7-tasks.err
 # ---------------------------------------------------
