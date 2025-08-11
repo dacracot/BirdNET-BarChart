@@ -26,6 +26,8 @@ else
 	touch "${BARCHART_HOME}/util/updates/update-#-tasks.lock"
 	echo "no action necessary"
 fi
+# cascade the update to previous tasks
+${BARCHART_HOME}/util/updates/update-#-tasks.sh
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
