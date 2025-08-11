@@ -66,9 +66,42 @@ do
 		break   
 	else
 		echo "curl: ${EXITCODE}"
+		echo "weather fail on attempt ${i}"
 		cat ${BARCHART_HOME}/sky/weather.xml
 		echo "===== weather FAILURE ====="
-		sleep 5
+		# --------------------------
+		# complete failure is NOT ignored
+		# subsequent query all dial values
+		# missing data breaks JavaScript
+		# therefore 'unknown' is inserted
+		# --------------------------
+		if [[ ${i} -eq ${MAXTRYS} ]]
+			then
+			sqlite3 ${BARCHART_HOME}/birds.db << EOF
+insert into weather (
+	condition,
+	iconNumber,
+	temperature,
+	humidity,
+	wind,
+	precipitation,
+	pressure,
+	minuteOfDay
+	)
+values (
+	'unknown',
+	0,
+	'-',
+	'-',
+	'-',
+	'-',
+	'-',
+	datetime('now','localtime')
+	);
+EOF
+		else
+			sleep 5
+		fi
 	fi
 done
 # directory for audio files and analyze each

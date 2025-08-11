@@ -38,8 +38,13 @@ do
 		break   
 	else
 		echo "curl: ${EXITCODE}"
+		echo "celestial fail on attempt ${i}"
 		cat ${BARCHART_HOME}/sky/day.js
 		echo "===== celestial FAILURE ====="
+		# --------------------------
+		# complete failure is ignored
+		# subsequent query gets last sucess
+		# --------------------------
 		sleep 5
 	fi
 done
