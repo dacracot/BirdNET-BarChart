@@ -39,7 +39,5 @@ fi
 # ----------
 # how long did it take
 DURATION=$SECONDS
-echo $SECONDS
-echo $DURATION
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 }  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-backup.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-backup.err
