@@ -89,7 +89,7 @@ echo " "
 read -e -p "Enter the email for failure notifications: " -i ${FAILURE_EMAIL} NEW_FAILURE_EMAIL
 echo "Email set to ${NEW_FAILURE_EMAIL}."
 echo " "
-curl -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1.0/reverse?lat=${LAT}&lon=${LON}&limit=1&appid=${OWM_TOKEN}" > where.js
+curl  --max-time 30 -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1.0/reverse?lat=${LAT}&lon=${LON}&limit=1&appid=${OWM_TOKEN}" > where.js
 echo "<where>" > where.xml
 jq -rf json2xml.jq where.js >> where.xml
 echo "</where>" >> where.xml

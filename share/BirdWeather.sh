@@ -40,7 +40,7 @@ while read TS; do
 	flac --silent --best ${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}
 	rm ${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}
 	# POST the file to BirdWeather
-	RESPONSE=$(curl -X POST -H "Content-Type: audio/flac" --data @${BARCHART_HOME}/share/tmp-BirdWeather/${FLAC}.flac -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/soundscapes?timestamp=${TS}")
+	RESPONSE=$(curl --max-time 30 -X POST -H "Content-Type: audio/flac" --data @${BARCHART_HOME}/share/tmp-BirdWeather/${FLAC}.flac -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/soundscapes?timestamp=${TS}")
 	HTTP_CODE=`echo ${RESPONSE} | cut -d "|" -f 2`
 	if (($HTTP_CODE < 200 || $HTTP_CODE >= 300)); then
 		# handle error
@@ -87,7 +87,7 @@ EOF
 		# --
 		echo "JS = ${JS}"
 		# --
-		RESPONSE=$(curl -X POST -H "Content-Type: application/json" --data-raw "`echo ${JS}`" -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/detections")
+		RESPONSE=$(curl --max-time 30 -X POST -H "Content-Type: application/json" --data-raw "`echo ${JS}`" -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/detections")
 		HTTP_CODE=`echo ${RESPONSE} | cut -d "|" -f 2`
 		if (($HTTP_CODE < 200 || $HTTP_CODE >= 300)); then
 			# handle error
