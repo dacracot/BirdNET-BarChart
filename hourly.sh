@@ -62,7 +62,7 @@ do
 		then
 		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/weather.sql
-		echo "weather sucess on attempt ${i}"
+		echo "weather success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"

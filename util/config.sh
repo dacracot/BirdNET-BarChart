@@ -100,7 +100,7 @@ do
 		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/util/where.js >> ${BARCHART_HOME}/util/where.xml
 		echo "</where>" >> ${BARCHART_HOME}/util/where.xml
 		LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
-		echo "locale sucess on attempt ${i}"
+		echo "locale success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
