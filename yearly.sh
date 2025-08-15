@@ -25,7 +25,7 @@ fi
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?year=${YEAR}&tz=-8&dst=true" > ${BARCHART_HOME}/sky/season.js
+	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?year=${YEAR}&tz=-8&dst=true" > ${BARCHART_HOME}/sky/season.js
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
@@ -34,7 +34,7 @@ do
 		echo "</season>" >> ${BARCHART_HOME}/sky/season.xml
 		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/season.xml -xsl:${BARCHART_HOME}/sky/season.xsl > ${BARCHART_HOME}/sky/season.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/season.sql
-		echo "celestial sucess on attempt ${i}"
+		echo "celestial success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"

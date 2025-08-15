@@ -89,11 +89,31 @@ echo " "
 read -e -p "Enter the email for failure notifications: " -i ${FAILURE_EMAIL} NEW_FAILURE_EMAIL
 echo "Email set to ${NEW_FAILURE_EMAIL}."
 echo " "
-curl -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1.0/reverse?lat=${LAT}&lon=${LON}&limit=1&appid=${OWM_TOKEN}" > where.js
-echo "<where>" > where.xml
-jq -rf json2xml.jq where.js >> where.xml
-echo "</where>" >> where.xml
-LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
+MAXTRYS=5
+for i in $(seq 1 $MAXTRYS)
+do
+	curl  --max-time 30 -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1.0/reverse?lat=${LAT}&lon=${LON}&limit=1&appid=${OWM_TOKEN}" > ${BARCHART_HOME}/util/where.js
+	EXITCODE=$?
+	if [[ $EXITCODE -eq 0 ]]
+		then
+		echo "<where>" > ${BARCHART_HOME}/util/where.xml
+		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/util/where.js >> ${BARCHART_HOME}/util/where.xml
+		echo "</where>" >> ${BARCHART_HOME}/util/where.xml
+		LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
+		echo "locale success on attempt ${i}"
+		break   
+	else
+		echo "curl: ${EXITCODE}"
+		cat ${BARCHART_HOME}/util/where.js
+		echo "===== locale FAILURE ====="
+		sleep 5
+	fi
+	if [[ ${i} -eq ${MAXTRYS} ]]
+		then
+		echo "unable to set locale via lat/lon"
+		LOCALE="Somewhere, Unknown"
+	fi
+done
 echo "----------"
 {
 echo "LAT=${LAT}"
