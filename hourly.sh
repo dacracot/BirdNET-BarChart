@@ -56,13 +56,13 @@ rm ${WORK_HOUR}/recording.pid
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&mode=xml&units=imperial&appid=${OWM_TOKEN}" > ${BARCHART_HOME}/sky/weather.xml
+	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://api.openweathermap.org/data/2.5/weather?lat=${LAT}&lon=${LON}&mode=xml&units=imperial&appid=${OWM_TOKEN}" > ${BARCHART_HOME}/sky/weather.xml
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
 		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/weather.xml -xsl:${BARCHART_HOME}/sky/weather.xsl > ${BARCHART_HOME}/sky/weather.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/weather.sql
-		echo "weather sucess on attempt ${i}"
+		echo "weather success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
