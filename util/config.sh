@@ -39,6 +39,16 @@ else
 	FAILURE_EMAIL=username@somemail.com
 fi
 # ---------------------------------------------------
+# set BARCHART_HOME
+echo " " > /dev/tty
+read -e -p "Enter the home of the barchart software: " -i ${BARCHART_HOME} BARCHART_HOME > /dev/tty
+if [ -d "$BARCHART_HOME" ]; then
+	echo "Barchart home set to ${BARCHART_HOME}." > /dev/tty
+else
+	echo "${BARCHART_HOME} does not exist." > /dev/tty
+	exit
+fi
+{
 # set LAT LON
 echo " " > /dev/tty
 read -e -p "Enter your latitude: " -i ${LAT} LAT > /dev/tty
@@ -46,10 +56,6 @@ echo "Latitude set to ${LAT}." > /dev/tty
 echo " " > /dev/tty
 read -e -p "Enter your longitude: " -i ${LON} LON > /dev/tty
 echo "Latitude set to ${LON}." > /dev/tty
-# set BARCHART_HOME
-echo " " > /dev/tty
-read -e -p "Enter the home of the barchart software: " -i ${BARCHART_HOME} BARCHART_HOME > /dev/tty
-echo "Barchart home set to ${BARCHART_HOME}." > /dev/tty
 # set ANALYZER_HOME... no initial default
 echo " " > /dev/tty
 read -e -p "Enter the home of the analyzer software: " -i ${ANALYZER_HOME} ANALYZER_HOME > /dev/tty
