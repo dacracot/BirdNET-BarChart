@@ -95,21 +95,12 @@ echo " "
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl  --max-time 30 -H "Cache-Control: no-cache, no-store" "http://api.openweathermap.org/geo/1.0/reverse?lat=${LAT}&lon=${LON}&limit=1&appid=${OWM_TOKEN}" > ${BARCHART_HOME}/util/where.js
+	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://nominatim.openstreetmap.org/reverse?lat=${LAT}&lon=${LON}" > ${BARCHART_HOME}/util/where.xml
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		# OpenWeatherMap cod(e) returned if there is an error
-		if [ $(grep -c "cod" ${BARCHART_HOME}/util/where.js) -ne 0 ]
-			then
-			echo "unable to set locale via lat/lon using OpenStreetMap"
-			cat ${BARCHART_HOME}/util/where.xml
-			echo "\n===== locale FAILURE ====="
-			LOCALE="Somewhere, Unknown"
-		else
-			LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
-			echo "locale success on attempt ${i}"
-		fi
+		LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
+		echo "locale success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
