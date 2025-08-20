@@ -109,7 +109,7 @@ do
 	fi
 	if [[ ${i} -eq ${MAXTRYS} ]]
 		then
-		echo "unable to set locale via lat/lon using OpenWeatherMap"
+		echo "unable to set locale via lat/lon using OpenStreetMap"
 		echo "===== locale FAILURE ====="
 		LOCALE="Somewhere, Unknown"
 	fi
