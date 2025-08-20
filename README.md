@@ -29,6 +29,7 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 
 ### Dependencies:
 
+##### Software
 * [Apache](https://projects.apache.org/project.html?httpd-http_server)[optional]
 * [Bash](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)[^1]
@@ -42,5 +43,9 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 * [Saxon](https://www.saxonica.com/welcome/welcome.xml)
 * [SVG](https://www.w3schools.com/graphics/svg_intro.asp)
 * [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)
+##### Websites
+* [Astronomical Applications Department of the U.S. Naval Observatory](https://aa.usno.navy.mil)
+* [OpenStreetMap](https://openstreetmap.org/)
+* [OpenWeatherMap](https://openweathermap.org/)
 
 [^1]:Kahl, S., Wood, C., Eibl, M., & Klinck, H. (2021). BirdNET: A deep learning solution for avian diversity monitoring. Ecological Informatics, 61, 101236.

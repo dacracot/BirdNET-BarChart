@@ -102,14 +102,11 @@ do
 		# OpenWeatherMap cod(e) returned if there is an error
 		if [ $(grep -c "cod" ${BARCHART_HOME}/util/where.js) -ne 0 ]
 			then
-			echo "unable to set locale via lat/lon using OpenWeatherMap"
-			cat ${BARCHART_HOME}/util/where.js
+			echo "unable to set locale via lat/lon using OpenStreetMap"
+			cat ${BARCHART_HOME}/util/where.xml
 			echo "\n===== locale FAILURE ====="
 			LOCALE="Somewhere, Unknown"
 		else
-			echo "<where>" > ${BARCHART_HOME}/util/where.xml
-			jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/util/where.js >> ${BARCHART_HOME}/util/where.xml
-			echo "</where>" >> ${BARCHART_HOME}/util/where.xml
 			LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
 			echo "locale success on attempt ${i}"
 		fi
