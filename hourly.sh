@@ -25,12 +25,7 @@ TYPE=csv
 WORK_HOUR=${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}
 AS_OF=`date '+%A, %d %B %Y at %H:00'`
 echo "${AS_OF}"
-pushd ${BARCHART_HOME}
-TAG=`git tag | tail -n 1`
-WHEN=`git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '3p' | cut -d' ' -f4,5,6,7,8,9`
-VERSION=`git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '5,7p' | awk 'NF'`
-popd
-COMMIT="${VERSION} ${WHEN}"
+COMMIT="$(cat ${BARCHART_HOME}/util/updates/signature.txt)"
 echo "${COMMIT}"
 # ===================================================
 # find the audio card

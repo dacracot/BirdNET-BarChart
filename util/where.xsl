@@ -5,8 +5,21 @@
     version="2.0">
 	<xsl:output method="text"/>
 <!-- =========================================================================================== -->
-	<xsl:template match="/where">
-		<xsl:value-of select="name"/><xsl:text>, </xsl:text><xsl:value-of select="state"/>
+<!-- == XML from OpenStreetMaps == -->
+<!-- =========================================================================================== -->
+	<xsl:template match="/reversegeocode">
+		<xsl:apply-templates/>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="result">
+		<xsl:text></xsl:text>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="addressparts">
+		<xsl:variable name="locale">
+			<xsl:value-of select="*[name()='city' or name()='municipality']"/><xsl:text>, </xsl:text><xsl:value-of select="state"/><xsl:text>, </xsl:text><xsl:value-of select="country"/>
+		</xsl:variable>
+		<xsl:value-of select="normalize-space($locale)"/>
 	</xsl:template>
 <!-- =========================================================================================== -->
 </xsl:stylesheet>
