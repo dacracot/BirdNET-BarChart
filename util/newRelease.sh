@@ -44,7 +44,7 @@ echo "${VERSION} ${WHEN}" > ${BARCHART_HOME}/util/updates/signature.txt
 sed "s,@@TAG@@,${TAG},g" "${BARCHART_HOME}/util/updates/update-#-tasks.sh" > "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
 sed -i "s,@@PREV@@,${PREVTAG},g" "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
 chmod 750 "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
-echo "Update tasks ready for editing of "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"." > /dev/tty
+echo "Update tasks ready for editing of ${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh." > /dev/tty
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
