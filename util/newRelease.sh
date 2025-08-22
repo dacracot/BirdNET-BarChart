@@ -29,20 +29,19 @@ popd
 echo "You are about to stage a release." > /dev/tty
 echo "Current tag (${TAG}) vs release (${RELEASE})." > /dev/tty
 echo "You should have recently tagged the dev branch with a tag greater than the release." > /dev/tty
-read -p "Do you wish to continue (y/n)?" YORN > /dev/tty
+echo "Do you wish to continue (y/n)?" > /dev/tty
+read YORN
 case "$YORN" in 
   y|Y ) echo "yes";;
   n|N ) echo "no"; exit;;
   * ) echo "Please answer Y or N" > /dev/tty; exit;;
 esac
 # ---------------------------------------------------
-# check if already released
-if [ "$TAG" -gt "$RELEASE" ]; then
-    echo "$TAG" > ${BARCHART_HOME}/util/updates/release.txt
-    echo "${VERSION} ${WHEN}" > ${BARCHART_HOME}/util/updates/signature.txt
-    sed "s,@@TAG@@,${TAG}," "${BARCHART_HOME}/util/updates/update-#-tasks.sh" > "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
-    chmod 750 "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
-fi
+echo "$TAG" > ${BARCHART_HOME}/util/updates/release.txt
+echo "${VERSION} ${WHEN}" > ${BARCHART_HOME}/util/updates/signature.txt
+sed "s,@@TAG@@,${TAG},g" "${BARCHART_HOME}/util/updates/update-#-tasks.sh" > "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
+chmod 750 "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
+echo "Update tasks ready for editing of "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"." > /dev/tty
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
