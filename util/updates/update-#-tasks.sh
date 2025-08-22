@@ -27,7 +27,7 @@ else
 	echo "no action necessary"
 fi
 # cascade the update to previous tasks
-${BARCHART_HOME}/util/updates/update-@@TAG@@-tasks.sh
+${BARCHART_HOME}/util/updates/update-@@PREV@@-tasks.sh
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."

@@ -37,13 +37,16 @@ case "$YORN" in
   * ) echo "Please answer Y or N" > /dev/tty; exit;;
 esac
 # ---------------------------------------------------
+PREVSCRIPT=$(ls -1 ${BARCHART_HOME}/util/updates/update-*.*-tasks.sh | tail -n 1)
+PREVTAG=$(basename ${PREVSCRIPT} .sh | cut -d - -f 2)
 echo "$TAG" > ${BARCHART_HOME}/util/updates/release.txt
 echo "${VERSION} ${WHEN}" > ${BARCHART_HOME}/util/updates/signature.txt
 sed "s,@@TAG@@,${TAG},g" "${BARCHART_HOME}/util/updates/update-#-tasks.sh" > "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
+sed -i "s,@@PREV@@,${PREVTAG},g" "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
 chmod 750 "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
 echo "Update tasks ready for editing of "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"." > /dev/tty
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-#-tasks.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update-#-tasks.err
+}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-newRelease.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-newRelease.err
 # ---------------------------------------------------
