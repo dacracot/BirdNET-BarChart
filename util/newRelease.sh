@@ -37,7 +37,7 @@ case "$YORN" in
   * ) echo "Please answer Y or N" > /dev/tty; exit;;
 esac
 # ---------------------------------------------------
-PREVSCRIPT=$(ls -1 ${BARCHART_HOME}/util/updates/update-*.*-tasks.sh | tail -n 1)
+PREVSCRIPT=$(ls -tr1 ${BARCHART_HOME}/util/updates/update-*.*-tasks.sh | tail -n 1)
 PREVTAG=$(basename ${PREVSCRIPT} .sh | cut -d - -f 2)
 echo "$TAG" > ${BARCHART_HOME}/util/updates/release.txt
 echo "${VERSION} ${WHEN}" > ${BARCHART_HOME}/util/updates/signature.txt
