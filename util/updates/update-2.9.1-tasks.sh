@@ -24,14 +24,7 @@ if [ -f "${BARCHART_HOME}/util/updates/update-2.9.1-tasks.lock" ]; then
 	echo "previously run"
 else
 	touch "${BARCHART_HOME}/util/updates/update-2.9.1-tasks.lock"
-	# ===================================================================================
-	# ===================================================================================
-	#
-	# Update tasks coded here.
 	echo "no action necessary"
-	#
-	# ===================================================================================
-	# ===================================================================================
 fi
 # cascade the update to previous tasks
 ${BARCHART_HOME}/util/updates/update-2.8-tasks.sh
