@@ -21,7 +21,7 @@ fi
 {
 RELEASE=$(cat ${BARCHART_HOME}/util/updates/release.txt)
 pushd ${BARCHART_HOME}
-TAG=$(git tag | tail -n 1)
+TAG=$(git describe --tags --abbrev=0)
 WHEN=$(git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '3p' | cut -d' ' -f4,5,6,7,8,9)
 VERSION=$(git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '5,7p' | awk 'NF')
 popd
