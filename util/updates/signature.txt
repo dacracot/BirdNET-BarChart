@@ -1,2 +1,2 @@
-version 2.9.1
-commit 56e3b1b1bfa50b6d6e37fd3428d55669be4310f2 Saturday, 23 August 2025 at 06:52
+version 2.10
+commit 016a46c2c70746676f0b549c70836cba17710ab9 Saturday, 23 August 2025 at 10:28
