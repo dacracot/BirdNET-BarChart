@@ -23,6 +23,7 @@ season.sql
 season.xml
 weather.sql
 weather.xml
+web/grfx/svg/dial/*
 where.js
 where.xml
 # MacOS stuff
