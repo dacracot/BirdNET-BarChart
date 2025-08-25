@@ -229,6 +229,7 @@ function daysLastYear() {
 let lunarLoop=false;
 // ------------------------------------------------------------------------------------------------
 function lunarDialing() {
+	const YEAR = new Date().getFullYear();
 	const DAYOFYEAR = Math.floor((new Date() - new Date(YEAR, 0, 0)) / 1000 / 60 / 60 / 24);
 console.log("DAYOFYEAR = "+DAYOFYEAR);
 	const DAYSLASTYEAR = daysLastYear();
@@ -241,9 +242,9 @@ console.log("DAYSLASTYEAR = "+DAYSLASTYEAR);
 			DAY += DAYSLASTYEAR;
 			}
 console.log("DAY = "+DAY);
-		for (let HOUR = 0; i <= 23; i++) {
+		for (let HOUR = 0; HOUR <= 23; HOUR++) {
  			image.src='grfx/svg/dial/' + DAY + '/' + HOUR + '.svg';
-console.log("image.src= grfx/svg/dial/" + DAY + "/" + HOUR + ".svg");
+// console.log("image.src= grfx/svg/dial/" + DAY + "/" + HOUR + ".svg");
 			sleep(40);
 			}
 		if (!lunarLoop) break;
@@ -251,12 +252,17 @@ console.log("image.src= grfx/svg/dial/" + DAY + "/" + HOUR + ".svg");
 	}
 // ------------------------------------------------------------------------------------------------
 function lunarSpin() {
+console.log("lunarSpin BEGIN");
 	lunarLoop=true;
+console.log("lunarSpin MID");
+	lunarDialing();
+console.log("lunarSpin END");
 	}
 // ------------------------------------------------------------------------------------------------
 function lunarIdle() {
+console.log("lunarIdle BEGIN");
 	lunarLoop=false;
-	lunarDialing();
+console.log("lunarIdle END");
 	}
 // ------------------------------------------------------------------------------------------------
 function seasonalSpin() {
