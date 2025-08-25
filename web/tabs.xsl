@@ -25,10 +25,10 @@
 					<xsl:apply-templates select="dial"/>
 				</div>
 				<div id="tab-dial-lunar">
-					<h4>lunar dial coming soon</h4>
+					<img id="lunar" src="grfx/svg/dial/blank.svg" onmouseenter="lunarSpin();" onmouseleave="lunarIdle();"/>
 				</div>
 				<div id="tab-dial-seasonal">
-					<h4>seasonal dial coming soon</h4>
+					<img id="seasonal" src="grfx/svg/dial/blank.svg" onmouseenter="seasonalSpin();" onmouseleave="seasonalIdle();"/>
 				</div>
 			</div>
 			<div id="tab-chart">

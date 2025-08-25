@@ -207,4 +207,64 @@ function lookUp(bird){
 	if (!isMobile) window.open('https://www.allaboutbirds.org/guide/'+bird.replace(" ","_"), '_blank');
     };
 // ------------------------------------------------------------------------------------------------
+function daysLastYear() {
+	const YEAR = new Date().getFullYear();
+	const LASTYEAR = YEAR - 1;
+	let isleap = false;
+	if (LASTYEAR % 4 !== 0) {
+		// not a leap year
+		}
+	else if (LASTYEAR % 400 === 0) {
+		isleap = true;
+		}
+	else if (LASTYEAR % 100 === 0) {
+		// not a leap year
+		}
+	else {
+		isleap = true;
+		}
+	return isleap ? 366 : 365;
+	}
+// ------------------------------------------------------------------------------------------------
+let lunarLoop=false;
+// ------------------------------------------------------------------------------------------------
+function lunarDialing() {
+	const DAYOFYEAR = Math.floor((new Date() - new Date(YEAR, 0, 0)) / 1000 / 60 / 60 / 24);
+console.log("DAYOFYEAR = "+DAYOFYEAR);
+	const DAYSLASTYEAR = daysLastYear();
+console.log("DAYSLASTYEAR = "+DAYSLASTYEAR);
+	const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+	const image = document.getElementById('lunar');
+	for (let i = 30; i >= 1; i--) {
+		let DAY = DAYOFYEAR - i;
+		if (DAY <= 0) {
+			DAY += DAYSLASTYEAR;
+			}
+console.log("DAY = "+DAY);
+		for (let HOUR = 0; i <= 23; i++) {
+ 			image.src='grfx/svg/dial/' + DAY + '/' + HOUR + '.svg';
+console.log("image.src= grfx/svg/dial/" + DAY + "/" + HOUR + ".svg");
+			sleep(40);
+			}
+		if (!lunarLoop) break;
+		}
+	}
+// ------------------------------------------------------------------------------------------------
+function lunarSpin() {
+	lunarLoop=true;
+	}
+// ------------------------------------------------------------------------------------------------
+function lunarIdle() {
+	lunarLoop=false;
+	lunarDialing();
+	}
+// ------------------------------------------------------------------------------------------------
+function seasonalSpin() {
+	console.log("not yet");
+	}
+// ------------------------------------------------------------------------------------------------
+function seasonalIdle() {
+	console.log("not yet");
+	}
+// ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
