@@ -91,6 +91,7 @@ echo " "
 read -e -p "Enter the email for failure notifications: " -i ${FAILURE_EMAIL} NEW_FAILURE_EMAIL
 echo "Email set to ${NEW_FAILURE_EMAIL}."
 echo " "
+# get locale based upon lat/lon
 {
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
@@ -100,7 +101,7 @@ do
 	if [[ $EXITCODE -eq 0 ]]
 		then
 		LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
-		echo "locale success on attempt ${i}"
+		echo "locale set to ${LOCALE} on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
@@ -116,6 +117,7 @@ do
 done
 }  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-config.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-config.err
 echo "----------"
+# write the source file
 {
 echo "LAT=${LAT}"
 echo "LON=${LON}"
@@ -134,6 +136,7 @@ echo "FAILURE_EMAIL=${NEW_FAILURE_EMAIL}"
 echo "Source set"
 # ---------------------------------------------------
 echo " "
+# initialize the sqlite database
 if [ -f "${BARCHART_HOME}/birds.db" ]; then
 	echo "Do you wish to overwrite your birds database?"
 	WARNON='\033[31;5m'
@@ -152,12 +155,22 @@ if [ -f "${BARCHART_HOME}/birds.db" ]; then
 else
 	sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql
 fi
-echo "Database created"
+echo "Database initialized"
 # ---------------------------------------------------
 echo " "
+# set email address in failure emails
 sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/backupFailure.txt
 sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/storageFailure.txt
 echo "Email text updated"
+echo " "
+# initialize dial blank SVGs
+for i in $(seq 1 366); do
+	for j in $(seq 0 23); do
+		mkdir ${BARCHART_HOME}/web/grfx/svg/dial/${i}
+		cp blank.svg ${BARCHART_HOME}/web/grfx/svg/dial/${i}/${j}.svg
+	done
+done
+echo "Dial initialized"
 # ---------------------------------------------------
 # call crontab util
 echo "You may now start the analysis/processing."
