@@ -4,6 +4,7 @@ SECONDS=0
 YEAR=`date '+%Y'`
 MONTH=`date '+%m'`
 DAY=`date '+%d'`
+DAYOFYEAR=`date '+%j'`
 HOUR=`date '+%H'`
 MINUTE=`date '+%M'`
 # ---------------------------------------------------
@@ -124,11 +125,13 @@ gzip ${WORK_HOUR}/*
 sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHART_HOME}/web/birding.xml
 # transform the xml into html
 java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}" commit="${COMMIT}"
+# copy the dial for lunar/seasonal
+java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/svgDial.xsl > ${BARCHART_HOME}/web/grfx/svg/dial/${DAYOFYEAR}/${HOUR}.svg
 # copy it all to the web server
 mkdir -p ${WEB_HOME}/BirdNET-BarChart
-cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
-cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
-cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
+cp -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
+cp ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
+cp ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
 # remove the warning semaphore
 rm -v "${BARCHART_HOME}/hourly.lock"
 # ===================================================

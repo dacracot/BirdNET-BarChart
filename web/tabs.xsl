@@ -3,7 +3,9 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="xs"
     version="2.0">
+<!-- 
 	<xsl:output method="html" indent="yes"/>
+ -->
 	<xsl:include href="dial.xsl"/>
 	<xsl:include href="chart.xsl"/>
 <!-- =========================================================================================== -->
@@ -22,13 +24,13 @@
 					<li><a href="#tab-dial-seasonal">seasonal cycle</a></li>
 				</ul>
 				<div id="tab-dial-solar">
-					<xsl:apply-templates select="dial"/>
+					<xsl:apply-templates select="dial" mode="userInterface"/>
 				</div>
 				<div id="tab-dial-lunar">
-					<img id="lunar" src="grfx/svg/dial/blank.svg" onmouseenter="lunarSpin();" onmouseleave="lunarIdle();"/>
+					<div onmousemove="lunarSpin()"><img id="lunar" src="grfx/svg/dial/blank.svg"/></div>
 				</div>
 				<div id="tab-dial-seasonal">
-					<img id="seasonal" src="grfx/svg/dial/blank.svg" onmouseenter="seasonalSpin();" onmouseleave="seasonalIdle();"/>
+					<div onmousemove="seasonalSpin()"><img id="seasonal" src="grfx/svg/dial/blank.svg"/></div>
 				</div>
 			</div>
 			<div id="tab-chart">

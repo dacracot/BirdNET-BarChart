@@ -3,9 +3,11 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="xs"
     version="2.0">
+<!-- 
 	<xsl:output method="html" indent="yes"/>
+ -->
 <!-- =========================================================================================== -->
-	<xsl:template match="dial">
+	<xsl:template match="dial" mode="userInterface">
 		<xsl:element name="table">
 			<xsl:element name="tr">
 				<xsl:element name="th">bird song:</xsl:element>
@@ -18,16 +20,7 @@
 		<table>
 			<tr>
 				<td>
-					<svg id="dial" width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
-						<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
-						<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
-							<xsl:apply-templates select="moon"/>
-							<xsl:apply-templates select="sun"/>
-							<xsl:apply-templates select="weather"/>
-							<xsl:copy-of select="document('grfx/svg/base.svg')/base/*"/>
-						</g>
-						<xsl:apply-templates select="data"/>
-					</svg>
+					<xsl:call-template name="svg"/>
 				</td>
 				<td>
 					<div id="showData"></div>
@@ -36,6 +29,23 @@
 		</table>
 		<hr/>
 		<xsl:call-template name="showDial"/>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="dial" mode="imageOnly">
+		<xsl:call-template name="svg"/>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template name="svg">
+		<svg id="dial" width="300" height="300" viewBox="-150 -150 300 300" xmlns="http://www.w3.org/2000/svg">
+			<circle cx="0" cy="0" r="90" fill="none" stroke="black" stroke-width="2" onmouseover="rowInit()"/>
+			<g stroke="black" stroke-width="1" font-family="Arial" font-size="10" text-anchor="middle">
+				<xsl:apply-templates select="moon"/>
+				<xsl:apply-templates select="sun"/>
+				<xsl:apply-templates select="weather"/>
+				<xsl:copy-of select="document('grfx/svg/base.svg')/base/*"/>
+			</g>
+			<xsl:apply-templates select="data"/>
+		</svg>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="menu">

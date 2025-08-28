@@ -3,7 +3,9 @@
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
     exclude-result-prefixes="xs"
     version="2.0">
+<!-- 
 	<xsl:output method="html" indent="yes"/>
+ -->
 <!-- =========================================================================================== -->
 <!-- create table from a set -->
 	<xsl:template match="set" mode="table">

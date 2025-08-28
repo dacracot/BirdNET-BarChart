@@ -226,51 +226,34 @@ function daysLastYear() {
 	return isleap ? 366 : 365;
 	}
 // ------------------------------------------------------------------------------------------------
-let lunarLoop=false;
-// ------------------------------------------------------------------------------------------------
-function lunarDialing() {
-	const YEAR = new Date().getFullYear();
-	const DAYOFYEAR = Math.floor((new Date() - new Date(YEAR, 0, 0)) / 1000 / 60 / 60 / 24);
-console.log("DAYOFYEAR = "+DAYOFYEAR);
-	const DAYSLASTYEAR = daysLastYear();
-console.log("DAYSLASTYEAR = "+DAYSLASTYEAR);
-	const sleep = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-	const image = document.getElementById('lunar');
-	for (let i = 30; i >= 1; i--) {
-		let DAY = DAYOFYEAR - i;
-		if (DAY <= 0) {
-			DAY += DAYSLASTYEAR;
-			}
-console.log("DAY = "+DAY);
-		for (let HOUR = 0; HOUR <= 23; HOUR++) {
- 			image.src='grfx/svg/dial/' + DAY + '/' + HOUR + '.svg';
-// console.log("image.src= grfx/svg/dial/" + DAY + "/" + HOUR + ".svg");
-			sleep(40);
-			}
-		if (!lunarLoop) break;
+function nextLunarDay(thisDay) {
+	const year = new Date().getFullYear();
+	const dayOfYear = Math.floor((new Date() - new Date(year, 0, 0)) / 1000 / 60 / 60 / 24);
+	const lastYearsDays = daysLastYear();
+	let DAY = dayOfYear - thisDay;
+	if (DAY <= 0) {
+		DAY += lastYearsDays;
 		}
+console.log("DAY = "+DAY);
+	return(DAY);
 	}
 // ------------------------------------------------------------------------------------------------
+const lunarImage = document.getElementById("lunar");
+const seasonalImage = document.getElementById("seasonal");
+let dialHour = 0;
+let dayLunar = 0;
+let daySeasonal = 0;
 function lunarSpin() {
-console.log("lunarSpin BEGIN");
-	lunarLoop=true;
-console.log("lunarSpin MID");
-	lunarDialing();
-console.log("lunarSpin END");
+	dayLunar = nextLunarDay(dayLunar);
+	lunarImage.src="grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg";
+	dialHour++;
+	if (dialHour > 23) dialHour = 0;
 	}
-// ------------------------------------------------------------------------------------------------
-function lunarIdle() {
-console.log("lunarIdle BEGIN");
-	lunarLoop=false;
-console.log("lunarIdle END");
-	}
-// ------------------------------------------------------------------------------------------------
 function seasonalSpin() {
-	console.log("not yet");
-	}
-// ------------------------------------------------------------------------------------------------
-function seasonalIdle() {
-	console.log("not yet");
+	daySeasonal = nextSeasonalDay(daySeasonal);
+	seasonalImage.src="grfx/svg/dial/"+daySeasonal+"/"+dialHour+".svg";
+	dialHour++;
+	if (dialHour > 23) dialHour = 0;
 	}
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
