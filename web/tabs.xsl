@@ -27,10 +27,18 @@
 					<xsl:apply-templates select="dial" mode="userInterface"/>
 				</div>
 				<div id="tab-dial-lunar">
-					<div onmousemove="lunarSpin()"><img id="lunar" src="grfx/svg/dial/blank.svg"/></div>
+					<div onmousemove="lunarSpin()">
+						<img id="lunar" src="grfx/svg/dial/blank.svg"/>
+						<br/>
+						<center><div id="lunarDay"></div></center>
+					</div>
 				</div>
 				<div id="tab-dial-seasonal">
-					<div onmousemove="seasonalSpin()"><img id="seasonal" src="grfx/svg/dial/blank.svg"/></div>
+					<div onmousemove="seasonalSpin()">
+						<img id="seasonal" src="grfx/svg/dial/blank.svg"/>
+						<br/>
+						<center><div id="seasonalDay"></div></center>
+					</div>
 				</div>
 			</div>
 			<div id="tab-chart">

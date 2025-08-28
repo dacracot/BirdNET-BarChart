@@ -234,26 +234,34 @@ function nextLunarDay(thisDay) {
 	if (DAY <= 0) {
 		DAY += lastYearsDays;
 		}
-console.log("DAY = "+DAY);
 	return(DAY);
 	}
 // ------------------------------------------------------------------------------------------------
 const lunarImage = document.getElementById("lunar");
+const lunarDay = document.getElementById("lunarDay");
 const seasonalImage = document.getElementById("seasonal");
+const seasonalDay = document.getElementById("seasonalDay");
 let dialHour = 0;
-let dayLunar = 0;
-let daySeasonal = 0;
+let dayLunar = nextLunarDay(0);
+let daySeasonal = nextLunarDay(0);
 function lunarSpin() {
-	dayLunar = nextLunarDay(dayLunar);
+	lunarDay.innerHTML = "LD - "+dayLunar;
+console.log("grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg");
 	lunarImage.src="grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg";
 	dialHour++;
-	if (dialHour > 23) dialHour = 0;
+	if (dialHour > 23) {
+		dialHour = 0;
+		dayLunar = nextLunarDay(dayLunar);
+		}
 	}
 function seasonalSpin() {
-	daySeasonal = nextSeasonalDay(daySeasonal);
+	lunarDay.innerHTML = "SD - "+daySeasonal;
 	seasonalImage.src="grfx/svg/dial/"+daySeasonal+"/"+dialHour+".svg";
 	dialHour++;
-	if (dialHour > 23) dialHour = 0;
+	if (dialHour > 23) {
+		dialHour = 0;
+		daySeasonal = nextSeasonalDay(daySeasonal);
+		}
 	}
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
