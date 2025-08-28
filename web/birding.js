@@ -226,42 +226,32 @@ function daysLastYear() {
 	return isleap ? 366 : 365;
 	}
 // ------------------------------------------------------------------------------------------------
-function nextLunarDay(thisDay) {
-	const year = new Date().getFullYear();
-	const dayOfYear = Math.floor((new Date() - new Date(year, 0, 0)) / 1000 / 60 / 60 / 24);
-	const lastYearsDays = daysLastYear();
-	let DAY = dayOfYear - thisDay;
-	if (DAY <= 0) {
-		DAY += lastYearsDays;
-		}
-	return(DAY);
-	}
-// ------------------------------------------------------------------------------------------------
+const year = new Date().getFullYear();
+const dayOfYear = Math.floor((new Date() - new Date(year, 0, 0)) / 1000 / 60 / 60 / 24);
+// ----------------------
 const lunarImage = document.getElementById("lunar");
 const lunarDay = document.getElementById("lunarDay");
+// ----------------------
+let dialHour = 23;
+let dayLunar = dayOfYear;
+// ----------------------
+function lunarSpin() {
+	lunarDay.innerHTML = "date";
+	lunarImage.src="grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg";
+console.log("grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg");
+	dialHour--;
+	if (dialHour < 0) {
+		dialHour = 23;
+		dayLunar--;
+		if (dayLunar < (dayOfYear-30)) {dayLunar = dayOfYear;}
+ 		if (dayLunar < 0) {dayLunar = daysLastYear();}
+// 		if (dayLunar < (daysLastYear()-(daysLastYear()-dayOfYear))) {dayLunar = dayOfYear;}
+		}
+	}
+// ----------------------
 const seasonalImage = document.getElementById("seasonal");
 const seasonalDay = document.getElementById("seasonalDay");
-let dialHour = 0;
-let dayLunar = nextLunarDay(0);
-let daySeasonal = nextLunarDay(0);
-function lunarSpin() {
-	lunarDay.innerHTML = "LD - "+dayLunar;
-console.log("grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg");
-	lunarImage.src="grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg";
-	dialHour++;
-	if (dialHour > 23) {
-		dialHour = 0;
-		dayLunar = nextLunarDay(dayLunar);
-		}
-	}
-function seasonalSpin() {
-	lunarDay.innerHTML = "SD - "+daySeasonal;
-	seasonalImage.src="grfx/svg/dial/"+daySeasonal+"/"+dialHour+".svg";
-	dialHour++;
-	if (dialHour > 23) {
-		dialHour = 0;
-		daySeasonal = nextSeasonalDay(daySeasonal);
-		}
-	}
+// ----------------------
+function seasonalSpin() {}
 // ------------------------------------------------------------------------------------------------
 console.log("refreshed at "+date);
