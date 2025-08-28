@@ -167,7 +167,7 @@ echo " "
 for i in $(seq 1 366); do
 	for j in $(seq 0 23); do
 		mkdir ${BARCHART_HOME}/web/grfx/svg/dial/${i}
-		cp blank.svg ${BARCHART_HOME}/web/grfx/svg/dial/${i}/${j}.svg
+		cp ${BARCHART_HOME}/web/grfx/svg/dial/blank.svg ${BARCHART_HOME}/web/grfx/svg/dial/${i}/$(printf "%06g" $j).svg
 	done
 done
 echo "Dial initialized"

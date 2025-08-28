@@ -232,13 +232,13 @@ const dayOfYear = Math.floor((new Date() - new Date(year, 0, 0)) / 1000 / 60 / 6
 const lunarImage = document.getElementById("lunar");
 const lunarDay = document.getElementById("lunarDay");
 // ----------------------
-let dialHour = 23;
+let dialHour = new Date().getHours();
 let dayLunar = dayOfYear;
 // ----------------------
 function lunarSpin() {
 	lunarDay.innerHTML = "date";
-	lunarImage.src="grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg";
-console.log("grfx/svg/dial/"+dayLunar+"/"+dialHour+".svg");
+	lunarImage.src="grfx/svg/dial/"+dayLunar+"/"+String(dialHour).padStart(2, '0')+".svg";
+console.log(lunarImage.src);
 	dialHour--;
 	if (dialHour < 0) {
 		dialHour = 23;
