@@ -22,8 +22,8 @@ fi
 function calculateMoonPhase {
 	# Input: year, month, day; trim leading zeros
 	yy=$YEAR
-	mm=$(echo $MONTH | sed 's/^0*//')
-	dd=$(echo $DAY | sed 's/^0*//')
+	mm=${MONTH#0}
+	dd=${DAY#0}
 	# Adjust month and year
 	if [ "$mm" -lt 3 ]; then
 	  yy=$((yy - 1))
