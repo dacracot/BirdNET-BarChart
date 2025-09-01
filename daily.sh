@@ -85,6 +85,7 @@ do
 		then
 		echo "<day>" > ${BARCHART_HOME}/sky/day.xml
 		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/sky/day.js >> ${BARCHART_HOME}/sky/day.xml
+		# insert calculated moon phase
 		PHASE=$(calculateMoonPhase)
 		echo "<phase>${PHASE}</phase>" >> ${BARCHART_HOME}/sky/day.xml
 		echo "</day>" >> ${BARCHART_HOME}/sky/day.xml
