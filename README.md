@@ -32,6 +32,7 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 ##### Software
 * [Apache](https://projects.apache.org/project.html?httpd-http_server)[optional]
 * [Bash](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
+* [bc](https://www.man7.org/linux/man-pages/man1/bc.1p.html)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)[^1]
 * [git](https://git-scm.com)
 * [Java](https://www.java.com/)

@@ -19,6 +19,60 @@ else
 	exit 1
 fi
 # ---------------------------------------------------
+function calculateMoonPhase {
+	# Input: year, month, day; trim leading zeros
+	yy=$YEAR
+	mm=$(echo $MONTH | sed 's/^0*//')
+	dd=$(echo $DAY | sed 's/^0*//')
+	# Adjust month and year
+	if [ "$mm" -lt 3 ]; then
+	  yy=$((yy - 1))
+	  mm=$((mm + 12))
+	fi
+	mm=$((mm + 1))
+	# Calculate components using bc
+	c=$(echo "scale=5; 365.25 * $yy" | bc)
+	e=$(echo "scale=5; 30.6 * $mm" | bc)
+	jd=$(echo "scale=5; $c + $e + $dd - 694039.09" | bc)
+	jd=$(echo "scale=5; $jd / 29.5305882" | bc)
+	# Integer part (b), and fractional part
+	b=$(echo "$jd" | cut -d'.' -f1)
+	frac=$(echo "scale=5; $jd - $b" | bc)
+	# Multiply fractional part by 8 and round to nearest integer
+	b=$(echo "$frac * 8 + 0.5" | bc | cut -d'.' -f1)
+	# Normalize if b == 8
+	if [ "$b" -ge 8 ]; then
+	  b=0
+	fi
+	# Output results
+	case $b in
+	  0)
+		echo "New Moon"
+		;;
+	  1)
+		echo "Waxing Crescent"
+		;;
+	  2)
+		echo "First Quarter"
+		;;
+	  3)
+		echo "Waxing Gibbous"
+		;;
+	  4)
+		echo "Full Moon"
+		;;
+	  5)
+		echo "Waning Gibbous"
+		;;
+	  6)
+		echo "Last Quarter"
+		;;
+	  7)
+		echo "Waning Crescent"
+		;;
+	esac
+	}
+# ---------------------------------------------------
 {
 # ===================================================
 # record celestial data
@@ -31,9 +85,11 @@ do
 		then
 		echo "<day>" > ${BARCHART_HOME}/sky/day.xml
 		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/sky/day.js >> ${BARCHART_HOME}/sky/day.xml
+		PHASE=$(calculateMoonPhase)
+		echo "<phase>${PHASE}</phase>" >> ${BARCHART_HOME}/sky/day.xml
 		echo "</day>" >> ${BARCHART_HOME}/sky/day.xml
 		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/day.xml -xsl:${BARCHART_HOME}/sky/day.xsl > ${BARCHART_HOME}/sky/day.sql
-		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/day.sql
+# 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/day.sql
 		echo "celestial success on attempt ${i}"
 		break   
 	else
