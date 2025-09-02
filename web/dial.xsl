@@ -1060,7 +1060,10 @@
 								<xsl:copy-of select="document('grfx/svg/moon/firstQuarter.svg')/firstQuarter/*"/>
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Waxing Gibbous'">
+								<xsl:copy-of select="document('grfx/svg/moon/waxingGibbous.svg')/waxingGibbous/*"/>
+<!-- 
 								<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
+ -->
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Full Moon'">
 								<xsl:copy-of select="document('grfx/svg/moon/full.svg')/full/*"/>
