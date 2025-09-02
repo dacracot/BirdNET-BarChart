@@ -1061,9 +1061,6 @@
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Waxing Gibbous'">
 								<xsl:copy-of select="document('grfx/svg/moon/waxingGibbous.svg')/waxingGibbous/*"/>
-<!-- 
-								<xsl:attribute name="transform"><xsl:call-template name="phase"><xsl:with-param name="peak"><xsl:value-of select="round(number(@peak) + 360)"/></xsl:with-param></xsl:call-template></xsl:attribute>
- -->
 						</xsl:when>
 						<xsl:when test="/extract/dial/moon/@phase ='Full Moon'">
 								<xsl:copy-of select="document('grfx/svg/moon/full.svg')/full/*"/>
@@ -1198,49 +1195,6 @@
 			<xsl:attribute name="transform">rotate(<xsl:value-of select="@down"/>)</xsl:attribute>
 			<line id="pie" x1="0" y1="90" x2="0" y2="0"/>
 		</xsl:element>
-	</xsl:template>
-<!-- =========================================================================================== -->
-	<xsl:template name="phase">
-<!-- 
-		01:30		<g transform="translate(-69, 91)">	
-		04:30		<g transform="translate(-129, 31)">	
-		07:30		<g transform="translate(-129, -69)">
-		10:30		<g transform="translate(-69, -129)">
-		11:30		<g transform="translate(31, -129)">	
-		16:30		<g transform="translate(91, -69)">	
-		19:30		<g transform="translate(91, 31)">	
-		22:30		<g transform="translate(31, 91)">		
- -->
-		<xsl:param name="peak"/>
-		<xsl:choose>
-			<xsl:when test="$peak = (0 to 45)">
-				<xsl:text>translate(-69, 91)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (46 to 90)">
-				<xsl:text>translate(-129, 31)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (91 to 135)">
-				<xsl:text>translate(-129, -69)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (136 to 180)">
-				<xsl:text>translate(-69, -129)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (181 to 225)">
-				<xsl:text>translate(31, -129)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (226 to 270)">
-				<xsl:text>translate(91, -69)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (271 to 315)">
-				<xsl:text>translate(91, 31)</xsl:text>
-			</xsl:when>
-			<xsl:when test="$peak = (316 to 360)">
-				<xsl:text>translate(31, 91)</xsl:text>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:text>miss-matched moon.peak, found </xsl:text><xsl:value-of select="$peak"/>
-			</xsl:otherwise>
-		</xsl:choose>
 	</xsl:template>
 <!-- =========================================================================================== -->
 </xsl:stylesheet>
