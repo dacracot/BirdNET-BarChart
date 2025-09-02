@@ -7,12 +7,11 @@
 <!-- =========================================================================================== -->
 	<xsl:template match="/">
 		<xsl:apply-templates select="day/properties/data"/>
+		<xsl:apply-templates select="day/phase"/>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="data">
-		<xsl:text>insert into moon (phase,up,peak,down,minuteOfDay) values ('</xsl:text>
-		<xsl:value-of select="closestphase/phase"/> 
-		<xsl:text>','</xsl:text>
+		<xsl:text>insert into moon (phase,up,peak,down,minuteOfDay) values ('calculating','</xsl:text> 
 		<xsl:apply-templates select="moondata/phen[.='Rise']/../time"/> 
 		<xsl:text>','</xsl:text>
 		<xsl:apply-templates select="moondata/phen[.='Upper Transit']/../time"/> 
@@ -32,6 +31,12 @@
 		<xsl:apply-templates select="sundata/phen[.='End Civil Twilight']/../time"/> 
 		<xsl:text>',datetime('now','localtime'));
 </xsl:text>
+	</xsl:template>
+<!-- =========================================================================================== -->
+	<xsl:template match="phase">
+		<xsl:text>update moon set phase = '</xsl:text>
+		<xsl:value-of select="."/>
+		<xsl:text>' where phase = 'calculating';</xsl:text>
 	</xsl:template>
 <!-- =========================================================================================== -->
 	<xsl:template match="time">
