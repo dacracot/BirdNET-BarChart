@@ -1,10 +1,6 @@
-# BirdNET-BarChart
+![dacracot/BirdNET-BarChart](web/grfx/svg/smallBird.svg) # BirdNET-BarChart
 
 Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser updating hourly with up to date data.
-
----
-
-![dacracot/BirdNET-BarChart](web/grfx/svg/smallBird.svg)
 
 ---
 
