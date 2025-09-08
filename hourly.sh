@@ -129,6 +129,8 @@ mkdir -p ${WEB_HOME}/BirdNET-BarChart
 cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
+# snapshot the dial
+wkhtmltoimage --crop-w 306 --crop-h 296 --crop-x 12 --crop-y 210 http://localhost/BirdNET-BarChart/birding.html ${BARCHART_HOME}/web/grfx/lunar/snapshot-${DAY}-${HOUR}.png
 # remove the warning semaphore
 rm -v "${BARCHART_HOME}/hourly.lock"
 # ===================================================
