@@ -38,7 +38,7 @@ arecord -D sysdefault:CARD=${CARD} --quiet --max-file-time 60 -f S16_LE -r 48000
 echo "$!" > ${WORK_HOUR}/recording.pid
 # ===================================================
 # kill the audio recording started above on the hour
-HOWLONG=$((60-`date '+%M'`-2))
+HOWLONG=$((60-${MINUTE#0}-2))
 sleep ${HOWLONG}m
 # set hourly semaphore to warn of processing
 touch "${BARCHART_HOME}/hourly.lock"
