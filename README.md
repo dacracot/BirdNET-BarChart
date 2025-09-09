@@ -37,8 +37,12 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 	* The daily calculations for moon phase will fail without bc, likely affecting the dial display of the moon.
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)[^1]
 	* This is the engine that recognizes bird sound and assigns species.  The project is pointless without it.
+* [ffmpeg](https://ffmpeg.org)
+	* This is necessary for animating the lunar and seasonal dials.
 * [git](https://git-scm.com)
 	* This is necessary if want automatic updating.  The release is controlled using the main branch.  Without it, you would remain on a snapshot version until you changed it.
+* [imagemagick](https://imagemagick.org)
+	* This is necessary for animating the lunar and seasonal dials.
 * [Java](https://www.java.com/)
 	* The JRE is used execute the Saxon target referenced below.
 * [jq](https://jqlang.org)

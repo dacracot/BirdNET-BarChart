@@ -106,6 +106,13 @@ do
 	fi
 done
 # ===================================================
+# roll the current lunar cycle video
+
+# ffmpeg... 31, 30, 29, or 28 
+
+# name off PNG for seasonal
+
+# ===================================================
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
