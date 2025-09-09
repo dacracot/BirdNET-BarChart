@@ -107,7 +107,7 @@ do
 done
 # ===================================================
 # roll the current lunar cycle video
-ffmpeg -framerate 30 -i ${BARCHART_HOME}/web/grfx/lunar/snapshot-%02d-%02d.png -c:v libx264 -pix_fmt yuv420p ${BARCHART_HOME}/web/grfx/lunar/dial.mp4
+ffmpeg -framerate 30 -i ${BARCHART_HOME}/web/grfx/lunar/snapshot-%05d.png -c:v libx264 -pix_fmt yuv420p ${BARCHART_HOME}/web/grfx/lunar/dial.mp4
 
 # name off PNG for seasonal
 

@@ -130,12 +130,13 @@ cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
 # snapshot the dial
-JULIAN=$(date '+%j')
-THIRTYDAYS=$(($JULIAN % 12))
-# this algorithm for 0..30 is certainly wrong for crossing into a new year
-wkhtmltoimage --crop-w 306 --crop-h 296 --crop-x 12 --crop-y 210 http://localhost/BirdNET-BarChart/birding.html ${BARCHART_HOME}/web/grfx/lunar/snapshot-${THIRTYDAYS}-${HOUR}.png
+J=$(date '+%j')
+JULIAN=$(printf "%03d" "${J#0}")
+# this algorithm may not order correctly when crossing into a new year
+wkhtmltoimage --crop-w 306 --crop-h 296 --crop-x 12 --crop-y 210 http://localhost/BirdNET-BarChart/birding.html ${BARCHART_HOME}/web/grfx/lunar/snapshot-${JULIAN}${HOUR}.png
 TIMESTAMP=$(date '+%Y-%m-%d %H:00')
-convert -pointsize 18 -fill black -draw "text 2,294 '${TIMESTAMP}'" ${BARCHART_HOME}/web/grfx/lunar/snapshot-${THIRTYDAYS}-${HOUR}.png ${BARCHART_HOME}/web/grfx/lunar/snapshot-${THIRTYDAYS}-${HOUR}.png
+convert -pointsize 18 -fill black -draw "text 2,294 '${TIMESTAMP}'" ${BARCHART_HOME}/web/grfx/lunar/snapshot-${JULIAN}-${HOUR}.png ${BARCHART_HOME}/web/grfx/lunar/snapshot-${JULIAN}-${HOUR}.png
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.png" -type f -mtime +30 -delete
 # remove the warning semaphore
 rm -v "${BARCHART_HOME}/hourly.lock"
 # ===================================================
