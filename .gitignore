@@ -15,6 +15,7 @@ birds.db
 species_list.txt
 birding.html
 birding.xml
+snapshot*.png
 day.js
 day.sql
 day.xml
