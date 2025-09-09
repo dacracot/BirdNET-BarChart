@@ -25,7 +25,11 @@
 					<xsl:apply-templates select="dial"/>
 				</div>
 				<div id="tab-dial-lunar">
-					<h4>lunar dial coming soon</h4>
+					<video width="111" height="" autoplay="autoplay" loop="loop" muted="muted">
+						<source src="grfx/lunar/dial.mp4" type="video/mp4"/>
+						<source src="dial.ogg" type="video/ogg"/>
+						No video support.
+					</video>
 				</div>
 				<div id="tab-dial-seasonal">
 					<h4>seasonal dial coming soon</h4>
