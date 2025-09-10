@@ -25,7 +25,7 @@
 					<xsl:apply-templates select="dial"/>
 				</div>
 				<div id="tab-dial-lunar">
-					<video width="111" height="" autoplay="autoplay" loop="loop" muted="muted">
+					<video width="320" height="320" controls="controls" autoplay="autoplay" loop="loop" muted="muted">
 						<source src="grfx/lunar/dial.mp4" type="video/mp4"/>
 						<source src="dial.ogg" type="video/ogg"/>
 						No video support.
