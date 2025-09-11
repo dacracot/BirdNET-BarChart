@@ -62,7 +62,6 @@ and now know what birds are sharing their voices with me.
 		* `sudo apt install jq`
 		* `sudo apt install bc`
 		* `sudo apt install imagemagick`
-		* `sudo apt install ffmpeg`
 		* `sudo apt install sshpass`
 		* `sudo apt install ssmtp`
 	1. Expand the release file obtained from the BirdNET-BarChart GitHub.

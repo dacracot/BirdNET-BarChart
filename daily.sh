@@ -106,15 +106,10 @@ do
 	fi
 done
 # ===================================================
-# roll the current lunar cycle video
+# roll the current lunar cycle animated gif with imagemagick
 find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.png" -type f -mtime +30 -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
 find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.png" -type f -mtime +30 -delete
-rm ${BARCHART_HOME}/web/grfx/lunar/dial.mp4
-# ffmpeg -framerate 24 -i ${BARCHART_HOME}/web/grfx/lunar/snapshot-%05d.png -c:v libx264 -pix_fmt yuv420p ${BARCHART_HOME}/web/grfx/lunar/dial.mp4
-ffmpeg -framerate 12 -pattern_type glob -i "${BARCHART_HOME}/web/grfx/lunar/snapshot-*.png" -c:v libx264 -profile:v high -crf 20 -pix_fmt yuv420p ${BARCHART_HOME}/web/grfx/lunar/dial.mp4
-
-# name off PNG for seasonal
-
+convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/lunar/snapshot-*.png" -loop 0 "${BARCHART_HOME}/web/grfx/lunar/dial.gif"
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
