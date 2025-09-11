@@ -57,6 +57,8 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 	* The XSLT is driven by the Saxon implementation.  Most of the XML processing including processing the latest UI components uses XSLT.
 * [SVG](https://www.w3schools.com/graphics/svg_intro.asp)
 	* Not exactly an dependency other that you browser needs to understand SVG. Few do not.
+* [wkhtmltoimage part of wkhtmltopdf](https://wkhtmltopdf.org)
+	* This is necessary for animating the lunar and seasonal dials.
 * [XSLT](https://www.w3schools.com/xml/xsl_intro.asp)
 	* Same as above, this is a language used a lot for aspects of this projects transformation of data from audio recordings to web displayable graphics.
 ##### Websites
