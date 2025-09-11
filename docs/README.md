@@ -60,8 +60,11 @@ and now know what birds are sharing their voices with me.
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
 		* `sudo apt install jq`
+		* `sudo apt install bc`
+		* `sudo apt install imagemagick`
 		* `sudo apt install sshpass`
 		* `sudo apt install ssmtp`
+		* `sudo apt install wkhtmltopdf`
 	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
 		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
 	1. Save your previously populated sqlite database if you have one.

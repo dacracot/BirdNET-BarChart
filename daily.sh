@@ -106,6 +106,11 @@ do
 	fi
 done
 # ===================================================
+# roll the current lunar cycle animated gif with imagemagick
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.png" -type f -mtime +30 -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.png" -type f -mtime +30 -delete
+convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/lunar/snapshot-*.png" -loop 0 "${BARCHART_HOME}/web/grfx/lunar/dial.gif"
+# ===================================================
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
