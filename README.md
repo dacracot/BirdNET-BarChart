@@ -34,7 +34,7 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 * [Bash](https://linuxconfig.org/bash-scripting-tutorial-for-beginners)
 	* Assuming you are on linux.  MacOS will likely work, but I've done no testing.
 * [bc](https://www.man7.org/linux/man-pages/man1/bc.1p.html)
-	* The daily calculations for moon phase will fail without bc, likely affecting the dial display of the moon.
+	* The daily calculations for moon phase will fail without bc, affecting the dial display of the moon.
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)[^1]
 	* This is the engine that recognizes bird sound and assigns species.  The project is pointless without it.
 * [git](https://git-scm.com)
