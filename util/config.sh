@@ -29,7 +29,7 @@ else
 	LOCALE="Potter County, South Dakota"
 	BARCHART_HOME=${HOME}/BirdNET-BarChart
 	ANALYZER_HOME=${HOME}/BirdNET-Analyzer
-	XSLT_HOME=${HOME}/SaxonC-HE
+	XSLT_HOME=${HOME}/SaxonJ-HE
 	WEB_HOME=/var/www/html
 	PERCENT_STORAGE_ALLOWED=60
 	BACKUP_HOME=username@192.168.0.123:${HOME}/backups
