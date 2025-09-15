@@ -20,7 +20,7 @@ and now know what birds are sharing their voices with me.
 	1. [Apache](https://www.apache.org) to serve web content.
 	1. [Python 3](https://www.python.org) to support the analyzer.
 	1. [SQLite 3](https://www.sqlite.org) to support the barcharter.
-	1. [SaxonC-HE](https://www.saxonica.com/) to support the barcharter.
+	1. [SaxonJ-HE](https://www.saxonica.com/) to support the barcharter.
 	1. [SVG](https://en.wikipedia.org/wiki/SVG) to render the charts in the browser.
 	1. [sSMTP](https://packages.debian.org/source/unstable/ssmtp) to send alert emails when unrecoverable errors occur.
 
@@ -54,16 +54,23 @@ and now know what birds are sharing their voices with me.
 		* `cd SaxonJ-HE-12.8`
 		* `unzip SaxonHE12-8J.zip`
 * ___Install this software___:
-	1. Install git, Java, sqlite, Apache, sshpass, and sSMTP.
+	1. Install git, Java, sqlite, Apache, sshpass, etc.
 		* `sudo apt install git`
 		* `sudo apt install default-jre-headless`
 		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
 		* `sudo apt install jq`
+		* `sudo apt install bc`
+		* `sudo apt install imagemagick`
 		* `sudo apt install sshpass`
 		* `sudo apt install ssmtp`
-	1. Expand the release file obtained from the BirdNET-BarChart GitHub.
-		* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
+		* `sudo apt install wkhtmltopdf`
+	1. Either...
+		* Expand the release file obtained from the BirdNET-BarChart GitHub.
+			* `tar xzvf BirdNET-BarChart-#.#.#.tar.gz`
+		* Clone the repository from the BirdNET-BarChart GitHub.
+			* `git clone https://github.com/dacracot/BirdNET-BarChart.git`
+			* Using a git clone will afford automatic updates during configuration.
 	1. Save your previously populated sqlite database if you have one.
 		* `mv /home/dacracot/BirdNET-BarChart/birds.db /tmp/birds.db`
 	1. Rename and enter the resultant directory.

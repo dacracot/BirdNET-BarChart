@@ -1,2 +1,2 @@
-version 2.10.2
-commit 368b2ca95d996ce21f08b5e0f161a08d3c10170d Monday, 08 September 2025 at 09:39
+version 2.11
+commit 755ae3ae36710ad786e2f04bb561ebcec5794aa6 Sunday, 14 September 2025 at 20:19

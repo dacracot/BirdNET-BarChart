@@ -106,6 +106,13 @@ do
 	fi
 done
 # ===================================================
+# save the midnight snapshot that is over 30 days old
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.png" -type f -mtime +30 -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
+# delete all the snapshots remaining over 30 days old
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.png" -type f -mtime +30 -delete
+# roll the current lunar cycle animated gif with imagemagick
+convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/lunar/snapshot-*.png" -loop 0 "${BARCHART_HOME}/web/grfx/lunar/dial.gif"
+# ===================================================
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
