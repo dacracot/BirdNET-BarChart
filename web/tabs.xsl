@@ -26,16 +26,9 @@
 				</div>
 				<div id="tab-dial-lunar">
 					<img width="310" height="310" src="grfx/lunar/dial.gif"/>
-<!-- 
-					<video width="310" height="310" style="display: block; margin-left: auto; margin-right: auto;" controls="controls" autoplay="autoplay" loop="loop" muted="muted">
-						<source src="grfx/lunar/dial.mp4" type="video/mp4"/>
-						<source src="dial.ogg" type="video/ogg"/>
-						No video support.
-					</video>
- -->
 				</div>
 				<div id="tab-dial-seasonal">
-					<h4>seasonal dial coming soon</h4>
+					<img width="310" height="310" src="grfx/seasonal/dial.gif"/>
 				</div>
 			</div>
 			<div id="tab-chart">

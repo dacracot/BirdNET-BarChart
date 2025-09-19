@@ -35,9 +35,9 @@ and now know what birds are sharing their voices with me.
 * ___Install the analyzer___ or better yet, follow [their](https://github.com/kahst/BirdNET-Analyzer) documentation:
 	1. Change the directory to your preferred installation location.
 	1. Expand the release file obtained from the BirdNET-Analyzer GitHub.
-		* `tar xzvf v2.1.1.tar.gz`
+		* `tar xzvf v2.2.0.tar.gz`
 	1. Enter the resultant directory.
-		* `cd BirdNET-Analyzer-2.1.1`
+		* `cd BirdNET-Analyzer-2.2.0`
 	1. Create the Python virtual environment.
 		* `python3 -m venv venv-birdnet`
 	1. Activate the Python virtual environment.
