@@ -118,7 +118,7 @@ sqlite3 "${BARCHART_HOME}/birds.db" << EOF
 EOF
 # clean up
 find "${WORK_HOUR}" -type f -name "*.csv" -not -name "dataset.csv" -delete
-gzip "${WORK_HOUR}/*"
+gzip "${WORK_HOUR}"/*
 # ===================================================
 # extract the table to XML
 sqlite3 "${BARCHART_HOME}/birds.db" < "${BARCHART_HOME}/web/birding.sql" > "${BARCHART_HOME}/web/birding.xml"
@@ -126,9 +126,9 @@ sqlite3 "${BARCHART_HOME}/birds.db" < "${BARCHART_HOME}/web/birding.sql" > "${BA
 java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:"${BARCHART_HOME}/web/birding.xml" -xsl:"${BARCHART_HOME}/web/birding.xsl" > "${BARCHART_HOME}/web/birding.html" locale="${LOCALE}" asOf="${AS_OF}" commit="${COMMIT}"
 # copy it all to the web server
 mkdir -p "${WEB_HOME}"/BirdNET-BarChart
-cp -v -R "${BARCHART_HOME}/web/grfx" "${WEB_HOME}"/BirdNET-BarChart
-cp -v "${BARCHART_HOME}/web/birding.*" "${WEB_HOME}"/BirdNET-BarChart
-cp -v "${BARCHART_HOME}/web/help.*" "${WEB_HOME}"/BirdNET-BarChart
+cp -v -R "${BARCHART_HOME}"/web/grfx "${WEB_HOME}"/BirdNET-BarChart
+cp -v "${BARCHART_HOME}"/web/birding.* "${WEB_HOME}"/BirdNET-BarChart
+cp -v "${BARCHART_HOME}"/web/help.* "${WEB_HOME}"/BirdNET-BarChart
 # snapshot the dial
 J=$(date '+%j')
 JULIAN=$(printf "%03d" "${J#0}")
@@ -137,7 +137,7 @@ wkhtmltoimage --crop-w 306 --crop-h 296 --crop-x 12 --crop-y 210 http://localhos
 TIMESTAMP=$(date '+%Y-%m-%d %H:00')
 convert -pointsize 12 -fill black -draw "text 2,294 '${TIMESTAMP}'" "${BARCHART_HOME}/web/grfx/lunar/snapshot-${JULIAN}${HOUR}.png" "${BARCHART_HOME}/web/grfx/lunar/snapshot-${JULIAN}${HOUR}.png"
 # remove the warning semaphore
-rm -v "${BARCHART_HOME}/hourly.lock"
+rm -v "${BARCHART_HOME}"/hourly.lock
 # ===================================================
 # how long did it take
 DURATION=$SECONDS

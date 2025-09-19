@@ -49,7 +49,7 @@ sqlite3 "${BARCHART_HOME}/birds.db" << EOF
 EOF
 # clean up
 find "${WORK_HOUR}" -type f -name "*.csv" -not -name "dataset.csv" -delete
-gzip "${WORK_HOUR}/*"
+gzip "${WORK_HOUR}"/*
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
