@@ -76,7 +76,7 @@ read -e -p "Enter your BirdWeather access token [set to blank to disable]: " -i 
 echo "Token set to ${BIRDWEATHER_ID}."
 # set BACKUP_HOME... default to read values
 echo " "
-read -e -p "Enter the URI for the backup server [set to blank to disable]: " -i ${BACKUP_HOME} BACKUP_HOME
+read -e -p "Enter the URI for the backup server [set to blank to disable]: " -i "${BACKUP_HOME}" BACKUP_HOME
 echo "Backup server set to ${BACKUP_HOME}."
 # set BACKUP_PASSWORD... no initial default
 if [ -z "$BACKUP_HOME" ]; then
@@ -125,7 +125,7 @@ echo "ANALYZER_HOME=${ANALYZER_HOME}"
 echo "XSLT_HOME=${XSLT_HOME}"
 echo "WEB_HOME=${WEB_HOME}"
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
-echo "BACKUP_HOME=${BACKUP_HOME}"
+echo "BACKUP_HOME=\"${BACKUP_HOME}\""
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
 echo "OWM_TOKEN=${OWM_TOKEN}"
 echo "BIRDWEATHER_ID=${BIRDWEATHER_ID}"
