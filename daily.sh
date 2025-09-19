@@ -89,7 +89,7 @@ do
 		PHASE=$(calculateMoonPhase)
 		echo "<phase>${PHASE}</phase>" >> ${BARCHART_HOME}/sky/day.xml
 		echo "</day>" >> ${BARCHART_HOME}/sky/day.xml
-		java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/day.xml -xsl:${BARCHART_HOME}/sky/day.xsl > ${BARCHART_HOME}/sky/day.sql
+		java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/day.xml -xsl:${BARCHART_HOME}/sky/day.xsl > ${BARCHART_HOME}/sky/day.sql
 		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/day.sql
 		echo "celestial success on attempt ${i}"
 		break   

@@ -27,9 +27,9 @@ else
 	LAT=45.0
 	LON=-100.0
 	LOCALE="Potter County, South Dakota"
-	BARCHART_HOME=${HOME}/BirdNET-BarChart
-	ANALYZER_HOME=${HOME}/BirdNET-Analyzer
-	XSLT_HOME=${HOME}/SaxonJ-HE
+	BARCHART_HOME="${HOME}/BirdNET-BarChart"
+	ANALYZER_HOME="${HOME}/BirdNET-Analyzer"
+	XSLT_HOME="${HOME}/SaxonJ-HE"
 	WEB_HOME=/var/www/html
 	PERCENT_STORAGE_ALLOWED=60
 	BACKUP_HOME=username@192.168.0.123:${HOME}/backups
@@ -56,7 +56,7 @@ read -e -p "Enter the home of the analyzer software: " -i ${ANALYZER_HOME} ANALY
 echo "Analyzer home set to ${ANALYZER_HOME}."
 # set XSLT_HOME... no initial default
 echo " "
-read -e -p "Enter the home of the transformer software, specifically the directory containing the lib and bin subdirectories: " -i ${XSLT_HOME} XSLT_HOME
+read -e -p "Enter the home of the transformer software, specifically the directory containing the lib and bin subdirectories: " -i "${XSLT_HOME}" XSLT_HOME
 echo "Transformer home set to ${XSLT_HOME}."
 # set WEB_HOME... /var/www/html/
 echo " "
@@ -99,7 +99,7 @@ do
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		LOCALE=$(java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
+		LOCALE=$(java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
 		echo "locale success on attempt ${i}"
 		break   
 	else
@@ -122,7 +122,7 @@ echo "LON=${LON}"
 echo "LOCALE='${LOCALE}'"
 echo "BARCHART_HOME=${BARCHART_HOME}"
 echo "ANALYZER_HOME=${ANALYZER_HOME}"
-echo "XSLT_HOME=${XSLT_HOME}"
+echo "XSLT_HOME=\"${XSLT_HOME}\""
 echo "WEB_HOME=\"${WEB_HOME}\""
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=\"${BACKUP_HOME}\""
