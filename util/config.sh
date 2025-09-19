@@ -48,7 +48,7 @@ read -e -p "Enter your longitude: " -i ${LON} LON
 echo "Latitude set to ${LON}."
 # set BARCHART_HOME
 echo " "
-read -e -p "Enter the home of the barchart software: " -i ${BARCHART_HOME} BARCHART_HOME
+read -e -p "Enter the home of the barchart software: " -i "${BARCHART_HOME}" BARCHART_HOME
 echo "Barchart home set to ${BARCHART_HOME}."
 # set ANALYZER_HOME... no initial default
 echo " "
@@ -95,11 +95,11 @@ echo " "
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://nominatim.openstreetmap.org/reverse?lat=${LAT}&lon=${LON}" > ${BARCHART_HOME}/util/where.xml
+	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://nominatim.openstreetmap.org/reverse?lat=${LAT}&lon=${LON}" > "${BARCHART_HOME}/util/where.xml"
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		LOCALE=$(java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:${BARCHART_HOME}/util/where.xml -xsl:${BARCHART_HOME}/util/where.xsl)
+		LOCALE=$(java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:"${BARCHART_HOME}/util/where.xml" -xsl:"${BARCHART_HOME}/util/where.xsl")
 		echo "locale success on attempt ${i}"
 		break   
 	else
@@ -114,13 +114,13 @@ do
 		LOCALE="Somewhere, Unknown"
 	fi
 done
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-config.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-config.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-config.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-config.err"
 echo "----------"
 {
 echo "LAT=${LAT}"
 echo "LON=${LON}"
 echo "LOCALE='${LOCALE}'"
-echo "BARCHART_HOME=${BARCHART_HOME}"
+echo "BARCHART_HOME=\"${BARCHART_HOME}\""
 echo "ANALYZER_HOME=\"${ANALYZER_HOME}\""
 echo "XSLT_HOME=\"${XSLT_HOME}\""
 echo "WEB_HOME=\"${WEB_HOME}\""
@@ -145,18 +145,18 @@ if [ -f "${BARCHART_HOME}/birds.db" ]; then
 	echo -e "${WARNOFF}"
 	select YN in "Yes" "No"; do
 		case $YN in
-			Yes ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql;;
+			Yes ) sqlite3 "${BARCHART_HOME}/birds.db" < "${BARCHART_HOME}/birds.db.ddl.sql";;
 			No ) exit;;
 		esac
 	done
 else
-	sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql
+	sqlite3 "${BARCHART_HOME}/birds.db" < "${BARCHART_HOME}/birds.db.ddl.sql"
 fi
 echo "Database created"
 # ---------------------------------------------------
 echo " "
-sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/backupFailure.txt
-sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/storageFailure.txt
+sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" "${BARCHART_HOME}/util/backupFailure.txt"
+sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" "${BARCHART_HOME}/util/storageFailure.txt"
 echo "Email text updated"
 # ---------------------------------------------------
 # call crontab util

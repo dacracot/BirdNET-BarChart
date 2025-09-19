@@ -30,8 +30,8 @@ if [[ "$MINUTE" =~ ^("58"|"59"|"00")$ ]]; then
     exit 1
 else
 	# reset the crontab
-	export BARCHART_HOME && export BIRDWEATHER_ID && ${BARCHART_HOME}/util/crontabAdd.sh
-    nohup ${BARCHART_HOME}/hourly.sh &
+	export BARCHART_HOME && export BIRDWEATHER_ID && "${BARCHART_HOME}/util/crontabAdd.sh"
+    nohup "${BARCHART_HOME}/hourly.sh" &
 fi
 echo "Started" > /dev/tty
 # ===================================================
@@ -39,4 +39,4 @@ echo "Started" > /dev/tty
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 echo "---------------------------------------------------------------------------------"
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-start.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-start.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-start.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-start.err"

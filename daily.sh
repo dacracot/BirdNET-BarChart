@@ -79,24 +79,24 @@ function calculateMoonPhase {
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/rstt/oneday?date=${YEAR}-${MONTH}-${DAY}&coords=${LAT},${LON}&tz=-8&dst=true" > ${BARCHART_HOME}/sky/day.js
+	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/rstt/oneday?date=${YEAR}-${MONTH}-${DAY}&coords=${LAT},${LON}&tz=-8&dst=true" > "${BARCHART_HOME}/sky/day.js"
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		echo "<day>" > ${BARCHART_HOME}/sky/day.xml
-		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/sky/day.js >> ${BARCHART_HOME}/sky/day.xml
+		echo "<day>" > "${BARCHART_HOME}/sky/day.xml"
+		jq -rf "${BARCHART_HOME}/util/json2xml.jq" "${BARCHART_HOME}/sky/day.js" >> "${BARCHART_HOME}/sky/day.xml"
 		# insert calculated moon phase
 		PHASE=$(calculateMoonPhase)
-		echo "<phase>${PHASE}</phase>" >> ${BARCHART_HOME}/sky/day.xml
-		echo "</day>" >> ${BARCHART_HOME}/sky/day.xml
-		java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/day.xml -xsl:${BARCHART_HOME}/sky/day.xsl > ${BARCHART_HOME}/sky/day.sql
-		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/day.sql
+		echo "<phase>${PHASE}</phase>" >> "${BARCHART_HOME}/sky/day.xml"
+		echo "</day>" >> "${BARCHART_HOME}/sky/day.xml"
+		java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:"${BARCHART_HOME}/sky/day.xml" -xsl:"${BARCHART_HOME}/sky/day.xsl" > "${BARCHART_HOME}/sky/day.sql"
+		sqlite3 "${BARCHART_HOME}/birds.db" < "${BARCHART_HOME}/sky/day.sql"
 		echo "celestial success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
 		echo "celestial fail on attempt ${i}"
-		cat ${BARCHART_HOME}/sky/day.js
+		cat "${BARCHART_HOME}/sky/day.js"
 		echo "===== celestial FAILURE ====="
 		# --------------------------
 		# complete failure is ignored
@@ -107,10 +107,10 @@ do
 done
 # ===================================================
 # save the midnight/noon snapshot to seasonal
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.png" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.png" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
+find "${BARCHART_HOME}/web/grfx/lunar/" -name "snapshot-*00.png" -type f -exec mv {} "${BARCHART_HOME}/web/grfx/seasonal" \;
+find "${BARCHART_HOME}/web/grfx/lunar/" -name "snapshot-*12.png" -type f -exec mv {} "${BARCHART_HOME}/web/grfx/seasonal" \;
 # delete all the snapshots remaining over 30 days old
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.png" -type f -mtime +30 -delete
+find "${BARCHART_HOME}/web/grfx/lunar/" -name "snapshot-*.png" -type f -mtime +30 -delete
 # roll the current lunar cycle animated gif with imagemagick
 convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/lunar/snapshot-*.png" -loop 0 "${BARCHART_HOME}/web/grfx/lunar/dial.gif"
 # roll the current seasonal cycle animated gif with imagemagick
@@ -120,4 +120,4 @@ convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/seasonal/s
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 echo "---------------------------------------------------------------------------------"
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-daily.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-daily.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-daily.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-daily.err"

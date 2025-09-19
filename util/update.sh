@@ -20,7 +20,7 @@ fi
 # ---------------------------------------------------
 {
 # go to installed root
-cd ${BARCHART_HOME}
+cd "${BARCHART_HOME}"
 # check if current branch is main
 BRANCH=$(git rev-parse --abbrev-ref HEAD)
 if [ "$BRANCH" = "main" ]; then
@@ -36,7 +36,7 @@ if [ "$BRANCH" = "main" ]; then
 			# what is the new version
 			VERSION=$(git describe --tags --abbrev=0)
 			# scripting to adjust volatile components
-			${BARCHART_HOME}/util/updates/update-${VERSION}-tasks.sh
+			"${BARCHART_HOME}/util/updates/update-${VERSION}-tasks.sh"
 			break   
 		else
 			echo "git: ${EXITCODE}"
@@ -52,5 +52,5 @@ fi
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-update.err"
 # ---------------------------------------------------

@@ -14,7 +14,7 @@ else
 fi
 # ---------------------------------------------------
 function assignColor {
-sqlite3 ${BARCHART_HOME}/birds.db << EOF
+sqlite3 "${BARCHART_HOME}/birds.db" << EOF
 insert into
 	color
 select
@@ -34,7 +34,7 @@ EOF
 }
 # ---------------------------------------------------
 echo " "
-TMP=`sqlite3 ${BARCHART_HOME}/birds.db << EOF
+TMP=`sqlite3 "${BARCHART_HOME}/birds.db" << EOF
 .mode csv
 select
 	commonName,

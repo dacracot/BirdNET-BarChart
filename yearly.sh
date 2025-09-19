@@ -25,20 +25,20 @@ fi
 MAXTRYS=5
 for i in $(seq 1 $MAXTRYS)
 do
-	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?year=${YEAR}&tz=-8&dst=true" > ${BARCHART_HOME}/sky/season.js
+	curl --max-time 30 -H "Cache-Control: no-cache, no-store" "https://aa.usno.navy.mil/api/seasons?year=${YEAR}&tz=-8&dst=true" > "${BARCHART_HOME}/sky/season.js"
 	EXITCODE=$?
 	if [[ $EXITCODE -eq 0 ]]
 		then
-		echo "<season>" > ${BARCHART_HOME}/sky/season.xml
-		jq -rf ${BARCHART_HOME}/util/json2xml.jq ${BARCHART_HOME}/sky/season.js >> ${BARCHART_HOME}/sky/season.xml
-		echo "</season>" >> ${BARCHART_HOME}/sky/season.xml
-		java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:${BARCHART_HOME}/sky/season.xml -xsl:${BARCHART_HOME}/sky/season.xsl > ${BARCHART_HOME}/sky/season.sql
-		sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/sky/season.sql
+		echo "<season>" > "${BARCHART_HOME}/sky/season.xml"
+		jq -rf "${BARCHART_HOME}/util/json2xml.jq" "${BARCHART_HOME}/sky/season.js" >> "${BARCHART_HOME}/sky/season.xml"
+		echo "</season>" >> "${BARCHART_HOME}/sky/season.xml"
+		java -classpath "${XSLT_HOME}/saxon-he-12.8.jar" net.sf.saxon.Transform -s:"${BARCHART_HOME}/sky/season.xml" -xsl:"${BARCHART_HOME}/sky/season.xsl" > "${BARCHART_HOME}/sky/season.sql"
+		sqlite3 "${BARCHART_HOME}/birds.db" < "${BARCHART_HOME}/sky/season.sql"
 		echo "celestial success on attempt ${i}"
 		break   
 	else
 		echo "curl: ${EXITCODE}"
-		cat ${BARCHART_HOME}/sky/season.js
+		cat "${BARCHART_HOME}/sky/season.js"
 		echo "===== celestial FAILURE ====="
 		sleep 5
 	fi
@@ -48,4 +48,4 @@ done
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 echo "---------------------------------------------------------------------------------"
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-yearly.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-yearly.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-yearly.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-yearly.err"

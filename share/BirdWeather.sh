@@ -21,10 +21,10 @@ else
 fi
 # ---------------------------------------------------
 {
-mkdir ${BARCHART_HOME}/share/tmp-BirdWeather
+mkdir "${BARCHART_HOME}/share/tmp-BirdWeather"
 # create file of last hours significant files
-sqlite3 ${BARCHART_HOME}/birds.db << EOF
-.output ${BARCHART_HOME}/share/tmp-BirdWeather/c75.lst
+sqlite3 "${BARCHART_HOME}/birds.db" << EOF
+.output "${BARCHART_HOME}/share/tmp-BirdWeather/c75.lst"
 select distinct minuteOfDay from heard where datetime(minuteOfDay) > datetime('now','localtime','-1 hour') and confidence >= ${CONFIDENCE};
 EOF
 # read each line
@@ -36,11 +36,11 @@ while read TS; do
 	# --
 	echo "TARGET = ${TARGET}"
 	# --
-	gunzip -c "${TARGET}" > ${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}
-	flac --silent --best ${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}
-	rm ${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}
+	gunzip -c "${TARGET}" > "${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}"
+	flac --silent --best "${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}"
+	rm "${BARCHART_HOME}/share/tmp-BirdWeather/${WAV}"
 	# POST the file to BirdWeather
-	RESPONSE=$(curl --max-time 30 -X POST -H "Content-Type: audio/flac" --data @${BARCHART_HOME}/share/tmp-BirdWeather/${FLAC}.flac -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/soundscapes?timestamp=${TS}")
+	RESPONSE=$(curl --max-time 30 -X POST -H "Content-Type: audio/flac" --data @"${BARCHART_HOME}/share/tmp-BirdWeather/${FLAC}.flac" -w "|%{http_code}" "https://app.birdweather.com/api/v1/stations/${BIRDWEATHER_ID}/soundscapes?timestamp=${TS}")
 	HTTP_CODE=`echo ${RESPONSE} | cut -d "|" -f 2`
 	if (($HTTP_CODE < 200 || $HTTP_CODE >= 300)); then
 		# handle error
@@ -56,12 +56,12 @@ while read TS; do
 		# --
 	fi
 	# create file of analysis
-sqlite3 ${BARCHART_HOME}/birds.db << EOF
+sqlite3 "${BARCHART_HOME}/birds.db" << EOF
 .param set :lat ${LAT}
 .param set :lon ${LON}
 .param set :sid ${SID}
 .param set :ts ${TS}
-.output ${BARCHART_HOME}/share/tmp-BirdWeather/c75.js
+.output "${BARCHART_HOME}/share/tmp-BirdWeather/c75.js"
 select
 	json_object(
 		'timestamp', :ts,
@@ -95,11 +95,11 @@ EOF
 			echo "HTTP_CODE = ${HTTP_CODE}"
 			exit 0
 		fi
-	done < ${BARCHART_HOME}/share/tmp-BirdWeather/c75.js
-done < ${BARCHART_HOME}/share/tmp-BirdWeather/c75.lst
+	done < "${BARCHART_HOME}/share/tmp-BirdWeather/c75.js"
+done < "${BARCHART_HOME}/share/tmp-BirdWeather/c75.lst"
 # remove temporary files
-rm -r ${BARCHART_HOME}/share/tmp-BirdWeather
+rm -r "${BARCHART_HOME}/share/tmp-BirdWeather"
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-BirdWeather.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-BirdWeather.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-BirdWeather.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-BirdWeather.err"

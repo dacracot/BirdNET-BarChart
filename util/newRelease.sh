@@ -19,8 +19,8 @@ else
 fi
 # ---------------------------------------------------
 {
-RELEASE=$(cat ${BARCHART_HOME}/util/updates/release.txt)
-pushd ${BARCHART_HOME}
+RELEASE=$(cat "${BARCHART_HOME}/util/updates/release.txt")
+pushd "${BARCHART_HOME}"
 TAG=$(git describe --tags --abbrev=0)
 WHEN=$(git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '3p' | cut -d' ' -f4,5,6,7,8,9)
 VERSION=$(git show --date=format:'%A, %d %B %Y at %H:%M' --stat ${TAG} | sed -n '5,7p' | awk 'NF')
@@ -37,10 +37,10 @@ case "$YORN" in
   * ) echo "Please answer Y or N" > /dev/tty; exit;;
 esac
 # ---------------------------------------------------
-PREVSCRIPT=$(ls -tr1 ${BARCHART_HOME}/util/updates/update-*.*-tasks.sh | tail -n 1)
+PREVSCRIPT=$(ls -tr1 "${BARCHART_HOME}/util/updates/update-*.*-tasks.sh" | tail -n 1)
 PREVTAG=$(basename ${PREVSCRIPT} .sh | cut -d - -f 2)
-echo "$TAG" > ${BARCHART_HOME}/util/updates/release.txt
-echo "${VERSION} ${WHEN}" > ${BARCHART_HOME}/util/updates/signature.txt
+echo "$TAG" > "${BARCHART_HOME}/util/updates/release.txt"
+echo "${VERSION} ${WHEN}" > "${BARCHART_HOME}/util/updates/signature.txt"
 sed "s,@@TAG@@,${TAG},g" "${BARCHART_HOME}/util/updates/update-#-tasks.sh" > "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
 sed -i "s,@@PREV@@,${PREVTAG},g" "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
 chmod 750 "${BARCHART_HOME}/util/updates/update-${TAG}-tasks.sh"
@@ -48,5 +48,5 @@ echo "Update tasks ready for editing of ${BARCHART_HOME}/util/updates/update-${T
 # how long did it take
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-newRelease.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-newRelease.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-newRelease.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-newRelease.err"
 # ---------------------------------------------------

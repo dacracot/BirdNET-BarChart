@@ -34,17 +34,17 @@ echo "${AS_OF}"
 # BirdNET-Analyzer using the species_list.txt created by weekly.sh, creates the CSV file
 pushd "${ANALYZER_HOME}"
 source "${ANALYZER_HOME}/venv-birdnet/bin/activate"
-python3 -m birdnet_analyzer.analyze -o ${WORK_HOUR}/ --rtype ${TYPE} -t 3 --slist ${BARCHART_HOME}/work/species_list.txt --combine_results ${WORK_HOUR}/
+python3 -m birdnet_analyzer.analyze -o ${WORK_HOUR}/ --rtype ${TYPE} -t 3 --slist "${BARCHART_HOME}/work/species_list.txt" --combine_results ${WORK_HOUR}/
 popd
 # change file for DB loading
 # # change header
-cat ${BARCHART_HOME}/work/header.csv > ${WORK_HOUR}/dataset.csv
+cat "${BARCHART_HOME}/work/header.csv" > ${WORK_HOUR}/dataset.csv
 cat ${WORK_HOUR}/BirdNET_CombinedTable.csv | grep -v Confidence >> ${WORK_HOUR}/dataset.csv
 # # reduce file path to timestamp
 sed -i 's@'"${WORK_HOUR}/"'@@' ${WORK_HOUR}/dataset.csv
 sed -i 's@.wav@@' ${WORK_HOUR}/dataset.csv
 # load the results into the database
-sqlite3 ${BARCHART_HOME}/birds.db << EOF
+sqlite3 "${BARCHART_HOME}/birds.db" << EOF
 .import -v --csv --skip 1 ${WORK_HOUR}/dataset.csv heard
 EOF
 # clean up
@@ -55,4 +55,4 @@ gzip ${WORK_HOUR}/*
 DURATION=$SECONDS
 echo "$(($DURATION / 60)) minutes and $(($DURATION % 60)) seconds elapsed."
 echo "---------------------------------------------------------------------------------"
-}  >> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-${MINUTE}-correct.out 2>> ${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-${MINUTE}-correct.err
+}  >> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-${MINUTE}-correct.out" 2>> "${BARCHART_HOME}/logs/${YEAR}-${MONTH}-${DAY}-${HOUR}-${MINUTE}-correct.err"
