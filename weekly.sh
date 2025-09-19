@@ -30,8 +30,8 @@ function calculatePercentageUsed {
 # ---------------------------------------------------
 {
 # update the species_list.txt for this location and week of the year
-pushd ${ANALYZER_HOME}
-source ${ANALYZER_HOME}/venv-birdnet/bin/activate
+pushd "${ANALYZER_HOME}"
+source "${ANALYZER_HOME}/venv-birdnet/bin/activate"
 python3 -m birdnet_analyzer.species --lat ${LAT} --lon ${LON} --week ${WEEK} ${BARCHART_HOME}/work/species_list.txt
 popd
 # remove the frequent false positives

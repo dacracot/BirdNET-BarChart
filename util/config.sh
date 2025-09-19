@@ -52,7 +52,7 @@ read -e -p "Enter the home of the barchart software: " -i ${BARCHART_HOME} BARCH
 echo "Barchart home set to ${BARCHART_HOME}."
 # set ANALYZER_HOME... no initial default
 echo " "
-read -e -p "Enter the home of the analyzer software: " -i ${ANALYZER_HOME} ANALYZER_HOME
+read -e -p "Enter the home of the analyzer software: " -i "${ANALYZER_HOME}" ANALYZER_HOME
 echo "Analyzer home set to ${ANALYZER_HOME}."
 # set XSLT_HOME... no initial default
 echo " "
@@ -121,7 +121,7 @@ echo "LAT=${LAT}"
 echo "LON=${LON}"
 echo "LOCALE='${LOCALE}'"
 echo "BARCHART_HOME=${BARCHART_HOME}"
-echo "ANALYZER_HOME=${ANALYZER_HOME}"
+echo "ANALYZER_HOME=\"${ANALYZER_HOME}\""
 echo "XSLT_HOME=\"${XSLT_HOME}\""
 echo "WEB_HOME=\"${WEB_HOME}\""
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
