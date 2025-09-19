@@ -125,10 +125,10 @@ sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHAR
 # transform the xml into html
 java -classpath ${XSLT_HOME}/saxon-he-12.8.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}" commit="${COMMIT}"
 # copy it all to the web server
-mkdir -p ${WEB_HOME}/BirdNET-BarChart
-cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
-cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
-cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
+mkdir -p "${WEB_HOME}"/BirdNET-BarChart
+cp -v -R ${BARCHART_HOME}/web/grfx "${WEB_HOME}"/BirdNET-BarChart
+cp -v ${BARCHART_HOME}/web/birding.* "${WEB_HOME}"/BirdNET-BarChart
+cp -v ${BARCHART_HOME}/web/help.* "${WEB_HOME}"/BirdNET-BarChart
 # snapshot the dial
 J=$(date '+%j')
 JULIAN=$(printf "%03d" "${J#0}")

@@ -60,7 +60,7 @@ read -e -p "Enter the home of the transformer software, specifically the directo
 echo "Transformer home set to ${XSLT_HOME}."
 # set WEB_HOME... /var/www/html/
 echo " "
-read -e -p "Enter the home of the web server: " -i ${WEB_HOME} WEB_HOME
+read -e -p "Enter the home of the web server: " -i "${WEB_HOME}" WEB_HOME
 echo "Web server set to ${WEB_HOME}."
 # set PERCENT_STORAGE_ALLOWED... 60%
 echo " "
@@ -123,7 +123,7 @@ echo "LOCALE='${LOCALE}'"
 echo "BARCHART_HOME=${BARCHART_HOME}"
 echo "ANALYZER_HOME=${ANALYZER_HOME}"
 echo "XSLT_HOME=${XSLT_HOME}"
-echo "WEB_HOME=${WEB_HOME}"
+echo "WEB_HOME=\"${WEB_HOME}\""
 echo "PERCENT_STORAGE_ALLOWED=${PERCENT_STORAGE_ALLOWED}"
 echo "BACKUP_HOME=\"${BACKUP_HOME}\""
 echo "BACKUP_PASSWORD=${BACKUP_PASSWORD}"
