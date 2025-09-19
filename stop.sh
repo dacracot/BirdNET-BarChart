@@ -20,7 +20,6 @@ else
 fi
 # ---------------------------------------------------
 {
-WORK_HOUR="${BARCHART_HOME}/work/${YEAR}/${MONTH}/${DAY}/${HOUR}"
 # ===================================================
 # remove the crontab
 export BARCHART_HOME && "${BARCHART_HOME}/util/crontabRemove.sh"
