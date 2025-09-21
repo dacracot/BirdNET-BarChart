@@ -23,6 +23,9 @@ day.xml
 season.js
 season.sql
 season.xml
+test/test.wav
+test/output.html
+test/output/*.csv
 weather.sql
 weather.xml
 where.js

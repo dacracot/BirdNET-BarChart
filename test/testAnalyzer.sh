@@ -20,11 +20,17 @@ fi
 # ---------------------------------------------------
 {
 # ===================================================
+gunzip -v ${BARCHART_HOME}/test/test.wav.gz
 pushd ${ANALYZER_HOME}
 source ${ANALYZER_HOME}/venv-birdnet/bin/activate
 # python3 -m birdnet_analyzer.analyze -o ${BARCHART_HOME}/test/ --rtype csv -t 3 ${BARCHART_HOME}/test/output.csv
 python3 -m birdnet_analyzer.analyze -o ${BARCHART_HOME}/test/output --rtype csv -t 3 ${BARCHART_HOME}/test/test.wav 
 popd
+gzip -v ${BARCHART_HOME}/test/test.wav
+if command -v git >/dev/null 2>&1
+then
+    git update-index --assume-unchanged ${BARCHART_HOME}/test/test.wav
+fi
 diff ${BARCHART_HOME}/test/test.csv ${BARCHART_HOME}/test/output/test.BirdNET.results.csv
 RESULT=$?
 if [ $RESULT -eq 0 ]
