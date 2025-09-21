@@ -1,0 +1,3 @@
+Start (s),End (s),Scientific name,Common name,Confidence,File
+30.0,33.0,Human vocal,Human vocal,0.5761,/home/dacracot/CodeMonkey/BirdNET-BarChart/test/test.wav
+45.0,48.0,Spinus psaltria,Lesser Goldfinch,0.3134,/home/dacracot/CodeMonkey/BirdNET-BarChart/test/test.wav
