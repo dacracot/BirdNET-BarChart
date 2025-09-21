@@ -20,7 +20,7 @@ fi
 # ---------------------------------------------------
 {
 # ===================================================
-java -classpath ${XSLT_HOME}/saxon-he-12.9.jar net.sf.saxon.Transform -s:${BARCHART_HOME}/test/test.xml -xsl:${BARCHART_HOME}/test/test.xsl > ${BARCHART_HOME}/test/output.html
+java -classpath ${XSLT_JAR} net.sf.saxon.Transform -s:${BARCHART_HOME}/test/test.xml -xsl:${BARCHART_HOME}/test/test.xsl > ${BARCHART_HOME}/test/output.html
 diff ${BARCHART_HOME}/test/test.html ${BARCHART_HOME}/test/output.html
 RESULT=$?
 if [ $RESULT -eq 0 ]
