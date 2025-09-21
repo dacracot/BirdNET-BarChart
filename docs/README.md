@@ -96,10 +96,10 @@ and now know what birds are sharing their voices with me.
 		* `test/testXSLT.sh`
 * ___Start/Stop this software___:
 	1. Run the weekly script once manually to get the latest species.
-		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
+		* `weekly.sh`
 	1. Start or stop this software gracefully.
 		* `start.sh` starts the process which analyzes, updates, and renders the user interface according to your cron config.
-		* `stp.sh` stops the process and allows a final analysis, update, and rendering the user interface.
+		* `stop.sh` stops the process and allows a final analysis, update, and rendering the user interface.
 
 ---
 
