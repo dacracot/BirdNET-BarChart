@@ -49,10 +49,10 @@ and now know what birds are sharing their voices with me.
 		* `python3 -m birdnet_analyzer.analyze <some-audio-file.wav>`
 * ___Install the transformer___:
 	1. Change the directory back to your preferred installation location.
-	1. Expand the SaxonJ-HE 12.8 release file obtained from [Saxonica](https://www.saxonica.com/download/java.xml).
-		* `mkdir SaxonJ-HE-12.8`
-		* `cd SaxonJ-HE-12.8`
-		* `unzip SaxonHE12-8J.zip`
+	1. Expand the SaxonJ-HE 12.9 release file obtained from [Saxonica](https://www.saxonica.com/download/java.xml).
+		* `mkdir SaxonJ-HE-12.9`
+		* `cd SaxonJ-HE-12.9`
+		* `unzip SaxonHE12-9J.zip`
 * ___Install this software___:
 	1. Install git, Java, sqlite, Apache, sshpass, etc.
 		* `sudo apt install git`
@@ -89,10 +89,11 @@ and now know what birds are sharing their voices with me.
 		* `30 3 * * * @@HOMEDIR@@/util/update.sh`
 	1. Run the configuration script and enter your lat/lon, various home directories, the web servers HTML directory, and whatever maximum storage percentage you can tolerate.
 		* `util/config.sh`
-* ___Test the transformer used by this software___:
-	1. Run transformer test.
-		* `cd ${XSLT_HOME}/../samples/data`
-		* `${XSLTransform} -s:books.xml -xsl:books.xsl`
+* ___Test the software installed form external sources used by this software___:
+	1. Run the test for the analyzer.
+		* `test/testAnalyzer.sh`
+	1. Run the test for the transformer.
+		* `test/testXSLT.sh`
 * ___Start/Stop this software___:
 	1. Run the weekly script once manually to get the latest species.
 		* `/home/dacracot/BirdNET-BarChart/weekly.sh`
@@ -140,6 +141,10 @@ and now know what birds are sharing their voices with me.
 	* Start the process of recording data.
 * `stop.sh`
 	* Stop the process of recording data.
+* `test/testAnalyzer.sh`
+	* Determine if the analyzer is properly installed.
+* `test/testXSLT.sh`
+	* Determine if the transformer is properly installed.
 
 ---
 
