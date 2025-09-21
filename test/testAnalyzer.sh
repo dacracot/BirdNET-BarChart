@@ -27,7 +27,7 @@ source ${ANALYZER_HOME}/venv-birdnet/bin/activate
 python3 -m birdnet_analyzer.analyze -o ${BARCHART_HOME}/test/output --rtype csv -t 3 ${BARCHART_HOME}/test/test.wav 
 popd
 gzip -v ${BARCHART_HOME}/test/test.wav
-if command -v <the_command> >/dev/null 2>&1
+if command -v git >/dev/null 2>&1
 then
     git update-index --assume-unchanged ${BARCHART_HOME}/test/test.wav
 fi
