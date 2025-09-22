@@ -135,7 +135,7 @@ echo "Source set"
 # ---------------------------------------------------
 echo " "
 if [ -f "${BARCHART_HOME}/birds.db" ]; then
-	echo "Do you wish to overwrite your birds database?"
+	echo "Do you wish to overwrite your birds database? (y|n)"
 	WARNON='\033[31;5m'
 	WARNOFF='\033[0m'
 	echo -e "${WARNON}"
@@ -143,12 +143,12 @@ if [ -f "${BARCHART_HOME}/birds.db" ]; then
 	echo -e "YOU WILL LOSE ALL PREVIOUS DATA! THIS CAN NOT BE UNDONE!"
 	echo -e "--------------------------------------------------------"
 	echo -e "${WARNOFF}"
-	select YN in "Yes" "No"; do
-		case $YN in
-			Yes ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql;;
-			No ) exit;;
-		esac
-	done
+	read YORN
+	case "$YORN" in 
+	  y|Y ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql;;
+	  n|N ) echo "Database unchanged.";;
+	  * ) echo "Response of $YORN? Database unchanged.";;
+	esac
 else
 	sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql
 fi
