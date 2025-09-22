@@ -145,14 +145,13 @@ if [ -f "${BARCHART_HOME}/birds.db" ]; then
 	echo -e "${WARNOFF}"
 	read YORN
 	case "$YORN" in 
-	  y|Y ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql;;
+	  y|Y ) sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql; echo "Database created";;
 	  n|N ) echo "Database unchanged.";;
 	  * ) echo "Response of $YORN? Database unchanged.";;
 	esac
 else
 	sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/birds.db.ddl.sql
 fi
-echo "Database created"
 # ---------------------------------------------------
 echo " "
 sed -i "s/${FAILURE_EMAIL}/${NEW_FAILURE_EMAIL}/" ${BARCHART_HOME}/util/backupFailure.txt
