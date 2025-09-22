@@ -1,0 +1,8 @@
+To: username@somemail.com
+From: username@somemail.com
+Subject: birding backup failure
+
+================== 
+ BACKUP FAILED TO TRANSFER TO REMOTE SERVER
+================== 
+
