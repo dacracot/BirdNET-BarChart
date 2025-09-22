@@ -1,7 +1,0 @@
-To: username@somemail.com
-From: username@somemail.com
-Subject: birding storage failure
-
-================== 
- CAN NOT MEET PERCENT STORAGE ALLOWED
-==================
