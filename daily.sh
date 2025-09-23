@@ -39,7 +39,7 @@ function calculateMoonPhase {
 	b=$(echo "$jd" | cut -d'.' -f1)
 	frac=$(echo "scale=5; $jd - $b" | bc)
 	# Multiply fractional part by 8 and round to nearest integer
-	b=$(echo "$frac * 8 + 0.5" | bc | cut -d'.' -f1)
+	b=$(echo "$frac * 8 + 0.5" | bc | awk '{printf "%f", $0}' | cut -d'.' -f1)
 	# Normalize if b == 8
 	if [ "$b" -ge 8 ]; then
 	  b=0
