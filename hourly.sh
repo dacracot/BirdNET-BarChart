@@ -126,8 +126,8 @@ sqlite3 ${BARCHART_HOME}/birds.db < ${BARCHART_HOME}/web/birding.sql > ${BARCHAR
 java -classpath ${XSLT_JAR} net.sf.saxon.Transform -s:${BARCHART_HOME}/web/birding.xml -xsl:${BARCHART_HOME}/web/birding.xsl > ${BARCHART_HOME}/web/birding.html locale="${LOCALE}" asOf="${AS_OF}" commit="${COMMIT}"
 # copy it all to the web server
 mkdir -p ${WEB_HOME}/BirdNET-BarChart
-# cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
-find ${BARCHART_HOME}/web/grfx -type f -not -name "snapshot-*.png" -exec cp -v {} ${WEB_HOME}/BirdNET-BarChart \;
+cp -v -R ${BARCHART_HOME}/web/grfx ${WEB_HOME}/BirdNET-BarChart
+find ${WEB_HOME}/BirdNET-BarChart -type f -name "snapshot-*.png" -delete
 cp -v ${BARCHART_HOME}/web/birding.* ${WEB_HOME}/BirdNET-BarChart
 cp -v ${BARCHART_HOME}/web/help.* ${WEB_HOME}/BirdNET-BarChart
 # snapshot the dial
