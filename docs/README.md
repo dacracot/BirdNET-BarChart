@@ -154,6 +154,8 @@ and now know what birds are sharing their voices with me.
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [bc](https://www.man7.org/linux/man-pages/man1/bc.1p.html)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* [gifsicle](https://www.lcdf.org/gifsicle/)
+* [imagemagick](https://imagemagick.org)
 * [Java](https://www.java.com/)
 * [jQueryUI](https://jqueryui.com)
 * [jq](https://jqlang.org)

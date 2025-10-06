@@ -39,6 +39,8 @@ Display BirdNET-Analyzer[^1] data as a dial, bar chart, and table in a browser u
 	* This is the engine that recognizes bird sound and assigns species.  The project is pointless without it.
 * [git](https://git-scm.com)
 	* This is necessary if want automatic updating.  The release is controlled using the main branch.  Without it, you would remain on a snapshot version until you changed it.
+* [gifsicle](https://www.lcdf.org/gifsicle/)
+	* This is necessary for animating the lunar and seasonal dials.
 * [imagemagick](https://imagemagick.org)
 	* This is necessary for animating the lunar and seasonal dials.
 * [Java](https://www.java.com/)
