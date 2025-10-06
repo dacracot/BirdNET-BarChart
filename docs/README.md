@@ -155,14 +155,18 @@ and now know what birds are sharing their voices with me.
 * [bc](https://www.man7.org/linux/man-pages/man1/bc.1p.html)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
 * [gifsicle](https://www.lcdf.org/gifsicle/)
+* [git](https://git-scm.com)
 * [imagemagick](https://imagemagick.org)
 * [Java](https://www.java.com/)
 * [jQueryUI](https://jqueryui.com)
 * [jq](https://jqlang.org)
+* [Saxon](https://www.saxonica.com/welcome/welcome.xml)
 * [SQLite](https://sqlite.org/)
+* [sshpass](https://stackoverflow.com/questions/12202587/automatically-enter-ssh-password-with-script)
 * [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
-* [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
+* [wkhtmltoimage part of wkhtmltopdf](https://wkhtmltopdf.org)
+* [XSLT](https://www.w3.org/Style/XSL/)
 
 ---
 
