@@ -128,7 +128,7 @@ fi
 # append new frames
 gifsicle -b ${BARCHART_HOME}/web/grfx/lunar/dial.gif --append ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
 # remove used frames
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.gif" -type f -mtime +1 -delete
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.gif" -type f -mtime +1 -delete -print
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
