@@ -1,7 +1,7 @@
 15 0 * * * @@HOMEDIR@@/backup/backup.sh
 45 2 1 1 * @@HOMEDIR@@/yearly.sh
 30 2 * * 7 @@HOMEDIR@@/weekly.sh
-0 2 * * * @@HOMEDIR@@/daily.sh
+30 1 * * * @@HOMEDIR@@/daily.sh
 0 * * * * @@HOMEDIR@@/hourly.sh
 20 * * * * @@HOMEDIR@@/share/BirdWeather.sh
 30 3 * * * @@HOMEDIR@@/util/update.sh
