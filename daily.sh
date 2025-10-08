@@ -106,6 +106,14 @@ do
 	fi
 done
 # ===================================================
+# initialize the dials if not already there
+
+if [ ! -f ${BARCHART_HOME}/web/grfx/lunar/dial.gif  ]; then
+	cp ${BARCHART_HOME}/web/grfx/lunar/init.gif ${BARCHART_HOME}/web/grfx/lunar/dial.gif
+fi
+if [ ! -f ${BARCHART_HOME}/web/grfx/seasonal/dial.gif  ]; then
+	cp ${BARCHART_HOME}/web/grfx/seasonal/init.gif ${BARCHART_HOME}/web/grfx/seasonal/dial.gif 
+fi
 # save the midnight/noon snapshot to seasonal
 find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.gif" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
 find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.gif" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;

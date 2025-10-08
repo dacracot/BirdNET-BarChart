@@ -35,8 +35,12 @@ This is where graphical images are kept.
 * svg (scalable vector graphics)
 	* weather
 		* Icons which reflect the current or past weather conditions.
+	* lunar
+		* Dial animation for the lunar cycle.
 	* moon
 		* Icons for the phases of the moon.
+	* seasonal
+		* Dial animation for the seasonal cycle.
 	* temperature
 		* Currently unused.
 
