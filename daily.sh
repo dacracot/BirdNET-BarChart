@@ -117,7 +117,6 @@ fi
 find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.gif" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
 find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.gif" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
 # seasonal
-ls -ltrh ${BARCHART_HOME}/web/grfx/seasonal
 # count frames in the animations
 FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/seasonal/dial.gif | wc -l)
 # trim if longer than (2*360=720) twice per day for 360 days
@@ -127,9 +126,7 @@ fi
 gifsicle -b ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --append ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
 # remove appended frames
 rm -v ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
-ls -ltrh ${BARCHART_HOME}/web/grfx/seasonal
 # lunar
-ls -ltrh ${BARCHART_HOME}/web/grfx/lunar
 # count frames in the animations
 FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/lunar/dial.gif | wc -l)
 # trim if longer than (24*30=720) 24 hours per day for 30 days
@@ -140,7 +137,6 @@ fi
 gifsicle -b ${BARCHART_HOME}/web/grfx/lunar/dial.gif --append ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
 # remove appended frames
 rm -v ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
-ls -ltrh ${BARCHART_HOME}/web/grfx/lunar
 # ===================================================
 # how long did it take
 DURATION=$SECONDS
