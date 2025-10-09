@@ -55,13 +55,14 @@ and now know what birds are sharing their voices with me.
 		* `unzip SaxonHE12-9J.zip`
 * ___Install this software___:
 	1. Install git, Java, sqlite, Apache, sshpass, etc.
-		* `sudo apt install git`
-		* `sudo apt install default-jre-headless`
-		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
-		* `sudo apt install jq`
 		* `sudo apt install bc`
+		* `sudo apt install default-jre-headless`
+		* `sudo apt install gifsicle`
+		* `sudo apt install git`
 		* `sudo apt install imagemagick`
+		* `sudo apt install jq`
+		* `sudo apt install sqlite3`
 		* `sudo apt install sshpass`
 		* `sudo apt install ssmtp`
 		* `sudo apt install wkhtmltopdf`
