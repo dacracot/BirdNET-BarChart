@@ -114,8 +114,8 @@ if [ ! -f ${BARCHART_HOME}/web/grfx/seasonal/dial.gif  ]; then
 	cp -v ${BARCHART_HOME}/web/grfx/seasonal/init.gif ${BARCHART_HOME}/web/grfx/seasonal/dial.gif 
 fi
 # save the midnight/noon snapshot to seasonal
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.gif" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.gif" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.gif" -type f -exec cp -v {} ${BARCHART_HOME}/web/grfx/seasonal \;
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.gif" -type f -exec cp -v {} ${BARCHART_HOME}/web/grfx/seasonal \;
 # seasonal
 # count frames in the animations
 FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/seasonal/dial.gif | wc -l)
