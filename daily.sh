@@ -121,9 +121,9 @@ find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.gif" -type f -exec cp 
 FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/seasonal/dial.gif | wc -l)
 # trim if longer than (2*360=720) twice per day for 360 days
 if (( $FRAMECOUNT > 720 )); then
-	gifsicle -b ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --delete '#0-1'
+	gifsicle --batch ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --delete '#0-1'
 fi
-gifsicle -b ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --append ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
+gifsicle --batch ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --append ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
 # remove appended frames
 rm -v ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
 # lunar
@@ -131,10 +131,12 @@ rm -v ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
 FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/lunar/dial.gif | wc -l)
 # trim if longer than (24*30=720) 24 hours per day for 30 days
 if (( $FRAMECOUNT > 720 )); then
-	gifsicle -b ${BARCHART_HOME}/web/grfx/lunar/dial.gif --delete '#0-23'
+	gifsicle --batch ${BARCHART_HOME}/web/grfx/lunar/dial.gif --delete '#0-23'
 fi
 # append new frames
-gifsicle -b ${BARCHART_HOME}/web/grfx/lunar/dial.gif --append ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
+gifsicle --batch ${BARCHART_HOME}/web/grfx/lunar/dial.gif --append ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
+# report on the result
+gifsicle --info ${BARCHART_HOME}/web/grfx/lunar/dial.gif
 # remove appended frames
 rm -v ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
 # ===================================================
