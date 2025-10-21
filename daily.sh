@@ -106,15 +106,39 @@ do
 	fi
 done
 # ===================================================
+# initialize the dials if not already there
+if [ ! -f ${BARCHART_HOME}/web/grfx/lunar/dial.gif  ]; then
+	cp -v ${BARCHART_HOME}/web/grfx/lunar/init.gif ${BARCHART_HOME}/web/grfx/lunar/dial.gif
+fi
+if [ ! -f ${BARCHART_HOME}/web/grfx/seasonal/dial.gif  ]; then
+	cp -v ${BARCHART_HOME}/web/grfx/seasonal/init.gif ${BARCHART_HOME}/web/grfx/seasonal/dial.gif 
+fi
 # save the midnight/noon snapshot to seasonal
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.png" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.png" -type f -exec mv {} ${BARCHART_HOME}/web/grfx/seasonal \;
-# delete all the snapshots remaining over 30 days old
-find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*.png" -type f -mtime +30 -delete
-# roll the current lunar cycle animated gif with imagemagick
-convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/lunar/snapshot-*.png" -loop 0 "${BARCHART_HOME}/web/grfx/lunar/dial.gif"
-# roll the current seasonal cycle animated gif with imagemagick
-convert -layers OptimizePlus -delay 24x100 "${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.png" -loop 0 "${BARCHART_HOME}/web/grfx/seasonal/dial.gif"
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*00.gif" -type f -exec cp -v {} ${BARCHART_HOME}/web/grfx/seasonal \;
+find ${BARCHART_HOME}/web/grfx/lunar/ -name "snapshot-*12.gif" -type f -exec cp -v {} ${BARCHART_HOME}/web/grfx/seasonal \;
+# seasonal
+# count frames in the animations
+FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/seasonal/dial.gif | wc -l)
+# trim if longer than (2*360=720) twice per day for 360 days
+if (( $FRAMECOUNT > 720 )); then
+	gifsicle --batch ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --delete '#0-1'
+fi
+gifsicle --batch ${BARCHART_HOME}/web/grfx/seasonal/dial.gif --append ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
+# remove appended frames
+rm -v ${BARCHART_HOME}/web/grfx/seasonal/snapshot-*.gif
+# lunar
+# count frames in the animations
+FRAMECOUNT=$(identify ${BARCHART_HOME}/web/grfx/lunar/dial.gif | wc -l)
+# trim if longer than (24*30=720) 24 hours per day for 30 days
+if (( $FRAMECOUNT > 720 )); then
+	gifsicle --batch ${BARCHART_HOME}/web/grfx/lunar/dial.gif --delete '#0-23'
+fi
+# append new frames
+gifsicle --batch ${BARCHART_HOME}/web/grfx/lunar/dial.gif --append ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
+# report on the result
+gifsicle --info ${BARCHART_HOME}/web/grfx/lunar/dial.gif
+# remove appended frames
+rm -v ${BARCHART_HOME}/web/grfx/lunar/snapshot-*.gif
 # ===================================================
 # how long did it take
 DURATION=$SECONDS

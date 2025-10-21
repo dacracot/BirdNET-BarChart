@@ -1,2 +1,2 @@
-version 2.13
-commit 2d4fa439cb9e8135423d607f3902f86bc9c5bb79 Wednesday, 24 September 2025 at 20:36
+version 2.14
+commit 2ec7d44b19bd36bf5b6cb1a5863f4ee684dc50a6 Friday, 10 October 2025 at 06:14

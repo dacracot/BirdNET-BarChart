@@ -55,13 +55,14 @@ and now know what birds are sharing their voices with me.
 		* `unzip SaxonHE12-9J.zip`
 * ___Install this software___:
 	1. Install git, Java, sqlite, Apache, sshpass, etc.
-		* `sudo apt install git`
-		* `sudo apt install default-jre-headless`
-		* `sudo apt install sqlite3`
 		* `sudo apt install apache2`
-		* `sudo apt install jq`
 		* `sudo apt install bc`
+		* `sudo apt install default-jre-headless`
+		* `sudo apt install gifsicle`
+		* `sudo apt install git`
 		* `sudo apt install imagemagick`
+		* `sudo apt install jq`
+		* `sudo apt install sqlite3`
 		* `sudo apt install sshpass`
 		* `sudo apt install ssmtp`
 		* `sudo apt install wkhtmltopdf`
@@ -154,13 +155,19 @@ and now know what birds are sharing their voices with me.
 * [Bash](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 * [bc](https://www.man7.org/linux/man-pages/man1/bc.1p.html)
 * [BirdNET-Analyzer](https://github.com/kahst/BirdNET-Analyzer)
+* [gifsicle](https://www.lcdf.org/gifsicle/)
+* [git](https://git-scm.com)
+* [imagemagick](https://imagemagick.org)
 * [Java](https://www.java.com/)
 * [jQueryUI](https://jqueryui.com)
 * [jq](https://jqlang.org)
+* [Saxon](https://www.saxonica.com/welcome/welcome.xml)
 * [SQLite](https://sqlite.org/)
+* [sshpass](https://stackoverflow.com/questions/12202587/automatically-enter-ssh-password-with-script)
 * [sSMTP](https://netcorecloud.com/tutorials/linux-send-mail-from-command-line-using-smtp-server/)
 * [SVG](https://www.w3.org/Graphics/SVG/)
-* [XSLT](https://www.w3.org/Style/XSL/) implemented using [Saxon](https://www.saxonica.com/welcome/welcome.xml)
+* [wkhtmltoimage part of wkhtmltopdf](https://wkhtmltopdf.org)
+* [XSLT](https://www.w3.org/Style/XSL/)
 
 ---
 
